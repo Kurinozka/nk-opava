@@ -1,0 +1,144 @@
+=== VÝSLEDKY VALIDACE HRÁČŮ ===
+
+Zkontrolováno hráčů z NK Opava: 11
+Zkontrolováno hráčů z extraligy: 76
+Celkem zkontrolováno: 87
+
+1. CHYBY V SOUČTU DISCIPLÍN:
+────────────────────────────────────────────────────────────────────────────────
+
+Hráč: Radim Adámek (NK Opava)
+Sezóna: 2024
+Očekávaný počet zápasů: 24
+Skutečný součet: 0 (singl: 0, dvojice: 0, trojice: 0)
+Rozdíl: -24
+
+Hráč: Tomáš Zelba (TJ AVIA Čakovice)
+Sezóna: 2024
+Očekávaný počet zápasů: 51
+Skutečný součet: 37 (singl: 0, dvojice: 16, trojice: 21)
+Rozdíl: -14
+
+Hráč: Tomáš Bíbr (SK Liapor Karlovy Vary)
+Sezóna: 2024
+Očekávaný počet zápasů: 3
+Skutečný součet: 6 (singl: 3, dvojice: 2, trojice: 1)
+Rozdíl: 3
+
+Hráč: Vojtěch Sýs (SKN Žatec)
+Sezóna: 2024
+Očekávaný počet zápasů: 32
+Skutečný součet: 29 (singl: 0, dvojice: 12, trojice: 17)
+Rozdíl: -3
+
+Hráč: Vilém Ungermann (SKN Žatec)
+Sezóna: 2024
+Očekávaný počet zápasů: 40
+Skutečný součet: 35 (singl: 0, dvojice: 14, trojice: 21)
+Rozdíl: -5
+
+Hráč: Ondřej Vít (SKN Žatec)
+Sezóna: 2024
+Očekávaný počet zápasů: 68
+Skutečný součet: 60 (singl: 14, dvojice: 21, trojice: 25)
+Rozdíl: -8
+
+────────────────────────────────────────────────────────────────────────────────
+Celkem chyb: 6
+
+2. CHYBY V ŘAZENÍ SEZÓN:
+────────────────────────────────────────────────────────────────────────────────
+
+Hráč: Jan Chalupa (NK AUSTIN Vsetín)
+Problém: Špatné pořadí: "2025 Play-off" by mělo být po "2024"
+Aktuální pořadí: 2025 - základní část → 2025 Play-off → 2024
+
+Hráč: Martin Zbranek (NK AUSTIN Vsetín)
+Problém: Špatné pořadí: "2025 Play-off" by mělo být po "2024"
+Aktuální pořadí: 2025 - základní část → 2025 Play-off → 2024
+
+Hráč: Daniel Bílý (NK AUSTIN Vsetín)
+Problém: Špatné pořadí: "2025 Play-off" by mělo být po "2024"
+Aktuální pořadí: 2025 - základní část → 2025 Play-off → 2024
+
+Hráč: David Dvořák (NK AUSTIN Vsetín)
+Problém: Špatné pořadí: "2025 Play-off" by mělo být po "2024"
+Aktuální pořadí: 2025 - základní část → 2025 Play-off → 2024
+
+Hráč: Kryštof Ptáček (NK AUSTIN Vsetín)
+Problém: Špatné pořadí: "2025 Play-off" by mělo být po "2024"
+Aktuální pořadí: 2025 - základní část → 2025 Play-off → 2024
+
+Hráč: Matúš Rácik (NK AUSTIN Vsetín)
+Problém: Špatné pořadí: "2025 Play-off" by mělo být po "2024"
+Aktuální pořadí: 2025 - základní část → 2025 Play-off → 2024
+
+Hráč: Rudolf Stařičný (NK AUSTIN Vsetín)
+Problém: Špatné pořadí: "2025 Play-off" by mělo být po "2024"
+Aktuální pořadí: 2025 - základní část → 2025 Play-off → 2024
+
+────────────────────────────────────────────────────────────────────────────────
+Celkem chyb: 7
+
+3. CHYBY VE SPRÁVNOSTI DAT DISCIPLÍN: Žádné chyby nenalezeny ✓
+
+=== SHRNUTÍ ===
+Celkový počet nalezených chyb: 13
+
+=== NÁVRHY OPRAV ===
+
+OPRAVY SOUČTU DISCIPLÍN:
+
+Radim Adámek (NK Opava) - 2024:
+  ✓ DOPORUČENÍ: Všechny disciplíny mají 0 zápasů, ale matches je 24
+    Buď přidat data disciplín, nebo změnit matches na 0
+
+Tomáš Zelba (TJ AVIA Čakovice) - 2024:
+  ✓ DOPORUČENÍ: Zkontrolovat disciplíny - součet je 37, ale mělo by být 51
+    Chybí 14 zápasů
+
+Tomáš Bíbr (SK Liapor Karlovy Vary) - 2024:
+  ✓ DOPORUČENÍ: Změnit "matches" z 3 na 6
+
+Vojtěch Sýs (SKN Žatec) - 2024:
+  ✓ DOPORUČENÍ: Zkontrolovat disciplíny - součet je 29, ale mělo by být 32
+    Chybí 3 zápasů
+
+Vilém Ungermann (SKN Žatec) - 2024:
+  ✓ DOPORUČENÍ: Zkontrolovat disciplíny - součet je 35, ale mělo by být 40
+    Chybí 5 zápasů
+
+Ondřej Vít (SKN Žatec) - 2024:
+  ✓ DOPORUČENÍ: Zkontrolovat disciplíny - součet je 60, ale mělo by být 68
+    Chybí 8 zápasů
+
+
+OPRAVY ŘAZENÍ SEZÓN:
+
+Jan Chalupa (NK AUSTIN Vsetín):
+  Aktuální: 2025 - základní část → 2025 Play-off → 2024
+  ✓ SPRÁVNÉ: 2024 → 2025 - základní část → 2025 Play-off
+
+Martin Zbranek (NK AUSTIN Vsetín):
+  Aktuální: 2025 - základní část → 2025 Play-off → 2024
+  ✓ SPRÁVNÉ: 2024 → 2025 - základní část → 2025 Play-off
+
+Daniel Bílý (NK AUSTIN Vsetín):
+  Aktuální: 2025 - základní část → 2025 Play-off → 2024
+  ✓ SPRÁVNÉ: 2024 → 2025 - základní část → 2025 Play-off
+
+David Dvořák (NK AUSTIN Vsetín):
+  Aktuální: 2025 - základní část → 2025 Play-off → 2024
+  ✓ SPRÁVNÉ: 2024 → 2025 - základní část → 2025 Play-off
+
+Kryštof Ptáček (NK AUSTIN Vsetín):
+  Aktuální: 2025 - základní část → 2025 Play-off → 2024
+  ✓ SPRÁVNÉ: 2024 → 2025 - základní část → 2025 Play-off
+
+Matúš Rácik (NK AUSTIN Vsetín):
+  Aktuální: 2025 - základní část → 2025 Play-off → 2024
+  ✓ SPRÁVNÉ: 2024 → 2025 - základní část → 2025 Play-off
+
+Rudolf Stařičný (NK AUSTIN Vsetín):
+  Aktuální: 2025 - základní část → 2025 Play-off → 2024
+  ✓ SPRÁVNÉ: 2024 → 2025 - základní část → 2025 Play-off

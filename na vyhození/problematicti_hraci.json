@@ -1,0 +1,2026 @@
+{
+  "summary": {
+    "totalProblematicPlayers": 67,
+    "totalProblematicRecords": 105
+  },
+  "explanation": {
+    "problem": "V nohejbale NELZE hrat soucasne singl (jednotlivci) A dvojice/trojice (tymove discipliny)",
+    "rules": [
+      "POUZE singl (pak dvojice = 0, trojice = 0)",
+      "POUZE dvojice/trojice (pak singl = 0)"
+    ],
+    "fix": [
+      "Nastavit disciplines.singl.matches = 0",
+      "Hodnotu z disciplines.singl.matches presunout do matches (celkovy pocet zapasu)",
+      "Hodnoty disciplines.dvojice a disciplines.trojice zachovat"
+    ]
+  },
+  "problematicPlayers": [
+    {
+      "playerName": "Michael Svoboda",
+      "playerId": "MODR_1",
+      "teamName": "MNK mobilprovás Modřice",
+      "teamId": "MODR",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 5,
+            "dvojice": 13,
+            "trojice": 22
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 13,
+            "trojice": 22,
+            "celkem": 5
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 2,
+            "dvojice": 17,
+            "trojice": 25
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 17,
+            "trojice": 25,
+            "celkem": 2
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Petr Bubniak",
+      "playerId": "MODR_2",
+      "teamName": "MNK mobilprovás Modřice",
+      "teamId": "MODR",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 12,
+            "dvojice": 13,
+            "trojice": 13
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 13,
+            "trojice": 13,
+            "celkem": 12
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 7,
+            "dvojice": 20,
+            "trojice": 22
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 20,
+            "trojice": 22,
+            "celkem": 7
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "František Kalas",
+      "playerId": "MODR_3",
+      "teamName": "MNK mobilprovás Modřice",
+      "teamId": "MODR",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 12,
+            "dvojice": 12,
+            "trojice": 12
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 12,
+            "trojice": 12,
+            "celkem": 12
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Pavel Kop",
+      "playerId": "MODR_4",
+      "teamName": "MNK mobilprovás Modřice",
+      "teamId": "MODR",
+      "issues": [
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 2,
+            "dvojice": 4,
+            "trojice": 0
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 4,
+            "trojice": 0,
+            "celkem": 2
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Jakub Pospíšil",
+      "playerId": "MODR_5",
+      "teamName": "MNK mobilprovás Modřice",
+      "teamId": "MODR",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 10,
+            "dvojice": 10,
+            "trojice": 10
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 10,
+            "trojice": 10,
+            "celkem": 10
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Lukáš Rosenberk",
+      "playerId": "MODR_6",
+      "teamName": "MNK mobilprovás Modřice",
+      "teamId": "MODR",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 9,
+            "dvojice": 9,
+            "trojice": 9
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 9,
+            "trojice": 9,
+            "celkem": 9
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Petr Topinka",
+      "playerId": "MODR_8",
+      "teamName": "MNK mobilprovás Modřice",
+      "teamId": "MODR",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 7,
+            "dvojice": 7,
+            "trojice": 7
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 7,
+            "trojice": 7,
+            "celkem": 7
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Jan Hanus",
+      "playerId": "MODR_9",
+      "teamName": "MNK mobilprovás Modřice",
+      "teamId": "MODR",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 9,
+            "dvojice": 10,
+            "trojice": 16
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 10,
+            "trojice": 16,
+            "celkem": 9
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 17,
+            "dvojice": 17,
+            "trojice": 17
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 17,
+            "trojice": 17,
+            "celkem": 17
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "David Višvader",
+      "playerId": "MODR_10",
+      "teamName": "MNK mobilprovás Modřice",
+      "teamId": "MODR",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 5,
+            "dvojice": 5,
+            "trojice": 5
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 5,
+            "trojice": 5,
+            "celkem": 5
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 1,
+            "dvojice": 13,
+            "trojice": 25
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 13,
+            "trojice": 25,
+            "celkem": 1
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Jakub Chadim",
+      "playerId": "CAKO_1",
+      "teamName": "TJ AVIA Čakovice",
+      "teamId": "CAKO",
+      "issues": [
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 16,
+            "dvojice": 16,
+            "trojice": 0
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 16,
+            "trojice": 0,
+            "celkem": 16
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Tomáš Chadim",
+      "playerId": "CAKO_2",
+      "teamName": "TJ AVIA Čakovice",
+      "teamId": "CAKO",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 1,
+            "dvojice": 17,
+            "trojice": 24
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 17,
+            "trojice": 24,
+            "celkem": 1
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Zdeněk Kalous",
+      "playerId": "CAKO_3",
+      "teamName": "TJ AVIA Čakovice",
+      "teamId": "CAKO",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 11,
+            "dvojice": 11,
+            "trojice": 11
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 11,
+            "trojice": 11,
+            "celkem": 11
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 6,
+            "dvojice": 21,
+            "trojice": 26
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 21,
+            "trojice": 26,
+            "celkem": 6
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Jiří Kalous",
+      "playerId": "CAKO_4",
+      "teamName": "TJ AVIA Čakovice",
+      "teamId": "CAKO",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 10,
+            "dvojice": 10,
+            "trojice": 10
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 10,
+            "trojice": 10,
+            "celkem": 10
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 2,
+            "dvojice": 11,
+            "trojice": 12
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 11,
+            "trojice": 12,
+            "celkem": 2
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Ondřej Pachman",
+      "playerId": "CAKO_5",
+      "teamName": "TJ AVIA Čakovice",
+      "teamId": "CAKO",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 9,
+            "dvojice": 9,
+            "trojice": 9
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 9,
+            "trojice": 9,
+            "celkem": 9
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Lukáš Souček",
+      "playerId": "CAKO_6",
+      "teamName": "TJ AVIA Čakovice",
+      "teamId": "CAKO",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 8,
+            "dvojice": 8,
+            "trojice": 8
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 8,
+            "trojice": 8,
+            "celkem": 8
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Milan Kučera",
+      "playerId": "CAKO_7",
+      "teamName": "TJ AVIA Čakovice",
+      "teamId": "CAKO",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 7,
+            "dvojice": 18,
+            "trojice": 25
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 18,
+            "trojice": 25,
+            "celkem": 7
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 27,
+            "dvojice": 17,
+            "trojice": 9
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 17,
+            "trojice": 9,
+            "celkem": 27
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "David Tůma",
+      "playerId": "CAKO_8",
+      "teamName": "TJ AVIA Čakovice",
+      "teamId": "CAKO",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 6,
+            "dvojice": 6,
+            "trojice": 6
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 6,
+            "trojice": 6,
+            "celkem": 6
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 22,
+            "dvojice": 15,
+            "trojice": 0
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 15,
+            "trojice": 0,
+            "celkem": 22
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Jaroslav Vacek",
+      "playerId": "CAKO_9",
+      "teamName": "TJ AVIA Čakovice",
+      "teamId": "CAKO",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 5,
+            "dvojice": 5,
+            "trojice": 5
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 5,
+            "trojice": 5,
+            "celkem": 5
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 19,
+            "dvojice": 1,
+            "trojice": 0
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 1,
+            "trojice": 0,
+            "celkem": 19
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Tomáš Zelba",
+      "playerId": "CAKO_10",
+      "teamName": "TJ AVIA Čakovice",
+      "teamId": "CAKO",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 4,
+            "dvojice": 4,
+            "trojice": 4
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 4,
+            "trojice": 4,
+            "celkem": 4
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Jan Vanke",
+      "playerId": "KVAR_1",
+      "teamName": "SK Liapor Karlovy Vary",
+      "teamId": "KVAR",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 49,
+            "dvojice": 22,
+            "trojice": 27
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 22,
+            "trojice": 27,
+            "celkem": 49
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 45,
+            "dvojice": 21,
+            "trojice": 24
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 21,
+            "trojice": 24,
+            "celkem": 45
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Karel Hron",
+      "playerId": "KVAR_3",
+      "teamName": "SK Liapor Karlovy Vary",
+      "teamId": "KVAR",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 3,
+            "dvojice": 14,
+            "trojice": 13
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 14,
+            "trojice": 13,
+            "celkem": 3
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Tomáš Bíbr",
+      "playerId": "KVAR_4",
+      "teamName": "SK Liapor Karlovy Vary",
+      "teamId": "KVAR",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 8,
+            "dvojice": 8,
+            "trojice": 8
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 8,
+            "trojice": 8,
+            "celkem": 8
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 3,
+            "dvojice": 2,
+            "trojice": 1
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 2,
+            "trojice": 1,
+            "celkem": 3
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Matěj Medek",
+      "playerId": "KVAR_5",
+      "teamName": "SK Liapor Karlovy Vary",
+      "teamId": "KVAR",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 7,
+            "dvojice": 7,
+            "trojice": 7
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 7,
+            "trojice": 7,
+            "celkem": 7
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 10,
+            "dvojice": 23,
+            "trojice": 0
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 23,
+            "trojice": 0,
+            "celkem": 10
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Lukáš Tolar",
+      "playerId": "KVAR_6",
+      "teamName": "SK Liapor Karlovy Vary",
+      "teamId": "KVAR",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 6,
+            "dvojice": 6,
+            "trojice": 6
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 6,
+            "trojice": 6,
+            "celkem": 6
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 14,
+            "dvojice": 22,
+            "trojice": 26
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 22,
+            "trojice": 26,
+            "celkem": 14
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Jakub Medek",
+      "playerId": "KVAR_7",
+      "teamName": "SK Liapor Karlovy Vary",
+      "teamId": "KVAR",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 5,
+            "dvojice": 5,
+            "trojice": 5
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 5,
+            "trojice": 5,
+            "celkem": 5
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Jan Chalupa",
+      "playerId": "VSET_3",
+      "teamName": "NK AUSTIN Vsetín",
+      "teamId": "VSET",
+      "issues": [
+        {
+          "season": "2025 - základní část",
+          "chybne": {
+            "singl": 10,
+            "dvojice": 10,
+            "trojice": 10
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 10,
+            "trojice": 10,
+            "celkem": 10
+          }
+        },
+        {
+          "season": "2025 Play-off",
+          "chybne": {
+            "singl": 3,
+            "dvojice": 3,
+            "trojice": 3
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 3,
+            "trojice": 3,
+            "celkem": 3
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 13,
+            "dvojice": 19,
+            "trojice": 25
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 19,
+            "trojice": 25,
+            "celkem": 13
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Martin Zbranek",
+      "playerId": "VSET_5",
+      "teamName": "NK AUSTIN Vsetín",
+      "teamId": "VSET",
+      "issues": [
+        {
+          "season": "2025 - základní část",
+          "chybne": {
+            "singl": 8,
+            "dvojice": 8,
+            "trojice": 8
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 8,
+            "trojice": 8,
+            "celkem": 8
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 1,
+            "dvojice": 10,
+            "trojice": 13
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 10,
+            "trojice": 13,
+            "celkem": 1
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Daniel Bílý",
+      "playerId": "VSET_6",
+      "teamName": "NK AUSTIN Vsetín",
+      "teamId": "VSET",
+      "issues": [
+        {
+          "season": "2025 - základní část",
+          "chybne": {
+            "singl": 7,
+            "dvojice": 7,
+            "trojice": 7
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 7,
+            "trojice": 7,
+            "celkem": 7
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Rastislav Tabaka",
+      "playerId": "VSET_7",
+      "teamName": "NK AUSTIN Vsetín",
+      "teamId": "VSET",
+      "issues": [
+        {
+          "season": "2025 - základní část",
+          "chybne": {
+            "singl": 6,
+            "dvojice": 6,
+            "trojice": 6
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 6,
+            "trojice": 6,
+            "celkem": 6
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "David Dvořák",
+      "playerId": "VSET_8",
+      "teamName": "NK AUSTIN Vsetín",
+      "teamId": "VSET",
+      "issues": [
+        {
+          "season": "2025 - základní část",
+          "chybne": {
+            "singl": 5,
+            "dvojice": 5,
+            "trojice": 5
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 5,
+            "trojice": 5,
+            "celkem": 5
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Jakub Halašta",
+      "playerId": "VSET_9",
+      "teamName": "NK AUSTIN Vsetín",
+      "teamId": "VSET",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 4,
+            "dvojice": 4,
+            "trojice": 4
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 4,
+            "trojice": 4,
+            "celkem": 4
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Kryštof Ptáček",
+      "playerId": "VSET_11",
+      "teamName": "NK AUSTIN Vsetín",
+      "teamId": "VSET",
+      "issues": [
+        {
+          "season": "2025 - základní část",
+          "chybne": {
+            "singl": 1,
+            "dvojice": 1,
+            "trojice": 1
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 1,
+            "trojice": 1,
+            "celkem": 1
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Matúš Rácik",
+      "playerId": "VSET_12",
+      "teamName": "NK AUSTIN Vsetín",
+      "teamId": "VSET",
+      "issues": [
+        {
+          "season": "2025 - základní část",
+          "chybne": {
+            "singl": 1,
+            "dvojice": 1,
+            "trojice": 1
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 1,
+            "trojice": 1,
+            "celkem": 1
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 2,
+            "dvojice": 2,
+            "trojice": 0
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 2,
+            "trojice": 0,
+            "celkem": 2
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Martin Tomek",
+      "playerId": "VSET_14",
+      "teamName": "NK AUSTIN Vsetín",
+      "teamId": "VSET",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 1,
+            "dvojice": 1,
+            "trojice": 1
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 1,
+            "trojice": 1,
+            "celkem": 1
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Vojtěch Sýs",
+      "playerId": "ZATEC_1",
+      "teamName": "SKN Žatec",
+      "teamId": "ZATEC",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 11,
+            "dvojice": 11,
+            "trojice": 11
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 11,
+            "trojice": 11,
+            "celkem": 11
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Jan Jůzek",
+      "playerId": "ZATEC_2",
+      "teamName": "SKN Žatec",
+      "teamId": "ZATEC",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 10,
+            "dvojice": 10,
+            "trojice": 10
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 10,
+            "trojice": 10,
+            "celkem": 10
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Jaroslav Kovařík",
+      "playerId": "ZATEC_3",
+      "teamName": "SKN Žatec",
+      "teamId": "ZATEC",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 9,
+            "dvojice": 9,
+            "trojice": 9
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 9,
+            "trojice": 9,
+            "celkem": 9
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Matěj Mužík",
+      "playerId": "ZATEC_4",
+      "teamName": "SKN Žatec",
+      "teamId": "ZATEC",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 8,
+            "dvojice": 8,
+            "trojice": 8
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 8,
+            "trojice": 8,
+            "celkem": 8
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Petr Pinkr",
+      "playerId": "ZATEC_5",
+      "teamName": "SKN Žatec",
+      "teamId": "ZATEC",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 7,
+            "dvojice": 7,
+            "trojice": 7
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 7,
+            "trojice": 7,
+            "celkem": 7
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Martin Sehrig",
+      "playerId": "ZATEC_6",
+      "teamName": "SKN Žatec",
+      "teamId": "ZATEC",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 6,
+            "dvojice": 6,
+            "trojice": 6
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 6,
+            "trojice": 6,
+            "celkem": 6
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Nikolas Truc",
+      "playerId": "ZATEC_7",
+      "teamName": "SKN Žatec",
+      "teamId": "ZATEC",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 5,
+            "dvojice": 5,
+            "trojice": 5
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 5,
+            "trojice": 5,
+            "celkem": 5
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Milan Dráždil",
+      "playerId": "ZATEC_8",
+      "teamName": "SKN Žatec",
+      "teamId": "ZATEC",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 4,
+            "dvojice": 4,
+            "trojice": 4
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 4,
+            "trojice": 4,
+            "celkem": 4
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Vilém Ungermann",
+      "playerId": "ZATEC_9",
+      "teamName": "SKN Žatec",
+      "teamId": "ZATEC",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 3,
+            "dvojice": 3,
+            "trojice": 3
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 3,
+            "trojice": 3,
+            "celkem": 3
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Ondřej Vít",
+      "playerId": "ZATEC_10",
+      "teamName": "SKN Žatec",
+      "teamId": "ZATEC",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 2,
+            "dvojice": 2,
+            "trojice": 2
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 2,
+            "trojice": 2,
+            "celkem": 2
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 14,
+            "dvojice": 21,
+            "trojice": 25
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 21,
+            "trojice": 25,
+            "celkem": 14
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Petr Vít",
+      "playerId": "ZATEC_11",
+      "teamName": "SKN Žatec",
+      "teamId": "ZATEC",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 1,
+            "dvojice": 1,
+            "trojice": 1
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 1,
+            "trojice": 1,
+            "celkem": 1
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Lukáš Hokr",
+      "playerId": "RADO_1",
+      "teamName": "Tělovýchovná jednota Radomyšl",
+      "teamId": "RADO",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 11,
+            "dvojice": 11,
+            "trojice": 11
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 11,
+            "trojice": 11,
+            "celkem": 11
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 20,
+            "dvojice": 29,
+            "trojice": 0
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 29,
+            "trojice": 0,
+            "celkem": 20
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Filip Hokr",
+      "playerId": "RADO_2",
+      "teamName": "Tělovýchovná jednota Radomyšl",
+      "teamId": "RADO",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 10,
+            "dvojice": 10,
+            "trojice": 10
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 10,
+            "trojice": 10,
+            "celkem": 10
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 1,
+            "dvojice": 27,
+            "trojice": 37
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 27,
+            "trojice": 37,
+            "celkem": 1
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Michal Nepodal",
+      "playerId": "RADO_3",
+      "teamName": "Tělovýchovná jednota Radomyšl",
+      "teamId": "RADO",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 9,
+            "dvojice": 9,
+            "trojice": 9
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 9,
+            "trojice": 9,
+            "celkem": 9
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 9,
+            "dvojice": 10,
+            "trojice": 10
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 10,
+            "trojice": 10,
+            "celkem": 9
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Rudolf Toman",
+      "playerId": "RADO_4",
+      "teamName": "Tělovýchovná jednota Radomyšl",
+      "teamId": "RADO",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 8,
+            "dvojice": 8,
+            "trojice": 8
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 8,
+            "trojice": 8,
+            "celkem": 8
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 22,
+            "dvojice": 34,
+            "trojice": 0
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 34,
+            "trojice": 0,
+            "celkem": 22
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Kryštof Toman",
+      "playerId": "RADO_5",
+      "teamName": "Tělovýchovná jednota Radomyšl",
+      "teamId": "RADO",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 7,
+            "dvojice": 7,
+            "trojice": 7
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 7,
+            "trojice": 7,
+            "celkem": 7
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 6,
+            "dvojice": 7,
+            "trojice": 6
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 7,
+            "trojice": 6,
+            "celkem": 6
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Josef Slavíček",
+      "playerId": "RADO_10",
+      "teamName": "Tělovýchovná jednota Radomyšl",
+      "teamId": "RADO",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 2,
+            "dvojice": 2,
+            "trojice": 2
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 2,
+            "trojice": 2,
+            "celkem": 2
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 11,
+            "dvojice": 17,
+            "trojice": 24
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 17,
+            "trojice": 24,
+            "celkem": 11
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Jiří Landrichter",
+      "playerId": "SOLI_1",
+      "teamName": "TJ Solidarita Praha",
+      "teamId": "SOLI",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 11,
+            "dvojice": 11,
+            "trojice": 11
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 11,
+            "trojice": 11,
+            "celkem": 11
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Tomáš Landrichter",
+      "playerId": "SOLI_2",
+      "teamName": "TJ Solidarita Praha",
+      "teamId": "SOLI",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 10,
+            "dvojice": 10,
+            "trojice": 10
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 10,
+            "trojice": 10,
+            "celkem": 10
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 25,
+            "dvojice": 11,
+            "trojice": 0
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 11,
+            "trojice": 0,
+            "celkem": 25
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Jan Golda",
+      "playerId": "SOLI_3",
+      "teamName": "TJ Solidarita Praha",
+      "teamId": "SOLI",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 9,
+            "dvojice": 9,
+            "trojice": 9
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 9,
+            "trojice": 9,
+            "celkem": 9
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 1,
+            "dvojice": 1,
+            "trojice": 0
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 1,
+            "trojice": 0,
+            "celkem": 1
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Jan Šafránek",
+      "playerId": "SOLI_5",
+      "teamName": "TJ Solidarita Praha",
+      "teamId": "SOLI",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 7,
+            "dvojice": 7,
+            "trojice": 7
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 7,
+            "trojice": 7,
+            "celkem": 7
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 16,
+            "dvojice": 17,
+            "trojice": 16
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 17,
+            "trojice": 16,
+            "celkem": 16
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Matej Prachár",
+      "playerId": "SOLI_6",
+      "teamName": "TJ Solidarita Praha",
+      "teamId": "SOLI",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 6,
+            "dvojice": 6,
+            "trojice": 6
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 6,
+            "trojice": 6,
+            "celkem": 6
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 16,
+            "dvojice": 22,
+            "trojice": 0
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 22,
+            "trojice": 0,
+            "celkem": 16
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Ivo Nováček",
+      "playerId": "SOLI_7",
+      "teamName": "TJ Solidarita Praha",
+      "teamId": "SOLI",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 5,
+            "dvojice": 5,
+            "trojice": 5
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 5,
+            "trojice": 5,
+            "celkem": 5
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 2,
+            "dvojice": 3,
+            "trojice": 8
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 3,
+            "trojice": 8,
+            "celkem": 2
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Daniel Mikula",
+      "playerId": "SOLI_8",
+      "teamName": "TJ Solidarita Praha",
+      "teamId": "SOLI",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 4,
+            "dvojice": 4,
+            "trojice": 4
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 4,
+            "trojice": 4,
+            "celkem": 4
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 12,
+            "dvojice": 23,
+            "trojice": 0
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 23,
+            "trojice": 0,
+            "celkem": 12
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Luděk Dvořák",
+      "playerId": "SOLI_10",
+      "teamName": "TJ Solidarita Praha",
+      "teamId": "SOLI",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 2,
+            "dvojice": 2,
+            "trojice": 2
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 2,
+            "trojice": 2,
+            "celkem": 2
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 20,
+            "dvojice": 21,
+            "trojice": 21
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 21,
+            "trojice": 21,
+            "celkem": 20
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Tomáš Andris",
+      "playerId": "CELA_1",
+      "teamName": "TJ Spartak VOTOČEK team Čelákovice",
+      "teamId": "CELA",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 11,
+            "dvojice": 11,
+            "trojice": 11
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 11,
+            "trojice": 11,
+            "celkem": 11
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 17,
+            "dvojice": 23,
+            "trojice": 0
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 23,
+            "trojice": 0,
+            "celkem": 17
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Martin Flekač",
+      "playerId": "CELA_2",
+      "teamName": "TJ Spartak VOTOČEK team Čelákovice",
+      "teamId": "CELA",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 10,
+            "dvojice": 10,
+            "trojice": 10
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 10,
+            "trojice": 10,
+            "celkem": 10
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 22,
+            "dvojice": 25,
+            "trojice": 0
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 25,
+            "trojice": 0,
+            "celkem": 22
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Vojtěch Holas",
+      "playerId": "CELA_3",
+      "teamName": "TJ Spartak VOTOČEK team Čelákovice",
+      "teamId": "CELA",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 9,
+            "dvojice": 9,
+            "trojice": 9
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 9,
+            "trojice": 9,
+            "celkem": 9
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 12,
+            "dvojice": 15,
+            "trojice": 0
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 15,
+            "trojice": 0,
+            "celkem": 12
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Michal Kolenský",
+      "playerId": "CELA_4",
+      "teamName": "TJ Spartak VOTOČEK team Čelákovice",
+      "teamId": "CELA",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 8,
+            "dvojice": 8,
+            "trojice": 8
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 8,
+            "trojice": 8,
+            "celkem": 8
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 11,
+            "dvojice": 17,
+            "trojice": 12
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 17,
+            "trojice": 12,
+            "celkem": 11
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Daniel Matura",
+      "playerId": "CELA_5",
+      "teamName": "TJ Spartak VOTOČEK team Čelákovice",
+      "teamId": "CELA",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 7,
+            "dvojice": 7,
+            "trojice": 7
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 7,
+            "trojice": 7,
+            "celkem": 7
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 26,
+            "dvojice": 12,
+            "trojice": 0
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 12,
+            "trojice": 0,
+            "celkem": 26
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Petr Nesládek",
+      "playerId": "CELA_6",
+      "teamName": "TJ Spartak VOTOČEK team Čelákovice",
+      "teamId": "CELA",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 6,
+            "dvojice": 6,
+            "trojice": 6
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 6,
+            "trojice": 6,
+            "celkem": 6
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 18,
+            "dvojice": 21,
+            "trojice": 0
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 21,
+            "trojice": 0,
+            "celkem": 18
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Radek Šafr",
+      "playerId": "CELA_7",
+      "teamName": "TJ Spartak VOTOČEK team Čelákovice",
+      "teamId": "CELA",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 5,
+            "dvojice": 5,
+            "trojice": 5
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 5,
+            "trojice": 5,
+            "celkem": 5
+          }
+        },
+        {
+          "season": "2024",
+          "chybne": {
+            "singl": 15,
+            "dvojice": 24,
+            "trojice": 0
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 24,
+            "trojice": 0,
+            "celkem": 15
+          }
+        }
+      ]
+    },
+    {
+      "playerName": "Marek Vojtíšek",
+      "playerId": "CELA_8",
+      "teamName": "TJ Spartak VOTOČEK team Čelákovice",
+      "teamId": "CELA",
+      "issues": [
+        {
+          "season": "2025",
+          "chybne": {
+            "singl": 4,
+            "dvojice": 4,
+            "trojice": 4
+          },
+          "spravne": {
+            "singl": 0,
+            "dvojice": 4,
+            "trojice": 4,
+            "celkem": 4
+          }
+        }
+      ]
+    }
+  ]
+}

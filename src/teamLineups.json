@@ -1,0 +1,271 @@
+{
+  "VSET": {
+    "teamName": "NK AUSTIN Vsetín",
+    "lineups": {
+      "singl": {
+        "players": ["VSET_3"],
+        "frequency": 100,
+        "comment": "Jan Chalupa hraje singl v 100% případů"
+      },
+      "dvojice1": {
+        "players": ["VSET_3", "VSET_8"],
+        "frequency": 50,
+        "comment": "Jan Chalupa + David Dvořák (nejčastější)"
+      },
+      "dvojice2": {
+        "players": ["VSET_6", "VSET_12"],
+        "frequency": 40,
+        "comment": "Daniel Bílý + Matúš Rácik"
+      },
+      "dvojice3": {
+        "players": ["VSET_12", "VSET_11"],
+        "frequency": 30,
+        "comment": "Matúš Rácik + Kryštof Ptáček"
+      },
+      "trojice1": {
+        "players": ["VSET_6", "VSET_8", "VSET_5"],
+        "frequency": 50,
+        "comment": "Daniel Bílý + David Dvořák + Martin Zbranek"
+      },
+      "trojice2": {
+        "players": ["VSET_3", "VSET_12", "VSET_11"],
+        "frequency": 50,
+        "comment": "Jan Chalupa + Matúš Rácik + Kryštof Ptáček"
+      },
+      "trojice3": {
+        "players": ["VSET_13", "VSET_14", "VSET_6"],
+        "frequency": 30,
+        "comment": "Rudolf Stařičný + Martin Tomek + Daniel Bílý"
+      }
+    }
+  },
+  "CELA": {
+    "teamName": "TJ Spartak VOTOČEK team Čelákovice",
+    "lineups": {
+      "singl": {
+        "players": ["CELA_4"],
+        "frequency": 100,
+        "comment": "Michal Kolenský - nejčastější v play off/out 2025 (3 zápasy)"
+      },
+      "dvojice1": {
+        "players": ["CELA_3", "CELA_7"],
+        "frequency": 67,
+        "comment": "Vojtěch Holas + Radek Šafr (2x z 3 zápasů play off/out)"
+      },
+      "dvojice2": {
+        "players": ["CELA_1", "CELA_4"],
+        "frequency": 67,
+        "comment": "Tomáš Andris + Michal Kolenský (2x z 3 zápasů)"
+      },
+      "dvojice3": {
+        "players": ["CELA_3", "CELA_6"],
+        "frequency": 33,
+        "comment": "Vojtěch Holas + Petr Nesládek"
+      },
+      "trojice1": {
+        "players": ["CELA_1", "CELA_3", "CELA_6"],
+        "frequency": 67,
+        "comment": "Tomáš Andris + Vojtěch Holas + Petr Nesládek (nejčastější v play off/out)"
+      },
+      "trojice2": {
+        "players": ["CELA_4", "CELA_5", "CELA_7"],
+        "frequency": 67,
+        "comment": "Michal Kolenský + Daniel Matura + Radek Šafr"
+      },
+      "trojice3": {
+        "players": ["CELA_1", "CELA_3", "CELA_6"],
+        "frequency": 33,
+        "comment": "Alternativní trojice (s Čuříkem - náhradník)"
+      }
+    }
+  },
+  "MODR": {
+    "teamName": "MNK mobilprovás Modřice",
+    "lineups": {
+      "singl": {
+        "players": ["MODR_9"],
+        "frequency": 100,
+        "comment": "Jan Hanus - ze základní části 2025"
+      },
+      "dvojice1": {
+        "players": ["MODR_4", "MODR_1"],
+        "frequency": 50,
+        "comment": "Pavel Kop + Michael Svoboda (nejčastější)"
+      },
+      "dvojice2": {
+        "players": ["MODR_3", "MODR_6"],
+        "frequency": 33,
+        "comment": "František Kalas + Lukáš Rosenberk"
+      },
+      "dvojice3": {
+        "players": ["MODR_2", "MODR_10"],
+        "frequency": 33,
+        "comment": "Petr Bubniak + David Višvader"
+      },
+      "trojice1": {
+        "players": ["MODR_3", "MODR_4", "MODR_1"],
+        "frequency": 66,
+        "comment": "František Kalas + Pavel Kop + Michael Svoboda (nejčastější)"
+      },
+      "trojice2": {
+        "players": ["MODR_9", "MODR_6", "MODR_10"],
+        "frequency": 33,
+        "comment": "Jan Hanus + Lukáš Rosenberk + David Višvader"
+      },
+      "trojice3": {
+        "players": ["MODR_2", "MODR_3", "MODR_6"],
+        "frequency": 20,
+        "comment": "Alternativní trojice"
+      }
+    }
+  },
+  "CAKO": {
+    "teamName": "TJ AVIA Čakovice",
+    "lineups": {
+      "singl": {
+        "players": ["CAKO_1"],
+        "frequency": 50,
+        "comment": "Použit fallback - nejlepší hráč podle winRate"
+      },
+      "dvojice1": {
+        "players": ["CAKO_1", "CAKO_2"],
+        "frequency": 40
+      },
+      "dvojice2": {
+        "players": ["CAKO_3", "CAKO_4"],
+        "frequency": 40
+      },
+      "dvojice3": {
+        "players": ["CAKO_5", "CAKO_6"],
+        "frequency": 30
+      },
+      "trojice1": {
+        "players": ["CAKO_1", "CAKO_2", "CAKO_3"],
+        "frequency": 40
+      },
+      "trojice2": {
+        "players": ["CAKO_4", "CAKO_5", "CAKO_6"],
+        "frequency": 40
+      },
+      "trojice3": {
+        "players": ["CAKO_7", "CAKO_8", "CAKO_9"],
+        "frequency": 30
+      }
+    }
+  },
+  "SOLI": {
+    "teamName": "TJ Solidarita Praha",
+    "lineups": {
+      "singl": {
+        "players": ["SOLI_1"],
+        "frequency": 50,
+        "comment": "Použit fallback - nejlepší hráč podle winRate"
+      },
+      "dvojice1": {
+        "players": ["SOLI_1", "SOLI_2"],
+        "frequency": 40
+      },
+      "dvojice2": {
+        "players": ["SOLI_3", "SOLI_4"],
+        "frequency": 40
+      },
+      "dvojice3": {
+        "players": ["SOLI_5", "SOLI_6"],
+        "frequency": 30
+      },
+      "trojice1": {
+        "players": ["SOLI_1", "SOLI_2", "SOLI_3"],
+        "frequency": 40
+      },
+      "trojice2": {
+        "players": ["SOLI_4", "SOLI_5", "SOLI_6"],
+        "frequency": 40
+      },
+      "trojice3": {
+        "players": ["SOLI_7", "SOLI_8", "SOLI_9"],
+        "frequency": 30
+      }
+    }
+  },
+  "RADO": {
+    "teamName": "Tělovýchovná jednota Radomyšl",
+    "lineups": {
+      "singl": {
+        "players": ["RADO_1"],
+        "frequency": 50,
+        "comment": "Použit fallback - nejlepší hráč podle winRate"
+      },
+      "dvojice1": {
+        "players": ["RADO_1", "RADO_2"],
+        "frequency": 40
+      },
+      "dvojice2": {
+        "players": ["RADO_3", "RADO_4"],
+        "frequency": 40
+      },
+      "dvojice3": {
+        "players": ["RADO_5", "RADO_6"],
+        "frequency": 30
+      },
+      "trojice1": {
+        "players": ["RADO_1", "RADO_2", "RADO_3"],
+        "frequency": 40
+      },
+      "trojice2": {
+        "players": ["RADO_4", "RADO_5", "RADO_6"],
+        "frequency": 40
+      },
+      "trojice3": {
+        "players": ["RADO_7", "RADO_8", "RADO_9"],
+        "frequency": 30
+      }
+    }
+  },
+  "OPAV": {
+    "teamName": "Nohejbalový klub Opava",
+    "lineups": {
+      "singl": {
+        "players": [1],
+        "frequency": 100,
+        "comment": "Radim Bokisch - nejvíce singlů celkově (10 v play off/out)"
+      },
+      "dvojice1": {
+        "players": [1, 7],
+        "frequency": 66,
+        "comment": "Radim Bokisch + David Majštiník (nejčastější - 2x ze 3 zápasů play off/out)"
+      },
+      "dvojice2": {
+        "players": [4, 9],
+        "frequency": 33,
+        "comment": "Ondřej Kurka + Josef Nezval (1x v play off/out)"
+      },
+      "dvojice3": {
+        "players": [5, 9],
+        "frequency": 33,
+        "comment": "Roman Kvarda + Josef Nezval (1x v play off/out)"
+      },
+      "trojice1": {
+        "players": [2, 4, 9],
+        "frequency": 100,
+        "comment": "Tomáš Hyžák + Ondřej Kurka + Josef Nezval (nejčastější - 4x ze všech trojic play off/out)"
+      },
+      "trojice2": {
+        "players": [1, 5, 7],
+        "frequency": 50,
+        "comment": "Radim Bokisch + Roman Kvarda + David Majštiník (2x v play off/out)"
+      },
+      "trojice3": {
+        "players": [1, 5, 17],
+        "frequency": 50,
+        "comment": "Radim Bokisch + Roman Kvarda + Jan Němčík (2x v play off/out)"
+      }
+    }
+  },
+  "_metadata": {
+    "version": "1.2",
+    "lastUpdated": "2025-10-12",
+    "description": "Nejčastější sestavy extraligových a prvoligových týmů na základě analýzy zápasů sezóny 2025",
+    "dataSource": "Play-off/out a základní část Extraligy muži 2025",
+    "note": "VSET a OPAV mají reálná data z play off/out. CELA má data ze 3 play off zápasů. MODR má data ze základní části. KVAR a ZATEC byly odstraněny kvůli neshodě player IDs. CAKO, SOLI a RADO používají fallback."
+  }
+}

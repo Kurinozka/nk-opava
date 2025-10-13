@@ -1,0 +1,1118 @@
+/* ===========================
+   LIGA - VÝBĚR SESTAV
+   EA FC Card Style - Přesná kopie sekce Tým, pouze menší (scale 0.6)
+   =========================== */
+
+.league-match-setup {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%);
+  padding: 2rem;
+}
+
+.match-info-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  background: var(--color-white);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border-top: 4px solid var(--color-red);
+}
+
+.match-info-header h1 {
+  font-size: 2.5rem;
+  color: var(--color-black);
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.match-type {
+  font-size: 1.3rem;
+  color: var(--color-red);
+  font-weight: 700;
+}
+
+/* Výběr disciplíny */
+.discipline-selection {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.discipline-selection label {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: 0.75rem;
+}
+
+.discipline-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.discipline-btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  background: white;
+  border: 2px solid var(--color-red);
+  color: var(--color-red);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.discipline-btn:hover {
+  background: rgba(220, 47, 62, 0.1);
+  transform: translateY(-2px);
+}
+
+.discipline-btn.active {
+  background: var(--color-red);
+  color: white;
+}
+
+.teams-setup {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+
+.team-setup {
+  background: var(--color-white);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.team-setup h2 {
+  font-size: 2rem;
+  color: var(--color-black);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid var(--color-red);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* Sestava a lavička vedle sebe */
+.lineup-bench-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.lineup-section, .bench-section {
+  margin-bottom: 0;
+}
+
+.available-section {
+  margin-bottom: 0;
+}
+
+/* Hover styl pro drop zóny */
+.lineup-players.drag-over, .bench-players.drag-over {
+  border-color: var(--color-red) !important;
+  background: rgba(220, 47, 62, 0.05) !important;
+}
+
+.lineup-section h3, .bench-section h3, .available-section h3 {
+  font-size: 1.3rem;
+  color: var(--color-black);
+  margin-bottom: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Sestava a lavička - FLEXBOX jako v sekci Tým + drop zóna */
+.lineup-players {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  min-height: 300px;
+  justify-content: flex-start;
+  border: 2px dashed transparent;
+  border-radius: 12px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.bench-players {
+  display: flex;
+  flex-wrap: nowrap;  /* Změna z wrap na nowrap - hráči vždy vedle sebe */
+  gap: 2.5rem;
+  min-height: 300px;
+  justify-content: flex-start;
+  border: 2px dashed transparent;
+  border-radius: 12px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  overflow-x: auto;  /* Pokud se nevejdou, povolit horizontální scroll */
+}
+
+.lineup-players > .setup-hexagon-card,
+.bench-players > .setup-hexagon-card {
+  width: 192px !important;
+  height: 288px !important;
+  min-width: 192px;
+  max-width: 192px;
+  flex: 0 0 auto;
+}
+
+/* ===========================
+   DOSTUPNÍ HRÁČI - KOMPLETNĚ NOVÁ STRUKTURA
+   =========================== */
+
+/* Wrapper s explicitním omezením šířky */
+.available-section {
+  width: 100%;
+  margin-bottom: 0;
+  overflow: visible;
+}
+
+/* Container s menšími kartami 140px (scale 0.44 místo 0.6) */
+.available-players {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 140px);
+  gap: 2.5rem;
+  justify-content: center;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  min-height: 60px;
+}
+
+/* Karty dostupných hráčů - zmenšené na 140px × 210px */
+.available-players > .setup-hexagon-card {
+  width: 140px !important;
+  height: 210px !important;
+  min-width: 140px !important;
+  min-height: 210px !important;
+  max-width: 140px !important;
+  max-height: 210px !important;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  transform: scale(1);
+  position: relative;
+  z-index: 1;
+}
+
+/* Hover efekt - karta vystoupí do popředí v plné velikosti */
+.available-players > .setup-hexagon-card:hover {
+  width: 192px !important;
+  height: 288px !important;
+  z-index: 100;
+  transform: scale(1);
+}
+
+/* Zmenšené proporce pro dostupné hráče */
+.available-players .setup-card-badge {
+  top: 0.65rem;
+  left: 0.65rem;
+}
+
+.available-players .setup-card-badge-rating {
+  font-size: 1.5rem;
+}
+
+.available-players .setup-player-number {
+  top: 0.65rem;
+  right: 0.65rem;
+  font-size: 1.1rem;
+}
+
+.available-players .setup-player-info {
+  padding: 0.9rem 0.65rem 0.65rem;
+}
+
+.available-players .setup-player-name {
+  font-size: 0.65rem;
+  margin-bottom: 0.12rem;
+  color: #FFFFFF !important;
+}
+
+.available-players .setup-player-position {
+  font-size: 0.37rem;
+  margin-bottom: 0.45rem;
+}
+
+.available-players .setup-player-stats-mini {
+  gap: 0.35rem;
+  padding: 0.45rem;
+  border-radius: 5.2px;
+}
+
+.available-players .setup-stat-value {
+  font-size: 0.61rem;
+}
+
+.available-players .setup-stat-label {
+  font-size: 0.28rem;
+}
+
+/* ===========================
+   EA FC STYLE CARDS - PŘESNÁ KOPIE Z TEAM SEKCE (scale 0.6)
+   Vše převzato z newStyle.css s proporcionálním zmenšením
+   =========================== */
+
+.setup-hexagon-card {
+  position: relative;
+  width: 192px;  /* 320px * 0.6 */
+  height: 288px; /* 480px * 0.6 */
+  border-radius: 12px; /* 20px * 0.6 */
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.setup-hexagon-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(220, 47, 62, 0.85) 0%,
+    rgba(26, 26, 26, 0.75) 50%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  z-index: 1;
+  transition: opacity 0.4s ease;
+}
+
+.setup-hexagon-card.opponent-card::before {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 102, 204, 0.85) 0%,
+    rgba(0, 51, 102, 0.75) 50%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+}
+
+.setup-hexagon-card:hover::before {
+  opacity: 0.85;
+}
+
+.setup-hexagon-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow:
+    0 12px 36px rgba(220, 47, 62, 0.4),
+    0 0 0 1px var(--color-red) inset;
+}
+
+.setup-hexagon-card.opponent-card:hover {
+  box-shadow:
+    0 12px 36px rgba(0, 102, 204, 0.4),
+    0 0 0 1px rgba(0, 102, 204, 1) inset;
+}
+
+/* Player image */
+.setup-player-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.setup-player-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: brightness(1.1) contrast(1.1);
+}
+
+/* Rating badge - top left */
+.setup-card-badge {
+  position: absolute;
+  top: 0.9rem;  /* 1.5rem * 0.6 */
+  left: 0.9rem;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.18rem;  /* 0.3rem * 0.6 */
+}
+
+.setup-card-badge-rating {
+  font-size: 2.1rem;  /* 3.5rem * 0.6 */
+  font-weight: 900;
+  color: #FFD700;
+  line-height: 1;
+  text-shadow:
+    1.8px 1.8px 0px rgba(0, 0, 0, 0.8),
+    -0.6px -0.6px 0px rgba(0, 0, 0, 0.8),
+    0.6px -0.6px 0px rgba(0, 0, 0, 0.8),
+    -0.6px 0.6px 0px rgba(0, 0, 0, 0.8);
+  filter: drop-shadow(0 2.4px 6px rgba(0, 0, 0, 0.5));
+}
+
+/* Player number - top right */
+.setup-player-number {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  z-index: 10;
+  font-size: 1.5rem;  /* 2.5rem * 0.6 */
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow:
+    1.8px 1.8px 0px rgba(0, 0, 0, 0.8),
+    -0.6px -0.6px 0px rgba(0, 0, 0, 0.8);
+  filter: drop-shadow(0 2.4px 6px rgba(0, 0, 0, 0.5));
+}
+
+/* Player info - bottom section */
+.setup-player-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 1.2rem 0.9rem 0.9rem;  /* 2rem 1.5rem 1.5rem * 0.6 */
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.85) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+/* PLAYER NAME - BÍLÁ BARVA jako v Team sekci */
+.setup-player-name {
+  font-size: 0.9rem !important;  /* 1.5rem * 0.6 */
+  font-weight: 900 !important;
+  color: #FFFFFF !important;  /* BÍLÁ! */
+  margin-bottom: 0.18rem !important;  /* 0.3rem * 0.6 */
+  text-transform: uppercase !important;
+  letter-spacing: 0.6px !important;  /* 1px * 0.6 */
+  text-shadow: 1.2px 1.2px 3.6px rgba(0, 0, 0, 0.9) !important;  /* 2px 2px 6px * 0.6 */
+  line-height: 1.2 !important;
+}
+
+.setup-player-position {
+  font-size: 0.51rem;  /* 0.85rem * 0.6 */
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.9px;  /* 1.5px * 0.6 */
+  margin-bottom: 0.6rem;  /* 1rem * 0.6 */
+  text-shadow: 0.6px 0.6px 1.8px rgba(0, 0, 0, 0.9);  /* 1px 1px 3px * 0.6 */
+}
+
+/* Stats grid - 3x3 */
+.setup-player-stats-mini {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.48rem;  /* 0.8rem * 0.6 */
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.6rem;  /* 1rem * 0.6 */
+  border-radius: 7.2px;  /* 12px * 0.6 */
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.setup-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.18rem;  /* 0.3rem * 0.6 */
+}
+
+.setup-stat-value {
+  font-size: 0.84rem;  /* 1.4rem * 0.6 */
+  font-weight: 900;
+  color: #FFD700;
+  line-height: 1;
+  text-shadow: 1.2px 1.2px 2.4px rgba(0, 0, 0, 0.9);  /* 2px 2px 4px * 0.6 */
+}
+
+.setup-stat-label {
+  font-size: 0.39rem;  /* 0.65rem * 0.6 */
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.18px;  /* 0.3px * 0.6 */
+  text-shadow: 0.6px 0.6px 1.2px rgba(0, 0, 0, 0.9);  /* 1px 1px 2px * 0.6 */
+  line-height: 1.1;
+  text-align: center;
+}
+
+/* Status badge - top overlay for lineup/bench */
+.setup-status-badge {
+  display: none !important;
+  /* Skryto - pozice hráče je patrná z umístění v seznamu */
+}
+
+/* Available cards - subtle hover indicator */
+.setup-hexagon-card.available:hover {
+  transform: translateY(-12px) scale(1.03);
+}
+
+.setup-hexagon-card.available:hover::before {
+  opacity: 0.75;
+}
+
+/* Shine effect on hover (PŘESNĚ JAKO V TEAM.JS) */
+.setup-hexagon-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  transform: rotate(45deg);
+  z-index: 15;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+.setup-hexagon-card:hover::after {
+  opacity: 1;
+  animation: shine 1.5s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+/* ===========================
+   GRAYED OUT STATE (pro tréningový režim)
+   =========================== */
+
+.setup-hexagon-card.grayed-out {
+  cursor: not-allowed;
+  pointer-events: none;
+  filter: brightness(0.3);
+}
+
+.setup-hexagon-card.grayed-out::before {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(20, 20, 20, 0.9) 50%,
+    rgba(0, 0, 0, 0.95) 100%
+  ) !important;
+}
+
+.setup-hexagon-card.grayed-out:hover {
+  transform: none;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.setup-hexagon-card.grayed-out::after {
+  display: none;
+}
+
+/* ===========================
+   COACH MODE SELECTION
+   =========================== */
+
+.coach-mode-selection {
+  background: var(--color-white);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  margin-bottom: 2rem;
+}
+
+.coach-mode-selection h2 {
+  font-size: 2rem;
+  color: var(--color-black);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.coach-mode-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.coach-mode-btn {
+  flex: 1;
+  min-width: 200px;
+  max-width: 300px;
+  padding: 2rem 1.5rem;
+  background: white;
+  border: 3px solid #E5E5E5;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.coach-mode-btn:hover {
+  border-color: var(--color-red);
+  background: rgba(220, 47, 62, 0.05);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(220, 47, 62, 0.2);
+}
+
+.coach-mode-btn.active {
+  border-color: var(--color-red);
+  background: linear-gradient(135deg, var(--color-red) 0%, #B82632 100%);
+  box-shadow: 0 8px 30px rgba(220, 47, 62, 0.4);
+}
+
+.coach-mode-btn .coach-mode-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.coach-mode-btn.active .coach-mode-icon {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.coach-mode-btn h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--color-black);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.coach-mode-btn.active h3 {
+  color: white;
+}
+
+.coach-mode-btn p {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-gray-dark);
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+.coach-mode-btn.active p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ===========================
+   CONFIRM SECTION
+   =========================== */
+
+.setup-actions {
+  text-align: center;
+  background: var(--color-white);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border-bottom: 4px solid var(--color-red);
+}
+
+.confirm-lineup-btn {
+  padding: 1.5rem 4rem;
+  font-size: 1.4rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--color-red) 0%, #B82632 100%);
+  color: var(--color-white);
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 30px rgba(220, 47, 62, 0.4);
+}
+
+.confirm-lineup-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #B82632 0%, #A01F2A 100%);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(220, 47, 62, 0.6);
+}
+
+.confirm-lineup-btn:disabled {
+  background: var(--color-gray);
+  color: var(--color-gray-dark);
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+
+@media (max-width: 1200px) {
+  .teams-setup {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .league-match-setup {
+    padding: 1rem;
+  }
+
+  .match-info-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .match-type {
+    font-size: 1.1rem;
+  }
+
+  .team-setup {
+    padding: 1.5rem;
+  }
+
+  .coach-mode-buttons {
+    flex-direction: column;
+  }
+
+  .coach-mode-btn {
+    max-width: 100%;
+  }
+
+  .confirm-lineup-btn {
+    padding: 1.25rem 2.5rem;
+    font-size: 1.2rem;
+  }
+}
+
+/* ===========================
+   SKILL SELECTION MODAL - Nový design s kartami
+   =========================== */
+
+.skill-selection-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.skill-selection-content {
+  background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%);
+  border-radius: 24px;
+  max-width: 1600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  border: 3px solid var(--color-red);
+}
+
+/* Header */
+.skill-selection-header {
+  background: var(--color-white);
+  padding: 2rem 3rem;
+  border-bottom: 4px solid var(--color-red);
+  border-radius: 24px 24px 0 0;
+  text-align: center;
+}
+
+.skill-selection-header h2 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--color-black);
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+}
+
+.skill-selection-instructions {
+  font-size: 1.1rem;
+  color: var(--color-gray-dark);
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Players Selection Container */
+.players-skill-selection {
+  padding: 2rem 3rem;
+}
+
+/* Player Section */
+.player-skill-section {
+  margin-bottom: 4rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.player-skill-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Player Header */
+.player-skill-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 3px solid var(--color-red);
+}
+
+.player-skill-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--color-red);
+  box-shadow: 0 4px 12px rgba(220, 47, 62, 0.4);
+}
+
+.player-skill-header h3 {
+  font-size: 2rem;
+  font-weight: 900;
+  color: white;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* Skill Category */
+.skill-category {
+  margin-bottom: 2.5rem;
+}
+
+.skill-category:last-child {
+  margin-bottom: 0;
+}
+
+.skill-category h4 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+  margin: 0 0 1.25rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Skills Grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+/* Selectable Skill Card */
+.skill-card-selectable {
+  position: relative;
+  cursor: pointer;
+  display: block;
+}
+
+.skill-card-selectable input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.skill-card-content {
+  background: var(--color-white);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 3px solid transparent;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Offensive skills - červený border */
+.skill-card-selectable.offensive:not(.ultimate) .skill-card-content {
+  border-left: 5px solid var(--color-red);
+}
+
+/* Defensive skills - černý border */
+.skill-card-selectable.defensive:not(.ultimate) .skill-card-content {
+  border-left: 5px solid #000000;
+}
+
+/* Ultimate skills - zlatý border (platí pro všechny ultimate, defensive i offensive) */
+.skill-card-selectable.ultimate .skill-card-content {
+  border-left: 5px solid #FFD700 !important;
+}
+
+.skill-card-selectable:hover .skill-card-content {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.skill-card-selectable input:checked + .skill-card-content {
+  border-color: var(--color-red);
+  box-shadow: 0 0 0 3px var(--color-red), 0 8px 24px rgba(220, 47, 62, 0.5);
+  background: linear-gradient(135deg, #FFF 0%, #FFE5E7 100%);
+}
+
+/* Skill Card Header */
+.skill-card-header {
+  padding: 1rem 1.25rem;
+  background: var(--color-gray);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.skill-card-header h5 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--color-black);
+  margin: 0;
+  flex: 1;
+  line-height: 1.2;
+}
+
+.skill-rate {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.rate-number {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--color-red);
+  line-height: 1;
+}
+
+/* Animation Box Small */
+.animation-box-small {
+  background: var(--color-white);
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.animation-box-small svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Video Placeholder Small */
+.skill-video-placeholder-small {
+  background: var(--color-gray);
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--color-gray-dark);
+}
+
+.skill-video-placeholder-small .video-icon {
+  font-size: 2.5rem;
+  opacity: 0.5;
+}
+
+/* Checkmark */
+.skill-card-checkmark {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 32px;
+  height: 32px;
+  background: var(--color-red);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 900;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 12px rgba(220, 47, 62, 0.4);
+  z-index: 10;
+}
+
+.skill-card-selectable input:checked ~ .skill-card-checkmark {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Player Status */
+.player-skill-status {
+  margin-top: 1.5rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 193, 7, 0.2);
+  border-left: 4px solid #FFC107;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #FFC107;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.player-skill-status.valid {
+  background: rgba(34, 197, 94, 0.2);
+  border-left-color: #22C55E;
+  color: #22C55E;
+}
+
+/* Actions */
+.skill-selection-actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  padding: 2rem 3rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0 0 24px 24px;
+}
+
+.skill-selection-cancel,
+.skill-selection-confirm {
+  padding: 1.25rem 3rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+}
+
+.skill-selection-cancel {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.skill-selection-cancel:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.skill-selection-confirm {
+  background: linear-gradient(135deg, var(--color-red) 0%, #B82632 100%);
+  color: white;
+  box-shadow: 0 4px 20px rgba(220, 47, 62, 0.4);
+}
+
+.skill-selection-confirm:hover:not(:disabled) {
+  background: linear-gradient(135deg, #B82632 0%, #A01F2A 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(220, 47, 62, 0.6);
+}
+
+.skill-selection-confirm:disabled {
+  background: var(--color-gray);
+  color: var(--color-gray-dark);
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skill-selection-modal {
+    padding: 1rem;
+  }
+
+  .skill-selection-content {
+    max-height: 95vh;
+  }
+
+  .skill-selection-header {
+    padding: 1.5rem;
+  }
+
+  .skill-selection-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .skill-selection-instructions {
+    font-size: 0.95rem;
+  }
+
+  .players-skill-selection {
+    padding: 1.5rem 1rem;
+  }
+
+  .player-skill-section {
+    padding: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .player-skill-header {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .player-skill-photo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .player-skill-header h3 {
+    font-size: 1.5rem;
+  }
+
+  .skill-category h4 {
+    font-size: 1.2rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .skill-selection-actions {
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+    gap: 1rem;
+  }
+
+  .skill-selection-cancel,
+  .skill-selection-confirm {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+}

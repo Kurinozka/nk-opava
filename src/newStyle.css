@@ -1,0 +1,1363 @@
+/* ===========================
+   NK OPAVA - NOVÝ DESIGN
+   Barvy: Černá (#1A1A1A), Červená (#DC2F3E), Bílá (#FFFFFF)
+   Tvary: Hexagony
+   =========================== */
+
+:root {
+  --color-black: #1A1A1A;
+  --color-red: #DC2F3E;
+  --color-white: #FFFFFF;
+  --color-gray: #F5F5F5;
+  --color-gray-dark: #333333;
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: var(--color-white);
+  color: var(--color-black);
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+#app {
+  width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
+}
+
+/* ===========================
+   NAVIGACE
+   =========================== */
+
+.main-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--color-black);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-logo img {
+  height: 50px;
+  width: auto;
+}
+
+.nav-logo-text h2 {
+  color: var(--color-white);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.nav-logo-text p {
+  color: var(--color-red);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-link {
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: var(--color-red);
+}
+
+.nav-link.active {
+  color: var(--color-red);
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-red);
+}
+
+/* ===========================
+   HOME - HERO SEKCE
+   =========================== */
+
+.hero-section {
+  background: linear-gradient(135deg, var(--color-black) 0%, var(--color-gray-dark) 100%);
+  color: var(--color-white);
+  padding: 6rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(220, 47, 62, 0.03) 50px, rgba(220, 47, 62, 0.03) 100px);
+  pointer-events: none;
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-logo {
+  width: 200px;
+  height: auto;
+  margin-bottom: 2rem;
+  filter: drop-shadow(0 4px 20px rgba(220, 47, 62, 0.3));
+}
+
+.hero-section h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  color: var(--color-red);
+  margin-bottom: 3rem;
+  font-weight: 600;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ===========================
+   TLAČÍTKA
+   =========================== */
+
+.cta-button {
+  position: relative;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+}
+
+.cta-button.primary {
+  background: var(--color-red);
+  color: var(--color-white);
+}
+
+.cta-button.primary:hover {
+  background: #B8263  2;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(220, 47, 62, 0.4);
+}
+
+.cta-button.secondary {
+  background: var(--color-white);
+  color: var(--color-black);
+}
+
+.cta-button.secondary:hover {
+  background: var(--color-gray);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.button-text {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===========================
+   SEKCE - OBECNÉ
+   =========================== */
+
+section {
+  padding: 4rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 3rem;
+  text-align: center;
+  color: var(--color-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.section-title::before,
+.section-title::after {
+  content: '';
+  width: 60px;
+  height: 3px;
+  background: var(--color-red);
+}
+
+.hexagon-icon {
+  width: 30px;
+  height: 30px;
+  background: var(--color-red);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/* ===========================
+   BARÁŽ
+   =========================== */
+
+.upcoming-baraz-section {
+  background: linear-gradient(135deg, var(--color-red) 0%, #B82632 100%);
+  color: var(--color-white);
+  padding: 4rem 2rem;
+}
+
+.upcoming-baraz-section .section-title {
+  color: var(--color-white);
+}
+
+.upcoming-baraz-section .section-title::before,
+.upcoming-baraz-section .section-title::after {
+  background: var(--color-white);
+}
+
+.upcoming-baraz-section .hexagon-icon {
+  background: var(--color-white);
+}
+
+.baraz-card {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--color-white);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  border: 3px solid var(--color-white);
+}
+
+.baraz-date {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--color-red);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.baraz-teams {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.baraz-info {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-black);
+  padding: 1rem;
+  background: rgba(220, 47, 62, 0.1);
+  border-radius: 8px;
+  border: 2px solid var(--color-red);
+}
+
+/* ===========================
+   PLAY-OUT
+   =========================== */
+
+.playoff-section {
+  background: var(--color-gray);
+}
+
+/* ===========================
+   TABULKA LIGY
+   =========================== */
+
+.league-table-section {
+  background: var(--color-white);
+}
+
+.table-container {
+  background: var(--color-white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.league-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.league-table thead {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.league-table th {
+  padding: 1.2rem 1rem;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.league-table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-gray);
+  font-size: 1rem;
+}
+
+.league-table tbody tr {
+  transition: background 0.3s ease;
+}
+
+.league-table tbody tr:hover {
+  background: rgba(220, 47, 62, 0.05);
+}
+
+.league-table tbody tr.our-team {
+  background: rgba(220, 47, 62, 0.1);
+  font-weight: 700;
+}
+
+.league-table tbody tr.our-team:hover {
+  background: rgba(220, 47, 62, 0.15);
+}
+
+.league-table .position {
+  font-weight: 800;
+  color: var(--color-red);
+  width: 60px;
+}
+
+.league-table .team-name {
+  font-weight: 600;
+}
+
+.league-table .points {
+  color: var(--color-red);
+  font-size: 1.2rem;
+}
+
+/* ===========================
+   ZÁPASY
+   =========================== */
+
+.matches-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.match-card {
+  background: var(--color-white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.match-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: var(--color-red);
+}
+
+.match-card.upcoming {
+  border-left: 4px solid var(--color-red);
+}
+
+.match-card.past {
+  border-left: 4px solid var(--color-gray-dark);
+}
+
+.match-date {
+  font-size: 0.9rem;
+  color: var(--color-gray-dark);
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.match-teams {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.team img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.placeholder-logo {
+  width: 50px;
+  height: 50px;
+  background: var(--color-gray-dark);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.2rem;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.team span {
+  font-weight: 700;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.vs {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--color-gray-dark);
+}
+
+.result {
+  font-size: 1.8rem;
+  font-weight: 800;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.result.win {
+  background: rgba(34, 197, 94, 0.1);
+  color: #16a34a;
+}
+
+.result.loss {
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+}
+
+.match-location {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--color-gray-dark);
+  margin-top: 1rem;
+}
+
+.match-gallery {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.gallery-btn {
+  padding: 0.5rem 1rem;
+  background: var(--color-gray);
+  border: 1px solid var(--color-gray-dark);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.gallery-btn:hover {
+  background: var(--color-red);
+  color: var(--color-white);
+  border-color: var(--color-red);
+}
+
+/* ===========================
+   MÉDIA, SPONZOŘI
+   =========================== */
+
+.media-grid,
+.sponsors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.media-card,
+.sponsor-card {
+  background: var(--color-white);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border-top: 4px solid var(--color-red);
+}
+
+.media-card:hover,
+.sponsor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.media-source {
+  font-size: 0.9rem;
+  color: var(--color-red);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.media-card h3 {
+  font-size: 1.3rem;
+  color: var(--color-black);
+  margin-bottom: 0.5rem;
+}
+
+.media-date {
+  font-size: 0.85rem;
+  color: var(--color-gray-dark);
+}
+
+.sponsor-placeholder {
+  height: 100px;
+  background: var(--color-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: var(--color-gray-dark);
+  border-radius: 8px;
+}
+
+/* ===========================
+   NÁBOR
+   =========================== */
+
+.recruitment-section {
+  background: linear-gradient(135deg, var(--color-black) 0%, var(--color-gray-dark) 100%);
+  color: var(--color-white);
+}
+
+.recruitment-section .section-title {
+  color: var(--color-white);
+}
+
+.recruitment-section .section-title::before,
+.recruitment-section .section-title::after {
+  background: var(--color-red);
+}
+
+.recruitment-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.recruitment-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+.recruitment-benefits {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.recruitment-benefits li {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+  position: relative;
+}
+
+/* ===========================
+   FACEBOOK
+   =========================== */
+
+.facebook-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--color-white);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--color-black);
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.facebook-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.facebook-link img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.facebook-info h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.3rem;
+}
+
+.facebook-info p {
+  font-size: 0.95rem;
+  color: var(--color-gray-dark);
+}
+
+.facebook-posts {
+  padding: 2rem;
+  background: var(--color-white);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.facebook-placeholder {
+  text-align: center;
+  color: var(--color-gray-dark);
+  font-style: italic;
+}
+
+/* ===========================
+   TÝM - PLAYER CARDS
+   =========================== */
+
+.team-container {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.team-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem 0;
+  border-bottom: 3px solid var(--color-red);
+  margin-bottom: 3rem;
+}
+
+.team-logo {
+  width: 150px;
+  height: auto;
+}
+
+.team-header-text h1 {
+  font-size: 3rem;
+  color: var(--color-black);
+  margin-bottom: 0.5rem;
+}
+
+.team-subtitle {
+  font-size: 1.2rem;
+  color: var(--color-red);
+  font-weight: 600;
+}
+
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
+  padding: 2rem 0;
+}
+
+/* ===========================
+   EA FC 26 STYLE CARDS
+   =========================== */
+
+.hexagon-card {
+  position: relative;
+  aspect-ratio: 2/3;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.hexagon-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--team-primary, #DC2F3E) 85%, transparent) 0%,
+    color-mix(in srgb, var(--team-accent, #000000) 75%, transparent) 100%
+  );
+  z-index: 1;
+  transition: opacity 0.4s ease;
+}
+
+.hexagon-card:hover::before {
+  opacity: 0.85;
+}
+
+.hexagon-card:hover {
+  transform: translateY(-15px) scale(1.03);
+  box-shadow:
+    0 20px 60px color-mix(in srgb, var(--team-primary, #DC2F3E) 40%, transparent),
+    0 0 0 2px var(--team-primary, #DC2F3E) inset;
+}
+
+/* Pozadí - fotka hráče */
+.player-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.player-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: brightness(1.1) contrast(1.1);
+}
+
+/* Speciální úprava pro Radima Bokische - zoom na akci, skrýt sloupek */
+.hexagon-card[data-player-id="1"] .player-image img {
+  object-fit: cover;
+  object-position: 60% 35%;
+  transform: scale(1.8);
+  filter: brightness(1.15) contrast(1.15);
+}
+
+/* Speciální úprava pro Josefa Nezvala - Pepa 2 */
+.hexagon-card[data-player-id="9"] .player-image img {
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Speciální úprava pro trenéra - použít upravenou fotku trenér 2 */
+.hexagon-card.coach-card[data-player-id="11"] .player-image img {
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Top section - Rating & Position */
+.card-badge {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.card-badge-rating {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #FFD700;
+  line-height: 1;
+  text-shadow:
+    3px 3px 0px rgba(0, 0, 0, 0.8),
+    -1px -1px 0px rgba(0, 0, 0, 0.8),
+    1px -1px 0px rgba(0, 0, 0, 0.8),
+    -1px 1px 0px rgba(0, 0, 0, 0.8);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+}
+
+.card-badge-position {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #FFD700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Number - top right */
+.player-number {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 10;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow:
+    3px 3px 0px rgba(0, 0, 0, 0.8),
+    -1px -1px 0px rgba(0, 0, 0, 0.8);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+}
+
+/* Player info - bottom */
+.player-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 2rem 1.5rem 1.5rem;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.85) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.player-name {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--color-white);
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+  line-height: 1.2;
+}
+
+.player-position {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+/* Stats grid */
+.player-stats-mini {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.player-stats-mini .stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.stat-value {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #FFD700;
+  line-height: 1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+.stat-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
+  line-height: 1.1;
+}
+
+/* Trenér karta - speciální design */
+.hexagon-card.coach-card::before {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--team-secondary, #FFD700) 85%, transparent) 0%,
+    color-mix(in srgb, var(--team-accent, #000000) 75%, transparent) 100%
+  );
+}
+
+.hexagon-card.coach-card:hover {
+  box-shadow:
+    0 20px 60px color-mix(in srgb, var(--team-secondary, #FFD700) 40%, transparent),
+    0 0 0 2px var(--team-secondary, #FFD700) inset;
+}
+
+.coach-card .card-badge-rating {
+  font-size: 2.5rem;
+  color: #FFD700;
+}
+
+.coach-card .player-stats-mini {
+  grid-template-columns: 1fr;
+}
+
+.coach-card .stat-value {
+  font-size: 2rem;
+}
+
+/* Shine effect on hover */
+.hexagon-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  transform: rotate(45deg);
+  z-index: 15;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+.hexagon-card:hover::after {
+  opacity: 1;
+  animation: shine 1.5s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+/* ===========================
+   MODAL
+   =========================== */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 2rem;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: var(--color-white);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  border: 3px solid var(--color-red);
+  box-shadow: 0 20px 60px rgba(220, 47, 62, 0.4);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--color-red);
+  border: none;
+  color: var(--color-white);
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  border-radius: 50%;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  background: #B82632;
+  transform: rotate(90deg);
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 3px solid var(--color-red);
+}
+
+.modal-header h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--color-black);
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+}
+
+.modal-position {
+  font-size: 1.1rem;
+  color: var(--color-gray-dark);
+  margin: 0;
+  font-weight: 600;
+}
+
+.season-stats-section {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--color-gray);
+}
+
+.season-stats-section h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: 1rem;
+}
+
+.stats-table {
+  overflow-x: auto;
+}
+
+.stats-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-white);
+}
+
+.stats-table th {
+  background: var(--color-red);
+  color: var(--color-white);
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.stats-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--color-gray);
+  color: var(--color-gray-dark);
+}
+
+.stats-table tbody tr:hover {
+  background: var(--color-gray);
+}
+
+.stats-table .wins {
+  color: #22C55E;
+  font-weight: 700;
+}
+
+.stats-table .losses {
+  color: #EF4444;
+  font-weight: 700;
+}
+
+.stats-table .win-rate {
+  color: var(--color-red);
+  font-size: 1.1rem;
+}
+
+.skills-videos {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.skill-video-item {
+  background: var(--color-gray);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 2px solid var(--color-gray-dark);
+  transition: all 0.3s ease;
+}
+
+.skill-video-item.offensive {
+  border-left: 5px solid var(--color-red);
+}
+
+.skill-video-item.defensive {
+  border-left: 5px solid var(--color-black);
+}
+
+.skill-video-item.nonsense {
+  border-left: 5px solid #FFD700;
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.skill-video-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-black);
+}
+
+.skill-success-rate {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.success-percentage {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-red);
+}
+
+.success-label {
+  font-size: 0.85rem;
+  color: var(--color-gray-dark);
+  text-transform: uppercase;
+}
+
+.animation-box,
+.video-placeholder {
+  background: var(--color-white);
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Video v animation-box - respektovat poměr stran */
+.animation-box video,
+.animation-box .skill-video {
+  max-width: 100%;
+  max-height: 600px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.animation-box .skill-animation-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.animation-box .video-animation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.animation-box .skill-image-title {
+  position: static;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--color-black);
+  color: var(--color-red);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.animation-box-dual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.video-placeholder {
+  flex-direction: column;
+  gap: 1rem;
+  color: var(--color-gray-dark);
+}
+
+.video-icon {
+  font-size: 3rem;
+}
+
+.coach-quotes-section {
+  padding: 2rem;
+  background: var(--color-gray);
+  border-radius: 12px;
+}
+
+.coach-quotes-section h3 {
+  font-size: 1.8rem;
+  color: var(--color-black);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.quote-category {
+  margin-bottom: 2rem;
+}
+
+.quote-category h4 {
+  font-size: 1.3rem;
+  color: var(--color-red);
+  margin-bottom: 1rem;
+}
+
+.quote-category ul {
+  list-style: none;
+  padding: 0;
+}
+
+.quote-category li {
+  padding: 0.8rem;
+  background: var(--color-white);
+  border-left: 4px solid var(--color-red);
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  color: var(--color-black);
+}
+
+/* ===========================
+   RESPONZIVNÍ DESIGN
+   =========================== */
+
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .matches-grid,
+  .media-grid,
+  .sponsors-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .players-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .animation-box-dual {
+    grid-template-columns: 1fr;
+  }
+}
+

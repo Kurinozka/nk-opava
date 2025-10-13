@@ -1,0 +1,313 @@
+NALEZENO 67 HRACU S NEMOZNOU KOMBINACI DISCIPLIN:
+
+================================================================================
+
+Michael Svoboda (ID: MODR_1)
+  Tym: MNK mobilprovás Modřice
+  Sezona 2025: singl=5, dvojice=13, trojice=22
+  Sezona 2024: singl=2, dvojice=17, trojice=25
+
+Petr Bubniak (ID: MODR_2)
+  Tym: MNK mobilprovás Modřice
+  Sezona 2025: singl=12, dvojice=13, trojice=13
+  Sezona 2024: singl=7, dvojice=20, trojice=22
+
+František Kalas (ID: MODR_3)
+  Tym: MNK mobilprovás Modřice
+  Sezona 2025: singl=12, dvojice=12, trojice=12
+
+Pavel Kop (ID: MODR_4)
+  Tym: MNK mobilprovás Modřice
+  Sezona 2024: singl=2, dvojice=4, trojice=0
+
+Jakub Pospíšil (ID: MODR_5)
+  Tym: MNK mobilprovás Modřice
+  Sezona 2025: singl=10, dvojice=10, trojice=10
+
+Lukáš Rosenberk (ID: MODR_6)
+  Tym: MNK mobilprovás Modřice
+  Sezona 2025: singl=9, dvojice=9, trojice=9
+
+Petr Topinka (ID: MODR_8)
+  Tym: MNK mobilprovás Modřice
+  Sezona 2025: singl=7, dvojice=7, trojice=7
+
+Jan Hanus (ID: MODR_9)
+  Tym: MNK mobilprovás Modřice
+  Sezona 2025: singl=9, dvojice=10, trojice=16
+  Sezona 2024: singl=17, dvojice=17, trojice=17
+
+David Višvader (ID: MODR_10)
+  Tym: MNK mobilprovás Modřice
+  Sezona 2025: singl=5, dvojice=5, trojice=5
+  Sezona 2024: singl=1, dvojice=13, trojice=25
+
+Jakub Chadim (ID: CAKO_1)
+  Tym: TJ AVIA Čakovice
+  Sezona 2024: singl=16, dvojice=16, trojice=0
+
+Tomáš Chadim (ID: CAKO_2)
+  Tym: TJ AVIA Čakovice
+  Sezona 2025: singl=1, dvojice=17, trojice=24
+
+Zdeněk Kalous (ID: CAKO_3)
+  Tym: TJ AVIA Čakovice
+  Sezona 2025: singl=11, dvojice=11, trojice=11
+  Sezona 2024: singl=6, dvojice=21, trojice=26
+
+Jiří Kalous (ID: CAKO_4)
+  Tym: TJ AVIA Čakovice
+  Sezona 2025: singl=10, dvojice=10, trojice=10
+  Sezona 2024: singl=2, dvojice=11, trojice=12
+
+Ondřej Pachman (ID: CAKO_5)
+  Tym: TJ AVIA Čakovice
+  Sezona 2025: singl=9, dvojice=9, trojice=9
+
+Lukáš Souček (ID: CAKO_6)
+  Tym: TJ AVIA Čakovice
+  Sezona 2025: singl=8, dvojice=8, trojice=8
+
+Milan Kučera (ID: CAKO_7)
+  Tym: TJ AVIA Čakovice
+  Sezona 2025: singl=7, dvojice=18, trojice=25
+  Sezona 2024: singl=27, dvojice=17, trojice=9
+
+David Tůma (ID: CAKO_8)
+  Tym: TJ AVIA Čakovice
+  Sezona 2025: singl=6, dvojice=6, trojice=6
+  Sezona 2024: singl=22, dvojice=15, trojice=0
+
+Jaroslav Vacek (ID: CAKO_9)
+  Tym: TJ AVIA Čakovice
+  Sezona 2025: singl=5, dvojice=5, trojice=5
+  Sezona 2024: singl=19, dvojice=1, trojice=0
+
+Tomáš Zelba (ID: CAKO_10)
+  Tym: TJ AVIA Čakovice
+  Sezona 2025: singl=4, dvojice=4, trojice=4
+
+Jan Vanke (ID: KVAR_1)
+  Tym: SK Liapor Karlovy Vary
+  Sezona 2025: singl=49, dvojice=22, trojice=27
+  Sezona 2024: singl=45, dvojice=21, trojice=24
+
+Karel Hron (ID: KVAR_3)
+  Tym: SK Liapor Karlovy Vary
+  Sezona 2025: singl=3, dvojice=14, trojice=13
+
+Tomáš Bíbr (ID: KVAR_4)
+  Tym: SK Liapor Karlovy Vary
+  Sezona 2025: singl=8, dvojice=8, trojice=8
+  Sezona 2024: singl=3, dvojice=2, trojice=1
+
+Matěj Medek (ID: KVAR_5)
+  Tym: SK Liapor Karlovy Vary
+  Sezona 2025: singl=7, dvojice=7, trojice=7
+  Sezona 2024: singl=10, dvojice=23, trojice=0
+
+Lukáš Tolar (ID: KVAR_6)
+  Tym: SK Liapor Karlovy Vary
+  Sezona 2025: singl=6, dvojice=6, trojice=6
+  Sezona 2024: singl=14, dvojice=22, trojice=26
+
+Jakub Medek (ID: KVAR_7)
+  Tym: SK Liapor Karlovy Vary
+  Sezona 2025: singl=5, dvojice=5, trojice=5
+
+Jan Chalupa (ID: VSET_3)
+  Tym: NK AUSTIN Vsetín
+  Sezona 2025 - základní část: singl=10, dvojice=10, trojice=10
+  Sezona 2025 Play-off: singl=3, dvojice=3, trojice=3
+  Sezona 2024: singl=13, dvojice=19, trojice=25
+
+Martin Zbranek (ID: VSET_5)
+  Tym: NK AUSTIN Vsetín
+  Sezona 2025 - základní část: singl=8, dvojice=8, trojice=8
+  Sezona 2024: singl=1, dvojice=10, trojice=13
+
+Daniel Bílý (ID: VSET_6)
+  Tym: NK AUSTIN Vsetín
+  Sezona 2025 - základní část: singl=7, dvojice=7, trojice=7
+
+Rastislav Tabaka (ID: VSET_7)
+  Tym: NK AUSTIN Vsetín
+  Sezona 2025 - základní část: singl=6, dvojice=6, trojice=6
+
+David Dvořák (ID: VSET_8)
+  Tym: NK AUSTIN Vsetín
+  Sezona 2025 - základní část: singl=5, dvojice=5, trojice=5
+
+Jakub Halašta (ID: VSET_9)
+  Tym: NK AUSTIN Vsetín
+  Sezona 2025: singl=4, dvojice=4, trojice=4
+
+Kryštof Ptáček (ID: VSET_11)
+  Tym: NK AUSTIN Vsetín
+  Sezona 2025 - základní část: singl=1, dvojice=1, trojice=1
+
+Matúš Rácik (ID: VSET_12)
+  Tym: NK AUSTIN Vsetín
+  Sezona 2025 - základní část: singl=1, dvojice=1, trojice=1
+  Sezona 2024: singl=2, dvojice=2, trojice=0
+
+Martin Tomek (ID: VSET_14)
+  Tym: NK AUSTIN Vsetín
+  Sezona 2025: singl=1, dvojice=1, trojice=1
+
+Vojtěch Sýs (ID: ZATEC_1)
+  Tym: SKN Žatec
+  Sezona 2025: singl=11, dvojice=11, trojice=11
+
+Jan Jůzek (ID: ZATEC_2)
+  Tym: SKN Žatec
+  Sezona 2025: singl=10, dvojice=10, trojice=10
+
+Jaroslav Kovařík (ID: ZATEC_3)
+  Tym: SKN Žatec
+  Sezona 2025: singl=9, dvojice=9, trojice=9
+
+Matěj Mužík (ID: ZATEC_4)
+  Tym: SKN Žatec
+  Sezona 2025: singl=8, dvojice=8, trojice=8
+
+Petr Pinkr (ID: ZATEC_5)
+  Tym: SKN Žatec
+  Sezona 2025: singl=7, dvojice=7, trojice=7
+
+Martin Sehrig (ID: ZATEC_6)
+  Tym: SKN Žatec
+  Sezona 2025: singl=6, dvojice=6, trojice=6
+
+Nikolas Truc (ID: ZATEC_7)
+  Tym: SKN Žatec
+  Sezona 2025: singl=5, dvojice=5, trojice=5
+
+Milan Dráždil (ID: ZATEC_8)
+  Tym: SKN Žatec
+  Sezona 2025: singl=4, dvojice=4, trojice=4
+
+Vilém Ungermann (ID: ZATEC_9)
+  Tym: SKN Žatec
+  Sezona 2025: singl=3, dvojice=3, trojice=3
+
+Ondřej Vít (ID: ZATEC_10)
+  Tym: SKN Žatec
+  Sezona 2025: singl=2, dvojice=2, trojice=2
+  Sezona 2024: singl=14, dvojice=21, trojice=25
+
+Petr Vít (ID: ZATEC_11)
+  Tym: SKN Žatec
+  Sezona 2025: singl=1, dvojice=1, trojice=1
+
+Lukáš Hokr (ID: RADO_1)
+  Tym: Tělovýchovná jednota Radomyšl
+  Sezona 2025: singl=11, dvojice=11, trojice=11
+  Sezona 2024: singl=20, dvojice=29, trojice=0
+
+Filip Hokr (ID: RADO_2)
+  Tym: Tělovýchovná jednota Radomyšl
+  Sezona 2025: singl=10, dvojice=10, trojice=10
+  Sezona 2024: singl=1, dvojice=27, trojice=37
+
+Michal Nepodal (ID: RADO_3)
+  Tym: Tělovýchovná jednota Radomyšl
+  Sezona 2025: singl=9, dvojice=9, trojice=9
+  Sezona 2024: singl=9, dvojice=10, trojice=10
+
+Rudolf Toman (ID: RADO_4)
+  Tym: Tělovýchovná jednota Radomyšl
+  Sezona 2025: singl=8, dvojice=8, trojice=8
+  Sezona 2024: singl=22, dvojice=34, trojice=0
+
+Kryštof Toman (ID: RADO_5)
+  Tym: Tělovýchovná jednota Radomyšl
+  Sezona 2025: singl=7, dvojice=7, trojice=7
+  Sezona 2024: singl=6, dvojice=7, trojice=6
+
+Josef Slavíček (ID: RADO_10)
+  Tym: Tělovýchovná jednota Radomyšl
+  Sezona 2025: singl=2, dvojice=2, trojice=2
+  Sezona 2024: singl=11, dvojice=17, trojice=24
+
+Jiří Landrichter (ID: SOLI_1)
+  Tym: TJ Solidarita Praha
+  Sezona 2025: singl=11, dvojice=11, trojice=11
+
+Tomáš Landrichter (ID: SOLI_2)
+  Tym: TJ Solidarita Praha
+  Sezona 2025: singl=10, dvojice=10, trojice=10
+  Sezona 2024: singl=25, dvojice=11, trojice=0
+
+Jan Golda (ID: SOLI_3)
+  Tym: TJ Solidarita Praha
+  Sezona 2025: singl=9, dvojice=9, trojice=9
+  Sezona 2024: singl=1, dvojice=1, trojice=0
+
+Jan Šafránek (ID: SOLI_5)
+  Tym: TJ Solidarita Praha
+  Sezona 2025: singl=7, dvojice=7, trojice=7
+  Sezona 2024: singl=16, dvojice=17, trojice=16
+
+Matej Prachár (ID: SOLI_6)
+  Tym: TJ Solidarita Praha
+  Sezona 2025: singl=6, dvojice=6, trojice=6
+  Sezona 2024: singl=16, dvojice=22, trojice=0
+
+Ivo Nováček (ID: SOLI_7)
+  Tym: TJ Solidarita Praha
+  Sezona 2025: singl=5, dvojice=5, trojice=5
+  Sezona 2024: singl=2, dvojice=3, trojice=8
+
+Daniel Mikula (ID: SOLI_8)
+  Tym: TJ Solidarita Praha
+  Sezona 2025: singl=4, dvojice=4, trojice=4
+  Sezona 2024: singl=12, dvojice=23, trojice=0
+
+Luděk Dvořák (ID: SOLI_10)
+  Tym: TJ Solidarita Praha
+  Sezona 2025: singl=2, dvojice=2, trojice=2
+  Sezona 2024: singl=20, dvojice=21, trojice=21
+
+Tomáš Andris (ID: CELA_1)
+  Tym: TJ Spartak VOTOČEK team Čelákovice
+  Sezona 2025: singl=11, dvojice=11, trojice=11
+  Sezona 2024: singl=17, dvojice=23, trojice=0
+
+Martin Flekač (ID: CELA_2)
+  Tym: TJ Spartak VOTOČEK team Čelákovice
+  Sezona 2025: singl=10, dvojice=10, trojice=10
+  Sezona 2024: singl=22, dvojice=25, trojice=0
+
+Vojtěch Holas (ID: CELA_3)
+  Tym: TJ Spartak VOTOČEK team Čelákovice
+  Sezona 2025: singl=9, dvojice=9, trojice=9
+  Sezona 2024: singl=12, dvojice=15, trojice=0
+
+Michal Kolenský (ID: CELA_4)
+  Tym: TJ Spartak VOTOČEK team Čelákovice
+  Sezona 2025: singl=8, dvojice=8, trojice=8
+  Sezona 2024: singl=11, dvojice=17, trojice=12
+
+Daniel Matura (ID: CELA_5)
+  Tym: TJ Spartak VOTOČEK team Čelákovice
+  Sezona 2025: singl=7, dvojice=7, trojice=7
+  Sezona 2024: singl=26, dvojice=12, trojice=0
+
+Petr Nesládek (ID: CELA_6)
+  Tym: TJ Spartak VOTOČEK team Čelákovice
+  Sezona 2025: singl=6, dvojice=6, trojice=6
+  Sezona 2024: singl=18, dvojice=21, trojice=0
+
+Radek Šafr (ID: CELA_7)
+  Tym: TJ Spartak VOTOČEK team Čelákovice
+  Sezona 2025: singl=5, dvojice=5, trojice=5
+  Sezona 2024: singl=15, dvojice=24, trojice=0
+
+Marek Vojtíšek (ID: CELA_8)
+  Tym: TJ Spartak VOTOČEK team Čelákovice
+  Sezona 2025: singl=4, dvojice=4, trojice=4
+
+================================================================================
+
+Celkem problematickych zaznamu: 105
