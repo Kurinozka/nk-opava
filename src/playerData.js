@@ -248,6 +248,20 @@ export const skillDetails = {
     evaluationPhase: 'Univerzální obranná fáze - vyhodnocuje se po Ultimate, ale před speciálními a běžnými schopnostmi',
     bestCounter: 'Nelze counterovat - funguje proti všem útokům. Pouze Ultimate útočné schopnosti mají přednost.',
     priority: 'Velmi vysoká priorita (po Ultimate, před všemi ostatními)'
+  },
+  18: {
+    description: 'Hlava - univerzální obrana hlavou. 100% aktivace, 25% šance zablokovat JAKÝKOLIV útok.',
+    keyStats: 'Psychika, Odolnost',
+    evaluationPhase: 'Univerzální obranná fáze - vyhodnocuje se po Ultimate, ale před speciálními a běžnými schopnostmi',
+    bestCounter: 'Nelze counterovat - funguje proti všem útokům. Pouze Ultimate útočné schopnosti mají přednost.',
+    priority: 'Velmi vysoká priorita (po Ultimate, před všemi ostatními)'
+  },
+  19: {
+    description: 'Vytlučený blok - riskantní obranný úder. Hodí se dvěma mincemi: 0x panna = bod pro soupeře, 1 panna = standardní útok, 2x panna = efekt útočné Ultimate!',
+    keyStats: 'Psychika, Čtení hry',
+    evaluationPhase: 'Speciální fáze - nejprve se hází mincemi, pak se vyhodnocuje podle výsledku',
+    bestCounter: 'Univerzální obrany (Hruď, Silnější noha, Hlava) mají vždy šanci zablokovat, jinak závisí na výsledku hodu',
+    priority: 'Speciální priorita (po Ultimate, před standardními schopnostmi)'
   }
 };
 
