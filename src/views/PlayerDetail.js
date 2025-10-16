@@ -2,6 +2,7 @@ import { players, skills, skillDetails } from '../playerData.js'
 import { getTeamWithStats as getExtraligaTeam, extraligaTeams } from '../extraligaTeams.js'
 import { getTeamWithStats as getLeagueTeam, leagueTeams } from '../leagueTeams.js'
 import { skillAnimations as globalSkillAnimations } from '../skillAnimations.js'
+import { schoolVideos } from '../data/schoolVideos.js'
 import { bokischSmecAnimation } from '../animations/bokisch-smec.js'
 import { cela_10_blok_animation } from '../animations/cela-10-blok.js'
 import { cela_10_hrud_animation } from '../animations/cela-10-hrud.js'
@@ -440,10 +441,49 @@ const playerSkillAnimations = {
 
 // Funkce pro získání animace pro konkrétního hráče a skill
 function getPlayerSkillAnimation(playerId, skillId) {
+  // NEJDŘÍV zkontrolovat playerSkillAnimations (pro specifické animace)
   if (playerSkillAnimations[playerId] && playerSkillAnimations[playerId][skillId] !== undefined) {
     return playerSkillAnimations[playerId][skillId]
   }
-  return globalSkillAnimations[skillId] || null
+
+  // PAK zkusit globalSkillAnimations
+  if (globalSkillAnimations[skillId]) {
+    return globalSkillAnimations[skillId]
+  }
+
+  // FALLBACK: Hledat ve schoolVideos databázi
+  if (schoolVideos[skillId] && schoolVideos[skillId].videos) {
+    const videos = schoolVideos[skillId].videos
+
+    // Najít všechna videa pro daného hráče
+    const playerVideos = videos.filter(v => v.playerId === playerId || v.playerId === parseInt(playerId))
+
+    if (playerVideos.length > 0) {
+      // Najít úspěšné a neúspěšné video
+      const successVideo = playerVideos.find(v => v.success === true)
+      const failVideo = playerVideos.find(v => v.success === false)
+
+      // Pokud existují obě verze, vrátit pole [success, fail]
+      if (successVideo && failVideo) {
+        return [
+          `<video src="${successVideo.video}" autoplay muted loop playsinline></video>`,
+          `<video src="${failVideo.video}" autoplay muted loop playsinline></video>`
+        ]
+      }
+
+      // Pokud existuje jen úspěšná, vrátit ji jako HTML
+      if (successVideo) {
+        return `<video src="${successVideo.video}" autoplay muted loop playsinline></video>`
+      }
+
+      // Pokud existuje jen neúspěšná, vrátit ji jako HTML
+      if (failVideo) {
+        return `<video src="${failVideo.video}" autoplay muted loop playsinline></video>`
+      }
+    }
+  }
+
+  return null
 }
 
 // Funkce pro výpočet úspěšnosti dovednosti

@@ -5,6 +5,7 @@ import { bokischSmecAnimation } from './animations/bokisch-smec.js'
 import { kurkaNonsenseSuccessAnimation, kurkaNonsenseFailAnimation } from './animations/kurka-shaolin.js'
 import { majstinikNonsenseAnimation } from './animations/majstinik-pozdrav.js'
 import { soundManager } from './soundManager.js'
+import { schoolVideos } from './data/schoolVideos.js'
 
 // Mapa animací pro jednotlivé schopnosti (globální)
 const skillAnimations = {
@@ -1351,6 +1352,7 @@ const wowSound = '/audio/wow-crowd.mp3'
 
 // Funkce pro získání videa pro hráče a dovednost
 function getPlayerSkillVideo(playerId, skillId, successType = null, interaction = null) {
+  // NEJDŘÍV zkontrolovat playerSkillVideos (pro speciální případy s podmínkami)
   if (playerSkillVideos[playerId] && playerSkillVideos[playerId][skillId]) {
     const video = playerSkillVideos[playerId][skillId]
 
@@ -1383,9 +1385,32 @@ function getPlayerSkillVideo(playerId, skillId, successType = null, interaction 
       // Pro success nebo když není specifikováno, vrátit video
       return video
     }
-
-    return null
   }
+
+  // FALLBACK: Hledat ve schoolVideos databázi
+  if (schoolVideos[skillId] && schoolVideos[skillId].videos) {
+    const videos = schoolVideos[skillId].videos
+
+    // Najít všechna videa pro daného hráče
+    const playerVideos = videos.filter(v => v.playerId === playerId || v.playerId === parseInt(playerId))
+
+    if (playerVideos.length > 0) {
+      // Pokud je specifikován successType, preferovat video s odpovídající hodnotou success
+      if (successType === 'success') {
+        const successVideo = playerVideos.find(v => v.success === true)
+        if (successVideo) return successVideo.video
+      } else if (successType === 'fail') {
+        const failVideo = playerVideos.find(v => v.success === false)
+        if (failVideo) return failVideo.video
+      }
+
+      // Jinak vrátit první video (preferovat úspěšné)
+      const successVideo = playerVideos.find(v => v.success === true)
+      if (successVideo) return successVideo.video
+      return playerVideos[0].video
+    }
+  }
+
   return null
 }
 
@@ -1823,8 +1848,18 @@ export function setupGameHandlers() {
 
   // Back to menu
   document.querySelector('.back-menu-btn')?.addEventListener('click', () => {
-    resetGame()
-    showMenu()
+    // Zastavit všechny zvuky
+    if (typeof soundManager !== 'undefined' && soundManager.stopAll) {
+      soundManager.stopAll()
+    }
+    // Vyčistit game state ze session storage
+    sessionStorage.removeItem('gameState')
+    // Navigovat zpět na výběr režimu simulace
+    if (window.navigateToView) {
+      window.navigateToView('simulation')
+    } else {
+      window.location.href = '/simulation'
+    }
   })
 
   // New game
@@ -2277,22 +2312,93 @@ function openTimeoutModal(team) {
     playerCard.className = 'timeout-player-card'
     playerCard.style.cssText = 'background: rgba(255,255,255,0.1); padding: 15px; margin: 10px 0; border-radius: 10px;'
 
-    playerCard.innerHTML = `
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <img src="${player.photo}" alt="${player.name}" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;" />
-        <div style="flex: 1;">
-          <h3 style="margin: 0 0 10px 0;">${player.name}</h3>
-          <select class="skill-selector" data-player-id="${player.id}" style="width: 100%; padding: 8px; border-radius: 5px; font-size: 14px;">
-            ${availableSkills.map(skillId => {
-              const skillData = skills[skillId]
-              return `<option value="${skillId}">${skillData ? skillData.name : 'Dovednost'}</option>`
-            }).join('')}
-          </select>
+    // Vytvořit grid s video náhledy pro dovednosti
+    const skillsGridHTML = availableSkills.map((skillId, index) => {
+      const skillData = skills[skillId]
+      const videoSrc = getPlayerSkillVideo(player.id, skillId, 'success')
+      const isFirst = index === 0
+
+      return `
+        <div class="skill-option ${isFirst ? 'selected' : ''}" data-skill-id="${skillId}" data-player-id="${player.id}" style="
+          cursor: pointer;
+          padding: 8px;
+          border-radius: 8px;
+          background: ${isFirst ? 'rgba(74, 144, 226, 0.3)' : 'rgba(255,255,255,0.05)'};
+          border: 2px solid ${isFirst ? '#4a90e2' : 'transparent'};
+          transition: all 0.2s;
+          text-align: center;
+        ">
+          <div style="margin-bottom: 8px; font-weight: bold; font-size: 0.9rem;">
+            ${skillData ? skillData.name : 'Dovednost'}
+          </div>
+          ${videoSrc ? `
+            <video
+              src="${videoSrc}"
+              style="width: 100%; max-width: 150px; border-radius: 5px; aspect-ratio: 16/9; object-fit: cover;"
+              muted
+              loop
+              playsinline
+            ></video>
+          ` : `
+            <div style="width: 100%; max-width: 150px; height: 84px; background: rgba(0,0,0,0.3); border-radius: 5px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+              <span style="font-size: 2rem;">?</span>
+            </div>
+          `}
         </div>
+      `
+    }).join('')
+
+    playerCard.innerHTML = `
+      <div style="margin-bottom: 15px; display: flex; align-items: center; gap: 15px;">
+        <img src="${player.photo}" alt="${player.name}" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;" />
+        <h3 style="margin: 0;">${player.name}</h3>
       </div>
+      <div class="skills-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+        ${skillsGridHTML}
+      </div>
+      <input type="hidden" class="skill-selector" data-player-id="${player.id}" value="${availableSkills[0]}" />
     `
 
     playersList.appendChild(playerCard)
+
+    // Přidat click handlers pro výběr dovednosti
+    const skillOptions = playerCard.querySelectorAll('.skill-option')
+    const hiddenInput = playerCard.querySelector('.skill-selector')
+
+    skillOptions.forEach(option => {
+      const video = option.querySelector('video')
+
+      // Přehrát video při hover
+      if (video) {
+        option.addEventListener('mouseenter', () => {
+          video.play().catch(() => {})
+        })
+        option.addEventListener('mouseleave', () => {
+          video.pause()
+          video.currentTime = 0
+        })
+      }
+
+      // Výběr dovednosti kliknutím
+      option.addEventListener('click', () => {
+        const skillId = option.dataset.skillId
+
+        // Odstranit selected ze všech options
+        skillOptions.forEach(opt => {
+          opt.classList.remove('selected')
+          opt.style.background = 'rgba(255,255,255,0.05)'
+          opt.style.borderColor = 'transparent'
+        })
+
+        // Přidat selected na kliknutou option
+        option.classList.add('selected')
+        option.style.background = 'rgba(74, 144, 226, 0.3)'
+        option.style.borderColor = '#4a90e2'
+
+        // Uložit výběr do hidden inputu
+        hiddenInput.value = skillId
+      })
+    })
   })
 
   // Zobrazit modal
