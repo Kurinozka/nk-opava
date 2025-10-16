@@ -966,7 +966,7 @@ section {
 }
 
 .stat-value {
-  font-size: 1.4rem;
+  font-size: 0.95rem;
   font-weight: 900;
   color: #FFD700;
   line-height: 1;
@@ -1008,7 +1008,7 @@ section {
 }
 
 .coach-card .stat-value {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 /* Shine effect on hover */
