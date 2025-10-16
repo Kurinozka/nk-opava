@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   // Base URL - pro GitHub Pages použij '/nk-opava/', pro vlastní doménu '/'
-  base: '/nk-opava/',
+  base: '/',
 
   // Build options for production
   build: {
