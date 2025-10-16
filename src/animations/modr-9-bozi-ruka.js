@@ -1,0 +1,5 @@
+export const modr_9_bozi_ruka_animation = `
+  <video autoplay loop muted playsinline class="skill-video">
+    <source src="/videos/modr-9-bozi-ruka.mp4" type="video/mp4">
+  </video>
+`

@@ -30,18 +30,23 @@ export function createHomeView() {
           Baráž o 1. ligu
         </h2>
         <div class="baraz-card">
-          <div class="baraz-date">26. 10. 2025</div>
+          <div class="baraz-date">25. 10. 2025 • 14:00</div>
           <div class="baraz-teams">
             <div class="team home">
-              <img src="/images/logo-mini.jpg" alt="NK Opava" />
+              <div class="team-logo-link" data-nav="team" title="NK Opava - Náš tým">
+                <img src="/images/logo-nove.jpg" alt="NK Opava" />
+              </div>
               <span>NK Opava</span>
             </div>
             <div class="vs">VS</div>
             <div class="team away">
-              <div class="placeholder-logo">JN</div>
-              <span>Janovice</span>
+              <a href="https://www.nohejbal.org/klub/26-nk-janovice-nad-uhlavou?season=2025&league=154#submenu" target="_blank" title="NK Janovice nad Úhlavou">
+                <img src="https://www.nohejbal.org/photo/team/team_26.png" alt="NK Janovice nad Úhlavou" />
+              </a>
+              <span>Janovice nad Úhlavou</span>
             </div>
           </div>
+          <div class="baraz-location">📍 Tělocvična Obchodní akademie Opava, Hany Kvapilové 20, Opava</div>
           <div class="baraz-info">Rozhodující zápas o setrvání v 1. lize</div>
         </div>
       </section>
@@ -182,6 +187,35 @@ export function createHomeView() {
               <button class="gallery-btn">📸 Fotogalerie (0)</button>
               <button class="gallery-btn">🎥 Videa (0)</button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Škola nohejbalu -->
+      <section class="school-promo-section">
+        <h2 class="section-title">
+          <span class="hexagon-icon"></span>
+          Škola nohejbalu
+        </h2>
+        <div class="school-promo-card">
+          <div class="school-promo-content">
+            <div class="school-promo-icon">🎓</div>
+            <h3>Chcete začít hrát nohejbal?</h3>
+            <p>Nebo nohejbal hrajete a chcete se naučit nebo zlepšit některé údery? Učte se od těch nejlepších.... jak to dělat i jak to nedělat. Samozvaný kouč <strong>Okurka</strong> možná přispěje troškou své vlastní teorie.</p>
+            <ul class="school-features">
+              <li>📹 Videa úspěšných i neúspěšných dovedností</li>
+              <li>🎯 Filtrování podle dovedností a hráčů</li>
+              <li>🐌 Možnost zpomalit videa pro lepší analýzu</li>
+              <li>💬 Komentáře Okurky k jednotlivým technikám</li>
+            </ul>
+            <button class="cta-button primary" data-nav="school">
+              <span class="hexagon-bg"></span>
+              <span class="button-text">Vstoupit do školy</span>
+            </button>
+          </div>
+          <div class="school-promo-image">
+            <img src="/players/kurka.jpg" alt="Okurka - kouč" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%2370B85E%22 width=%22300%22 height=%22300%22/%3E%3Ctext fill=%22white%22 font-size=%22120%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3E🥒%3C/text%3E%3C/svg%3E'" />
+            <div class="coach-badge">Samozvaný kouč Okurka</div>
           </div>
         </div>
       </section>

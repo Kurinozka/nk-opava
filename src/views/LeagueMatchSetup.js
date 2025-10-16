@@ -1,6 +1,7 @@
 import { players } from '../playerData.js'
 import { getTeamWithStats } from '../leagueTeams.js'
 import teamLineups from '../teamLineups.json'
+import { getTeamColors } from '../teamColors.js'
 
 export function createLeagueMatchSetupView(matchInfo, opponentTeamId, substitutionMode = 'auto') {
   const opponentTeam = getTeamWithStats(opponentTeamId)
@@ -331,7 +332,7 @@ function movePlayer(state, team, playerId, fromStatus, toStatus, playersPerTeam,
   // Pro 'available' nic nedělat - hráč zůstane dostupný
 
   // Re-render
-  renderTeamSelection(team, allPlayers, state, playersPerTeam, team === 'opponent' ? window.currentOpponentId : null)
+  renderTeamSelection(team, allPlayers, state, playersPerTeam, team === 'opponent' ? (window.leagueSetupState ? window.leagueSetupState.opponentTeamId : null) : null)
   updateConfirmButton(state, playersPerTeam)
 }
 
@@ -509,7 +510,18 @@ function renderTeamSelection(team, allPlayers, state, playersPerTeam, opponentTe
   const benchCountEl = document.getElementById(`${team}-bench-count`)
 
   // Získat barvy týmu
-  const teamColors = !isOpava && opponentTeamId ? getTeamColors(opponentTeamId) : null
+  // Pro extraligu použít ID obou týmů, pro běžnou ligu jen soupeře
+  let teamColors = null
+  if (isOpava && window.leagueSetupState && window.leagueSetupState.opavaTeamId) {
+    // Extraliga - první tým má své ID
+    teamColors = getTeamColors(window.leagueSetupState.opavaTeamId)
+  } else if (!isOpava && opponentTeamId) {
+    // Druhý tým (soupeř)
+    teamColors = getTeamColors(opponentTeamId)
+  }
+
+  // Nastavit CSS proměnné pro barvy týmu
+  const colorStyle = teamColors ? `style="--team-primary: ${teamColors.primary}; --team-accent: ${teamColors.accent};"` : ''
 
   // Render lineup - EA FC style karty přesně jako v sekci Tým
   lineupEl.innerHTML = lineup.map(p => {
@@ -517,7 +529,7 @@ function renderTeamSelection(team, allPlayers, state, playersPerTeam, opponentTe
     const displayStats = p.stats || generateStatsFromSeason(p)
 
     return `
-    <div class="setup-hexagon-card ${isOpava ? 'opava-card' : 'opponent-card'}" data-player-id="${p.id}" data-status="lineup" data-team="${team}" draggable="true">
+    <div class="setup-hexagon-card ${isOpava ? 'opava-card' : 'opponent-card'}" data-player-id="${p.id}" data-status="lineup" data-team="${team}" ${colorStyle} draggable="true">
       <div class="setup-player-image">
         <img src="${p.photo || '/players/default.jpg'}" alt="${p.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22600%22%3E%3Crect fill=%22%23DC2F3E%22 width=%22400%22 height=%22600%22/%3E%3Ctext fill=%22white%22 font-size=%22120%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3E${p.number || '?'}%3C/text%3E%3C/svg%3E'" />
       </div>
@@ -531,13 +543,13 @@ function renderTeamSelection(team, allPlayers, state, playersPerTeam, opponentTe
         <div class="setup-player-stats-mini">
           <div class="setup-stat"><span class="setup-stat-value">${displayStats.rychlost || '-'}</span><span class="setup-stat-label">Rychlost</span></div>
           <div class="setup-stat"><span class="setup-stat-value">${displayStats.obratnost || '-'}</span><span class="setup-stat-label">Obratnost</span></div>
-          <div class="setup-stat"><span class="setup-stat-value">${displayStats.rana || '-'}</span><span class="setup-stat-label">Rána</span></div>
+          <div class="setup-stat"><span class="setup-stat-value">${displayStats.sila || '-'}</span><span class="setup-stat-label">Rána</span></div>
           <div class="setup-stat"><span class="setup-stat-value">${displayStats.technika || '-'}</span><span class="setup-stat-label">Technika</span></div>
           <div class="setup-stat"><span class="setup-stat-value">${displayStats.obetavost || '-'}</span><span class="setup-stat-label">Obětavost</span></div>
-          <div class="setup-stat"><span class="setup-stat-value">${displayStats.psychickaOdolnost || '-'}</span><span class="setup-stat-label">Psychická odolnost</span></div>
-          <div class="setup-stat"><span class="setup-stat-value">${displayStats.obrana || '-'}</span><span class="setup-stat-label">Obrana</span></div>
+          <div class="setup-stat"><span class="setup-stat-value">${displayStats.psychika || '-'}</span><span class="setup-stat-label">Psychická odolnost</span></div>
+          <div class="setup-stat"><span class="setup-stat-value">${displayStats.odolnost || '-'}</span><span class="setup-stat-label">Obrana</span></div>
           <div class="setup-stat"><span class="setup-stat-value">${displayStats.cteniHry || '-'}</span><span class="setup-stat-label">Čtení hry</span></div>
-          <div class="setup-stat"><span class="setup-stat-value">${displayStats.vydrz || '-'}</span><span class="setup-stat-label">Výdrž</span></div>
+          <div class="setup-stat"><span class="setup-stat-value">${displayStats.svih || '-'}</span><span class="setup-stat-label">Švih</span></div>
         </div>
       </div>
       <div class="setup-status-badge lineup-badge">✓ V SESTAVĚ</div>
@@ -551,7 +563,7 @@ function renderTeamSelection(team, allPlayers, state, playersPerTeam, opponentTe
       const displayStats = p.stats || generateStatsFromSeason(p)
 
       return `
-      <div class="setup-hexagon-card ${isOpava ? 'opava-card' : 'opponent-card'}" data-player-id="${p.id}" data-status="bench" data-team="${team}" draggable="true">
+      <div class="setup-hexagon-card ${isOpava ? 'opava-card' : 'opponent-card'}" data-player-id="${p.id}" data-status="bench" data-team="${team}" ${colorStyle} draggable="true">
         <div class="setup-player-image">
           <img src="${p.photo || '/players/default.jpg'}" alt="${p.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22600%22%3E%3Crect fill=%22%23DC2F3E%22 width=%22400%22 height=%22600%22/%3E%3Ctext fill=%22white%22 font-size=%22120%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3E${p.number || '?'}%3C/text%3E%3C/svg%3E'" />
         </div>
@@ -565,13 +577,13 @@ function renderTeamSelection(team, allPlayers, state, playersPerTeam, opponentTe
           <div class="setup-player-stats-mini">
             <div class="setup-stat"><span class="setup-stat-value">${displayStats.rychlost || '-'}</span><span class="setup-stat-label">Rychlost</span></div>
             <div class="setup-stat"><span class="setup-stat-value">${displayStats.obratnost || '-'}</span><span class="setup-stat-label">Obratnost</span></div>
-            <div class="setup-stat"><span class="setup-stat-value">${displayStats.rana || '-'}</span><span class="setup-stat-label">Rána</span></div>
+            <div class="setup-stat"><span class="setup-stat-value">${displayStats.sila || '-'}</span><span class="setup-stat-label">Rána</span></div>
             <div class="setup-stat"><span class="setup-stat-value">${displayStats.technika || '-'}</span><span class="setup-stat-label">Technika</span></div>
             <div class="setup-stat"><span class="setup-stat-value">${displayStats.obetavost || '-'}</span><span class="setup-stat-label">Obětavost</span></div>
-            <div class="setup-stat"><span class="setup-stat-value">${displayStats.psychickaOdolnost || '-'}</span><span class="setup-stat-label">Psychická odolnost</span></div>
-            <div class="setup-stat"><span class="setup-stat-value">${displayStats.obrana || '-'}</span><span class="setup-stat-label">Obrana</span></div>
+            <div class="setup-stat"><span class="setup-stat-value">${displayStats.psychika || '-'}</span><span class="setup-stat-label">Psychická odolnost</span></div>
+            <div class="setup-stat"><span class="setup-stat-value">${displayStats.odolnost || '-'}</span><span class="setup-stat-label">Obrana</span></div>
             <div class="setup-stat"><span class="setup-stat-value">${displayStats.cteniHry || '-'}</span><span class="setup-stat-label">Čtení hry</span></div>
-            <div class="setup-stat"><span class="setup-stat-value">${displayStats.vydrz || '-'}</span><span class="setup-stat-label">Výdrž</span></div>
+            <div class="setup-stat"><span class="setup-stat-value">${displayStats.svih || '-'}</span><span class="setup-stat-label">Švih</span></div>
           </div>
         </div>
         <div class="setup-status-badge bench-badge">↓ LAVIČKA</div>
@@ -588,7 +600,7 @@ function renderTeamSelection(team, allPlayers, state, playersPerTeam, opponentTe
     const displayStats = p.stats || generateStatsFromSeason(p)
 
     return `
-    <div class="setup-hexagon-card ${isOpava ? 'opava-card' : 'opponent-card'} available" data-player-id="${p.id}" data-team="${team}" draggable="true">
+    <div class="setup-hexagon-card ${isOpava ? 'opava-card' : 'opponent-card'} available" data-player-id="${p.id}" data-team="${team}" ${colorStyle} draggable="true">
       <div class="setup-player-image">
         <img src="${p.photo || '/players/default.jpg'}" alt="${p.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22600%22%3E%3Crect fill=%22%23DC2F3E%22 width=%22400%22 height=%22600%22/%3E%3Ctext fill=%22white%22 font-size=%22120%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3E${p.number || '?'}%3C/text%3E%3C/svg%3E'" />
       </div>
@@ -602,13 +614,13 @@ function renderTeamSelection(team, allPlayers, state, playersPerTeam, opponentTe
         <div class="setup-player-stats-mini">
           <div class="setup-stat"><span class="setup-stat-value">${displayStats.rychlost || '-'}</span><span class="setup-stat-label">Rychlost</span></div>
           <div class="setup-stat"><span class="setup-stat-value">${displayStats.obratnost || '-'}</span><span class="setup-stat-label">Obratnost</span></div>
-          <div class="setup-stat"><span class="setup-stat-value">${displayStats.rana || '-'}</span><span class="setup-stat-label">Rána</span></div>
+          <div class="setup-stat"><span class="setup-stat-value">${displayStats.sila || '-'}</span><span class="setup-stat-label">Rána</span></div>
           <div class="setup-stat"><span class="setup-stat-value">${displayStats.technika || '-'}</span><span class="setup-stat-label">Technika</span></div>
           <div class="setup-stat"><span class="setup-stat-value">${displayStats.obetavost || '-'}</span><span class="setup-stat-label">Obětavost</span></div>
-          <div class="setup-stat"><span class="setup-stat-value">${displayStats.psychickaOdolnost || '-'}</span><span class="setup-stat-label">Psychická odolnost</span></div>
-          <div class="setup-stat"><span class="setup-stat-value">${displayStats.obrana || '-'}</span><span class="setup-stat-label">Obrana</span></div>
+          <div class="setup-stat"><span class="setup-stat-value">${displayStats.psychika || '-'}</span><span class="setup-stat-label">Psychická odolnost</span></div>
+          <div class="setup-stat"><span class="setup-stat-value">${displayStats.odolnost || '-'}</span><span class="setup-stat-label">Obrana</span></div>
           <div class="setup-stat"><span class="setup-stat-value">${displayStats.cteniHry || '-'}</span><span class="setup-stat-label">Čtení hry</span></div>
-          <div class="setup-stat"><span class="setup-stat-value">${displayStats.vydrz || '-'}</span><span class="setup-stat-label">Výdrž</span></div>
+          <div class="setup-stat"><span class="setup-stat-value">${displayStats.svih || '-'}</span><span class="setup-stat-label">Švih</span></div>
         </div>
       </div>
     </div>
@@ -693,22 +705,6 @@ function calculatePlayerRating(player) {
   const stats = player.stats
   const avg = Object.values(stats).reduce((sum, val) => sum + val, 0) / Object.keys(stats).length
   return Math.round(avg)
-}
-
-function getTeamColors(opponentTeamId) {
-  // Vrátí hlavní a vedlejší barvu týmu podle jejich klubových barev
-  const colors = {
-    'REPO': { primary: 'rgba(0, 102, 204, 0.85)', secondary: 'rgba(0, 51, 102, 0.75)' }, // Modrá Řeporyje
-    'BLAN': { primary: 'rgba(220, 47, 62, 0.85)', secondary: 'rgba(139, 0, 0, 0.75)' }, // Červená Blansko
-    'BOSK': { primary: 'rgba(255, 165, 0, 0.85)', secondary: 'rgba(204, 102, 0, 0.75)' }, // Oranžová Boskovice
-    'BRUS': { primary: 'rgba(0, 128, 0, 0.85)', secondary: 'rgba(0, 100, 0, 0.75)' }, // Zelená Brušperk
-    'KVAR': { primary: 'rgba(65, 105, 225, 0.85)', secondary: 'rgba(25, 25, 112, 0.75)' }, // Modrá Karlovy Vary
-    'OLOM': { primary: 'rgba(220, 47, 62, 0.85)', secondary: 'rgba(139, 0, 0, 0.75)' }, // Červená Olomouc
-    'PARD': { primary: 'rgba(139, 0, 0, 0.85)', secondary: 'rgba(75, 0, 0, 0.75)' }, // Tmavě červená Pardubice
-    'RATI': { primary: 'rgba(0, 128, 128, 0.85)', secondary: 'rgba(0, 64, 64, 0.75)' }  // Tyrkysová Ratíškovice
-  }
-
-  return colors[opponentTeamId] || { primary: 'rgba(128, 128, 128, 0.85)', secondary: 'rgba(64, 64, 64, 0.75)' }
 }
 
 function updateConfirmButton(state, playersPerTeam) {
@@ -1137,12 +1133,13 @@ async function showSkillSelectionDialog(team1Lineup, team1Bench, team2Lineup, te
   })
 }
 
-export function initializeLeagueSetup(matchInfo, opponentTeamId, playersPerTeam, opavaPlayers, opponentPlayers, state) {
+export function initializeLeagueSetup(matchInfo, opponentTeamId, playersPerTeam, opavaPlayers, opponentPlayers, state, opavaTeamId = null) {
   window.leagueSetupState = {
     state,
     playersPerTeam,
     opavaPlayers,
     opponentPlayers,
-    opponentTeamId
+    opponentTeamId,
+    opavaTeamId  // Pro extraligu - ID prvního týmu
   }
 }

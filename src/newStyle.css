@@ -29,17 +29,32 @@ body {
   background: var(--color-white);
   color: var(--color-black);
   overflow-x: hidden;
+  max-width: 100vw;
 }
 
 html {
   overflow-x: hidden;
   scroll-behavior: smooth;
+  max-width: 100vw;
 }
 
 #app {
   width: 100%;
   max-width: 100vw;
   min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Prevent horizontal overflow */
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure containers don't overflow */
+section, .container, .content, main {
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 /* ===========================
@@ -141,8 +156,7 @@ html {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image:
-    repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(220, 47, 62, 0.03) 50px, rgba(220, 47, 62, 0.03) 100px);
+  background: #1A1A1A;
   pointer-events: none;
 }
 
@@ -310,6 +324,39 @@ section {
   justify-content: space-between;
   margin-bottom: 1.5rem;
   gap: 1rem;
+}
+
+.baraz-teams .team a,
+.baraz-teams .team .team-logo-link {
+  display: inline-block;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.baraz-teams .team a:hover,
+.baraz-teams .team .team-logo-link:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 4px 15px rgba(220, 47, 62, 0.5));
+}
+
+.baraz-teams .team a img,
+.baraz-teams .team .team-logo-link img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  display: block;
+}
+
+.baraz-location {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--color-gray-dark);
+  margin-bottom: 1.5rem;
+  padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  font-weight: 600;
 }
 
 .baraz-info {
@@ -727,7 +774,7 @@ section {
 
 .players-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 2.5rem;
   padding: 2rem 0;
 }
@@ -1174,11 +1221,11 @@ section {
 }
 
 .skill-video-item.defensive {
-  border-left: 5px solid var(--color-black);
+  border-left: 5px solid #3B82F6;
 }
 
 .skill-video-item.nonsense {
-  border-left: 5px solid #FFD700;
+  border-left: 5px solid var(--color-black);
 }
 
 .skill-header {
@@ -1318,46 +1365,614 @@ section {
 }
 
 /* ===========================
+   ATTRIBUTE EXPLANATION BOX
+   =========================== */
+
+.attribute-explanation-box {
+  background: linear-gradient(135deg, rgba(220, 47, 62, 0.05) 0%, rgba(220, 47, 62, 0.1) 100%);
+  border-left: 4px solid var(--color-red);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.attribute-explanation-box p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--color-gray-dark);
+  margin: 0;
+  font-weight: 500;
+}
+
+/* ===========================
+   FAVORITE SKILLS SECTION
+   =========================== */
+
+.favorite-skills-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.favorite-skills-column h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.favorite-skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.favorite-skill-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.favorite-skill-item.offensive {
+  background: linear-gradient(135deg, rgba(220, 47, 62, 0.05) 0%, rgba(220, 47, 62, 0.1) 100%);
+  border-left: 4px solid var(--color-red);
+}
+
+.favorite-skill-item.defensive {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0.1) 100%);
+  border-left: 4px solid #3B82F6;
+}
+
+.favorite-skill-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.favorite-skill-item .skill-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-gray-dark);
+}
+
+.favorite-skill-item .skill-rate {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--color-red);
+}
+
+@media (max-width: 768px) {
+  .favorite-skills-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ===========================
    RESPONZIVNÍ DESIGN
    =========================== */
 
 @media (max-width: 768px) {
+  /* Navigation */
   .nav-container {
     flex-direction: column;
     gap: 1rem;
+    padding: 0.75rem 1rem;
   }
 
   .nav-links {
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.75rem;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  /* Hero section */
+  .hero-section {
+    padding: 3rem 1rem;
   }
 
   .hero-section h1 {
-    font-size: 2.5rem;
-  }
-
-  .section-title {
     font-size: 2rem;
   }
 
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .hero-logo {
+    width: 120px;
+  }
+
+  /* Sections */
+  section {
+    padding: 2rem 1rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .section-title::before,
+  .section-title::after {
+    width: 40px;
+  }
+
+  /* Grid layouts - single column */
   .matches-grid,
   .media-grid,
   .sponsors-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
+  /* Team header */
   .team-header {
     flex-direction: column;
     text-align: center;
+    padding: 2rem 0;
   }
 
+  .team-header-text h1 {
+    font-size: 2rem;
+  }
+
+  .team-subtitle {
+    font-size: 1rem;
+  }
+
+  .team-logo {
+    width: 100px;
+  }
+
+  /* Player cards grid */
   .players-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem 0;
   }
 
+  /* EA FC Cards - reduce size on mobile */
+  .hexagon-card {
+    max-width: 100%;
+  }
+
+  .card-badge {
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .card-badge-rating {
+    font-size: 2.5rem;
+  }
+
+  .card-badge-position {
+    font-size: 0.75rem;
+  }
+
+  .player-number {
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+  }
+
+  .player-info {
+    padding: 1.5rem 1rem 1rem;
+  }
+
+  .player-name {
+    font-size: 1.2rem;
+  }
+
+  .player-position {
+    font-size: 0.75rem;
+  }
+
+  .player-stats-mini {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    padding: 0.8rem;
+  }
+
+  .stat-value {
+    font-size: 1.2rem;
+  }
+
+  .stat-label {
+    font-size: 0.6rem;
+  }
+
+  /* Animations and videos */
   .animation-box-dual {
     grid-template-columns: 1fr;
+  }
+
+  .animation-box video,
+  .animation-box .skill-video {
+    max-height: 400px;
+  }
+
+  /* Baráž card */
+  .baraz-card {
+    padding: 1.5rem;
+  }
+
+  .baraz-teams .team a img,
+  .baraz-teams .team .team-logo-link img {
+    width: 50px;
+    height: 50px;
+  }
+
+  /* Modal */
+  .modal {
+    padding: 0.5rem;
+  }
+
+  .modal-content {
+    padding: 1.5rem;
+    max-height: 95vh;
+  }
+
+  .modal-header h2 {
+    font-size: 1.75rem;
+  }
+
+  .skill-video-title {
+    font-size: 1.1rem;
+  }
+
+  .success-percentage {
+    font-size: 1.3rem;
+  }
+}
+
+/* Very small screens (under 400px) */
+@media (max-width: 400px) {
+  .hero-section h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .hexagon-card {
+    max-width: 100%;
+  }
+
+  .card-badge-rating {
+    font-size: 2rem;
+  }
+
+  .player-number {
+    font-size: 1.75rem;
+  }
+
+  .player-name {
+    font-size: 1rem;
+  }
+
+  .player-stats-mini {
+    gap: 0.4rem;
+    padding: 0.6rem;
+  }
+
+  .stat-value {
+    font-size: 1rem;
+  }
+
+  .stat-label {
+    font-size: 0.55rem;
+  }
+
+  .nav-link {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.65rem;
+  }
+
+  .modal-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .skill-video-title {
+    font-size: 1rem;
+  }
+}
+
+/* ===========================
+   TIMEOUT MODAL & BUTTONS
+   =========================== */
+
+.timeout-btn {
+  position: relative;
+  padding: 0.8rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--color-red) 0%, #B82632 100%);
+  color: var(--color-white);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(220, 47, 62, 0.3);
+}
+
+.timeout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220, 47, 62, 0.5);
+  background: linear-gradient(135deg, #B82632 0%, var(--color-red) 100%);
+}
+
+.timeout-btn .btn-icon {
+  font-size: 1.2rem;
+}
+
+.timeout-btn .btn-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.timeout-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+  padding: 2rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.timeout-modal-content {
+  background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%);
+  border-radius: 20px;
+  padding: 2.5rem;
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  border: 3px solid var(--color-red);
+  box-shadow: 0 20px 60px rgba(220, 47, 62, 0.6);
+  animation: slideUp 0.3s ease;
+  color: var(--color-white);
+}
+
+.timeout-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--color-red);
+  border: none;
+  color: var(--color-white);
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  border-radius: 50%;
+  line-height: 1;
+}
+
+.timeout-modal-close:hover {
+  background: #B82632;
+  transform: rotate(90deg);
+}
+
+.timeout-modal-content h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--color-white);
+  text-transform: uppercase;
+}
+
+.timeout-instruction {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.timeout-players {
+  margin-bottom: 2rem;
+}
+
+.timeout-player-card .skill-selector {
+  background: var(--color-white);
+  color: var(--color-black);
+  border: 2px solid var(--color-red);
+  font-weight: 600;
+}
+
+.timeout-player-card .skill-selector:focus {
+  outline: none;
+  border-color: var(--color-red);
+  box-shadow: 0 0 0 3px rgba(220, 47, 62, 0.2);
+}
+
+.timeout-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.timeout-confirm-btn,
+.timeout-cancel-btn {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.timeout-confirm-btn {
+  background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%);
+  color: var(--color-white);
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+}
+
+.timeout-confirm-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5);
+}
+
+.timeout-cancel-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-white);
+  border: 2px solid var(--color-white);
+}
+
+.timeout-cancel-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   ŠKOLA NOHEJBALU - PROMO
+   =========================== */
+
+.school-promo-section {
+  background: linear-gradient(135deg, #70B85E 0%, #5fa84d 100%);
+  padding: 4rem 2rem;
+}
+
+.school-promo-section .section-title {
+  color: var(--color-white);
+}
+
+.school-promo-section .section-title::before,
+.school-promo-section .section-title::after {
+  background: var(--color-white);
+}
+
+.school-promo-section .hexagon-icon {
+  background: var(--color-white);
+}
+
+.school-promo-card {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: var(--color-white);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 0;
+}
+
+.school-promo-content {
+  padding: 3rem;
+}
+
+.school-promo-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.school-promo-content h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: 1rem;
+}
+
+.school-promo-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-gray-dark);
+  margin-bottom: 1.5rem;
+}
+
+.school-features {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.school-features li {
+  font-size: 1rem;
+  padding: 0.75rem 0;
+  color: var(--color-gray-dark);
+  border-bottom: 1px solid var(--color-gray);
+}
+
+.school-features li:last-child {
+  border-bottom: none;
+}
+
+.school-promo-image {
+  position: relative;
+  background: linear-gradient(135deg, #70B85E 0%, #5fa84d 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.school-promo-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.coach-badge {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-white);
+  color: #70B85E;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .school-promo-card {
+    grid-template-columns: 1fr;
+  }
+
+  .school-promo-content {
+    padding: 2rem;
+  }
+
+  .school-promo-image {
+    min-height: 300px;
   }
 }
 

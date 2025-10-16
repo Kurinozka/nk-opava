@@ -14,6 +14,18 @@ export const leagueTeams = [
         "number": 2,
         "position": "Univerzál",
         "photo": "https://www.nohejbal.org/photo/player/player_4296.jpg",
+        "yearlyStats": {
+          "2024": {
+            "matches": 45,
+            "wins": 20,
+            "winRate": 44
+          },
+          "2025": {
+            "matches": 24,
+            "wins": 17,
+            "winRate": 71
+          }
+        },
         "regularSeason": {
           "matches": 18,
           "wins": 15,
@@ -36,8 +48,33 @@ export const leagueTeams = [
         },
         "seasonStats": [
           {
-            "season": "2025",
+            "season": "2025 Play Off/Out",
             "league": "1. liga muži",
+            "matches": 6,
+            "wins": 2,
+            "losses": 4,
+            "winRate": 33,
+            "disciplines": {
+              "singl": {
+                "matches": 2,
+                "wins": 0,
+                "winRate": 0
+              },
+              "dvojice": {
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
+              },
+              "trojice": {
+                "matches": 4,
+                "wins": 2,
+                "winRate": 50
+              }
+            }
+          },
+          {
+            "season": "2025",
+            "league": "1. liga muži - základní část",
             "matches": 18,
             "wins": 15,
             "losses": 3,
@@ -59,6 +96,56 @@ export const leagueTeams = [
                 "winRate": 80
               }
             }
+          },
+          {
+            "season": "2024 Play-off",
+            "league": "1. liga muži",
+            "matches": 4,
+            "wins": 0,
+            "losses": 4,
+            "winRate": 0,
+            "disciplines": {
+              "singl": {
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
+              },
+              "dvojice": {
+                "matches": 1,
+                "wins": 0,
+                "winRate": 0
+              },
+              "trojice": {
+                "matches": 3,
+                "wins": 0,
+                "winRate": 0
+              }
+            }
+          },
+          {
+            "season": "2024",
+            "league": "1. liga muži",
+            "matches": 41,
+            "wins": 20,
+            "losses": 21,
+            "winRate": 49,
+            "disciplines": {
+              "singl": {
+                "matches": 1,
+                "wins": 1,
+                "winRate": 100
+              },
+              "dvojice": {
+                "matches": 16,
+                "wins": 9,
+                "winRate": 56
+              },
+              "trojice": {
+                "matches": 24,
+                "wins": 10,
+                "winRate": 42
+              }
+            }
           }
         ],
         "typicalPositions": [
@@ -67,16 +154,17 @@ export const leagueTeams = [
           "trojice1"
         ],
         "stats": {
-          "rychlost": 86,
-          "obratnost": 87,
-          "rana": 85,
-          "technika": 91,
-          "obetavost": 88,
-          "psychickaOdolnost": 88,
-          "obrana": 91,
-          "cteniHry": 90,
-          "vydrz": 86
-        }
+          "rychlost": 80,
+          "obratnost": 81,
+          "sila": 81,
+          "svih": 82,
+          "technika": 83,
+          "obetavost": 84,
+          "psychika": 84,
+          "cteniHry": 85,
+          "odolnost": 86
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Vážená úspěšnost: 62.0% (2025: 71%, 2024: 44%) | Úprava podle výkonnosti: 3.6% | Výsledné celkové hodnocení: 82.9"
       },
       {
         "id": "REPO_3",
@@ -137,16 +225,17 @@ export const leagueTeams = [
           "trojice1"
         ],
         "stats": {
-          "rychlost": 84,
-          "obratnost": 85,
-          "rana": 83,
-          "technika": 89,
-          "obetavost": 86,
-          "psychickaOdolnost": 86,
-          "obrana": 89,
-          "cteniHry": 88,
-          "vydrz": 84
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "REPO_4",
@@ -209,16 +298,17 @@ export const leagueTeams = [
           "trojice2"
         ],
         "stats": {
-          "rychlost": 84,
-          "obratnost": 85,
-          "rana": 83,
-          "technika": 89,
-          "obetavost": 86,
-          "psychickaOdolnost": 86,
-          "obrana": 89,
-          "cteniHry": 88,
-          "vydrz": 84
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "REPO_5",
@@ -279,16 +369,17 @@ export const leagueTeams = [
           "trojice2"
         ],
         "stats": {
-          "rychlost": 84,
-          "obratnost": 85,
-          "rana": 83,
-          "technika": 89,
-          "obetavost": 86,
-          "psychickaOdolnost": 86,
-          "obrana": 89,
-          "cteniHry": 88,
-          "vydrz": 84
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "REPO_6",
@@ -349,16 +440,17 @@ export const leagueTeams = [
           "trojice2"
         ],
         "stats": {
-          "rychlost": 83,
-          "obratnost": 84,
-          "rana": 82,
-          "technika": 88,
-          "obetavost": 85,
-          "psychickaOdolnost": 85,
-          "obrana": 88,
-          "cteniHry": 87,
-          "vydrz": 83
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "REPO_7",
@@ -421,16 +513,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 83,
-          "obratnost": 84,
-          "rana": 82,
-          "technika": 88,
-          "obetavost": 85,
-          "psychickaOdolnost": 85,
-          "obrana": 88,
-          "cteniHry": 87,
-          "vydrz": 83
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "REPO_8",
@@ -491,16 +584,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 83,
-          "obratnost": 84,
-          "rana": 82,
-          "technika": 88,
-          "obetavost": 85,
-          "psychickaOdolnost": 85,
-          "obrana": 88,
-          "cteniHry": 87,
-          "vydrz": 83
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "REPO_9",
@@ -560,16 +654,17 @@ export const leagueTeams = [
           "trojice2"
         ],
         "stats": {
-          "rychlost": 81,
-          "obratnost": 82,
-          "rana": 80,
-          "technika": 86,
-          "obetavost": 83,
-          "psychickaOdolnost": 83,
-          "obrana": 86,
-          "cteniHry": 85,
-          "vydrz": 81
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "REPO_10",
@@ -629,16 +724,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 79,
-          "obratnost": 80,
-          "rana": 78,
-          "technika": 84,
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
           "obetavost": 81,
-          "psychickaOdolnost": 81,
-          "obrana": 84,
-          "cteniHry": 83,
-          "vydrz": 79
-        }
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "REPO_11",
@@ -698,16 +794,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 79,
-          "obratnost": 80,
-          "rana": 78,
-          "technika": 84,
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
           "obetavost": 81,
-          "psychickaOdolnost": 81,
-          "obrana": 84,
-          "cteniHry": 83,
-          "vydrz": 79
-        }
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "REPO_COACH",
@@ -749,7 +846,19 @@ export const leagueTeams = [
             "Vrať se na lavičku!",
             "To si snad děláš sranda!"
           ]
-        }
+        },
+        "stats": {
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       }
     ]
   },
@@ -818,16 +927,17 @@ export const leagueTeams = [
           "trojice1"
         ],
         "stats": {
-          "rychlost": 84,
-          "obratnost": 85,
-          "rana": 83,
-          "technika": 89,
-          "obetavost": 86,
-          "psychickaOdolnost": 86,
-          "obrana": 89,
-          "cteniHry": 88,
-          "vydrz": 84
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "CELA_B_2",
@@ -888,16 +998,17 @@ export const leagueTeams = [
           "trojice1"
         ],
         "stats": {
-          "rychlost": 85,
-          "obratnost": 86,
-          "rana": 84,
-          "technika": 90,
-          "obetavost": 87,
-          "psychickaOdolnost": 87,
-          "obrana": 90,
-          "cteniHry": 89,
-          "vydrz": 85
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "CELA_B_3",
@@ -958,16 +1069,17 @@ export const leagueTeams = [
           "trojice1"
         ],
         "stats": {
-          "rychlost": 84,
-          "obratnost": 85,
-          "rana": 83,
-          "technika": 89,
-          "obetavost": 86,
-          "psychickaOdolnost": 86,
-          "obrana": 89,
-          "cteniHry": 88,
-          "vydrz": 84
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "CELA_B_4",
@@ -975,49 +1087,161 @@ export const leagueTeams = [
         "number": 4,
         "position": "Univerzál",
         "photo": "https://www.nohejbal.org/photo/player/player_792.jpg",
+        "yearlyStats": {
+          "2024": {
+            "matches": 35,
+            "wins": 30,
+            "winRate": 86
+          },
+          "2025": {
+            "matches": 42,
+            "wins": 29,
+            "winRate": 69
+          }
+        },
         "regularSeason": {
           "matches": 30,
           "wins": 21,
           "winRate": 70,
           "singl": {
-            "matches": 10,
-            "wins": 7,
-            "winRate": 70
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
           },
           "dvojice": {
-            "matches": 10,
-            "wins": 7,
-            "winRate": 70
+            "matches": 12,
+            "wins": 11,
+            "winRate": 92
           },
           "trojice": {
-            "matches": 10,
-            "wins": 7,
-            "winRate": 70
+            "matches": 18,
+            "wins": 10,
+            "winRate": 56
           }
         },
         "seasonStats": [
           {
-            "season": "2025",
+            "season": "2025 Play Off/Out",
             "league": "1. liga muži",
+            "matches": 10,
+            "wins": 6,
+            "losses": 4,
+            "winRate": 60,
+            "disciplines": {
+              "singl": {
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
+              },
+              "dvojice": {
+                "matches": 5,
+                "wins": 3,
+                "winRate": 60
+              },
+              "trojice": {
+                "matches": 5,
+                "wins": 3,
+                "winRate": 60
+              }
+            }
+          },
+          {
+            "season": "2025",
+            "league": "1. liga muži - základní část",
             "matches": 30,
             "wins": 21,
             "losses": 9,
             "winRate": 70,
             "disciplines": {
               "singl": {
-                "matches": 10,
-                "wins": 7,
-                "winRate": 70
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
               },
               "dvojice": {
-                "matches": 10,
-                "wins": 7,
-                "winRate": 70
+                "matches": 12,
+                "wins": 11,
+                "winRate": 92
               },
               "trojice": {
-                "matches": 10,
+                "matches": 18,
+                "wins": 10,
+                "winRate": 56
+              }
+            }
+          },
+          {
+            "season": "2025",
+            "league": "Extraliga muži - základní část",
+            "matches": 2,
+            "wins": 2,
+            "losses": 0,
+            "winRate": 100,
+            "disciplines": {
+              "singl": {
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
+              },
+              "dvojice": {
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
+              },
+              "trojice": {
+                "matches": 2,
+                "wins": 2,
+                "winRate": 100
+              }
+            }
+          },
+          {
+            "season": "2024 Play-off",
+            "league": "2. liga muži B",
+            "matches": 17,
+            "wins": 14,
+            "losses": 3,
+            "winRate": 82,
+            "disciplines": {
+              "singl": {
+                "matches": 1,
+                "wins": 1,
+                "winRate": 100
+              },
+              "dvojice": {
+                "matches": 7,
                 "wins": 7,
-                "winRate": 70
+                "winRate": 100
+              },
+              "trojice": {
+                "matches": 9,
+                "wins": 6,
+                "winRate": 67
+              }
+            }
+          },
+          {
+            "season": "2024",
+            "league": "2. liga muži B",
+            "matches": 18,
+            "wins": 16,
+            "losses": 2,
+            "winRate": 89,
+            "disciplines": {
+              "singl": {
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
+              },
+              "dvojice": {
+                "matches": 9,
+                "wins": 9,
+                "winRate": 100
+              },
+              "trojice": {
+                "matches": 9,
+                "wins": 7,
+                "winRate": 78
               }
             }
           }
@@ -1030,14 +1254,15 @@ export const leagueTeams = [
         "stats": {
           "rychlost": 83,
           "obratnost": 84,
-          "rana": 82,
-          "technika": 88,
-          "obetavost": 85,
-          "psychickaOdolnost": 85,
-          "obrana": 88,
-          "cteniHry": 87,
-          "vydrz": 83
-        }
+          "sila": 85,
+          "svih": 85,
+          "technika": 86,
+          "obetavost": 87,
+          "psychika": 87,
+          "cteniHry": 88,
+          "odolnost": 89
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Vážená úspěšnost: 74.7% (2025: 69%, 2024: 86%) | Úprava podle výkonnosti: 7.4% | Výsledné celkové hodnocení: 86.0"
       },
       {
         "id": "CELA_B_6",
@@ -1097,16 +1322,17 @@ export const leagueTeams = [
           "trojice2"
         ],
         "stats": {
-          "rychlost": 81,
-          "obratnost": 82,
-          "rana": 80,
-          "technika": 86,
-          "obetavost": 83,
-          "psychickaOdolnost": 83,
-          "obrana": 86,
-          "cteniHry": 85,
-          "vydrz": 81
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "CELA_B_7",
@@ -1166,16 +1392,17 @@ export const leagueTeams = [
           "trojice2"
         ],
         "stats": {
-          "rychlost": 79,
-          "obratnost": 80,
-          "rana": 78,
-          "technika": 84,
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
           "obetavost": 81,
-          "psychickaOdolnost": 81,
-          "obrana": 84,
-          "cteniHry": 83,
-          "vydrz": 79
-        }
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "CELA_B_8",
@@ -1236,16 +1463,17 @@ export const leagueTeams = [
           "trojice2"
         ],
         "stats": {
-          "rychlost": 78,
-          "obratnost": 79,
-          "rana": 77,
-          "technika": 83,
-          "obetavost": 80,
-          "psychickaOdolnost": 80,
-          "obrana": 83,
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
           "cteniHry": 82,
-          "vydrz": 78
-        }
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "CELA_B_9",
@@ -1305,16 +1533,17 @@ export const leagueTeams = [
           "trojice2"
         ],
         "stats": {
-          "rychlost": 78,
-          "obratnost": 79,
-          "rana": 77,
-          "technika": 83,
-          "obetavost": 80,
-          "psychickaOdolnost": 80,
-          "obrana": 83,
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
           "cteniHry": 82,
-          "vydrz": 78
-        }
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "CELA_B_10",
@@ -1376,14 +1605,15 @@ export const leagueTeams = [
         "stats": {
           "rychlost": 77,
           "obratnost": 78,
-          "rana": 76,
-          "technika": 82,
-          "obetavost": 79,
-          "psychickaOdolnost": 79,
-          "obrana": 82,
-          "cteniHry": 81,
-          "vydrz": 77
-        }
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "CELA_B_11",
@@ -1445,14 +1675,15 @@ export const leagueTeams = [
         "stats": {
           "rychlost": 77,
           "obratnost": 78,
-          "rana": 76,
-          "technika": 82,
-          "obetavost": 79,
-          "psychickaOdolnost": 79,
-          "obrana": 82,
-          "cteniHry": 81,
-          "vydrz": 77
-        }
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "CELA_B_COACH",
@@ -1494,7 +1725,19 @@ export const leagueTeams = [
             "Vrať se dolů!",
             "Zahoď tu raketu!"
           ]
-        }
+        },
+        "stats": {
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       }
     ]
   },
@@ -1510,49 +1753,161 @@ export const leagueTeams = [
         "number": 1,
         "position": "Univerzál",
         "photo": "https://www.nohejbal.org/photo/player/player_2482.jpg",
+        "yearlyStats": {
+          "2024": {
+            "matches": 61,
+            "wins": 30,
+            "winRate": 49
+          },
+          "2025": {
+            "matches": 82,
+            "wins": 55,
+            "winRate": 67
+          }
+        },
         "regularSeason": {
           "matches": 55,
           "wins": 35,
           "winRate": 64,
           "singl": {
-            "matches": 18,
-            "wins": 12,
+            "matches": 12,
+            "wins": 8,
             "winRate": 67
           },
           "dvojice": {
             "matches": 19,
-            "wins": 12,
-            "winRate": 63
+            "wins": 14,
+            "winRate": 74
           },
           "trojice": {
-            "matches": 18,
-            "wins": 11,
-            "winRate": 61
+            "matches": 24,
+            "wins": 13,
+            "winRate": 54
           }
         },
         "seasonStats": [
           {
-            "season": "2025",
+            "season": "2025 Play Off/Out",
             "league": "1. liga muži",
+            "matches": 27,
+            "wins": 20,
+            "losses": 7,
+            "winRate": 74,
+            "disciplines": {
+              "singl": {
+                "matches": 6,
+                "wins": 6,
+                "winRate": 100
+              },
+              "dvojice": {
+                "matches": 10,
+                "wins": 7,
+                "winRate": 70
+              },
+              "trojice": {
+                "matches": 11,
+                "wins": 7,
+                "winRate": 64
+              }
+            }
+          },
+          {
+            "season": "2025",
+            "league": "1. liga muži - základní část",
             "matches": 55,
             "wins": 35,
             "losses": 20,
             "winRate": 64,
             "disciplines": {
               "singl": {
-                "matches": 18,
-                "wins": 12,
+                "matches": 12,
+                "wins": 8,
                 "winRate": 67
               },
               "dvojice": {
                 "matches": 19,
-                "wins": 12,
-                "winRate": 63
+                "wins": 14,
+                "winRate": 74
               },
               "trojice": {
-                "matches": 18,
-                "wins": 11,
-                "winRate": 61
+                "matches": 24,
+                "wins": 13,
+                "winRate": 54
+              }
+            }
+          },
+          {
+            "season": "2024 Play-off",
+            "league": "Dorostenecká liga",
+            "matches": 19,
+            "wins": 12,
+            "losses": 7,
+            "winRate": 63,
+            "disciplines": {
+              "singl": {
+                "matches": 5,
+                "wins": 4,
+                "winRate": 80
+              },
+              "dvojice": {
+                "matches": 7,
+                "wins": 4,
+                "winRate": 57
+              },
+              "trojice": {
+                "matches": 7,
+                "wins": 4,
+                "winRate": 57
+              }
+            }
+          },
+          {
+            "season": "2024",
+            "league": "Extraliga muži",
+            "matches": 38,
+            "wins": 16,
+            "losses": 22,
+            "winRate": 42,
+            "disciplines": {
+              "singl": {
+                "matches": 3,
+                "wins": 1,
+                "winRate": 33
+              },
+              "dvojice": {
+                "matches": 16,
+                "wins": 8,
+                "winRate": 50
+              },
+              "trojice": {
+                "matches": 19,
+                "wins": 7,
+                "winRate": 37
+              }
+            }
+          },
+          {
+            "season": "2024",
+            "league": "Dorostenecká liga B",
+            "matches": 4,
+            "wins": 2,
+            "losses": 2,
+            "winRate": 50,
+            "disciplines": {
+              "singl": {
+                "matches": 1,
+                "wins": 1,
+                "winRate": 100
+              },
+              "dvojice": {
+                "matches": 2,
+                "wins": 1,
+                "winRate": 50
+              },
+              "trojice": {
+                "matches": 1,
+                "wins": 0,
+                "winRate": 0
               }
             }
           }
@@ -1563,16 +1918,17 @@ export const leagueTeams = [
           "trojice1"
         ],
         "stats": {
-          "rychlost": 82,
-          "obratnost": 83,
-          "rana": 81,
-          "technika": 87,
-          "obetavost": 84,
-          "psychickaOdolnost": 84,
-          "obrana": 87,
-          "cteniHry": 86,
-          "vydrz": 82
-        }
+          "rychlost": 80,
+          "obratnost": 81,
+          "sila": 81,
+          "svih": 82,
+          "technika": 83,
+          "obetavost": 83,
+          "psychika": 84,
+          "cteniHry": 85,
+          "odolnost": 85
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Vážená úspěšnost: 61.0% (2025: 67%, 2024: 49%) | Úprava podle výkonnosti: 3.3% | Výsledné celkové hodnocení: 82.7"
       },
       {
         "id": "PEKLO_2",
@@ -1633,16 +1989,17 @@ export const leagueTeams = [
           "trojice1"
         ],
         "stats": {
-          "rychlost": 80,
-          "obratnost": 81,
-          "rana": 79,
-          "technika": 85,
-          "obetavost": 82,
-          "psychickaOdolnost": 82,
-          "obrana": 85,
-          "cteniHry": 84,
-          "vydrz": 80
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "PEKLO_3",
@@ -1650,49 +2007,161 @@ export const leagueTeams = [
         "number": 3,
         "position": "Univerzál",
         "photo": "https://www.nohejbal.org/photo/player/player_4241.jpg",
+        "yearlyStats": {
+          "2024": {
+            "matches": 76,
+            "wins": 31,
+            "winRate": 41
+          },
+          "2025": {
+            "matches": 64,
+            "wins": 31,
+            "winRate": 48
+          }
+        },
         "regularSeason": {
           "matches": 46,
           "wins": 23,
           "winRate": 50,
           "singl": {
-            "matches": 15,
-            "wins": 8,
-            "winRate": 53
+            "matches": 1,
+            "wins": 1,
+            "winRate": 100
           },
           "dvojice": {
-            "matches": 15,
-            "wins": 8,
-            "winRate": 53
+            "matches": 18,
+            "wins": 7,
+            "winRate": 39
           },
           "trojice": {
-            "matches": 16,
-            "wins": 7,
-            "winRate": 44
+            "matches": 27,
+            "wins": 15,
+            "winRate": 56
           }
         },
         "seasonStats": [
           {
-            "season": "2025",
+            "season": "2025 Play Off/Out",
             "league": "1. liga muži",
+            "matches": 18,
+            "wins": 8,
+            "losses": 10,
+            "winRate": 44,
+            "disciplines": {
+              "singl": {
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
+              },
+              "dvojice": {
+                "matches": 7,
+                "wins": 1,
+                "winRate": 14
+              },
+              "trojice": {
+                "matches": 11,
+                "wins": 7,
+                "winRate": 64
+              }
+            }
+          },
+          {
+            "season": "2025",
+            "league": "1. liga muži - základní část",
             "matches": 46,
             "wins": 23,
             "losses": 23,
             "winRate": 50,
             "disciplines": {
               "singl": {
-                "matches": 15,
-                "wins": 8,
-                "winRate": 53
+                "matches": 1,
+                "wins": 1,
+                "winRate": 100
               },
               "dvojice": {
-                "matches": 15,
-                "wins": 8,
-                "winRate": 53
+                "matches": 18,
+                "wins": 7,
+                "winRate": 39
               },
               "trojice": {
-                "matches": 16,
+                "matches": 27,
+                "wins": 15,
+                "winRate": 56
+              }
+            }
+          },
+          {
+            "season": "2024 Play-off",
+            "league": "Dorostenecká liga",
+            "matches": 21,
+            "wins": 12,
+            "losses": 9,
+            "winRate": 57,
+            "disciplines": {
+              "singl": {
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
+              },
+              "dvojice": {
+                "matches": 9,
                 "wins": 7,
-                "winRate": 44
+                "winRate": 78
+              },
+              "trojice": {
+                "matches": 12,
+                "wins": 5,
+                "winRate": 42
+              }
+            }
+          },
+          {
+            "season": "2024",
+            "league": "Extraliga muži",
+            "matches": 24,
+            "wins": 5,
+            "losses": 19,
+            "winRate": 21,
+            "disciplines": {
+              "singl": {
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
+              },
+              "dvojice": {
+                "matches": 14,
+                "wins": 3,
+                "winRate": 21
+              },
+              "trojice": {
+                "matches": 10,
+                "wins": 2,
+                "winRate": 20
+              }
+            }
+          },
+          {
+            "season": "2024",
+            "league": "Dorostenecká liga B",
+            "matches": 31,
+            "wins": 14,
+            "losses": 17,
+            "winRate": 45,
+            "disciplines": {
+              "singl": {
+                "matches": 1,
+                "wins": 0,
+                "winRate": 0
+              },
+              "dvojice": {
+                "matches": 16,
+                "wins": 9,
+                "winRate": 56
+              },
+              "trojice": {
+                "matches": 14,
+                "wins": 5,
+                "winRate": 36
               }
             }
           }
@@ -1702,16 +2171,17 @@ export const leagueTeams = [
           "trojice2"
         ],
         "stats": {
-          "rychlost": 78,
-          "obratnost": 79,
-          "rana": 77,
-          "technika": 83,
+          "rychlost": 76,
+          "obratnost": 77,
+          "sila": 78,
+          "svih": 78,
+          "technika": 79,
           "obetavost": 80,
-          "psychickaOdolnost": 80,
-          "obrana": 83,
-          "cteniHry": 82,
-          "vydrz": 78
-        }
+          "psychika": 80,
+          "cteniHry": 81,
+          "odolnost": 82
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Vážená úspěšnost: 45.7% (2025: 48%, 2024: 41%) | Úprava podle výkonnosti: -1.3% | Výsledné celkové hodnocení: 79.0"
       },
       {
         "id": "PEKLO_4",
@@ -1719,117 +2189,135 @@ export const leagueTeams = [
         "number": 4,
         "position": "Univerzál",
         "photo": "https://www.nohejbal.org/photo/player/player_1659.jpg",
+        "yearlyStats": {
+          "2024": {
+            "matches": 43,
+            "wins": 13,
+            "winRate": 30
+          },
+          "2025": {
+            "matches": 64,
+            "wins": 30,
+            "winRate": 47
+          }
+        },
         "regularSeason": {
           "matches": 46,
           "wins": 22,
           "winRate": 48,
           "singl": {
-            "matches": 15,
-            "wins": 7,
-            "winRate": 47
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
           },
           "dvojice": {
-            "matches": 15,
+            "matches": 18,
             "wins": 7,
-            "winRate": 47
+            "winRate": 39
           },
           "trojice": {
-            "matches": 16,
-            "wins": 8,
-            "winRate": 50
+            "matches": 28,
+            "wins": 15,
+            "winRate": 54
           }
         },
         "seasonStats": [
           {
-            "season": "2025",
+            "season": "2025 Play Off/Out",
             "league": "1. liga muži",
+            "matches": 18,
+            "wins": 8,
+            "losses": 10,
+            "winRate": 44,
+            "disciplines": {
+              "singl": {
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
+              },
+              "dvojice": {
+                "matches": 7,
+                "wins": 1,
+                "winRate": 14
+              },
+              "trojice": {
+                "matches": 11,
+                "wins": 7,
+                "winRate": 64
+              }
+            }
+          },
+          {
+            "season": "2025",
+            "league": "1. liga muži - základní část",
             "matches": 46,
             "wins": 22,
             "losses": 24,
             "winRate": 48,
             "disciplines": {
               "singl": {
-                "matches": 15,
-                "wins": 7,
-                "winRate": 47
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
               },
               "dvojice": {
-                "matches": 15,
+                "matches": 18,
                 "wins": 7,
-                "winRate": 47
+                "winRate": 39
               },
               "trojice": {
-                "matches": 16,
-                "wins": 8,
-                "winRate": 50
+                "matches": 28,
+                "wins": 15,
+                "winRate": 54
               }
             }
-          }
-        ],
-        "typicalPositions": [
-          "dvojice2",
-          "trojice2"
-        ],
-        "stats": {
-          "rychlost": 77,
-          "obratnost": 78,
-          "rana": 76,
-          "technika": 82,
-          "obetavost": 79,
-          "psychickaOdolnost": 79,
-          "obrana": 82,
-          "cteniHry": 81,
-          "vydrz": 77
-        }
-      },
-      {
-        "id": "PEKLO_5",
-        "name": "Pavel Jarkovský",
-        "number": 5,
-        "position": "Univerzál",
-        "photo": "https://www.nohejbal.org/photo/player/player_3504.jpg",
-        "regularSeason": {
-          "matches": 29,
-          "wins": 13,
-          "winRate": 45,
-          "singl": {
-            "matches": 10,
-            "wins": 4,
-            "winRate": 40
           },
-          "dvojice": {
-            "matches": 10,
-            "wins": 5,
-            "winRate": 50
-          },
-          "trojice": {
-            "matches": 9,
-            "wins": 4,
-            "winRate": 44
-          }
-        },
-        "seasonStats": [
           {
-            "season": "2025",
-            "league": "1. liga muži",
-            "matches": 29,
-            "wins": 13,
-            "losses": 16,
-            "winRate": 45,
+            "season": "2024 Play Off/Out",
+            "league": "Extraliga muži",
+            "matches": 5,
+            "wins": 1,
+            "losses": 4,
+            "winRate": 20,
             "disciplines": {
               "singl": {
-                "matches": 10,
-                "wins": 4,
-                "winRate": 40
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
               },
               "dvojice": {
-                "matches": 10,
-                "wins": 5,
-                "winRate": 50
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
               },
               "trojice": {
-                "matches": 9,
-                "wins": 4,
+                "matches": 5,
+                "wins": 1,
+                "winRate": 20
+              }
+            }
+          },
+          {
+            "season": "2024",
+            "league": "Extraliga muži",
+            "matches": 38,
+            "wins": 12,
+            "losses": 26,
+            "winRate": 32,
+            "disciplines": {
+              "singl": {
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
+              },
+              "dvojice": {
+                "matches": 13,
+                "wins": 1,
+                "winRate": 8
+              },
+              "trojice": {
+                "matches": 25,
+                "wins": 11,
                 "winRate": 44
               }
             }
@@ -1840,16 +2328,149 @@ export const leagueTeams = [
           "trojice2"
         ],
         "stats": {
-          "rychlost": 77,
-          "obratnost": 78,
-          "rana": 76,
-          "technika": 82,
+          "rychlost": 75,
+          "obratnost": 76,
+          "sila": 77,
+          "svih": 77,
+          "technika": 78,
           "obetavost": 79,
-          "psychickaOdolnost": 79,
-          "obrana": 82,
-          "cteniHry": 81,
-          "vydrz": 77
-        }
+          "psychika": 79,
+          "cteniHry": 80,
+          "odolnost": 81
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Vážená úspěšnost: 41.3% (2025: 47%, 2024: 30%) | Úprava podle výkonnosti: -2.6% | Výsledné celkové hodnocení: 78.0"
+      },
+      {
+        "id": "PEKLO_5",
+        "name": "Pavel Jarkovský",
+        "number": 5,
+        "position": "Univerzál",
+        "photo": "https://www.nohejbal.org/photo/player/player_3504.jpg",
+        "yearlyStats": {
+          "2024": {
+            "matches": 25,
+            "wins": 10,
+            "winRate": 40
+          },
+          "2025": {
+            "matches": 44,
+            "wins": 15,
+            "winRate": 34
+          }
+        },
+        "regularSeason": {
+          "matches": 29,
+          "wins": 13,
+          "winRate": 45,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 10,
+            "wins": 3,
+            "winRate": 30
+          },
+          "trojice": {
+            "matches": 19,
+            "wins": 10,
+            "winRate": 53
+          }
+        },
+        "seasonStats": [
+          {
+            "season": "2025 Play Off/Out",
+            "league": "1. liga muži",
+            "matches": 15,
+            "wins": 2,
+            "losses": 13,
+            "winRate": 13,
+            "disciplines": {
+              "singl": {
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
+              },
+              "dvojice": {
+                "matches": 5,
+                "wins": 0,
+                "winRate": 0
+              },
+              "trojice": {
+                "matches": 10,
+                "wins": 2,
+                "winRate": 20
+              }
+            }
+          },
+          {
+            "season": "2025",
+            "league": "1. liga muži - základní část",
+            "matches": 29,
+            "wins": 13,
+            "losses": 16,
+            "winRate": 45,
+            "disciplines": {
+              "singl": {
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
+              },
+              "dvojice": {
+                "matches": 10,
+                "wins": 3,
+                "winRate": 30
+              },
+              "trojice": {
+                "matches": 19,
+                "wins": 10,
+                "winRate": 53
+              }
+            }
+          },
+          {
+            "season": "2024",
+            "league": "Dorostenecká liga B",
+            "matches": 25,
+            "wins": 10,
+            "losses": 15,
+            "winRate": 40,
+            "disciplines": {
+              "singl": {
+                "matches": 1,
+                "wins": 1,
+                "winRate": 100
+              },
+              "dvojice": {
+                "matches": 16,
+                "wins": 6,
+                "winRate": 38
+              },
+              "trojice": {
+                "matches": 8,
+                "wins": 3,
+                "winRate": 38
+              }
+            }
+          }
+        ],
+        "typicalPositions": [
+          "dvojice2",
+          "trojice2"
+        ],
+        "stats": {
+          "rychlost": 74,
+          "obratnost": 75,
+          "sila": 75,
+          "svih": 76,
+          "technika": 77,
+          "obetavost": 77,
+          "psychika": 78,
+          "cteniHry": 79,
+          "odolnost": 79
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Vážená úspěšnost: 36.0% (2025: 34%, 2024: 40%) | Úprava podle výkonnosti: -4.2% | Výsledné celkové hodnocení: 76.7"
       },
       {
         "id": "PEKLO_6",
@@ -1857,49 +2478,136 @@ export const leagueTeams = [
         "number": 6,
         "position": "Univerzál",
         "photo": "https://www.nohejbal.org/photo/player/player_4310.jpg",
+        "yearlyStats": {
+          "2024": {
+            "matches": 29,
+            "wins": 15,
+            "winRate": 52
+          },
+          "2025": {
+            "matches": 54,
+            "wins": 18,
+            "winRate": 33
+          }
+        },
         "regularSeason": {
           "matches": 41,
           "wins": 14,
           "winRate": 34,
           "singl": {
-            "matches": 14,
-            "wins": 5,
-            "winRate": 36
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
           },
           "dvojice": {
             "matches": 14,
-            "wins": 5,
-            "winRate": 36
+            "wins": 2,
+            "winRate": 14
           },
           "trojice": {
-            "matches": 13,
-            "wins": 4,
-            "winRate": 31
+            "matches": 27,
+            "wins": 12,
+            "winRate": 44
           }
         },
         "seasonStats": [
           {
-            "season": "2025",
+            "season": "2025 Play Off/Out",
             "league": "1. liga muži",
+            "matches": 13,
+            "wins": 4,
+            "losses": 9,
+            "winRate": 31,
+            "disciplines": {
+              "singl": {
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
+              },
+              "dvojice": {
+                "matches": 2,
+                "wins": 2,
+                "winRate": 100
+              },
+              "trojice": {
+                "matches": 11,
+                "wins": 2,
+                "winRate": 18
+              }
+            }
+          },
+          {
+            "season": "2025",
+            "league": "1. liga muži - základní část",
             "matches": 41,
             "wins": 14,
             "losses": 27,
             "winRate": 34,
             "disciplines": {
               "singl": {
-                "matches": 14,
-                "wins": 5,
-                "winRate": 36
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
               },
               "dvojice": {
                 "matches": 14,
-                "wins": 5,
-                "winRate": 36
+                "wins": 2,
+                "winRate": 14
               },
               "trojice": {
-                "matches": 13,
+                "matches": 27,
+                "wins": 12,
+                "winRate": 44
+              }
+            }
+          },
+          {
+            "season": "2024",
+            "league": "Extraliga muži",
+            "matches": 8,
+            "wins": 5,
+            "losses": 3,
+            "winRate": 63,
+            "disciplines": {
+              "singl": {
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
+              },
+              "dvojice": {
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
+              },
+              "trojice": {
+                "matches": 8,
+                "wins": 5,
+                "winRate": 63
+              }
+            }
+          },
+          {
+            "season": "2024",
+            "league": "Dorostenecká liga B",
+            "matches": 21,
+            "wins": 10,
+            "losses": 11,
+            "winRate": 48,
+            "disciplines": {
+              "singl": {
+                "matches": 1,
+                "wins": 0,
+                "winRate": 0
+              },
+              "dvojice": {
+                "matches": 10,
+                "wins": 6,
+                "winRate": 60
+              },
+              "trojice": {
+                "matches": 10,
                 "wins": 4,
-                "winRate": 31
+                "winRate": 40
               }
             }
           }
@@ -1909,16 +2617,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 74,
+          "rychlost": 75,
           "obratnost": 75,
-          "rana": 73,
-          "technika": 79,
-          "obetavost": 76,
-          "psychickaOdolnost": 76,
-          "obrana": 79,
-          "cteniHry": 78,
-          "vydrz": 74
-        }
+          "sila": 76,
+          "svih": 77,
+          "technika": 77,
+          "obetavost": 78,
+          "psychika": 79,
+          "cteniHry": 80,
+          "odolnost": 80
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Vážená úspěšnost: 39.3% (2025: 33%, 2024: 52%) | Úprava podle výkonnosti: -3.2% | Výsledné celkové hodnocení: 77.4"
       },
       {
         "id": "PEKLO_7",
@@ -1926,49 +2635,86 @@ export const leagueTeams = [
         "number": 7,
         "position": "Univerzál",
         "photo": "https://www.nohejbal.org/photo/player/player_4441.jpg",
+        "yearlyStats": {
+          "2024": {
+            "matches": 14,
+            "wins": 6,
+            "winRate": 43
+          },
+          "2025": {
+            "matches": 13,
+            "wins": 3,
+            "winRate": 23
+          }
+        },
         "regularSeason": {
           "matches": 13,
           "wins": 3,
           "winRate": 23,
           "singl": {
-            "matches": 4,
-            "wins": 1,
-            "winRate": 25
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
           },
           "dvojice": {
-            "matches": 4,
-            "wins": 1,
-            "winRate": 25
-          },
-          "trojice": {
             "matches": 5,
             "wins": 1,
             "winRate": 20
+          },
+          "trojice": {
+            "matches": 8,
+            "wins": 2,
+            "winRate": 25
           }
         },
         "seasonStats": [
           {
             "season": "2025",
-            "league": "1. liga muži",
+            "league": "1. liga muži - základní část",
             "matches": 13,
             "wins": 3,
             "losses": 10,
             "winRate": 23,
             "disciplines": {
               "singl": {
-                "matches": 4,
-                "wins": 1,
-                "winRate": 25
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
               },
               "dvojice": {
-                "matches": 4,
-                "wins": 1,
-                "winRate": 25
-              },
-              "trojice": {
                 "matches": 5,
                 "wins": 1,
                 "winRate": 20
+              },
+              "trojice": {
+                "matches": 8,
+                "wins": 2,
+                "winRate": 25
+              }
+            }
+          },
+          {
+            "season": "2024",
+            "league": "Dorostenecká liga B",
+            "matches": 14,
+            "wins": 6,
+            "losses": 8,
+            "winRate": 43,
+            "disciplines": {
+              "singl": {
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
+              },
+              "dvojice": {
+                "matches": 9,
+                "wins": 4,
+                "winRate": 44
+              },
+              "trojice": {
+                "matches": 5,
+                "wins": 2,
+                "winRate": 40
               }
             }
           }
@@ -1978,16 +2724,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 71,
-          "obratnost": 72,
-          "rana": 70,
-          "technika": 76,
-          "obetavost": 73,
-          "psychickaOdolnost": 73,
-          "obrana": 76,
-          "cteniHry": 75,
-          "vydrz": 71
-        }
+          "rychlost": 72,
+          "obratnost": 73,
+          "sila": 74,
+          "svih": 74,
+          "technika": 75,
+          "obetavost": 76,
+          "psychika": 77,
+          "cteniHry": 77,
+          "odolnost": 78
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Vážená úspěšnost: 29.7% (2025: 23%, 2024: 43%) | Úprava podle výkonnosti: -6.1% | Výsledné celkové hodnocení: 75.1"
       },
       {
         "id": "PEKLO_8",
@@ -2047,16 +2794,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 71,
-          "obratnost": 72,
-          "rana": 70,
-          "technika": 76,
-          "obetavost": 73,
-          "psychickaOdolnost": 73,
-          "obrana": 76,
-          "cteniHry": 75,
-          "vydrz": 71
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "PEKLO_9",
@@ -2064,49 +2812,136 @@ export const leagueTeams = [
         "number": 9,
         "position": "Univerzál",
         "photo": "https://www.nohejbal.org/photo/player/player_3104.jpg",
+        "yearlyStats": {
+          "2024": {
+            "matches": 25,
+            "wins": 6,
+            "winRate": 24
+          },
+          "2025": {
+            "matches": 13,
+            "wins": 3,
+            "winRate": 23
+          }
+        },
         "regularSeason": {
           "matches": 11,
           "wins": 2,
           "winRate": 18,
           "singl": {
-            "matches": 4,
-            "wins": 1,
-            "winRate": 25
-          },
-          "dvojice": {
-            "matches": 4,
-            "wins": 1,
-            "winRate": 25
-          },
-          "trojice": {
-            "matches": 3,
+            "matches": 0,
             "wins": 0,
             "winRate": 0
+          },
+          "dvojice": {
+            "matches": 2,
+            "wins": 0,
+            "winRate": 0
+          },
+          "trojice": {
+            "matches": 9,
+            "wins": 2,
+            "winRate": 22
           }
         },
         "seasonStats": [
           {
-            "season": "2025",
+            "season": "2025 Play Off/Out",
             "league": "1. liga muži",
+            "matches": 2,
+            "wins": 1,
+            "losses": 1,
+            "winRate": 50,
+            "disciplines": {
+              "singl": {
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
+              },
+              "dvojice": {
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
+              },
+              "trojice": {
+                "matches": 2,
+                "wins": 1,
+                "winRate": 50
+              }
+            }
+          },
+          {
+            "season": "2025",
+            "league": "1. liga muži - základní část",
             "matches": 11,
             "wins": 2,
             "losses": 9,
             "winRate": 18,
             "disciplines": {
               "singl": {
-                "matches": 4,
-                "wins": 1,
-                "winRate": 25
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
               },
               "dvojice": {
-                "matches": 4,
-                "wins": 1,
-                "winRate": 25
+                "matches": 2,
+                "wins": 0,
+                "winRate": 0
               },
               "trojice": {
+                "matches": 9,
+                "wins": 2,
+                "winRate": 22
+              }
+            }
+          },
+          {
+            "season": "2024 Play-off",
+            "league": "Dorostenecká liga",
+            "matches": 7,
+            "wins": 1,
+            "losses": 6,
+            "winRate": 14,
+            "disciplines": {
+              "singl": {
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
+              },
+              "dvojice": {
                 "matches": 3,
                 "wins": 0,
                 "winRate": 0
+              },
+              "trojice": {
+                "matches": 4,
+                "wins": 1,
+                "winRate": 25
+              }
+            }
+          },
+          {
+            "season": "2024",
+            "league": "Dorostenecká liga B",
+            "matches": 18,
+            "wins": 5,
+            "losses": 13,
+            "winRate": 28,
+            "disciplines": {
+              "singl": {
+                "matches": 2,
+                "wins": 1,
+                "winRate": 50
+              },
+              "dvojice": {
+                "matches": 10,
+                "wins": 3,
+                "winRate": 30
+              },
+              "trojice": {
+                "matches": 6,
+                "wins": 1,
+                "winRate": 17
               }
             }
           }
@@ -2118,14 +2953,15 @@ export const leagueTeams = [
         "stats": {
           "rychlost": 71,
           "obratnost": 72,
-          "rana": 70,
-          "technika": 76,
-          "obetavost": 73,
-          "psychickaOdolnost": 73,
-          "obrana": 76,
-          "cteniHry": 75,
-          "vydrz": 71
-        }
+          "sila": 72,
+          "svih": 73,
+          "technika": 74,
+          "obetavost": 74,
+          "psychika": 75,
+          "cteniHry": 76,
+          "odolnost": 76
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Vážená úspěšnost: 23.3% (2025: 23%, 2024: 24%) | Úprava podle výkonnosti: -8.0% | Výsledné celkové hodnocení: 73.7"
       },
       {
         "id": "PEKLO_10",
@@ -2185,16 +3021,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 70,
-          "obratnost": 71,
-          "rana": 69,
-          "technika": 75,
-          "obetavost": 72,
-          "psychickaOdolnost": 72,
-          "obrana": 75,
-          "cteniHry": 74,
-          "vydrz": 70
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "PEKLO_11",
@@ -2202,12 +3039,24 @@ export const leagueTeams = [
         "number": 11,
         "position": "Univerzál",
         "photo": "https://www.nohejbal.org/photo/player/player_3103.jpg",
+        "yearlyStats": {
+          "2024": {
+            "matches": 22,
+            "wins": 4,
+            "winRate": 18
+          },
+          "2025": {
+            "matches": 5,
+            "wins": 0,
+            "winRate": 0
+          }
+        },
         "regularSeason": {
           "matches": 5,
           "wins": 0,
           "winRate": 0,
           "singl": {
-            "matches": 2,
+            "matches": 0,
             "wins": 0,
             "winRate": 0
           },
@@ -2217,7 +3066,7 @@ export const leagueTeams = [
             "winRate": 0
           },
           "trojice": {
-            "matches": 1,
+            "matches": 3,
             "wins": 0,
             "winRate": 0
           }
@@ -2225,14 +3074,14 @@ export const leagueTeams = [
         "seasonStats": [
           {
             "season": "2025",
-            "league": "1. liga muži",
+            "league": "1. liga muži - základní část",
             "matches": 5,
             "wins": 0,
             "losses": 5,
             "winRate": 0,
             "disciplines": {
               "singl": {
-                "matches": 2,
+                "matches": 0,
                 "wins": 0,
                 "winRate": 0
               },
@@ -2242,9 +3091,34 @@ export const leagueTeams = [
                 "winRate": 0
               },
               "trojice": {
-                "matches": 1,
+                "matches": 3,
                 "wins": 0,
                 "winRate": 0
+              }
+            }
+          },
+          {
+            "season": "2024",
+            "league": "Extraliga muži",
+            "matches": 22,
+            "wins": 4,
+            "losses": 18,
+            "winRate": 18,
+            "disciplines": {
+              "singl": {
+                "matches": 0,
+                "wins": 0,
+                "winRate": 0
+              },
+              "dvojice": {
+                "matches": 12,
+                "wins": 2,
+                "winRate": 17
+              },
+              "trojice": {
+                "matches": 10,
+                "wins": 2,
+                "winRate": 20
               }
             }
           }
@@ -2254,16 +3128,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 66,
-          "obratnost": 67,
-          "rana": 65,
-          "technika": 71,
-          "obetavost": 68,
-          "psychickaOdolnost": 68,
-          "obrana": 71,
-          "cteniHry": 70,
-          "vydrz": 66
-        }
+          "rychlost": 75,
+          "obratnost": 75,
+          "sila": 76,
+          "svih": 77,
+          "technika": 77,
+          "obetavost": 78,
+          "psychika": 79,
+          "cteniHry": 80,
+          "odolnost": 80
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Vážená úspěšnost: 39.3% (2025: 0%, 2024: 18%) | Úprava podle výkonnosti: -3.2% | Výsledné celkové hodnocení: 77.4"
       },
       {
         "id": "PEKLO_COACH",
@@ -2305,7 +3180,19 @@ export const leagueTeams = [
             "Seď na lavičce!",
             "Vrať se k realitě!"
           ]
-        }
+        },
+        "stats": {
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       }
     ]
   },
@@ -2341,6 +3228,18 @@ export const leagueTeams = [
             "winRate": 67
           }
         },
+        "yearlyStats": {
+          "2024": {
+            "matches": 66,
+            "wins": 39,
+            "winRate": 59
+          },
+          "2025": {
+            "matches": 71,
+            "wins": 44,
+            "winRate": 62
+          }
+        },
         "seasonStats": [
           {
             "season": "2025",
@@ -2374,16 +3273,17 @@ export const leagueTeams = [
           "trojice1"
         ],
         "stats": {
-          "rychlost": 81,
-          "obratnost": 82,
-          "rana": 80,
-          "technika": 86,
+          "rychlost": 80,
+          "obratnost": 81,
+          "sila": 81,
+          "svih": 82,
+          "technika": 83,
           "obetavost": 83,
-          "psychickaOdolnost": 83,
-          "obrana": 86,
+          "psychika": 84,
           "cteniHry": 85,
-          "vydrz": 81
-        }
+          "odolnost": 85
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Vážená úspěšnost: 61.0% (2025: 62%, 2024: 59%) | Úprava podle výkonnosti: 3.3% | Výsledné celkové hodnocení: 82.7"
       },
       {
         "id": "CBROD_2",
@@ -2411,6 +3311,18 @@ export const leagueTeams = [
             "winRate": 57
           }
         },
+        "yearlyStats": {
+          "2024": {
+            "matches": 58,
+            "wins": 30,
+            "winRate": 52
+          },
+          "2025": {
+            "matches": 43,
+            "wins": 25,
+            "winRate": 58
+          }
+        },
         "seasonStats": [
           {
             "season": "2025",
@@ -2444,16 +3356,17 @@ export const leagueTeams = [
           "trojice1"
         ],
         "stats": {
-          "rychlost": 81,
-          "obratnost": 82,
-          "rana": 80,
-          "technika": 86,
-          "obetavost": 83,
-          "psychickaOdolnost": 83,
-          "obrana": 86,
-          "cteniHry": 85,
-          "vydrz": 81
-        }
+          "rychlost": 79,
+          "obratnost": 79,
+          "sila": 80,
+          "svih": 81,
+          "technika": 81,
+          "obetavost": 82,
+          "psychika": 83,
+          "cteniHry": 84,
+          "odolnost": 84
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Vážená úspěšnost: 56.0% (2025: 58%, 2024: 52%) | Úprava podle výkonnosti: 1.8% | Výsledné celkové hodnocení: 81.4"
       },
       {
         "id": "CBROD_3",
@@ -2479,6 +3392,18 @@ export const leagueTeams = [
             "matches": 14,
             "wins": 8,
             "winRate": 57
+          }
+        },
+        "yearlyStats": {
+          "2024": {
+            "matches": 91,
+            "wins": 50,
+            "winRate": 55
+          },
+          "2025": {
+            "matches": 89,
+            "wins": 63,
+            "winRate": 71
           }
         },
         "seasonStats": [
@@ -2516,14 +3441,15 @@ export const leagueTeams = [
         "stats": {
           "rychlost": 81,
           "obratnost": 82,
-          "rana": 80,
-          "technika": 86,
-          "obetavost": 83,
-          "psychickaOdolnost": 83,
-          "obrana": 86,
-          "cteniHry": 85,
-          "vydrz": 81
-        }
+          "sila": 82,
+          "svih": 83,
+          "technika": 84,
+          "obetavost": 84,
+          "psychika": 85,
+          "cteniHry": 86,
+          "odolnost": 87
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Vážená úspěšnost: 65.7% (2025: 71%, 2024: 55%) | Úprava podle výkonnosti: 4.7% | Výsledné celkové hodnocení: 83.8"
       },
       {
         "id": "CBROD_4",
@@ -2549,6 +3475,18 @@ export const leagueTeams = [
             "matches": 13,
             "wins": 7,
             "winRate": 54
+          }
+        },
+        "yearlyStats": {
+          "2024": {
+            "matches": 47,
+            "wins": 24,
+            "winRate": 51
+          },
+          "2025": {
+            "matches": 42,
+            "wins": 24,
+            "winRate": 57
           }
         },
         "seasonStats": [
@@ -2584,16 +3522,17 @@ export const leagueTeams = [
           "trojice2"
         ],
         "stats": {
-          "rychlost": 80,
-          "obratnost": 81,
-          "rana": 79,
-          "technika": 85,
+          "rychlost": 78,
+          "obratnost": 79,
+          "sila": 80,
+          "svih": 80,
+          "technika": 81,
           "obetavost": 82,
-          "psychickaOdolnost": 82,
-          "obrana": 85,
-          "cteniHry": 84,
-          "vydrz": 80
-        }
+          "psychika": 83,
+          "cteniHry": 83,
+          "odolnost": 84
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Vážená úspěšnost: 55.0% (2025: 57%, 2024: 51%) | Úprava podle výkonnosti: 1.5% | Výsledné celkové hodnocení: 81.1"
       },
       {
         "id": "CBROD_5",
@@ -2619,6 +3558,18 @@ export const leagueTeams = [
             "matches": 7,
             "wins": 3,
             "winRate": 43
+          }
+        },
+        "yearlyStats": {
+          "2024": {
+            "matches": 49,
+            "wins": 24,
+            "winRate": 49
+          },
+          "2025": {
+            "matches": 22,
+            "wins": 12,
+            "winRate": 55
           }
         },
         "seasonStats": [
@@ -2654,16 +3605,17 @@ export const leagueTeams = [
           "trojice2"
         ],
         "stats": {
-          "rychlost": 80,
-          "obratnost": 81,
-          "rana": 79,
-          "technika": 85,
-          "obetavost": 82,
-          "psychickaOdolnost": 82,
-          "obrana": 85,
-          "cteniHry": 84,
-          "vydrz": 80
-        }
+          "rychlost": 78,
+          "obratnost": 79,
+          "sila": 79,
+          "svih": 80,
+          "technika": 81,
+          "obetavost": 81,
+          "psychika": 82,
+          "cteniHry": 83,
+          "odolnost": 84
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Vážená úspěšnost: 53.0% (2025: 55%, 2024: 49%) | Úprava podle výkonnosti: 0.9% | Výsledné celkové hodnocení: 80.8"
       },
       {
         "id": "CBROD_6",
@@ -2689,6 +3641,18 @@ export const leagueTeams = [
             "matches": 15,
             "wins": 8,
             "winRate": 53
+          }
+        },
+        "yearlyStats": {
+          "2024": {
+            "matches": 102,
+            "wins": 60,
+            "winRate": 59
+          },
+          "2025": {
+            "matches": 96,
+            "wins": 67,
+            "winRate": 70
           }
         },
         "seasonStats": [
@@ -2723,16 +3687,17 @@ export const leagueTeams = [
           "trojice2"
         ],
         "stats": {
-          "rychlost": 79,
-          "obratnost": 80,
-          "rana": 78,
+          "rychlost": 81,
+          "obratnost": 82,
+          "sila": 83,
+          "svih": 83,
           "technika": 84,
-          "obetavost": 81,
-          "psychickaOdolnost": 81,
-          "obrana": 84,
-          "cteniHry": 83,
-          "vydrz": 79
-        }
+          "obetavost": 85,
+          "psychika": 85,
+          "cteniHry": 86,
+          "odolnost": 87
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Vážená úspěšnost: 66.3% (2025: 70%, 2024: 59%) | Úprava podle výkonnosti: 4.9% | Výsledné celkové hodnocení: 84.0"
       },
       {
         "id": "CBROD_7",
@@ -2758,6 +3723,18 @@ export const leagueTeams = [
             "matches": 6,
             "wins": 2,
             "winRate": 33
+          }
+        },
+        "yearlyStats": {
+          "2024": {
+            "matches": 22,
+            "wins": 7,
+            "winRate": 32
+          },
+          "2025": {
+            "matches": 18,
+            "wins": 9,
+            "winRate": 50
           }
         },
         "seasonStats": [
@@ -2792,16 +3769,17 @@ export const leagueTeams = [
           "trojice2"
         ],
         "stats": {
-          "rychlost": 78,
-          "obratnost": 79,
-          "rana": 77,
-          "technika": 83,
-          "obetavost": 80,
-          "psychickaOdolnost": 80,
-          "obrana": 83,
-          "cteniHry": 82,
-          "vydrz": 78
-        }
+          "rychlost": 76,
+          "obratnost": 76,
+          "sila": 77,
+          "svih": 78,
+          "technika": 79,
+          "obetavost": 79,
+          "psychika": 80,
+          "cteniHry": 81,
+          "odolnost": 81
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Vážená úspěšnost: 44.0% (2025: 50%, 2024: 32%) | Úprava podle výkonnosti: -1.8% | Výsledné celkové hodnocení: 78.6"
       },
       {
         "id": "CBROD_8",
@@ -2827,6 +3805,18 @@ export const leagueTeams = [
             "matches": 11,
             "wins": 6,
             "winRate": 55
+          }
+        },
+        "yearlyStats": {
+          "2024": {
+            "matches": 63,
+            "wins": 38,
+            "winRate": 60
+          },
+          "2025": {
+            "matches": 37,
+            "wins": 17,
+            "winRate": 46
           }
         },
         "seasonStats": [
@@ -2863,14 +3853,15 @@ export const leagueTeams = [
         "stats": {
           "rychlost": 77,
           "obratnost": 78,
-          "rana": 76,
-          "technika": 82,
-          "obetavost": 79,
-          "psychickaOdolnost": 79,
-          "obrana": 82,
-          "cteniHry": 81,
-          "vydrz": 77
-        }
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 82,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Vážená úspěšnost: 50.7% (2025: 46%, 2024: 60%) | Úprava podle výkonnosti: 0.2% | Výsledné celkové hodnocení: 80.1"
       },
       {
         "id": "CBROD_9",
@@ -2896,6 +3887,18 @@ export const leagueTeams = [
             "matches": 3,
             "wins": 1,
             "winRate": 33
+          }
+        },
+        "yearlyStats": {
+          "2024": {
+            "matches": 30,
+            "wins": 16,
+            "winRate": 53
+          },
+          "2025": {
+            "matches": 49,
+            "wins": 31,
+            "winRate": 63
           }
         },
         "seasonStats": [
@@ -2930,16 +3933,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 77,
-          "obratnost": 78,
-          "rana": 76,
+          "rychlost": 80,
+          "obratnost": 80,
+          "sila": 81,
+          "svih": 82,
           "technika": 82,
-          "obetavost": 79,
-          "psychickaOdolnost": 79,
-          "obrana": 82,
-          "cteniHry": 81,
-          "vydrz": 77
-        }
+          "obetavost": 83,
+          "psychika": 84,
+          "cteniHry": 84,
+          "odolnost": 85
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Vážená úspěšnost: 59.7% (2025: 63%, 2024: 53%) | Úprava podle výkonnosti: 2.9% | Výsledné celkové hodnocení: 82.3"
       },
       {
         "id": "CBROD_10",
@@ -2965,6 +3969,18 @@ export const leagueTeams = [
             "matches": 3,
             "wins": 2,
             "winRate": 67
+          }
+        },
+        "yearlyStats": {
+          "2024": {
+            "matches": 5,
+            "wins": 2,
+            "winRate": 40
+          },
+          "2025": {
+            "matches": 9,
+            "wins": 4,
+            "winRate": 44
           }
         },
         "seasonStats": [
@@ -2999,16 +4015,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 76,
-          "obratnost": 77,
-          "rana": 75,
-          "technika": 81,
-          "obetavost": 78,
-          "psychickaOdolnost": 78,
-          "obrana": 81,
+          "rychlost": 75,
+          "obratnost": 76,
+          "sila": 77,
+          "svih": 78,
+          "technika": 78,
+          "obetavost": 79,
+          "psychika": 80,
           "cteniHry": 80,
-          "vydrz": 76
-        }
+          "odolnost": 81
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Vážená úspěšnost: 42.7% (2025: 44%, 2024: 40%) | Úprava podle výkonnosti: -2.2% | Výsledné celkové hodnocení: 78.2"
       },
       {
         "id": "CBROD_COACH",
@@ -3039,7 +4056,19 @@ export const leagueTeams = [
             "Vrať se na pozici!",
             "Proč to takhle hraješ?"
           ]
-        }
+        },
+        "stats": {
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       }
     ]
   },
@@ -3108,16 +4137,17 @@ export const leagueTeams = [
           "trojice1"
         ],
         "stats": {
-          "rychlost": 81,
-          "obratnost": 82,
-          "rana": 80,
-          "technika": 86,
-          "obetavost": 83,
-          "psychickaOdolnost": 83,
-          "obrana": 86,
-          "cteniHry": 85,
-          "vydrz": 81
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "HOLU_2",
@@ -3178,16 +4208,17 @@ export const leagueTeams = [
           "trojice1"
         ],
         "stats": {
-          "rychlost": 80,
-          "obratnost": 81,
-          "rana": 79,
-          "technika": 85,
-          "obetavost": 82,
-          "psychickaOdolnost": 82,
-          "obrana": 85,
-          "cteniHry": 84,
-          "vydrz": 80
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "HOLU_3",
@@ -3247,16 +4278,17 @@ export const leagueTeams = [
           "trojice2"
         ],
         "stats": {
-          "rychlost": 78,
-          "obratnost": 79,
-          "rana": 77,
-          "technika": 83,
-          "obetavost": 80,
-          "psychickaOdolnost": 80,
-          "obrana": 83,
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
           "cteniHry": 82,
-          "vydrz": 78
-        }
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "HOLU_4",
@@ -3318,14 +4350,15 @@ export const leagueTeams = [
         "stats": {
           "rychlost": 77,
           "obratnost": 78,
-          "rana": 76,
-          "technika": 82,
-          "obetavost": 79,
-          "psychickaOdolnost": 79,
-          "obrana": 82,
-          "cteniHry": 81,
-          "vydrz": 77
-        }
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "HOLU_5",
@@ -3385,16 +4418,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 75,
-          "obratnost": 76,
-          "rana": 74,
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
           "technika": 80,
-          "obetavost": 77,
-          "psychickaOdolnost": 77,
-          "obrana": 80,
-          "cteniHry": 79,
-          "vydrz": 75
-        }
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "HOLU_6",
@@ -3454,16 +4488,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 74,
-          "obratnost": 75,
-          "rana": 73,
-          "technika": 79,
-          "obetavost": 76,
-          "psychickaOdolnost": 76,
-          "obrana": 79,
-          "cteniHry": 78,
-          "vydrz": 74
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "HOLU_7",
@@ -3523,16 +4558,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 74,
-          "obratnost": 75,
-          "rana": 73,
-          "technika": 79,
-          "obetavost": 76,
-          "psychickaOdolnost": 76,
-          "obrana": 79,
-          "cteniHry": 78,
-          "vydrz": 74
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "HOLU_8",
@@ -3592,16 +4628,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 73,
-          "obratnost": 74,
-          "rana": 72,
-          "technika": 78,
-          "obetavost": 75,
-          "psychickaOdolnost": 75,
-          "obrana": 78,
-          "cteniHry": 77,
-          "vydrz": 73
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "HOLU_9",
@@ -3661,16 +4698,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 72,
-          "obratnost": 73,
-          "rana": 71,
-          "technika": 77,
-          "obetavost": 74,
-          "psychickaOdolnost": 74,
-          "obrana": 77,
-          "cteniHry": 76,
-          "vydrz": 72
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "HOLU_10",
@@ -3730,16 +4768,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 70,
-          "obratnost": 71,
-          "rana": 69,
-          "technika": 75,
-          "obetavost": 72,
-          "psychickaOdolnost": 72,
-          "obrana": 75,
-          "cteniHry": 74,
-          "vydrz": 70
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "HOLU_COACH",
@@ -3770,7 +4809,19 @@ export const leagueTeams = [
             "Seď dole!",
             "Nech toho!"
           ]
-        }
+        },
+        "stats": {
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       }
     ]
   },
@@ -3839,16 +4890,17 @@ export const leagueTeams = [
           "trojice1"
         ],
         "stats": {
-          "rychlost": 81,
-          "obratnost": 82,
-          "rana": 80,
-          "technika": 86,
-          "obetavost": 83,
-          "psychickaOdolnost": 83,
-          "obrana": 86,
-          "cteniHry": 85,
-          "vydrz": 81
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "ZBEC_2",
@@ -3908,16 +4960,17 @@ export const leagueTeams = [
           "trojice2"
         ],
         "stats": {
-          "rychlost": 78,
-          "obratnost": 79,
-          "rana": 77,
-          "technika": 83,
-          "obetavost": 80,
-          "psychickaOdolnost": 80,
-          "obrana": 83,
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
           "cteniHry": 82,
-          "vydrz": 78
-        }
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "ZBEC_3",
@@ -3977,16 +5030,17 @@ export const leagueTeams = [
           "trojice2"
         ],
         "stats": {
-          "rychlost": 76,
-          "obratnost": 77,
-          "rana": 75,
-          "technika": 81,
-          "obetavost": 78,
-          "psychickaOdolnost": 78,
-          "obrana": 81,
-          "cteniHry": 80,
-          "vydrz": 76
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "ZBEC_4",
@@ -4046,16 +5100,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 74,
-          "obratnost": 75,
-          "rana": 73,
-          "technika": 79,
-          "obetavost": 76,
-          "psychickaOdolnost": 76,
-          "obrana": 79,
-          "cteniHry": 78,
-          "vydrz": 74
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "ZBEC_5",
@@ -4115,16 +5170,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 74,
-          "obratnost": 75,
-          "rana": 73,
-          "technika": 79,
-          "obetavost": 76,
-          "psychickaOdolnost": 76,
-          "obrana": 79,
-          "cteniHry": 78,
-          "vydrz": 74
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "ZBEC_6",
@@ -4184,16 +5240,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 74,
-          "obratnost": 75,
-          "rana": 73,
-          "technika": 79,
-          "obetavost": 76,
-          "psychickaOdolnost": 76,
-          "obrana": 79,
-          "cteniHry": 78,
-          "vydrz": 74
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "ZBEC_7",
@@ -4253,16 +5310,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 74,
-          "obratnost": 75,
-          "rana": 73,
-          "technika": 79,
-          "obetavost": 76,
-          "psychickaOdolnost": 76,
-          "obrana": 79,
-          "cteniHry": 78,
-          "vydrz": 74
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "ZBEC_8",
@@ -4322,16 +5380,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 73,
-          "obratnost": 74,
-          "rana": 72,
-          "technika": 78,
-          "obetavost": 75,
-          "psychickaOdolnost": 75,
-          "obrana": 78,
-          "cteniHry": 77,
-          "vydrz": 73
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "ZBEC_9",
@@ -4391,16 +5450,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 72,
-          "obratnost": 73,
-          "rana": 71,
-          "technika": 77,
-          "obetavost": 74,
-          "psychickaOdolnost": 74,
-          "obrana": 77,
-          "cteniHry": 76,
-          "vydrz": 72
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "ZBEC_10",
@@ -4460,16 +5520,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 73,
-          "obratnost": 74,
-          "rana": 72,
-          "technika": 78,
-          "obetavost": 75,
-          "psychickaOdolnost": 75,
-          "obrana": 78,
-          "cteniHry": 77,
-          "vydrz": 73
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "ZBEC_11",
@@ -4529,16 +5590,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 72,
-          "obratnost": 73,
-          "rana": 71,
-          "technika": 77,
-          "obetavost": 74,
-          "psychickaOdolnost": 74,
-          "obrana": 77,
-          "cteniHry": 76,
-          "vydrz": 72
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "ZBEC_12",
@@ -4598,16 +5660,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 71,
-          "obratnost": 72,
-          "rana": 70,
-          "technika": 76,
-          "obetavost": 73,
-          "psychickaOdolnost": 73,
-          "obrana": 76,
-          "cteniHry": 75,
-          "vydrz": 71
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "ZBEC_13",
@@ -4667,16 +5730,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 71,
-          "obratnost": 72,
-          "rana": 70,
-          "technika": 76,
-          "obetavost": 73,
-          "psychickaOdolnost": 73,
-          "obrana": 76,
-          "cteniHry": 75,
-          "vydrz": 71
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "ZBEC_14",
@@ -4736,16 +5800,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 70,
-          "obratnost": 71,
-          "rana": 69,
-          "technika": 75,
-          "obetavost": 72,
-          "psychickaOdolnost": 72,
-          "obrana": 75,
-          "cteniHry": 74,
-          "vydrz": 70
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "ZBEC_15",
@@ -4805,16 +5870,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 68,
-          "obratnost": 69,
-          "rana": 67,
-          "technika": 73,
-          "obetavost": 70,
-          "psychickaOdolnost": 70,
-          "obrana": 73,
-          "cteniHry": 72,
-          "vydrz": 68
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "ZBEC_16",
@@ -4874,16 +5940,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 67,
-          "obratnost": 68,
-          "rana": 66,
-          "technika": 72,
-          "obetavost": 69,
-          "psychickaOdolnost": 69,
-          "obrana": 72,
-          "cteniHry": 71,
-          "vydrz": 67
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "ZBEC_17",
@@ -4943,16 +6010,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 66,
-          "obratnost": 67,
-          "rana": 65,
-          "technika": 71,
-          "obetavost": 68,
-          "psychickaOdolnost": 68,
-          "obrana": 71,
-          "cteniHry": 70,
-          "vydrz": 66
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "ZBEC_COACH",
@@ -4983,7 +6051,19 @@ export const leagueTeams = [
             "Jdi stranou!",
             "Nechci to vidět!"
           ]
-        }
+        },
+        "stats": {
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       }
     ]
   },
@@ -5052,16 +6132,17 @@ export const leagueTeams = [
           "trojice2"
         ],
         "stats": {
-          "rychlost": 79,
-          "obratnost": 80,
-          "rana": 78,
-          "technika": 84,
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
           "obetavost": 81,
-          "psychickaOdolnost": 81,
-          "obrana": 84,
-          "cteniHry": 83,
-          "vydrz": 79
-        }
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "MODR_B_2",
@@ -5121,16 +6202,17 @@ export const leagueTeams = [
           "trojice2"
         ],
         "stats": {
-          "rychlost": 79,
-          "obratnost": 80,
-          "rana": 78,
-          "technika": 84,
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
           "obetavost": 81,
-          "psychickaOdolnost": 81,
-          "obrana": 84,
-          "cteniHry": 83,
-          "vydrz": 79
-        }
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "MODR_B_3",
@@ -5190,16 +6272,17 @@ export const leagueTeams = [
           "trojice2"
         ],
         "stats": {
-          "rychlost": 78,
-          "obratnost": 79,
-          "rana": 77,
-          "technika": 83,
-          "obetavost": 80,
-          "psychickaOdolnost": 80,
-          "obrana": 83,
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
           "cteniHry": 82,
-          "vydrz": 78
-        }
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "MODR_B_4",
@@ -5259,16 +6342,17 @@ export const leagueTeams = [
           "trojice2"
         ],
         "stats": {
-          "rychlost": 78,
-          "obratnost": 79,
-          "rana": 77,
-          "technika": 83,
-          "obetavost": 80,
-          "psychickaOdolnost": 80,
-          "obrana": 83,
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
           "cteniHry": 82,
-          "vydrz": 78
-        }
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "MODR_B_5",
@@ -5328,16 +6412,17 @@ export const leagueTeams = [
           "trojice2"
         ],
         "stats": {
-          "rychlost": 78,
-          "obratnost": 79,
-          "rana": 77,
-          "technika": 83,
-          "obetavost": 80,
-          "psychickaOdolnost": 80,
-          "obrana": 83,
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
           "cteniHry": 82,
-          "vydrz": 78
-        }
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "MODR_B_6",
@@ -5397,16 +6482,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 74,
-          "obratnost": 75,
-          "rana": 73,
-          "technika": 79,
-          "obetavost": 76,
-          "psychickaOdolnost": 76,
-          "obrana": 79,
-          "cteniHry": 78,
-          "vydrz": 74
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "MODR_B_7",
@@ -5466,16 +6552,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 73,
-          "obratnost": 74,
-          "rana": 72,
-          "technika": 78,
-          "obetavost": 75,
-          "psychickaOdolnost": 75,
-          "obrana": 78,
-          "cteniHry": 77,
-          "vydrz": 73
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "MODR_B_8",
@@ -5535,16 +6622,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 73,
-          "obratnost": 74,
-          "rana": 72,
-          "technika": 78,
-          "obetavost": 75,
-          "psychickaOdolnost": 75,
-          "obrana": 78,
-          "cteniHry": 77,
-          "vydrz": 73
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "MODR_B_9",
@@ -5604,16 +6692,17 @@ export const leagueTeams = [
           "trojice3"
         ],
         "stats": {
-          "rychlost": 73,
-          "obratnost": 74,
-          "rana": 72,
-          "technika": 78,
-          "obetavost": 75,
-          "psychickaOdolnost": 75,
-          "obrana": 78,
-          "cteniHry": 77,
-          "vydrz": 73
-        }
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       },
       {
         "id": "MODR_B_COACH",
@@ -5644,7 +6733,19 @@ export const leagueTeams = [
             "Vrať se na místo!",
             "Nebuď laxní!"
           ]
-        }
+        },
+        "stats": {
+          "rychlost": 77,
+          "obratnost": 78,
+          "sila": 79,
+          "svih": 79,
+          "technika": 80,
+          "obetavost": 81,
+          "psychika": 81,
+          "cteniHry": 82,
+          "odolnost": 83
+        },
+        "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Univerzál | Nedostatek zápasů (0 < 5) - bez úpravy | Výsledné celkové hodnocení: 80.0"
       }
     ]
   }

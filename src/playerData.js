@@ -1,84 +1,87 @@
 export const skills = {
   1: {
-    name: 'Smeč přes blok/do středu',
+    name: 'Smeč do středu/přes blok',
     type: 'offensive',
-    effect: '+1 bod pro tým, pokud není v týmu soupeře aktivovaná schopnost Slabší noha',
-    stats: ['technika', 'cteniHry', 'obratnost']
+    effect: '+1 bod pro tým, pokud není v týmu soupeře aktivovaná schopnost Blok',
+    stats: ['obratnost', 'technika']
   },
   2: {
-    name: 'Smeč do béčka/do paty',
+    name: 'Smeč pod sebe/do áčka',
     type: 'offensive',
-    effect: '+1 bod pro tým, pokud není v týmu soupeře aktivovaná schopnost Slabší noha',
-    stats: ['rana', 'obratnost', 'rychlost']
+    effect: '+1 bod pro tým, pokud není v týmu soupeře aktivovaná schopnost Skluz (nebo Slabší noha při konfliktu levák vs pravák)',
+    stats: ['sila', 'rychlost']
   },
   3: {
-    name: 'Smeč po noze/do áčka',
+    name: 'Smeč od sebe/do béčka',
     type: 'offensive',
-    effect: '+1 bod pro tým, pokud není v týmu soupeře aktivovaná schopnost Skluz',
-    stats: ['rana', 'rana', 'rychlost']
+    effect: '+1 bod pro tým, pokud není v týmu soupeře aktivovaná schopnost Slabší noha (nebo Skluz při konfliktu levák vs pravák)',
+    stats: ['obratnost', 'cteniHry']
   },
   4: {
     name: 'Tupá rána kamkoliv',
-    type: 'special',
-    effect: 'Hoď dvěma mincemi: hlava+hlava = prohraná výměna, 1 panna = standardní útok, 2 panny = efekt útočné ultimate',
-    stats: ['vydrz', 'rana', 'rychlost']
+    type: 'offensive',
+    effect: '+1 bod pro tým, pokud není v týmu soupeře aktivovaná schopnost Blok',
+    stats: ['sila', 'svih']
   },
   5: {
     name: 'Klepák',
     type: 'offensive',
     effect: '+1 bod pro tým, pokud není v týmu soupeře aktivovaná schopnost Blok',
-    stats: ['obratnost', 'obetavost', 'vydrz']
+    stats: ['sila', 'obratnost']
   },
   6: {
     name: 'Pata',
     type: 'offensive',
-    effect: '+1 bod pro tým, pokud není v týmu soupeře aktivovaná schopnost Slabší noha',
-    stats: ['technika', 'psychickaOdolnost', 'cteniHry']
+    effect: '+1 bod pro tým, pokud není v týmu soupeře aktivovaná schopnost Slabší noha (nebo Skluz při konfliktu levák vs pravák)',
+    stats: ['technika', 'svih']
   },
   7: {
     name: 'Kraťas pod sebe',
     type: 'offensive',
-    effect: '+1 bod pro tým, pokud není v týmu soupeře aktivovaná schopnost Skluz',
-    stats: ['technika', 'cteniHry']
+    effect: '+1 bod pro tým, pokud není v týmu soupeře aktivovaná schopnost Skluz (nebo Slabší noha při konfliktu levák vs pravák)',
+    stats: ['rychlost', 'technika']
   },
   8: {
     name: 'Kraťas za blok',
     type: 'offensive',
-    effect: '+1 bod pro tým, pokud není v týmu soupeře aktivovaná schopnost Skluz',
-    stats: ['technika', 'psychickaOdolnost', 'cteniHry']
+    effect: '+1 bod pro tým, pokud není v týmu soupeře aktivovaná schopnost Slabší noha (nebo Skluz při konfliktu levák vs pravák)',
+    stats: ['psychika', 'svih']
   },
   9: {
     name: 'Šlapaný kraťas',
     type: 'offensive',
-    effect: '+1 bod pro tým, pokud není v týmu soupeře aktivovaná schopnost Blok',
-    stats: ['technika', 'psychickaOdolnost', 'cteniHry']
+    effect: '+1 bod pro tým, pokud není v týmu soupeře aktivovaná schopnost Skluz (nebo Slabší noha při konfliktu levák vs pravák)',
+    stats: ['technika', 'psychika']
   },
   10: {
     name: 'Skákaná smeč',
-    type: 'offensive',
-    effect: '+1 bod pro tým, pokud není v týmu soupeře aktivovaná schopnost Blok',
-    stats: ['obratnost', 'obetavost', 'vydrz']
+    type: 'special',
+    effect: 'Hoď dvěma mincemi: hlava+hlava = prohraná výměna, 1 panna = standardní útok, 2 panny = efekt útočné ultimate',
+    stats: ['obratnost', 'svih']
   },
   11: {
     name: 'Smečovaný servis',
     type: 'special',
     effect: 'Hoď dvěma mincemi: hlava+hlava = prohraná výměna, 1 panna = standardní útok, 2 panny = efekt obranné ultimate',
-    stats: ['rana', 'psychickaOdolnost', 'vydrz']
+    stats: ['sila', 'obetavost']
   },
   12: {
     name: 'Blok',
     type: 'defensive',
-    stats: ['obrana', 'obratnost', 'obetavost', 'rychlost']
+    effect: 'Brání proti: Klepák, Tupá rána kamkoliv, Smeč do středu/přes blok',
+    stats: ['obetavost', 'cteniHry']
   },
   13: {
     name: 'Skluz',
     type: 'defensive',
-    stats: ['obrana', 'rychlost', 'obetavost']
+    effect: 'Brání proti: Šlapaný kraťas, Kraťas pod sebe, Smeč pod sebe/do áčka (opačně se Slabší nohou při konfliktu levák vs pravák)',
+    stats: ['obetavost', 'rychlost']
   },
   14: {
     name: 'Slabší noha',
     type: 'defensive',
-    stats: ['obrana', 'obrana', 'psychickaOdolnost', 'vydrz']
+    effect: 'Brání proti: Smeč od sebe/do béčka, Pata, Kraťas za blok (opačně se Skluzem při konfliktu levák vs pravák)',
+    stats: ['odolnost', 'cteniHry']
   },
   15: {
     name: 'Nesmysl',
@@ -92,9 +95,9 @@ export const skills = {
     type: 'defensive',
     successRate: 100,
     universalDefense: true,
-    blockChance: 30,
-    effect: '100% aktivace, 30% šance zablokovat jakýkoliv útok',
-    stats: ['obrana', 'psychickaOdolnost', 'vydrz'],
+    blockChance: 25,
+    effect: '100% aktivace, 25% šance zablokovat jakoukoliv útočnou/speciální schopnost (kromě ultimate)',
+    stats: ['odolnost', 'obetavost'],
     cannotBeUltimate: true
   },
   17: {
@@ -102,10 +105,26 @@ export const skills = {
     type: 'defensive',
     successRate: 100,
     universalDefense: true,
-    blockChance: 30,
-    effect: '100% aktivace, 30% šance zablokovat jakýkoliv útok',
-    stats: ['obrana', 'obrana', 'rychlost'],
+    blockChance: 25,
+    effect: '100% aktivace, 25% šance zablokovat jakoukoliv útočnou/speciální schopnost (kromě ultimate)',
+    stats: ['odolnost', 'rychlost'],
     cannotBeUltimate: true
+  },
+  18: {
+    name: 'Hlava',
+    type: 'defensive',
+    successRate: 100,
+    universalDefense: true,
+    blockChance: 25,
+    effect: '100% aktivace, 25% šance zablokovat jakoukoliv útočnou/speciální schopnost (kromě ultimate)',
+    stats: ['psychika', 'odolnost'],
+    cannotBeUltimate: true
+  },
+  19: {
+    name: 'Vytlučený blok',
+    type: 'special',
+    effect: 'Hoď dvěma mincemi: 0x panna = bod pro soupeře, 1x panna = standardní útok, 2x panna = efekt útočné ultimate',
+    stats: ['psychika', 'cteniHry']
   }
 };
 
@@ -133,11 +152,11 @@ export const skillDetails = {
     priority: 'Normální priorita (po Ultimate a univerzálních obranách)'
   },
   4: {
-    description: 'Riskantní tupá rána kamkoliv na hřiště. Hodí se dvěma mincemi: 2x hlava = prohraná výměna, 1 panna = standardní útok, 2x panna = efekt útočné Ultimate!',
-    keyStats: 'Výdrž, Rána, Rychlost',
-    evaluationPhase: 'Speciální fáze - nejprve se hází mincemi, pak se vyhodnocuje podle výsledku',
-    bestCounter: 'Univerzální obrany (Hruď, Silnější noha) mají vždy šanci zablokovat, jinak závisí na výsledku hodu',
-    priority: 'Speciální priorita (po Ultimate, před standardními schopnostmi)'
+    description: 'Tupá rána kamkoliv na hřiště. Plochý úder, kdy míč letí nízko a rychle. Vyžaduje dobrou sílu a švih.',
+    keyStats: 'Síla, Švih',
+    evaluationPhase: 'Standardní útočná fáze - vyhodnocuje se proti obranným schopnostem',
+    bestCounter: 'Blok - dokáže zastavit tupé rány',
+    priority: 'Normální priorita (po Ultimate a univerzálních obranách)'
   },
   5: {
     description: 'Klepák - technicky náročný úder vyžadující obratnost a obětavost. Těžko se brání.',
@@ -175,11 +194,11 @@ export const skillDetails = {
     priority: 'Normální priorita (po Ultimate a univerzálních obranách)'
   },
   10: {
-    description: 'Skákaná smeč - dynamický útok vyžadující výbornou obratnost a obětavost.',
-    keyStats: 'Obratnost, Obětavost, Výdrž',
-    evaluationPhase: 'Standardní útočná fáze - vyhodnocuje se proti obranným schopnostem',
-    bestCounter: 'Blok - může zastavit i skákané směči',
-    priority: 'Normální priorita (po Ultimate a univerzálních obranách)'
+    description: 'Riskantní skákaná smeč - dynamický útok s výskokem. Hodí se dvěma mincemi: 2x hlava = prohraná výměna, 1 panna = standardní útok, 2x panna = efekt útočné Ultimate!',
+    keyStats: 'Obratnost, Švih',
+    evaluationPhase: 'Speciální fáze - nejprve se hází mincemi, pak se vyhodnocuje podle výsledku',
+    bestCounter: 'Univerzální obrany (Hruď, Silnější noha, Hlava) mají vždy šanci zablokovat, jinak závisí na výsledku hodu',
+    priority: 'Speciální priorita (po Ultimate, před standardními schopnostmi)'
   },
   11: {
     description: 'Smečovaný servis - riskantní podání. Hodí se dvěma mincemi: 2x hlava = prohraná výměna, 1 panna = standardní útok, 2x panna = efekt obranné Ultimate!',
@@ -262,20 +281,32 @@ export const players = [
       }
     },
     "stats": {
-      "rychlost": 83,
-      "obratnost": 82,
-      "rana": 83,
-      "technika": 77,
-      "obetavost": 79,
-      "psychickaOdolnost": 79,
-      "obrana": 82,
-      "cteniHry": 77,
-      "vydrz": 78
+      "rychlost": 79,
+      "obratnost": 89,
+      "sila": 89,
+      "svih": 84,
+      "technika": 78,
+      "obetavost": 84,
+      "psychika": 84,
+      "cteniHry": 84,
+      "odolnost": 79
     },
     "availableSkills": [
       16,
       17
     ],
+    "yearlyStats": {
+      "2024": {
+        "matches": 40,
+        "wins": 29,
+        "winRate": 73
+      },
+      "2025": {
+        "matches": 61,
+        "wins": 20,
+        "winRate": 33
+      }
+    },
     "seasonStats": [
       {
         "season": "2025 Play Out",
@@ -377,7 +408,8 @@ export const players = [
           }
         }
       }
-    ]
+    ],
+    "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Blokař | Vážená úspěšnost: 46.3% (2025: 33%, 2024: 73%) | Úprava podle výkonnosti: -1.1% | Bonus za trénink: +5.0% (100% účast) | Výsledné celkové hodnocení: 83.1"
   },
   {
     "id": 2,
@@ -407,20 +439,32 @@ export const players = [
       }
     },
     "stats": {
-      "rychlost": 79,
-      "obratnost": 80,
-      "rana": 78,
-      "technika": 84,
-      "obetavost": 81,
-      "psychickaOdolnost": 81,
-      "obrana": 83,
-      "cteniHry": 84,
-      "vydrz": 79
+      "rychlost": 82,
+      "obratnost": 76,
+      "sila": 75,
+      "svih": 75,
+      "technika": 87,
+      "obetavost": 82,
+      "psychika": 80,
+      "cteniHry": 80,
+      "odolnost": 86
     },
     "availableSkills": [
       16,
       17
     ],
+    "yearlyStats": {
+      "2024": {
+        "matches": 22,
+        "wins": 18,
+        "winRate": 82
+      },
+      "2025": {
+        "matches": 24,
+        "wins": 9,
+        "winRate": 38
+      }
+    },
     "seasonStats": [
       {
         "season": "2025 Play Out",
@@ -474,7 +518,7 @@ export const players = [
       },
       {
         "season": "2024 Play-off",
-        "league": "2. liga muži",
+        "league": "2. liga muži C",
         "matches": 2,
         "wins": 1,
         "losses": 1,
@@ -522,7 +566,8 @@ export const players = [
           }
         }
       }
-    ]
+    ],
+    "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Nahravač | Vážená úspěšnost: 52.7% (2025: 38%, 2024: 82%) | Úprava podle výkonnosti: 0.8% | Výsledné celkové hodnocení: 80.3"
   },
   {
     "id": 4,
@@ -530,7 +575,7 @@ export const players = [
     "position": "Blokař/Smečař",
     "number": 13,
     "photo": "/players/kurka.jpg",
-    "nickname": "Kuřinožka",
+    "nickname": "Okurka",
     "nonsenseName": "Shaolin po obrně",
     "dominantFoot": "right",
     "trainingAttendance2025": 100,
@@ -552,20 +597,32 @@ export const players = [
       }
     },
     "stats": {
-      "rychlost": 84,
-      "obratnost": 83,
-      "rana": 84,
-      "technika": 78,
-      "obetavost": 80,
-      "psychickaOdolnost": 80,
-      "obrana": 83,
-      "cteniHry": 78,
-      "vydrz": 79
+      "rychlost": 79,
+      "obratnost": 89,
+      "sila": 89,
+      "svih": 84,
+      "technika": 79,
+      "obetavost": 85,
+      "psychika": 85,
+      "cteniHry": 83,
+      "odolnost": 78
     },
     "availableSkills": [
       16,
       17
     ],
+    "yearlyStats": {
+      "2024": {
+        "matches": 42,
+        "wins": 31,
+        "winRate": 74
+      },
+      "2025": {
+        "matches": 56,
+        "wins": 20,
+        "winRate": 36
+      }
+    },
     "seasonStats": [
       {
         "season": "2025 Play Out",
@@ -667,7 +724,8 @@ export const players = [
           }
         }
       }
-    ]
+    ],
+    "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Blokař | Vážená úspěšnost: 48.7% (2025: 36%, 2024: 74%) | Úprava podle výkonnosti: -0.4% | Bonus za trénink: +5.0% (100% účast) | Výsledné celkové hodnocení: 83.7"
   },
   {
     "id": 5,
@@ -697,20 +755,32 @@ export const players = [
       }
     },
     "stats": {
-      "rychlost": 78,
-      "obratnost": 81,
-      "rana": 77,
+      "rychlost": 75,
+      "obratnost": 79,
+      "sila": 80,
+      "svih": 81,
       "technika": 81,
-      "obetavost": 78,
-      "psychickaOdolnost": 78,
-      "obrana": 80,
-      "cteniHry": 81,
-      "vydrz": 77
+      "obetavost": 81,
+      "psychika": 79,
+      "cteniHry": 79,
+      "odolnost": 79
     },
     "availableSkills": [
       16,
       17
     ],
+    "yearlyStats": {
+      "2024": {
+        "matches": 11,
+        "wins": 6,
+        "winRate": 55
+      },
+      "2025": {
+        "matches": 33,
+        "wins": 14,
+        "winRate": 42
+      }
+    },
     "seasonStats": [
       {
         "season": "2025 Play Out",
@@ -763,6 +833,31 @@ export const players = [
         }
       },
       {
+        "season": "2024 Play-off",
+        "league": "2. liga muži C",
+        "matches": 1,
+        "wins": 0,
+        "losses": 1,
+        "winRate": 0,
+        "disciplines": {
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "trojice": {
+            "matches": 1,
+            "wins": 0,
+            "winRate": 0
+          }
+        }
+      },
+      {
         "season": "2024",
         "league": "2. liga muži C",
         "matches": 10,
@@ -787,7 +882,8 @@ export const players = [
           }
         }
       }
-    ]
+    ],
+    "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Polař | Vážená úspěšnost: 46.3% (2025: 42%, 2024: 55%) | Úprava podle výkonnosti: -1.1% | Výsledné celkové hodnocení: 79.3"
   },
   {
     "id": 7,
@@ -817,20 +913,32 @@ export const players = [
       }
     },
     "stats": {
-      "rychlost": 82,
-      "obratnost": 85,
-      "rana": 81,
-      "technika": 85,
-      "obetavost": 82,
-      "psychickaOdolnost": 82,
-      "obrana": 84,
-      "cteniHry": 85,
-      "vydrz": 81
+      "rychlost": 78,
+      "obratnost": 84,
+      "sila": 83,
+      "svih": 84,
+      "technika": 83,
+      "obetavost": 84,
+      "psychika": 85,
+      "cteniHry": 84,
+      "odolnost": 83
     },
     "availableSkills": [
       16,
       17
     ],
+    "yearlyStats": {
+      "2024": {
+        "matches": 15,
+        "wins": 12,
+        "winRate": 80
+      },
+      "2025": {
+        "matches": 19,
+        "wins": 10,
+        "winRate": 53
+      }
+    },
     "seasonStats": [
       {
         "season": "2025 Play Out",
@@ -884,7 +992,7 @@ export const players = [
       },
       {
         "season": "2024",
-        "league": "1. liga muži (Vsetín)",
+        "league": "1. liga muži",
         "matches": 15,
         "wins": 12,
         "losses": 3,
@@ -907,7 +1015,8 @@ export const players = [
           }
         }
       }
-    ]
+    ],
+    "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Polař | Vážená úspěšnost: 62.0% (2025: 53%, 2024: 80%) | Úprava podle výkonnosti: 3.6% | Výsledné celkové hodnocení: 83.0"
   },
   {
     "id": 9,
@@ -937,20 +1046,32 @@ export const players = [
       }
     },
     "stats": {
-      "rychlost": 78,
-      "obratnost": 81,
-      "rana": 77,
-      "technika": 81,
-      "obetavost": 78,
-      "psychickaOdolnost": 78,
-      "obrana": 80,
-      "cteniHry": 81,
-      "vydrz": 77
+      "rychlost": 76,
+      "obratnost": 82,
+      "sila": 81,
+      "svih": 82,
+      "technika": 83,
+      "obetavost": 82,
+      "psychika": 83,
+      "cteniHry": 83,
+      "odolnost": 82
     },
     "availableSkills": [
       16,
       17
     ],
+    "yearlyStats": {
+      "2024": {
+        "matches": 27,
+        "wins": 14,
+        "winRate": 52
+      },
+      "2025": {
+        "matches": 45,
+        "wins": 19,
+        "winRate": 42
+      }
+    },
     "seasonStats": [
       {
         "season": "2025 Play Out",
@@ -1004,7 +1125,7 @@ export const players = [
       },
       {
         "season": "2024 Play-off",
-        "league": "2. liga muži",
+        "league": "2. liga muži C",
         "matches": 9,
         "wins": 5,
         "losses": 4,
@@ -1052,7 +1173,8 @@ export const players = [
           }
         }
       }
-    ]
+    ],
+    "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Polař | Vážená úspěšnost: 45.3% (2025: 42%, 2024: 52%) | Úprava podle výkonnosti: -1.4% | Bonus za trénink: +2.5% (50% účast) | Výsledné celkové hodnocení: 81.0"
   },
   {
     "id": 11,
@@ -1132,20 +1254,32 @@ export const players = [
       }
     },
     "stats": {
-      "rychlost": 74,
+      "rychlost": 80,
       "obratnost": 75,
-      "rana": 73,
-      "technika": 79,
-      "obetavost": 76,
-      "psychickaOdolnost": 76,
-      "obrana": 78,
-      "cteniHry": 79,
-      "vydrz": 74
+      "sila": 73,
+      "svih": 74,
+      "technika": 84,
+      "obetavost": 80,
+      "psychika": 79,
+      "cteniHry": 78,
+      "odolnost": 84
     },
     "availableSkills": [
       16,
       17
     ],
+    "yearlyStats": {
+      "2024": {
+        "matches": 43,
+        "wins": 20,
+        "winRate": 47
+      },
+      "2025": {
+        "matches": 8,
+        "wins": 3,
+        "winRate": 38
+      }
+    },
     "seasonStats": [
       {
         "season": "2025",
@@ -1171,8 +1305,34 @@ export const players = [
             "winRate": 40
           }
         }
+      },
+      {
+        "season": "2024",
+        "league": "1. liga muži",
+        "matches": 43,
+        "wins": 20,
+        "losses": 23,
+        "winRate": 47,
+        "disciplines": {
+          "singl": {
+            "matches": 1,
+            "wins": 1,
+            "winRate": 100
+          },
+          "dvojice": {
+            "matches": 16,
+            "wins": 4,
+            "winRate": 25
+          },
+          "trojice": {
+            "matches": 26,
+            "wins": 15,
+            "winRate": 58
+          }
+        }
       }
-    ]
+    ],
+    "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Nahravač | Vážená úspěšnost: 41.0% (2025: 38%, 2024: 47%) | Úprava podle výkonnosti: -2.7% | Výsledné celkové hodnocení: 78.0"
   },
   {
     "id": 13,
@@ -1202,20 +1362,32 @@ export const players = [
       }
     },
     "stats": {
-      "rychlost": 72,
-      "obratnost": 73,
-      "rana": 71,
-      "technika": 77,
-      "obetavost": 74,
-      "psychickaOdolnost": 74,
-      "obrana": 76,
-      "cteniHry": 77,
-      "vydrz": 72
+      "rychlost": 81,
+      "obratnost": 75,
+      "sila": 76,
+      "svih": 75,
+      "technika": 86,
+      "obetavost": 82,
+      "psychika": 80,
+      "cteniHry": 81,
+      "odolnost": 87
     },
     "availableSkills": [
       16,
       17
     ],
+    "yearlyStats": {
+      "2024": {
+        "matches": 18,
+        "wins": 10,
+        "winRate": 56
+      },
+      "2025": {
+        "matches": 2,
+        "wins": 0,
+        "winRate": 0
+      }
+    },
     "seasonStats": [
       {
         "season": "2025",
@@ -1244,7 +1416,7 @@ export const players = [
       },
       {
         "season": "2024 Play-off",
-        "league": "2. liga muži",
+        "league": "2. liga muži C",
         "matches": 5,
         "wins": 1,
         "losses": 4,
@@ -1256,14 +1428,14 @@ export const players = [
             "winRate": 0
           },
           "dvojice": {
-            "matches": 1,
+            "matches": 0,
             "wins": 0,
             "winRate": 0
           },
           "trojice": {
-            "matches": 4,
+            "matches": 5,
             "wins": 1,
-            "winRate": 25
+            "winRate": 20
           }
         }
       },
@@ -1292,7 +1464,8 @@ export const players = [
           }
         }
       }
-    ]
+    ],
+    "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Nahravač | Vážená úspěšnost: 52.0% (2025: 0%, 2024: 56%) | Úprava podle výkonnosti: 0.6% | Výsledné celkové hodnocení: 80.3"
   },
   {
     "id": 14,
@@ -1322,24 +1495,31 @@ export const players = [
       }
     },
     "stats": {
-      "rychlost": 84,
-      "obratnost": 87,
-      "rana": 83,
-      "technika": 87,
-      "obetavost": 84,
-      "psychickaOdolnost": 84,
-      "obrana": 86,
-      "cteniHry": 87,
-      "vydrz": 83
+      "rychlost": 76,
+      "obratnost": 82,
+      "sila": 82,
+      "svih": 83,
+      "technika": 82,
+      "obetavost": 82,
+      "psychika": 82,
+      "cteniHry": 83,
+      "odolnost": 84
     },
     "availableSkills": [
       16,
       17
     ],
+    "yearlyStats": {
+      "2024": {
+        "matches": 32,
+        "wins": 21,
+        "winRate": 66
+      }
+    },
     "seasonStats": [
       {
         "season": "2024 Play-off",
-        "league": "2. liga muži",
+        "league": "2. liga muži C",
         "matches": 8,
         "wins": 3,
         "losses": 5,
@@ -1376,18 +1556,19 @@ export const players = [
             "winRate": 0
           },
           "dvojice": {
-            "matches": 11,
-            "wins": 10,
-            "winRate": 91
+            "matches": 9,
+            "wins": 9,
+            "winRate": 100
           },
           "trojice": {
-            "matches": 21,
-            "wins": 11,
-            "winRate": 52
+            "matches": 15,
+            "wins": 9,
+            "winRate": 60
           }
         }
       }
-    ]
+    ],
+    "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Polař | Vážená úspěšnost: 55.3% (2025: 0%, 2024: 66%) | Úprava podle výkonnosti: 1.6% | Bonus za trénink: +1.3% (25% účast) | Výsledné celkové hodnocení: 82.3"
   },
   {
     "id": 15,
@@ -1417,21 +1598,58 @@ export const players = [
       }
     },
     "stats": {
-      "rychlost": 77,
-      "obratnost": 80,
-      "rana": 76,
+      "rychlost": 75,
+      "obratnost": 81,
+      "sila": 80,
+      "svih": 81,
       "technika": 80,
-      "obetavost": 77,
-      "psychickaOdolnost": 77,
-      "obrana": 79,
-      "cteniHry": 80,
-      "vydrz": 76
+      "obetavost": 79,
+      "psychika": 81,
+      "cteniHry": 81,
+      "odolnost": 80
     },
     "availableSkills": [
       16,
       17
     ],
+    "yearlyStats": {
+      "2024": {
+        "matches": 33,
+        "wins": 13,
+        "winRate": 39
+      },
+      "2025": {
+        "matches": 26,
+        "wins": 10,
+        "winRate": 38
+      }
+    },
     "seasonStats": [
+      {
+        "season": "2025",
+        "league": "2. liga muži C",
+        "matches": 26,
+        "wins": 10,
+        "losses": 16,
+        "winRate": 38,
+        "disciplines": {
+          "singl": {
+            "matches": 7,
+            "wins": 2,
+            "winRate": 29
+          },
+          "dvojice": {
+            "matches": 12,
+            "wins": 6,
+            "winRate": 50
+          },
+          "trojice": {
+            "matches": 7,
+            "wins": 2,
+            "winRate": 29
+          }
+        }
+      },
       {
         "season": "2024",
         "league": "2. liga muži C (Přerov)",
@@ -1457,7 +1675,8 @@ export const players = [
           }
         }
       }
-    ]
+    ],
+    "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Polař | Vážená úspěšnost: 38.3% (2025: 38%, 2024: 39%) | Úprava podle výkonnosti: -3.5% | Bonus za trénink: +2.5% (50% účast) | Výsledné celkové hodnocení: 79.3"
   },
   {
     "id": 17,
@@ -1487,20 +1706,27 @@ export const players = [
       }
     },
     "stats": {
-      "rychlost": 80,
-      "obratnost": 81,
-      "rana": 79,
-      "technika": 85,
+      "rychlost": 85,
+      "obratnost": 79,
+      "sila": 79,
+      "svih": 79,
+      "technika": 89,
       "obetavost": 82,
-      "psychickaOdolnost": 82,
-      "obrana": 84,
-      "cteniHry": 85,
-      "vydrz": 80
+      "psychika": 84,
+      "cteniHry": 83,
+      "odolnost": 89
     },
     "availableSkills": [
       16,
       17
     ],
+    "yearlyStats": {
+      "2025": {
+        "matches": 2,
+        "wins": 1,
+        "winRate": 50
+      }
+    },
     "seasonStats": [
       {
         "season": "2025 Play Out",
@@ -1527,6 +1753,7 @@ export const players = [
           }
         }
       }
-    ]
+    ],
+    "attributeExplanation": "Základní hodnocení: 80 (1. liga) | Pozice: Polař | Nedostatek zápasů (2 < 5) - bez úpravy | Bonus za trénink: +5.0% (100% účast) | Výsledné celkové hodnocení: 84.2"
   }
 ]

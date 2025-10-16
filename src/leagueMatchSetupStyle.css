@@ -285,9 +285,8 @@
   bottom: 0;
   background: linear-gradient(
     135deg,
-    rgba(220, 47, 62, 0.85) 0%,
-    rgba(26, 26, 26, 0.75) 50%,
-    rgba(0, 0, 0, 0.9) 100%
+    color-mix(in srgb, var(--team-primary, #DC2F3E) 85%, transparent) 0%,
+    color-mix(in srgb, var(--team-accent, #000000) 75%, transparent) 100%
   );
   z-index: 1;
   transition: opacity 0.4s ease;
@@ -296,9 +295,8 @@
 .setup-hexagon-card.opponent-card::before {
   background: linear-gradient(
     135deg,
-    rgba(0, 102, 204, 0.85) 0%,
-    rgba(0, 51, 102, 0.75) 50%,
-    rgba(0, 0, 0, 0.9) 100%
+    color-mix(in srgb, var(--team-primary, #0066CC) 85%, transparent) 0%,
+    color-mix(in srgb, var(--team-accent, #003366) 75%, transparent) 100%
   );
 }
 
@@ -315,8 +313,8 @@
 
 .setup-hexagon-card.opponent-card:hover {
   box-shadow:
-    0 12px 36px rgba(0, 102, 204, 0.4),
-    0 0 0 1px rgba(0, 102, 204, 1) inset;
+    0 12px 36px color-mix(in srgb, var(--team-primary, #0066CC) 40%, transparent),
+    0 0 0 1px var(--team-primary, #0066CC) inset;
 }
 
 /* Player image */
@@ -681,29 +679,98 @@
     padding: 1rem;
   }
 
-  .match-info-header h1 {
-    font-size: 1.8rem;
-  }
-
-  .match-type {
-    font-size: 1.1rem;
-  }
-
-  .team-setup {
+  .match-info-header {
     padding: 1.5rem;
   }
 
+  .match-info-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .match-type {
+    font-size: 1rem;
+  }
+
+  .team-setup {
+    padding: 1.25rem;
+  }
+
+  .team-setup h2 {
+    font-size: 1.5rem;
+  }
+
+  /* Lineup and bench stack vertically on mobile */
+  .lineup-bench-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Lineup and bench players - make scrollable on mobile */
+  .lineup-players,
+  .bench-players {
+    min-height: 200px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+
+  .lineup-players > .setup-hexagon-card,
+  .bench-players > .setup-hexagon-card {
+    width: 140px !important;
+    height: 210px !important;
+    min-width: 140px;
+    max-width: 140px;
+  }
+
+  /* Available players - smaller grid on mobile */
+  .available-players {
+    grid-template-columns: repeat(auto-fill, 120px);
+    gap: 1.5rem;
+  }
+
+  .available-players > .setup-hexagon-card {
+    width: 120px !important;
+    height: 180px !important;
+    min-width: 120px !important;
+    max-width: 120px !important;
+  }
+
+  .available-players > .setup-hexagon-card:hover {
+    width: 140px !important;
+    height: 210px !important;
+  }
+
+  /* Coach mode */
   .coach-mode-buttons {
     flex-direction: column;
   }
 
   .coach-mode-btn {
     max-width: 100%;
+    padding: 1.5rem 1rem;
   }
 
-  .confirm-lineup-btn {
-    padding: 1.25rem 2.5rem;
+  .coach-mode-btn .coach-mode-icon {
+    font-size: 2.5rem;
+  }
+
+  .coach-mode-btn h3 {
     font-size: 1.2rem;
+  }
+
+  /* Confirm button */
+  .confirm-lineup-btn {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  /* Discipline selection */
+  .discipline-selection label {
+    font-size: 1rem;
+  }
+
+  .discipline-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
   }
 }
 

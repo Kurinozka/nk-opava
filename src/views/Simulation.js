@@ -76,6 +76,20 @@ function createExtraligaMatchSetupView(matchInfo, teams, substitutionMode) {
   const team1 = getExtraligaTeamWithStats(teams.team1)
   const team2 = getExtraligaTeamWithStats(teams.team2)
 
+  // Kontrola, zda se podařilo načíst týmy
+  if (!team1 || !team2) {
+    console.error('Failed to load extraliga teams:', { team1Id: teams.team1, team2Id: teams.team2, team1, team2 })
+    return `
+      <div class="league-match-setup">
+        <div class="error-message">
+          <h2>Chyba při načítání týmů</h2>
+          <p>Nepodařilo se načíst data pro vybrané týmy.</p>
+          <button class="back-button" onclick="window.navigateToView('simulation-mode')">← Zpět na výběr režimu</button>
+        </div>
+      </div>
+    `
+  }
+
   // Určit počet hráčů na základě typu zápasu
   let playersPerTeam = 2
   let matchTypeLabel = 'Dvojice'
@@ -249,8 +263,8 @@ export function setupSimulationHandlers() {
       opponentBench: []
     }
 
-    // Inicializovat globální state
-    initializeLeagueSetup(matchInfo, currentExtraligaTeams.team2, playersPerTeam, team1.players, team2.players, state)
+    // Inicializovat globální state s ID obou týmů
+    initializeLeagueSetup(matchInfo, currentExtraligaTeams.team2, playersPerTeam, team1.players, team2.players, state, currentExtraligaTeams.team1)
 
     // Setup handlers s callback pro potvrzení
     setupLeagueMatchSetupHandlers(matchInfo, currentExtraligaTeams.team2, (team1Lineup, team1Bench, team2Lineup, team2Bench, playersPerTeam, coachMode) => {
@@ -347,8 +361,8 @@ export function setupSimulationHandlers() {
         opponentBench: []
       }
 
-      // Inicializovat globální state
-      initializeLeagueSetup(matchInfo, currentExtraligaTeams.team2, playersPerTeam, team1.players, team2.players, state)
+      // Inicializovat globální state s ID obou týmů
+      initializeLeagueSetup(matchInfo, currentExtraligaTeams.team2, playersPerTeam, team1.players, team2.players, state, currentExtraligaTeams.team1)
 
       // Setup handlers s callback pro potvrzení
       setupLeagueMatchSetupHandlers(matchInfo, currentExtraligaTeams.team2, (team1Lineup, team1Bench, team2Lineup, team2Bench, playersPerTeam, coachMode) => {

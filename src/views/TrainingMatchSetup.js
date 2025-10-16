@@ -1,4 +1,5 @@
 import { players } from '../playerData.js'
+import { getTeamColors } from '../teamColors.js'
 
 // Vytvoření view pro výběr sestavy v tréninkovém režimu
 export function createTrainingMatchSetupView(playersPerTeam, substitutionMode) {
@@ -106,17 +107,22 @@ export function createTrainingMatchSetupView(playersPerTeam, substitutionMode) {
 }
 
 // Vykreslení karty hráče - EA FC style stejně jako v LeagueMatchSetup
-function renderPlayerCard(player, status, grayed = false) {
+function renderPlayerCard(player, status, grayed = false, teamClass = 'opava-card') {
   const rating = calculatePlayerRating(player)
   const displayStats = player.stats || {}
+
+  // Získat barvy týmu hráče (pro NK Opava všichni hráči mají OPAVA jako teamId)
+  const teamColors = getTeamColors('OPAVA')
+  const colorStyle = teamColors ? `style="--team-primary: ${teamColors.primary}; --team-accent: ${teamColors.accent};"` : ''
 
   const statusBadge = status === 'lineup' ? '<div class="setup-status-badge lineup-badge">✓ V SESTAVĚ</div>' :
                       status === 'bench' ? '<div class="setup-status-badge bench-badge">↓ LAVIČKA</div>' : ''
 
   return `
-    <div class="setup-hexagon-card opava-card ${grayed ? 'grayed-out' : ''} ${status === 'available' ? 'available' : ''}"
+    <div class="setup-hexagon-card ${teamClass} ${grayed ? 'grayed-out' : ''} ${status === 'available' ? 'available' : ''}"
          data-player-id="${player.id}"
          ${status !== 'available' ? `data-status="${status}"` : ''}
+         ${colorStyle}
          ${!grayed ? 'draggable="true"' : ''}>
       <div class="setup-player-image">
         <img src="${player.photo || '/players/default.jpg'}" alt="${player.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22600%22%3E%3Crect fill=%22%23DC2F3E%22 width=%22400%22 height=%22600%22/%3E%3Ctext fill=%22white%22 font-size=%22120%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3E${player.number || '?'}%3C/text%3E%3C/svg%3E'" />
@@ -131,13 +137,13 @@ function renderPlayerCard(player, status, grayed = false) {
         <div class="setup-player-stats-mini">
           <div class="setup-stat"><span class="setup-stat-value">${displayStats.rychlost || '-'}</span><span class="setup-stat-label">Rychlost</span></div>
           <div class="setup-stat"><span class="setup-stat-value">${displayStats.obratnost || '-'}</span><span class="setup-stat-label">Obratnost</span></div>
-          <div class="setup-stat"><span class="setup-stat-value">${displayStats.rana || '-'}</span><span class="setup-stat-label">Rána</span></div>
+          <div class="setup-stat"><span class="setup-stat-value">${displayStats.sila || '-'}</span><span class="setup-stat-label">Rána</span></div>
           <div class="setup-stat"><span class="setup-stat-value">${displayStats.technika || '-'}</span><span class="setup-stat-label">Technika</span></div>
           <div class="setup-stat"><span class="setup-stat-value">${displayStats.obetavost || '-'}</span><span class="setup-stat-label">Obětavost</span></div>
-          <div class="setup-stat"><span class="setup-stat-value">${displayStats.psychickaOdolnost || '-'}</span><span class="setup-stat-label">Psychická odolnost</span></div>
-          <div class="setup-stat"><span class="setup-stat-value">${displayStats.obrana || '-'}</span><span class="setup-stat-label">Obrana</span></div>
+          <div class="setup-stat"><span class="setup-stat-value">${displayStats.psychika || '-'}</span><span class="setup-stat-label">Psychická odolnost</span></div>
+          <div class="setup-stat"><span class="setup-stat-value">${displayStats.odolnost || '-'}</span><span class="setup-stat-label">Obrana</span></div>
           <div class="setup-stat"><span class="setup-stat-value">${displayStats.cteniHry || '-'}</span><span class="setup-stat-label">Čtení hry</span></div>
-          <div class="setup-stat"><span class="setup-stat-value">${displayStats.vydrz || '-'}</span><span class="setup-stat-label">Výdrž</span></div>
+          <div class="setup-stat"><span class="setup-stat-value">${displayStats.svih || '-'}</span><span class="setup-stat-label">Švih</span></div>
         </div>
       </div>
       ${statusBadge}
@@ -195,11 +201,14 @@ function renderAvailablePlayers(team, state, playersPerTeam) {
   const currentBench = state[`${team}Bench`]
   const currentPlayerIds = [...currentLineup, ...currentBench].map(p => p.id)
 
+  // V tréninkovém režimu jsou všichni hráči z NK Opava, takže všechny karty mají opava-card třídu
+  const teamClass = 'opava-card'
+
   const html = state.allPlayers
     .filter(p => !currentPlayerIds.includes(p.id))
     .map(p => {
       const isGrayed = otherPlayerIds.includes(p.id)
-      return renderPlayerCard(p, 'available', isGrayed)
+      return renderPlayerCard(p, 'available', isGrayed, teamClass)
     }).join('')
 
   container.innerHTML = html
@@ -213,8 +222,11 @@ function renderLineupOrBench(team, status, state, playersPerTeam) {
 
   if (!container) return
 
+  // V tréninkovém režimu jsou všichni hráči z NK Opava, takže všechny karty mají opava-card třídu
+  const teamClass = 'opava-card'
+
   const listKey = `${team}${status.charAt(0).toUpperCase() + status.slice(1)}`
-  const html = state[listKey].map(p => renderPlayerCard(p, status, false)).join('')
+  const html = state[listKey].map(p => renderPlayerCard(p, status, false, teamClass)).join('')
   container.innerHTML = html
 }
 

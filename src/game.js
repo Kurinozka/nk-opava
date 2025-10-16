@@ -4,6 +4,7 @@ import { smecAnimation } from './animations/smec.js'
 import { bokischSmecAnimation } from './animations/bokisch-smec.js'
 import { kurkaNonsenseSuccessAnimation, kurkaNonsenseFailAnimation } from './animations/kurka-shaolin.js'
 import { majstinikNonsenseAnimation } from './animations/majstinik-pozdrav.js'
+import { soundManager } from './soundManager.js'
 
 // Mapa animací pro jednotlivé schopnosti (globální)
 const skillAnimations = {
@@ -53,7 +54,8 @@ function getEffectiveDefenseSkill(attackSkill, attackerFoot, defenderFoot) {
     8: 13,  // Kraťas za blok → Skluz
     5: 12,  // Klepák → Blok
     9: 12,  // Šlapaný kraťas → Blok
-    10: 12  // Skákaná smeč → Blok
+    4: 12,  // Tupá rána kamkoliv → Blok
+    1: 12   // Smeč do středu/přes blok → Blok
   }
 
   // Pokud stejná noha, vrátit původní mapping
@@ -472,11 +474,23 @@ export function setGameMode(mode, opponentTeamId = null) {
     if (advanceSelectionContainer) {
       advanceSelectionContainer.style.display = 'block'
     }
+
+    // Zobrazit time-out tlačítka
+    const timeoutButtons = document.querySelector('.timeout-buttons')
+    if (timeoutButtons) {
+      timeoutButtons.style.display = 'flex'
+    }
   } else {
     // Skrýt checkbox v tréninkovém režimu
     const advanceSelectionContainer = document.querySelector('.advance-selection-container')
     if (advanceSelectionContainer) {
       advanceSelectionContainer.style.display = 'none'
+    }
+
+    // Skrýt time-out tlačítka v tréninkovém režimu
+    const timeoutButtons = document.querySelector('.timeout-buttons')
+    if (timeoutButtons) {
+      timeoutButtons.style.display = 'none'
     }
   }
 }
@@ -554,10 +568,23 @@ export function renderGameScreen() {
                     <span class="btn-icon">🏠</span>
                   </button>
                 </div>
+
+                <!-- Timeout tlačítka -->
+                <div class="timeout-buttons" style="display: flex; gap: 10px; margin-top: 10px; justify-content: center;">
+                  <button class="timeout-btn" id="timeout-team1-btn" title="TIME-OUT Tým 1">
+                    <span class="btn-icon">⏸️</span>
+                    <span class="btn-label">TIME-OUT Tým 1</span>
+                  </button>
+                  <button class="timeout-btn" id="timeout-team2-btn" title="TIME-OUT Tým 2">
+                    <span class="btn-icon">⏸️</span>
+                    <span class="btn-label">TIME-OUT Tým 2</span>
+                  </button>
+                </div>
+
                 <div class="speed-slider-container">
                   <label for="playback-speed">Rychlost:</label>
-                  <input type="range" id="playback-speed" min="0" max="100" value="25" step="5">
-                  <span id="speed-percentage">25%</span>
+                  <input type="range" id="playback-speed" min="0" max="100" value="50" step="5">
+                  <span id="speed-percentage">50%</span>
                 </div>
               </div>
 
@@ -637,6 +664,20 @@ export function renderGameScreen() {
             </div>
             <div class="substitution-info">
               <p id="sub-info-text">Vyberte hráče, kterého chcete vystřídat, a pak vyberte náhradníka z lavičky.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timeout modal pro výběr dovedností -->
+        <div class="timeout-modal" style="display: none;">
+          <div class="timeout-modal-content">
+            <button class="timeout-modal-close">&times;</button>
+            <h2>⏸️ TIME-OUT - Výběr dovedností</h2>
+            <p class="timeout-instruction">Vyberte dovednost pro každého hráče v příští výměně:</p>
+            <div class="timeout-players" id="timeout-players-list"></div>
+            <div class="timeout-actions">
+              <button class="timeout-confirm-btn" id="confirm-timeout-skills">Potvrdit dovednosti</button>
+              <button class="timeout-cancel-btn" id="cancel-timeout">Zrušit</button>
             </div>
           </div>
         </div>
@@ -815,7 +856,12 @@ function getPlayerNickname(playerName) {
 }
 
 // Funkce pro náhodný výběr obranné varianty
-function getRandomBlockedText() {
+function getRandomBlockedText(defensiveSkillId = null) {
+  // Pro Blok (skill 12) vždy vracet "ZABLOKOVÁNO"
+  if (defensiveSkillId === 12) {
+    return 'ZABLOKOVÁNO'
+  }
+  // Pro ostatní obranné schopnosti náhodně vybrat
   const variants = ['VYBRÁNO', 'CHYCENO', 'UBRÁNĚNO']
   return variants[Math.floor(Math.random() * variants.length)]
 }
@@ -1197,7 +1243,7 @@ function addEventToHistory(event) {
 // Kategorizace schopností
 const defensiveSkills = [12, 13, 14, 16, 17] // Blok, Skluz, Slabší noha, Hruď, Silnější noha
 const offensiveSkills = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] // Včetně Tupé rány a Smečovaného servisu
-const specialSkills = [4, 11] // Tupá rána, Smečovaný servis - stále speciální mechanika, ale dostupné k výběru
+const specialSkills = [10, 11, 19] // Skákaná smeč, Smečovaný servis, Vytlučený blok - speciální mechanika s házeními mincí
 
 // Mapa videí specifických pro jednotlivé hráče a jejich dovednosti
 const playerSkillVideos = {
@@ -1222,10 +1268,10 @@ const playerSkillVideos = {
   },
   'CAKO_6': {
     16: '/videos/soucek-hrud.mp4',
-    2: '/videos/soucek-smec-becko.mp4'
+    3: '/videos/soucek-smec-becko.mp4'
   },
   'CAKO_3': {
-    2: '/videos/kalous-smec-becko.mp4'
+    3: '/videos/kalous-smec-becko.mp4'
   },
   'CAKO_1': {
     14: {
@@ -1236,6 +1282,61 @@ const playerSkillVideos = {
   },
   'CAKO_2': {
     1: '/videos/chadim-t-smec-stred.mp4'
+  },
+  'CAKO_4': {
+    11: '/videos/j-kalous-smecovany-servis.mp4'
+  },
+  'VSET_3': {
+    16: '/videos/chalupa-hrud.mp4',
+    8: '/videos/chalupa-kratas-za-blok.mp4',
+    19: '/videos/chalupa-vytluceny-blok.mp4'
+  },
+  'VSET_5': {
+    19: '/videos/zbranek-vytluceny-blok.mp4',
+    15: '/videos/zbranek-bodlo-do-kouli.mp4',
+    12: '/videos/zbranek-blok.mp4'
+  },
+  'VSET_6': {
+    11: '/videos/dan-bily-smecovany-servis.mp4'
+  },
+  'VSET_8': {
+    17: '/videos/dvorak-silnejsi-noha.mp4',
+    5: '/videos/dvorak-klepak.mp4'
+  },
+  'VSET_13': {
+    15: {
+      success: '/videos/staricny-nesmysl-success.mp4',
+      fail: '/videos/staricny-nesmysl-fail.mp4'
+    },
+    4: '/videos/staricny-tupa-rana.mp4'
+  },
+  'VSET_14': {
+    4: '/videos/tomek-tupa-rana.mp4'
+  },
+  'CELA_1': {
+    11: '/videos/andris-pata.mp4',
+    4: '/videos/andris-tupa-rana.mp4'
+  },
+  'CELA_3': {
+    14: '/videos/holas-slabsi-noha.mp4',
+    11: '/videos/holas-smecovany-servis.mp4'
+  },
+  'CELA_5': {
+    6: '/videos/matura-skakana-smec.mp4'
+  },
+  'CELA_6': {
+    12: '/videos/nesladek-blok.mp4',
+    2: '/videos/nesladek-smec-acko.mp4',
+    4: '/videos/nesladek-tupa-rana.mp4',
+    15: {
+      success: '/videos/nesladek-nesmysl.mp4',
+      fail: null
+    }
+  },
+  'CELA_8': {
+    18: '/videos/vojtisek-hlava.mp4',
+    12: '/videos/vojtisek-blok.mp4',
+    7: '/videos/vojtisek-kratas-pod-sebe.mp4'
   }
 }
 
@@ -1270,8 +1371,20 @@ function getPlayerSkillVideo(playerId, skillId, successType = null, interaction 
     if (typeof video === 'object' && successType) {
       return video[successType] || null
     }
-    // Jinak vrátit přímo string
-    return typeof video === 'string' ? video : null
+
+    // Pokud je video string, ale byl požadován specifický success/fail typ,
+    // vrátit video pouze pro 'success', pro 'fail' vrátit null
+    // (protože generické video je obvykle úspěšná verze)
+    if (typeof video === 'string') {
+      if (successType === 'fail') {
+        // Pokud hráč nemá fail video, nevrátit nic
+        return null
+      }
+      // Pro success nebo když není specifikováno, vrátit video
+      return video
+    }
+
+    return null
   }
   return null
 }
@@ -1287,10 +1400,10 @@ function assignRandomSkills(player) {
   const offensive2 = shuffledOffensive[1]
 
   // Vybrat 1 náhodnou ultimate (může být útočná i obranná)
-  // DŮLEŽITÉ: Tupá rána (4), Smečovaný servis (11), Hruď (16) a Silnější noha (17) NEMOHOU být ultimate
+  // DŮLEŽITÉ: Skákaná smeč (10), Smečovaný servis (11), Vytlučený blok (19), Hruď (16), Silnější noha (17) a Hlava (18) NEMOHOU být ultimate
   const allSkillsExceptSpecial = [
-    ...defensiveSkills.filter(s => s !== 16 && s !== 17), // Vyloučit univerzální obrany
-    ...offensiveSkills.filter(s => s !== 4 && s !== 11)
+    ...defensiveSkills.filter(s => s !== 16 && s !== 17 && s !== 18), // Vyloučit univerzální obrany
+    ...offensiveSkills.filter(s => s !== 10 && s !== 11 && s !== 19)
   ]
   const ultimate = allSkillsExceptSpecial[Math.floor(Math.random() * allSkillsExceptSpecial.length)]
 
@@ -1342,240 +1455,7 @@ function testSkillSuccess(player, skillId) {
 }
 
 // Zvukové efekty (Web Audio API)
-const audioContext = new (window.AudioContext || window.webkitAudioContext)()
-
-function playSound(type) {
-  const currentTime = audioContext.currentTime
-
-  if (type === 'ultimate') {
-    // Epický hlubší zvuk - kombinace nízkých frekvencí
-    const osc1 = audioContext.createOscillator()
-    const osc2 = audioContext.createOscillator()
-    const gainNode = audioContext.createGain()
-    const filter = audioContext.createBiquadFilter()
-
-    filter.type = 'lowpass'
-    filter.frequency.setValueAtTime(800, currentTime)
-    filter.frequency.exponentialRampToValueAtTime(200, currentTime + 0.6)
-
-    osc1.type = 'sine'
-    osc1.frequency.setValueAtTime(80, currentTime)
-    osc1.frequency.exponentialRampToValueAtTime(120, currentTime + 0.4)
-
-    osc2.type = 'triangle'
-    osc2.frequency.setValueAtTime(160, currentTime)
-    osc2.frequency.exponentialRampToValueAtTime(240, currentTime + 0.4)
-
-    osc1.connect(filter)
-    osc2.connect(filter)
-    filter.connect(gainNode)
-    gainNode.connect(audioContext.destination)
-
-    gainNode.gain.setValueAtTime(0.25, currentTime)
-    gainNode.gain.exponentialRampToValueAtTime(0.01, currentTime + 0.7)
-
-    osc1.start(currentTime)
-    osc2.start(currentTime)
-    osc1.stop(currentTime + 0.7)
-    osc2.stop(currentTime + 0.7)
-
-  } else if (type === 'attack') {
-    // Realističtější whoosh - bílý šum s filtrem
-    const bufferSize = audioContext.sampleRate * 0.3
-    const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate)
-    const output = noiseBuffer.getChannelData(0)
-
-    for (let i = 0; i < bufferSize; i++) {
-      output[i] = Math.random() * 2 - 1
-    }
-
-    const whiteNoise = audioContext.createBufferSource()
-    whiteNoise.buffer = noiseBuffer
-
-    const filter = audioContext.createBiquadFilter()
-    filter.type = 'bandpass'
-    filter.frequency.setValueAtTime(1200, currentTime)
-    filter.frequency.exponentialRampToValueAtTime(300, currentTime + 0.25)
-    filter.Q.setValueAtTime(5, currentTime)
-
-    const gainNode = audioContext.createGain()
-    gainNode.gain.setValueAtTime(0.15, currentTime)
-    gainNode.gain.exponentialRampToValueAtTime(0.01, currentTime + 0.25)
-
-    whiteNoise.connect(filter)
-    filter.connect(gainNode)
-    gainNode.connect(audioContext.destination)
-
-    whiteNoise.start(currentTime)
-    whiteNoise.stop(currentTime + 0.3)
-
-  } else if (type === 'defend') {
-    // Metalický zvuk obrany - simulace nárazu do kovu
-    const bufferSize = audioContext.sampleRate * 0.1
-    const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate)
-    const output = noiseBuffer.getChannelData(0)
-
-    for (let i = 0; i < bufferSize; i++) {
-      output[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.3))
-    }
-
-    const noise = audioContext.createBufferSource()
-    noise.buffer = noiseBuffer
-
-    const filter = audioContext.createBiquadFilter()
-    filter.type = 'highpass'
-    filter.frequency.setValueAtTime(2000, currentTime)
-
-    const gainNode = audioContext.createGain()
-    gainNode.gain.setValueAtTime(0.3, currentTime)
-    gainNode.gain.exponentialRampToValueAtTime(0.01, currentTime + 0.2)
-
-    const osc = audioContext.createOscillator()
-    osc.type = 'square'
-    osc.frequency.setValueAtTime(350, currentTime)
-    osc.frequency.exponentialRampToValueAtTime(150, currentTime + 0.1)
-
-    const oscGain = audioContext.createGain()
-    oscGain.gain.setValueAtTime(0.2, currentTime)
-    oscGain.gain.exponentialRampToValueAtTime(0.01, currentTime + 0.15)
-
-    noise.connect(filter)
-    filter.connect(gainNode)
-    gainNode.connect(audioContext.destination)
-
-    osc.connect(oscGain)
-    oscGain.connect(audioContext.destination)
-
-    noise.start(currentTime)
-    noise.stop(currentTime + 0.2)
-    osc.start(currentTime)
-    osc.stop(currentTime + 0.15)
-
-  } else if (type === 'success') {
-    // Pozitivní zvuk - harmonický akord
-    const freq1 = 523.25 // C5
-    const freq2 = 659.25 // E5
-    const freq3 = 783.99 // G5
-
-    const osc1 = audioContext.createOscillator()
-    const osc2 = audioContext.createOscillator()
-    const osc3 = audioContext.createOscillator()
-    const gainNode = audioContext.createGain()
-
-    osc1.type = 'sine'
-    osc2.type = 'sine'
-    osc3.type = 'sine'
-
-    osc1.frequency.setValueAtTime(freq1, currentTime)
-    osc2.frequency.setValueAtTime(freq2, currentTime)
-    osc3.frequency.setValueAtTime(freq3, currentTime)
-
-    osc1.connect(gainNode)
-    osc2.connect(gainNode)
-    osc3.connect(gainNode)
-    gainNode.connect(audioContext.destination)
-
-    gainNode.gain.setValueAtTime(0.15, currentTime)
-    gainNode.gain.exponentialRampToValueAtTime(0.01, currentTime + 0.4)
-
-    osc1.start(currentTime)
-    osc2.start(currentTime)
-    osc3.start(currentTime)
-    osc1.stop(currentTime + 0.4)
-    osc2.stop(currentTime + 0.4)
-    osc3.stop(currentTime + 0.4)
-
-  } else if (type === 'fail') {
-    // Negativní zvuk - sestupná frekvence (fail sound)
-    const osc1 = audioContext.createOscillator()
-    const osc2 = audioContext.createOscillator()
-    const gainNode = audioContext.createGain()
-
-    osc1.type = 'sawtooth'
-    osc2.type = 'sine'
-
-    osc1.frequency.setValueAtTime(300, currentTime)
-    osc1.frequency.exponentialRampToValueAtTime(100, currentTime + 0.3)
-
-    osc2.frequency.setValueAtTime(150, currentTime)
-    osc2.frequency.exponentialRampToValueAtTime(50, currentTime + 0.3)
-
-    osc1.connect(gainNode)
-    osc2.connect(gainNode)
-    gainNode.connect(audioContext.destination)
-
-    gainNode.gain.setValueAtTime(0.2, currentTime)
-    gainNode.gain.exponentialRampToValueAtTime(0.01, currentTime + 0.35)
-
-    osc1.start(currentTime)
-    osc2.start(currentTime)
-    osc1.stop(currentTime + 0.35)
-    osc2.stop(currentTime + 0.35)
-
-  } else if (type === 'blocked') {
-    // Tlumený zvuk zablokování
-    const osc1 = audioContext.createOscillator()
-    const osc2 = audioContext.createOscillator()
-    const gainNode = audioContext.createGain()
-    const filter = audioContext.createBiquadFilter()
-
-    filter.type = 'lowpass'
-    filter.frequency.setValueAtTime(400, currentTime)
-    filter.Q.setValueAtTime(2, currentTime)
-
-    osc1.type = 'triangle'
-    osc1.frequency.setValueAtTime(180, currentTime)
-
-    osc2.type = 'sine'
-    osc2.frequency.setValueAtTime(240, currentTime)
-
-    osc1.connect(filter)
-    osc2.connect(filter)
-    filter.connect(gainNode)
-    gainNode.connect(audioContext.destination)
-
-    gainNode.gain.setValueAtTime(0.2, currentTime)
-    gainNode.gain.exponentialRampToValueAtTime(0.01, currentTime + 0.25)
-
-    osc1.start(currentTime)
-    osc2.start(currentTime)
-    osc1.stop(currentTime + 0.25)
-    osc2.stop(currentTime + 0.25)
-  }
-}
-
-// Funkce pro přehrání píšťalky (3x krátké písknutí)
-async function playWhistle() {
-  return new Promise((resolve) => {
-    const playOneWhistle = (delay) => {
-      setTimeout(() => {
-        const currentTime = audioContext.currentTime
-        const osc = audioContext.createOscillator()
-        const gainNode = audioContext.createGain()
-
-        osc.type = 'sine'
-        osc.frequency.setValueAtTime(2800, currentTime)
-
-        osc.connect(gainNode)
-        gainNode.connect(audioContext.destination)
-
-        gainNode.gain.setValueAtTime(0.3, currentTime)
-        gainNode.gain.exponentialRampToValueAtTime(0.01, currentTime + 0.15)
-
-        osc.start(currentTime)
-        osc.stop(currentTime + 0.15)
-      }, delay)
-    }
-
-    // 3x krátké písknutí s pauzami
-    playOneWhistle(0)
-    playOneWhistle(200)
-    playOneWhistle(400)
-
-    // Počkat až dohraje poslední písknutí
-    setTimeout(resolve, 600)
-  })
-}
+// Staré syntetické zvuky byly odstraněny - nyní používáme soundManager.js
 
 // Funkce pro sledování výkonu dovedností (přidání bodů za dovednost)
 function trackSkillPerformance(playerId, skillId, pointsScored) {
@@ -1639,9 +1519,6 @@ async function checkAndPerformTimeout() {
   // Označit timeout jako použitý
   gameState.timeoutsTaken[losingTeam][currentSet] = true
 
-  // Písknutí do píšťalky
-  await playWhistle()
-
   // Komentář trenéra
   const coachName = coach ? (coach.nickname || coach.name.split(' ')[0]) : 'Trenér'
   const timeoutQuotes = [
@@ -1695,17 +1572,18 @@ async function checkAndPerformTimeout() {
     // Fallback: vybrat ultimate dovednosti
     const selectedSkills = []
     for (const player of teamPlayers) {
-      // Zkontrolovat, zda hráč má definované skills a je to pole
-      if (!player.skills || !Array.isArray(player.skills)) continue
+      // Zajistit, že hráč má přiřazené skills
+      if (!player.assignedSkills) {
+        const playerWithSkills = assignRandomSkills(player)
+        player.assignedSkills = playerWithSkills.assignedSkills
+        player.ultimateSkill = playerWithSkills.ultimateSkill
+      }
 
-      const ultimateSkills = player.skills.filter(skillId => {
-        const skillData = skills[skillId]
-        return skillData && skillData.isUltimate
-      })
-      if (ultimateSkills.length > 0) {
+      // Vybrat ultimate dovednost hráče
+      if (player.ultimateSkill) {
         selectedSkills.push({
           player: player,
-          skill: ultimateSkills[0],
+          skill: player.ultimateSkill,
           score: 0
         })
       }
@@ -1888,6 +1766,20 @@ export function initGame() {
             </div>
             <div class="substitution-info">
               <p id="sub-info-text">Vyberte hráče, kterého chcete vystřídat, a pak vyberte náhradníka z lavičky.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timeout modal pro výběr dovedností -->
+        <div class="timeout-modal" style="display: none;">
+          <div class="timeout-modal-content">
+            <button class="timeout-modal-close">&times;</button>
+            <h2>⏸️ TIME-OUT - Výběr dovedností</h2>
+            <p class="timeout-instruction">Vyberte dovednost pro každého hráče v příští výměně:</p>
+            <div class="timeout-players" id="timeout-players-list"></div>
+            <div class="timeout-actions">
+              <button class="timeout-confirm-btn" id="confirm-timeout-skills">Potvrdit dovednosti</button>
+              <button class="timeout-cancel-btn" id="cancel-timeout">Zrušit</button>
             </div>
           </div>
         </div>
@@ -2360,6 +2252,108 @@ function findEndOfLeague() {
   return -1
 }
 
+// Funkce pro otevření timeout modalu a výběr dovedností
+function openTimeoutModal(team) {
+  const teamKey = team === 'team1' ? 'team1' : 'team2'
+  const teamPlayers = gameState[teamKey]
+  const modal = document.querySelector('.timeout-modal')
+  const playersList = document.getElementById('timeout-players-list')
+
+  // Vyčistit seznam hráčů
+  playersList.innerHTML = ''
+
+  // Pro každého hráče vytvořit výběr dovedností
+  teamPlayers.forEach(player => {
+    if (!player.assignedSkills) {
+      const playerWithSkills = assignRandomSkills(player)
+      player.assignedSkills = playerWithSkills.assignedSkills
+      player.ultimateSkill = playerWithSkills.ultimateSkill
+    }
+
+    const availableSkills = [...player.assignedSkills]
+
+    // Vytvořit kartu hráče s výběrem dovedností
+    const playerCard = document.createElement('div')
+    playerCard.className = 'timeout-player-card'
+    playerCard.style.cssText = 'background: rgba(255,255,255,0.1); padding: 15px; margin: 10px 0; border-radius: 10px;'
+
+    playerCard.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <img src="${player.photo}" alt="${player.name}" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;" />
+        <div style="flex: 1;">
+          <h3 style="margin: 0 0 10px 0;">${player.name}</h3>
+          <select class="skill-selector" data-player-id="${player.id}" style="width: 100%; padding: 8px; border-radius: 5px; font-size: 14px;">
+            ${availableSkills.map(skillId => {
+              const skillData = skills[skillId]
+              return `<option value="${skillId}">${skillData ? skillData.name : 'Dovednost'}</option>`
+            }).join('')}
+          </select>
+        </div>
+      </div>
+    `
+
+    playersList.appendChild(playerCard)
+  })
+
+  // Zobrazit modal
+  modal.style.display = 'flex'
+
+  // Nastavit handler pro potvrzení
+  const confirmBtn = document.getElementById('confirm-timeout-skills')
+  const cancelBtn = document.getElementById('cancel-timeout')
+  const closeBtn = document.querySelector('.timeout-modal-close')
+
+  // Odstranit staré handlery
+  const newConfirmBtn = confirmBtn.cloneNode(true)
+  const newCancelBtn = cancelBtn.cloneNode(true)
+  const newCloseBtn = closeBtn.cloneNode(true)
+  confirmBtn.replaceWith(newConfirmBtn)
+  cancelBtn.replaceWith(newCancelBtn)
+  closeBtn.replaceWith(newCloseBtn)
+
+  // Přidat nové handlery
+  newConfirmBtn.addEventListener('click', () => {
+    const selectors = playersList.querySelectorAll('.skill-selector')
+    const selectedSkills = []
+
+    selectors.forEach(selector => {
+      const playerId = parseInt(selector.dataset.playerId)
+      const skillId = parseInt(selector.value)
+      const player = teamPlayers.find(p => p.id === playerId)
+
+      if (player) {
+        selectedSkills.push({
+          player: player,
+          skill: skillId
+        })
+      }
+    })
+
+    // Uložit vybrané dovednosti
+    gameState.nextRallySkills[teamKey] = selectedSkills
+
+    // Zavřít modal
+    modal.style.display = 'none'
+
+    // Zobrazit potvrzení
+    const evalDiv = getEvaluationDiv()
+    evalDiv.innerHTML = `
+      <div class="timeout-confirmation" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 20px; margin: 20px 0; border-radius: 15px; color: white; text-align: center;">
+        <h3>⏸️ TIME-OUT vzat!</h3>
+        <p>Dovednosti pro příští výměnu byly vybrány.</p>
+      </div>
+    `
+  })
+
+  newCancelBtn.addEventListener('click', () => {
+    modal.style.display = 'none'
+  })
+
+  newCloseBtn.addEventListener('click', () => {
+    modal.style.display = 'none'
+  })
+}
+
 function setupPlaybackControls() {
   // Playback speed slider
   const speedSlider = document.getElementById('playback-speed')
@@ -2368,8 +2362,8 @@ function setupPlaybackControls() {
     speedSlider.addEventListener('input', (e) => {
       const value = parseInt(e.target.value)
       speedPercentage.textContent = `${value}%`
-      // Update game speed multiplier (25% = 1x, 50% = 0.5x, 100% = 0.25x, 0% = 4x)
-      gameState.speedMultiplier = 25 / Math.max(value, 1)
+      // Update game speed multiplier (0% = 0.02x velmi pomalé, 50% = 1x normální, 100% = 2x velmi rychlé)
+      gameState.speedMultiplier = Math.max(value, 1) / 50
     })
   }
 
@@ -2611,6 +2605,30 @@ function setupPlaybackControls() {
       }
     })
   }
+
+  // Timeout tlačítka
+  const timeoutTeam1Btn = document.getElementById('timeout-team1-btn')
+  const timeoutTeam2Btn = document.getElementById('timeout-team2-btn')
+
+  if (timeoutTeam1Btn) {
+    timeoutTeam1Btn.addEventListener('click', () => {
+      // Pozastavit hru
+      if (gameState.isPlaying) {
+        gameState.isPaused = true
+      }
+      openTimeoutModal('team1')
+    })
+  }
+
+  if (timeoutTeam2Btn) {
+    timeoutTeam2Btn.addEventListener('click', () => {
+      // Pozastavit hru
+      if (gameState.isPlaying) {
+        gameState.isPaused = true
+      }
+      openTimeoutModal('team2')
+    })
+  }
 }
 
 function startGame() {
@@ -2820,17 +2838,28 @@ function startAutomaticMatch() {
   gameState.isPlaying = true
   gameState.isPaused = false
 
+  // Spustit pozadové crowd sounds
+  soundManager.startCrowdSounds()
+
   playNextPoint()
 }
 
 function pauseMatch() {
   gameState.isPaused = true
+
+  // Pozastavit pozadové crowd sounds
+  soundManager.stopCrowdSounds()
+
   document.querySelector('.pause-match-btn').style.display = 'none'
   document.querySelector('.resume-match-btn').style.display = 'inline-block'
 }
 
 function resumeMatch() {
   gameState.isPaused = false
+
+  // Obnovit pozadové crowd sounds
+  soundManager.startCrowdSounds()
+
   document.querySelector('.resume-match-btn').style.display = 'none'
   document.querySelector('.pause-match-btn').style.display = 'inline-block'
   // Není třeba volat playNextPoint(), smartDelay automaticky pokračuje
@@ -3007,9 +3036,6 @@ async function checkRefereeDecision() {
 async function showRefereeAnimation(type) {
   const court = document.querySelector('.game-court')
   if (!court) return
-
-  // PÍSKNUTÍ PÍŠŤALKOU - 3x krátké písknutí
-  await playWhistle()
 
   const referee = document.createElement('div')
   referee.className = 'referee-character angry'
@@ -3371,9 +3397,10 @@ async function playPointWithPhases() {
           }
         }
 
-        // Pak přehrát útočná videa (schopnosti, které daly bod)
+        // Pak přehrát útočná videa (schopnosti, které daly bod) - POUZE úspěchy
         for (const interaction of result.interactions) {
-          if (interaction.pointChange > 0) {
+          // Přehrát success video POUZE když útok byl úspěšný A dal bod
+          if (interaction.result === 'success' && interaction.pointChange > 0) {
             const videoKey = `${interaction.attacker.player.id}_${interaction.attacker.skill}_success`
             if (!playedVideos.has(videoKey)) {
               const attackerVideo = getPlayerSkillVideo(interaction.attacker.player.id, interaction.attacker.skill, 'success')
@@ -3385,16 +3412,19 @@ async function playPointWithPhases() {
           }
         }
 
-        // Nakonec přehrát neúspěšné útoky (které daly bod soupeři)
+        // Nakonec přehrát neúspěšné útoky (které NEDALY bod nebo daly bod soupeři)
         for (const interaction of result.interactions) {
-          if (interaction.result === 'failed' || (interaction.pointChange < 0)) {
+          // Přehrát fail video POUZE když útok selhal nebo dal bod soupeři
+          if (interaction.result === 'failed' || interaction.pointChange < 0 || (interaction.pointChange === 0 && interaction.result !== 'success')) {
             const videoKey = `${interaction.attacker.player.id}_${interaction.attacker.skill}_fail`
             if (!playedVideos.has(videoKey)) {
               const attackerVideo = getPlayerSkillVideo(interaction.attacker.player.id, interaction.attacker.skill, 'fail')
+              // POUZE přehrát video pokud existuje fail verze
               if (attackerVideo) {
                 await showActionVideo(interaction, attackerVideo, false, true) // true = failed
                 playedVideos.add(videoKey)
               }
+              // POKUD NEEXISTUJE FAIL VIDEO, NEPŘEHRÁVAT ŽÁDNÉ VIDEO
             }
           }
         }
@@ -3410,7 +3440,7 @@ async function playPointWithPhases() {
             interaction.attacker.successType = successType
 
             // Aktualizovat video v ikoně
-            const icons = document.querySelectorAll(`.skill-icon-display[data-player-id="${interaction.attacker.player.id}"]`)
+            const icons = document.querySelectorAll(`.skill-ball-container[data-player-id="${interaction.attacker.player.id}"]`)
             for (const icon of icons) {
               const videoElement = icon.querySelector('.skill-icon-video')
               if (videoElement) {
@@ -3724,11 +3754,11 @@ function activateRandomSkills(team) {
       return
     }
 
-    // 2% šance na nesmysl místo normální schopnosti
+    // 1% šance na nesmysl místo normální schopnosti
     const nonsenseRoll = Math.random() * 100
     let selectedSkill
 
-    if (nonsenseRoll < 2) {
+    if (nonsenseRoll < 1) {
       selectedSkill = 15
     } else if (availableSkills.length > 0) {
       selectedSkill = availableSkills[Math.floor(Math.random() * availableSkills.length)]
@@ -3917,36 +3947,35 @@ function displayPlayersAndSkills() {
     if (skill.isNonsense || skill.skill === 15) {
       // Nesmysl: speciální růžová pulsující ikona
       skillType = 'nonsense'
-      typeIcon = '🎭'
+      typeIcon = '🏐'
     } else if (skill.isUltimate) {
-      // Ultimate schopnosti: černá barva + ikona podle typu (útok/obrana)
+      // Ultimate schopnosti: černá barva + ikona nohejbalového míče
       if (skill.isDefensive) {
         skillType = 'ultimate-defensive'
-        typeIcon = '🛡️'
+        typeIcon = '🏐'
       } else {
         skillType = 'ultimate-offensive'
-        typeIcon = '⚔️'
+        typeIcon = '🏐'
       }
     } else if (skill.isSpecial) {
       if (skill.skill === 4) {
         skillType = 'offensive'
-        typeIcon = '⚔️'
+        typeIcon = '🏐'
       } else if (skill.skill === 11) {
         skillType = 'defensive'
-        typeIcon = '🛡️'
+        typeIcon = '🏐'
       }
     } else if (skill.isDefensive) {
       skillType = 'defensive'
-      typeIcon = '🛡️'
+      typeIcon = '🏐'
     } else {
       skillType = 'offensive'
-      typeIcon = '⚔️'
+      typeIcon = '🏐'
     }
     const skillName = skill.isNonsense ? (skill.player.nonsenseName || 'Nesmysl') : skills[skill.skill].name
 
     const isDebuffed = gameState.nonsenseDebuffedPlayers && gameState.nonsenseDebuffedPlayers.has(skill.player.id)
-    let avgStats = Math.round((skill.player.stats.rychlost + skill.player.stats.obratnost +
-      skill.player.stats.rana + skill.player.stats.technika + skill.player.stats.obrana) / 5)
+    let avgStats = Math.round((skill.player.stats.rychlost + skill.player.stats.obratnost + skill.player.stats.sila + skill.player.stats.svih + skill.player.stats.technika + skill.player.stats.obetavost + skill.player.stats.psychika + skill.player.stats.cteniHry + skill.player.stats.odolnost) / 9)
 
     if (isDebuffed) {
       avgStats = Math.round(avgStats / 2)
@@ -3967,10 +3996,13 @@ function displayPlayersAndSkills() {
           <h3 class="game-player-name">${skill.player.name}</h3>
         </div>
       </div>
-      <div class="skill-icon-display ${skillType}-skill" data-skill-index="${i}" data-team="team1" data-player-id="${skill.player.id}">
-        <div class="skill-icon-content ${skillType}-frame">
-          <div class="skill-type-icon ${skillType}-icon">${typeIcon}</div>
-          <div class="skill-name-text">${skillName}</div>
+      <div class="skill-ball-container" data-skill-index="${i}" data-team="team1" data-player-id="${skill.player.id}">
+        <div class="skill-ball ${skillType}">
+          <img src="/images/nohejbalovy-mic.avif" alt="Nohejbalový míč">
+        </div>
+        <div class="skill-ball-string"></div>
+        <div class="skill-ball-tag ${skillType}">
+          <p class="skill-ball-tag-text">${skillName}</p>
         </div>
       </div>
     `
@@ -3981,7 +4013,7 @@ function displayPlayersAndSkills() {
       team1PlayerSkillsList.appendChild(playerSkillPair)
     }
 
-    const skillIcon = playerSkillPair.querySelector('.skill-icon-display')
+    const skillIcon = playerSkillPair.querySelector('.skill-ball-container')
     team1SkillIcons.push(skillIcon)
   }
 
@@ -3994,36 +4026,35 @@ function displayPlayersAndSkills() {
     if (skill.isNonsense || skill.skill === 15) {
       // Nesmysl: speciální růžová pulsující ikona
       skillType = 'nonsense'
-      typeIcon = '🎭'
+      typeIcon = '🏐'
     } else if (skill.isUltimate) {
-      // Ultimate schopnosti: černá barva + ikona podle typu (útok/obrana)
+      // Ultimate schopnosti: černá barva + ikona nohejbalového míče
       if (skill.isDefensive) {
         skillType = 'ultimate-defensive'
-        typeIcon = '🛡️'
+        typeIcon = '🏐'
       } else {
         skillType = 'ultimate-offensive'
-        typeIcon = '⚔️'
+        typeIcon = '🏐'
       }
     } else if (skill.isSpecial) {
       if (skill.skill === 4) {
         skillType = 'offensive'
-        typeIcon = '⚔️'
+        typeIcon = '🏐'
       } else if (skill.skill === 11) {
         skillType = 'defensive'
-        typeIcon = '🛡️'
+        typeIcon = '🏐'
       }
     } else if (skill.isDefensive) {
       skillType = 'defensive'
-      typeIcon = '🛡️'
+      typeIcon = '🏐'
     } else {
       skillType = 'offensive'
-      typeIcon = '⚔️'
+      typeIcon = '🏐'
     }
     const skillName = skill.isNonsense ? (skill.player.nonsenseName || 'Nesmysl') : skills[skill.skill].name
 
     const isDebuffed = gameState.nonsenseDebuffedPlayers && gameState.nonsenseDebuffedPlayers.has(skill.player.id)
-    let avgStats = Math.round((skill.player.stats.rychlost + skill.player.stats.obratnost +
-      skill.player.stats.rana + skill.player.stats.technika + skill.player.stats.obrana) / 5)
+    let avgStats = Math.round((skill.player.stats.rychlost + skill.player.stats.obratnost + skill.player.stats.sila + skill.player.stats.svih + skill.player.stats.technika + skill.player.stats.obetavost + skill.player.stats.psychika + skill.player.stats.cteniHry + skill.player.stats.odolnost) / 9)
 
     if (isDebuffed) {
       avgStats = Math.round(avgStats / 2)
@@ -4032,10 +4063,13 @@ function displayPlayersAndSkills() {
     const playerSkillPair = document.createElement('div')
     playerSkillPair.className = `player-skill-pair`
     playerSkillPair.innerHTML = `
-      <div class="skill-icon-display ${skillType}-skill" data-skill-index="${i}" data-team="team2" data-player-id="${skill.player.id}">
-        <div class="skill-icon-content ${skillType}-frame">
-          <div class="skill-type-icon ${skillType}-icon">${typeIcon}</div>
-          <div class="skill-name-text">${skillName}</div>
+      <div class="skill-ball-container" data-skill-index="${i}" data-team="team2" data-player-id="${skill.player.id}">
+        <div class="skill-ball ${skillType}">
+          <img src="/images/nohejbalovy-mic.avif" alt="Nohejbalový míč">
+        </div>
+        <div class="skill-ball-string"></div>
+        <div class="skill-ball-tag ${skillType}">
+          <p class="skill-ball-tag-text">${skillName}</p>
         </div>
       </div>
       <div class="game-hexagon-card opponent-card">
@@ -4058,7 +4092,7 @@ function displayPlayersAndSkills() {
       team2PlayerSkillsList.appendChild(playerSkillPair)
     }
 
-    const skillIcon = playerSkillPair.querySelector('.skill-icon-display')
+    const skillIcon = playerSkillPair.querySelector('.skill-ball-container')
     team2SkillIcons.push(skillIcon)
   }
 
@@ -4067,6 +4101,226 @@ function displayPlayersAndSkills() {
   gameState.team2SkillIcons = team2SkillIcons
   gameState.team1Skills = team1Skills
   gameState.team2Skills = team2Skills
+
+  // Po vykreslení aplikovat inteligentní pozicování visaček
+  setTimeout(() => positionTagsIntelligently(), 100)
+}
+
+// Funkce pro inteligentní pozicování visaček s detekcí kolizí
+function positionTagsIntelligently() {
+  const allContainers = document.querySelectorAll('.game-container .skill-ball-container')
+  if (allContainers.length === 0) return
+
+  const tags = []
+  const balls = []
+
+  // Shromáždit všechny balony a visačky s jejich pozicemi
+  allContainers.forEach((container, index) => {
+    const ball = container.querySelector('.skill-ball')
+    const tag = container.querySelector('.skill-ball-tag')
+    const string = container.querySelector('.skill-ball-string')
+    const team = container.dataset.team
+
+    if (!ball || !tag || !string) return
+
+    const ballRect = ball.getBoundingClientRect()
+    const ballCenter = {
+      x: ballRect.left + ballRect.width / 2,
+      y: ballRect.top + ballRect.height / 2
+    }
+
+    balls.push({ element: ball, rect: ballRect, center: ballCenter })
+    tags.push({
+      element: tag,
+      string: string,
+      container: container,
+      team: team,
+      ballCenter: ballCenter,
+      index: index
+    })
+  })
+
+  // Najít nejvyššího hráče každého týmu (ten s nejmenší Y pozicí)
+  const team1Tags = tags.filter(t => t.team === 'team1')
+  const team2Tags = tags.filter(t => t.team === 'team2')
+
+  const topTeam1Player = team1Tags.length > 0
+    ? team1Tags.reduce((top, current) => current.ballCenter.y < top.ballCenter.y ? current : top)
+    : null
+
+  const topTeam2Player = team2Tags.length > 0
+    ? team2Tags.reduce((top, current) => current.ballCenter.y < top.ballCenter.y ? current : top)
+    : null
+
+  // Pro každou visačku najít optimální pozici
+  tags.forEach((tagData, i) => {
+    const { element: tag, string, team, ballCenter, container } = tagData
+
+    // Detekovat, zda je to horní hráč (net player) - má container v net-players-section
+    const isNetPlayer = container.closest('.net-player') !== null
+
+    // Detekovat, zda je to nejvyšší hráč v týmu (podle Y pozice)
+    const isTopPlayer = (team === 'team1' && tagData === topTeam1Player) ||
+                        (team === 'team2' && tagData === topTeam2Player)
+
+    // Možné směry podle týmu a pozice hráče
+    let directions
+
+    if (isNetPlayer || isTopPlayer) {
+      // Pro horního/síťového hráče preferovat směr k soupeři (horizontálně)
+      directions = team === 'team1'
+        ? [
+            { angle: 0, name: 'right' },       // doprava k soupeři (priorita #1)
+            { angle: 45, name: 'right-down' }, // doprava dolů
+            { angle: -45, name: 'right-up' },  // doprava nahoru
+            { angle: 90, name: 'down' },       // dolů
+            { angle: -90, name: 'up' },        // nahoru
+            { angle: 135, name: 'left-down' }  // doleva dolů
+          ]
+        : [
+            { angle: 180, name: 'left' },      // doleva k soupeři (priorita #1)
+            { angle: 135, name: 'left-down' }, // doleva dolů
+            { angle: -135, name: 'left-up' },  // doleva nahoru
+            { angle: 90, name: 'down' },       // dolů
+            { angle: -90, name: 'up' },        // nahoru
+            { angle: 45, name: 'right-down' }  // doprava dolů
+          ]
+    } else {
+      // Pro ostatní hráče standardní směry
+      directions = team === 'team1'
+        ? [
+            { angle: 90, name: 'down' },       // dolů (výchozí)
+            { angle: 45, name: 'right-down' }, // doprava dolů (preferovaný)
+            { angle: 0, name: 'right' },       // doprava
+            { angle: -45, name: 'right-up' },  // doprava nahoru
+            { angle: 135, name: 'left-down' }, // doleva dolů
+            { angle: -90, name: 'up' }         // nahoru
+          ]
+        : [
+            { angle: 90, name: 'down' },       // dolů (výchozí)
+            { angle: 135, name: 'left-down' }, // doleva dolů (preferovaný)
+            { angle: 180, name: 'left' },      // doleva
+            { angle: -135, name: 'left-up' },  // doleva nahoru
+            { angle: 45, name: 'right-down' }, // doprava dolů
+            { angle: -90, name: 'up' }         // nahoru
+          ]
+    }
+
+    let bestDirection = directions[0]
+    let minCollisions = Infinity
+
+    // Pro horní hráče preferovat horizontální směr (první v pořadí) pokud nemá více než 1 kolizi
+    if (isNetPlayer || isTopPlayer) {
+      const firstDirection = directions[0]
+      const firstPosition = calculateTagPosition(ballCenter, firstDirection.angle, 50)
+      const firstCollisionCount = countCollisions(firstPosition, tags, i)
+
+      // Použít horizontální směr pokud má max 1 kolizi
+      if (firstCollisionCount <= 1) {
+        bestDirection = firstDirection
+      } else {
+        // Jinak vyzkoušet další směry
+        for (const direction of directions) {
+          const testPosition = calculateTagPosition(ballCenter, direction.angle, 50)
+          const collisionCount = countCollisions(testPosition, tags, i)
+
+          if (collisionCount < minCollisions) {
+            minCollisions = collisionCount
+            bestDirection = direction
+          }
+
+          if (collisionCount === 0) break
+        }
+      }
+    } else {
+      // Pro ostatní hráče standardní logika
+      for (const direction of directions) {
+        const testPosition = calculateTagPosition(ballCenter, direction.angle, 50)
+        const collisionCount = countCollisions(testPosition, tags, i)
+
+        if (collisionCount < minCollisions) {
+          minCollisions = collisionCount
+          bestDirection = direction
+        }
+
+        // Pokud najdeme směr bez kolizí, použijeme ho
+        if (collisionCount === 0) break
+      }
+    }
+
+    // Aplikovat nejlepší směr
+    applyTagDirection(tag, string, ballCenter, bestDirection.angle)
+  })
+}
+
+// Vypočítat pozici visačky pro daný úhel
+function calculateTagPosition(ballCenter, angle, distance) {
+  const radians = (angle * Math.PI) / 180
+  return {
+    x: ballCenter.x + Math.cos(radians) * distance,
+    y: ballCenter.y + Math.sin(radians) * distance,
+    width: 120,  // min-width visačky
+    height: 40   // přibližná výška
+  }
+}
+
+// Spočítat počet kolizí s ostatními visačkami
+function countCollisions(position, allTags, currentIndex) {
+  let collisions = 0
+
+  allTags.forEach((otherTag, index) => {
+    if (index === currentIndex) return
+
+    const otherRect = otherTag.element.getBoundingClientRect()
+
+    // Kontrola překrytí obdélníků (AABB collision detection)
+    if (!(position.x + position.width < otherRect.left ||
+          position.x > otherRect.right ||
+          position.y + position.height < otherRect.top ||
+          position.y > otherRect.bottom)) {
+      collisions++
+    }
+  })
+
+  return collisions
+}
+
+// Aplikovat směr na visačku a šňůrku
+function applyTagDirection(tag, string, ballCenter, angle) {
+  const distance = 50
+  const stringLength = 40
+  const radians = (angle * Math.PI) / 180
+
+  // Vypočítat pozici konce šňůrky (kde začíná visačka)
+  const stringEndX = Math.cos(radians) * stringLength
+  const stringEndY = Math.sin(radians) * stringLength
+
+  // Nastavit šňůrku
+  string.style.height = `${stringLength}px`
+  string.style.width = '2px'
+  string.style.transform = `rotate(${angle}deg)`
+  string.style.transformOrigin = 'top center'
+  string.style.top = '60px'  // od středu balonu (120px / 2)
+  string.style.left = '50%'
+
+  // Vypočítat pozici visačky
+  const tagX = Math.cos(radians) * distance
+  const tagY = Math.sin(radians) * distance
+
+  // Nastavit visačku
+  tag.style.left = `calc(50% + ${tagX}px)`
+  tag.style.top = `calc(60px + ${tagY}px)`
+  tag.style.transform = 'translate(-50%, -50%)'
+
+  // Přesunout díru ve visačce podle úhlu
+  const holeBefore = tag.querySelector('.skill-ball-tag::before') || tag
+  const holeAngle = angle + 180 // opačný směr
+  const holeRadians = (holeAngle * Math.PI) / 180
+  const holeDistance = 15
+
+  // Díru umístit na straně směřující k balonu
+  tag.style.setProperty('--hole-x', `calc(50% + ${Math.cos(holeRadians) * holeDistance}px)`)
+  tag.style.setProperty('--hole-y', `calc(50% + ${Math.sin(holeRadians) * holeDistance}px)`)
 }
 
 // Postupné odkrývání schopností - S TRENÉRY U TÝMŮ
@@ -4181,31 +4435,31 @@ async function revealSkillsGradually(team1Skills, team2Skills) {
     if (skill.isNonsense || skill.skill === 15) {
       // Nesmysl: speciální růžová pulsující ikona
       skillType = 'nonsense'
-      typeIcon = '🎭'
+      typeIcon = '🏐'
     } else if (skill.isUltimate) {
-      // Ultimate schopnosti: černá barva + ikona podle typu (útok/obrana)
+      // Ultimate schopnosti: černá barva + ikona nohejbalového míče
       if (skill.isDefensive) {
         skillType = 'ultimate-defensive'
-        typeIcon = '🛡️'
+        typeIcon = '🏐'
       } else {
         skillType = 'ultimate-offensive'
-        typeIcon = '⚔️'
+        typeIcon = '🏐'
       }
     } else if (skill.isSpecial) {
-      // Pro speciální schopnosti (Tupá rána ID 4 je původně útočná, Smečovaný servis ID 11 je původně obranný)
-      if (skill.skill === 4) {
+      // Pro speciální schopnosti (Skákaná smeč ID 10, Vytlučený blok ID 19 jsou útočné, Smečovaný servis ID 11 je obranný)
+      if (skill.skill === 10 || skill.skill === 19) {
         skillType = 'offensive'
-        typeIcon = '⚔️'
+        typeIcon = '🏐'
       } else if (skill.skill === 11) {
         skillType = 'defensive'
-        typeIcon = '🛡️'
+        typeIcon = '🏐'
       }
     } else if (skill.isDefensive) {
       skillType = 'defensive'
-      typeIcon = '🛡️'
+      typeIcon = '🏐'
     } else {
       skillType = 'offensive'
-      typeIcon = '⚔️'
+      typeIcon = '🏐'
     }
     const skillName = skill.isNonsense ? (skill.player.nonsenseName || 'Nesmysl') : skills[skill.skill].name
 
@@ -4213,12 +4467,33 @@ async function revealSkillsGradually(team1Skills, team2Skills) {
     const isDebuffed = gameState.nonsenseDebuffedPlayers && gameState.nonsenseDebuffedPlayers.has(skill.player.id)
     let avgStats = 0
     if (skill.player.stats) {
-      avgStats = Math.round((skill.player.stats.rychlost + skill.player.stats.obratnost +
-        skill.player.stats.rana + skill.player.stats.technika + skill.player.stats.obrana) / 5)
+      avgStats = Math.round((skill.player.stats.rychlost + skill.player.stats.obratnost + skill.player.stats.sila + skill.player.stats.svih + skill.player.stats.technika + skill.player.stats.obetavost + skill.player.stats.psychika + skill.player.stats.cteniHry + skill.player.stats.odolnost) / 9)
 
       // Pokud je hráč debuffnutý, hodnocení na polovinu
       if (isDebuffed) {
         avgStats = Math.round(avgStats / 2)
+      }
+    }
+
+    // Určit emoji ikonu podle typu dovednosti
+    let skillEmoji = ''
+    if (skill.isNonsense || skill.skill === 15) {
+      skillEmoji = '🎭' // Nesmysl
+    } else if (skill.isUltimate) {
+      skillEmoji = skill.isDefensive ? '🛡️' : '⚔️'
+    } else if (skill.isDefensive) {
+      skillEmoji = '🛡️'
+    } else {
+      skillEmoji = '⚔️'
+    }
+
+    // Určit speciální třídy pro speciální dovednosti
+    let specialClasses = ''
+    if (skill.isSpecial) {
+      specialClasses += ' special-rotating'
+      // Pro smečovaný servis (ID 11) přidat alternující ikonu
+      if (skill.skill === 11) {
+        specialClasses += ' alternating-icon'
       }
     }
 
@@ -4238,10 +4513,13 @@ async function revealSkillsGradually(team1Skills, team2Skills) {
           <h3 class="game-player-name">${skill.player.name}</h3>
         </div>
       </div>
-      <div class="skill-icon-display ${skillType}-skill" data-skill-index="${i}" data-team="team1" data-player-id="${skill.player.id}">
-        <div class="skill-icon-content ${skillType}-frame">
-          <div class="skill-type-icon ${skillType}-icon">${typeIcon}</div>
-          <div class="skill-name-text">${skillName}</div>
+      <div class="skill-ball-container" data-skill-index="${i}" data-team="team1" data-player-id="${skill.player.id}" data-skill-id="${skill.skill}">
+        <div class="skill-ball ${skillType}${specialClasses}" data-skill-emoji="${skillEmoji}">
+          <img src="/images/nohejbalovy-mic.avif" alt="Nohejbalový míč">
+        </div>
+        <div class="skill-ball-string"></div>
+        <div class="skill-ball-tag ${skillType}">
+          <p class="skill-ball-tag-text">${skillName}</p>
         </div>
       </div>
     `
@@ -4254,7 +4532,7 @@ async function revealSkillsGradually(team1Skills, team2Skills) {
     }
 
     // Uložit referenci na ikonu dovednosti
-    const skillIcon = playerSkillPair.querySelector('.skill-icon-display')
+    const skillIcon = playerSkillPair.querySelector('.skill-ball-container')
     team1SkillIcons.push(skillIcon)
 
     await smartDelay(500)
@@ -4269,31 +4547,31 @@ async function revealSkillsGradually(team1Skills, team2Skills) {
     if (skill.isNonsense || skill.skill === 15) {
       // Nesmysl: speciální růžová pulsující ikona
       skillType = 'nonsense'
-      typeIcon = '🎭'
+      typeIcon = '🏐'
     } else if (skill.isUltimate) {
-      // Ultimate schopnosti: černá barva + ikona podle typu (útok/obrana)
+      // Ultimate schopnosti: černá barva + ikona nohejbalového míče
       if (skill.isDefensive) {
         skillType = 'ultimate-defensive'
-        typeIcon = '🛡️'
+        typeIcon = '🏐'
       } else {
         skillType = 'ultimate-offensive'
-        typeIcon = '⚔️'
+        typeIcon = '🏐'
       }
     } else if (skill.isSpecial) {
-      // Pro speciální schopnosti (Tupá rána ID 4 je původně útočná, Smečovaný servis ID 11 je původně obranný)
-      if (skill.skill === 4) {
+      // Pro speciální schopnosti (Skákaná smeč ID 10, Vytlučený blok ID 19 jsou útočné, Smečovaný servis ID 11 je obranný)
+      if (skill.skill === 10 || skill.skill === 19) {
         skillType = 'offensive'
-        typeIcon = '⚔️'
+        typeIcon = '🏐'
       } else if (skill.skill === 11) {
         skillType = 'defensive'
-        typeIcon = '🛡️'
+        typeIcon = '🏐'
       }
     } else if (skill.isDefensive) {
       skillType = 'defensive'
-      typeIcon = '🛡️'
+      typeIcon = '🏐'
     } else {
       skillType = 'offensive'
-      typeIcon = '⚔️'
+      typeIcon = '🏐'
     }
     const skillName = skill.isNonsense ? (skill.player.nonsenseName || 'Nesmysl') : skills[skill.skill].name
 
@@ -4301,8 +4579,7 @@ async function revealSkillsGradually(team1Skills, team2Skills) {
     const isDebuffed = gameState.nonsenseDebuffedPlayers && gameState.nonsenseDebuffedPlayers.has(skill.player.id)
     let avgStats = 0
     if (skill.player.stats) {
-      avgStats = Math.round((skill.player.stats.rychlost + skill.player.stats.obratnost +
-        skill.player.stats.rana + skill.player.stats.technika + skill.player.stats.obrana) / 5)
+      avgStats = Math.round((skill.player.stats.rychlost + skill.player.stats.obratnost + skill.player.stats.sila + skill.player.stats.svih + skill.player.stats.technika + skill.player.stats.obetavost + skill.player.stats.psychika + skill.player.stats.cteniHry + skill.player.stats.odolnost) / 9)
 
       // Pokud je hráč debuffnutý, hodnocení na polovinu
       if (isDebuffed) {
@@ -4310,14 +4587,39 @@ async function revealSkillsGradually(team1Skills, team2Skills) {
       }
     }
 
+    // Určit emoji ikonu podle typu dovednosti
+    let skillEmoji = ''
+    if (skill.isNonsense || skill.skill === 15) {
+      skillEmoji = '🎭' // Nesmysl
+    } else if (skill.isUltimate) {
+      skillEmoji = skill.isDefensive ? '🛡️' : '⚔️'
+    } else if (skill.isDefensive) {
+      skillEmoji = '🛡️'
+    } else {
+      skillEmoji = '⚔️'
+    }
+
+    // Určit speciální třídy pro speciální dovednosti
+    let specialClasses = ''
+    if (skill.isSpecial) {
+      specialClasses += ' special-rotating'
+      // Pro smečovaný servis (ID 11) přidat alternující ikonu
+      if (skill.skill === 11) {
+        specialClasses += ' alternating-icon'
+      }
+    }
+
     // Pár hráč + dovednost (zrcadlově - dovednost vlevo)
     const playerSkillPair = document.createElement('div')
     playerSkillPair.className = `player-skill-pair reveal-animation`
     playerSkillPair.innerHTML = `
-      <div class="skill-icon-display ${skillType}-skill" data-skill-index="${i}" data-team="team2" data-player-id="${skill.player.id}">
-        <div class="skill-icon-content ${skillType}-frame">
-          <div class="skill-type-icon ${skillType}-icon">${typeIcon}</div>
-          <div class="skill-name-text">${skillName}</div>
+      <div class="skill-ball-container" data-skill-index="${i}" data-team="team2" data-player-id="${skill.player.id}" data-skill-id="${skill.skill}">
+        <div class="skill-ball ${skillType}${specialClasses}" data-skill-emoji="${skillEmoji}">
+          <img src="/images/nohejbalovy-mic.avif" alt="Nohejbalový míč">
+        </div>
+        <div class="skill-ball-string"></div>
+        <div class="skill-ball-tag ${skillType}">
+          <p class="skill-ball-tag-text">${skillName}</p>
         </div>
       </div>
       <div class="game-hexagon-card opponent-card">
@@ -4341,7 +4643,7 @@ async function revealSkillsGradually(team1Skills, team2Skills) {
     }
 
     // Uložit referenci na ikonu dovednosti
-    const skillIcon = playerSkillPair.querySelector('.skill-icon-display')
+    const skillIcon = playerSkillPair.querySelector('.skill-ball-container')
     team2SkillIcons.push(skillIcon)
 
     await smartDelay(500)
@@ -4355,6 +4657,9 @@ async function revealSkillsGradually(team1Skills, team2Skills) {
   gameState.team1Skills = team1Skills
   gameState.team2Skills = team2Skills
 
+  // Po vykreslení aplikovat inteligentní pozicování visaček
+  setTimeout(() => positionTagsIntelligently(), 100)
+
   // Počáteční hláška trenérů na začátku prvního setu
   setTimeout(() => {
     const team1Quote = getRandomStartQuote(gameState.team1Name, gameState.team2Name)
@@ -4364,8 +4669,8 @@ async function revealSkillsGradually(team1Skills, team2Skills) {
   }, 500)
 }
 
-// Funkce pro aktualizaci ikony speciální schopnosti (Tupá rána, Smečovaný servis)
-function updateSpecialSkillIcon(skillObj, team, effectType) {
+// Funkce pro aktualizaci ikony speciální schopnosti (Skákaná smeč, Smečovaný servis, Vytlučený blok)
+function updateSpecialSkillIcon(skillObj, team, effectType, numTails = null) {
   const teamSkillIcons = team === 'team1' ? gameState.team1SkillIcons : gameState.team2SkillIcons
   const teamSkills = team === 'team1' ? gameState.team1Skills : gameState.team2Skills
 
@@ -4375,28 +4680,42 @@ function updateSpecialSkillIcon(skillObj, team, effectType) {
 
   if (skillIndex === -1 || !teamSkillIcons[skillIndex]) return
 
-  const iconElement = teamSkillIcons[skillIndex]
-  const typeIconElement = iconElement.querySelector('.skill-type-icon')
-  const contentElement = iconElement.querySelector('.skill-icon-content')
+  const iconContainer = teamSkillIcons[skillIndex]
+  const skillBall = iconContainer.querySelector('.skill-ball')
 
-  if (!typeIconElement || !contentElement) return
+  if (!skillBall) return
 
-  // Odstranit původní třídy
-  iconElement.classList.remove('offensive-skill', 'defensive-skill', 'ultimate-skill')
+  // Odstranit rotující rámečky a alternující ikonu
+  skillBall.classList.remove('special-rotating', 'alternating-icon')
 
-  // Nastavit novou ikonu a styling podle efektu
+  // Určit emoji podle typu efektu
+  let newEmoji = ''
   if (effectType === 'offensive') {
-    typeIconElement.textContent = '⚔️'
-    iconElement.classList.add('offensive-skill')
+    newEmoji = '⚔️'
   } else if (effectType === 'defensive') {
-    typeIconElement.textContent = '🛡️'
-    iconElement.classList.add('defensive-skill')
+    newEmoji = '🛡️'
   } else if (effectType === 'ultimate-offensive') {
-    typeIconElement.textContent = '⭐'
-    iconElement.classList.add('ultimate-skill')
+    newEmoji = '⚔️' // Ultimate útok
   } else if (effectType === 'ultimate-defensive') {
-    typeIconElement.textContent = '⭐'
-    iconElement.classList.add('ultimate-skill')
+    newEmoji = '🛡️' // Ultimate obrana
+  }
+
+  // Aktualizovat emoji
+  if (newEmoji) {
+    skillBall.setAttribute('data-skill-emoji', newEmoji)
+  }
+
+  // Určit barvu rámečku podle typu efektu
+  // Ultimate (2 panny) = černý rámeček
+  // Standardní (1 panna) = červený rámeček
+  if (effectType.includes('ultimate')) {
+    // 2 panny = černý rámeček
+    skillBall.classList.remove('special-red-border')
+    skillBall.classList.add('special-black-border')
+  } else {
+    // 1 panna = červený rámeček
+    skillBall.classList.remove('special-black-border')
+    skillBall.classList.add('special-red-border')
   }
 }
 
@@ -4459,12 +4778,12 @@ function resetSpecialSkillIcons() {
       iconElement.classList.remove('offensive-skill', 'defensive-skill', 'ultimate-skill')
 
       // Nastavit původní ikonu podle typu schopnosti
-      if (skill === 4) {
-        // Tupá rána = útočná
+      if (skill === 10 || skill === 19) {
+        // Skákaná smeč, Vytlučený blok = útočné
         typeIconElement.textContent = '⚔️'
         iconElement.classList.add('offensive-skill')
       } else if (skill === 11) {
-        // Smečovaný servis = obranná
+        // Smečovaný servis = obranný
         typeIconElement.textContent = '🛡️'
         iconElement.classList.add('defensive-skill')
       }
@@ -4525,50 +4844,29 @@ async function animateSkillEvaluation(attackerSkill, defenderSkill, result) {
 
   // Animace podle výsledku
   if (result === 'success') {
-    // Úspěšný útok
-    if (defenderSkill) {
-      // Je obránce, ale útok je úspěšný - ikony se srazí a útočná se zvýrazní
-      const defenderSkills = isTeam1Attacker ? gameState.team2Skills : gameState.team1Skills
-      const defenderIndex = defenderSkills.findIndex(s =>
-        s.player.id === defenderSkill.player.id && s.skill === defenderSkill.skill
-      )
-      const defenderIcon = defenderIcons[defenderIndex]
+    // Úspěšný útok - ikona přeletí na druhou stranu
+    // Animace přeletu míče na druhou stranu
+    attackerIcon.classList.add(isTeam1Attacker ? 'slide-to-right' : 'slide-to-left')
 
-      // Obě ikony se pohybují k sobě (srážka)
-      attackerIcon.classList.add(isTeam1Attacker ? 'collision-left' : 'collision-right')
+    await smartDelay(600)
 
-      if (defenderIcon) {
-        defenderIcon.classList.add(isTeam1Attacker ? 'collision-right' : 'collision-left')
-      }
+    // Odebrat třídu pro přelet a vrátit zpět
+    attackerIcon.classList.remove(isTeam1Attacker ? 'slide-to-right' : 'slide-to-left')
+    attackerIcon.classList.add(isTeam1Attacker ? 'bounce-back-left' : 'bounce-back-right')
 
-      await smartDelay(900)
+    await smartDelay(600)
 
-      // Odstranit srážku
-      attackerIcon.classList.remove(isTeam1Attacker ? 'collision-left' : 'collision-right')
+    // Odebrat bounce-back třídu
+    attackerIcon.classList.remove(isTeam1Attacker ? 'bounce-back-left' : 'bounce-back-right')
 
-      if (defenderIcon) {
-        defenderIcon.classList.remove(isTeam1Attacker ? 'collision-right' : 'collision-left')
-      }
-
-      // Zvýraznit útočnou ikonu (úspěch)
-      attackerIcon.classList.add('skill-highlight')
-
-      await smartDelay(1200)
-      attackerIcon.classList.remove('skill-highlight')
-    } else {
-      // Žádný obránce - útočná ikona se zvýrazní
-      attackerIcon.classList.add('skill-highlight')
-      await smartDelay(1200)
-      attackerIcon.classList.remove('skill-highlight')
-    }
   } else if (result === 'failed') {
-    // Neúspěšný útok - ikona se rozbije a zůstane rozbitá až do výměny schopností
-    attackerIcon.classList.add('skill-shatter')
+    // Neúspěšný útok - ikona se rozpadne (shatter animace)
+    attackerIcon.classList.add('shatter')
     const isNet = Math.random() < 0.5
     addActionCommentary(`<p>⚠️ Útok skončil v <strong>${isNet ? 'síti' : 'autu'}</strong>!</p>`)
     await smartDelay(800)
   } else if (result === 'blocked') {
-    // Zablokovaný útok - ikony se srazí a obranná se zvýrazní
+    // Zablokovaný útok - ikony se srazí, zatřesou a útočná se rozpadne
     if (defenderSkill) {
       const defenderSkills = isTeam1Attacker ? gameState.team2Skills : gameState.team1Skills
       const defenderIndex = defenderSkills.findIndex(s =>
@@ -4583,24 +4881,35 @@ async function animateSkillEvaluation(attackerSkill, defenderSkill, result) {
         defenderIcon.classList.add(isTeam1Attacker ? 'collision-right' : 'collision-left')
       }
 
-      await smartDelay(900)
+      await smartDelay(600)
 
-      // Odstranit srážku
-      attackerIcon.classList.remove(isTeam1Attacker ? 'collision-left' : 'collision-right')
+      // Zatřesení při srážce
+      attackerIcon.classList.add('shake')
+      if (defenderIcon) {
+        defenderIcon.classList.add('shake')
+      }
+
+      await smartDelay(400)
+
+      // Odstranit srážku a zatřesení
+      attackerIcon.classList.remove(isTeam1Attacker ? 'collision-left' : 'collision-right', 'shake')
 
       if (defenderIcon) {
-        defenderIcon.classList.remove(isTeam1Attacker ? 'collision-right' : 'collision-left')
+        defenderIcon.classList.remove(isTeam1Attacker ? 'collision-right' : 'collision-left', 'shake')
       }
+
+      // Útočná ikona se rozpadne (shatter)
+      attackerIcon.classList.add('shatter')
 
       // Zvýraznit obrannou ikonu (úspěšná obrana)
       if (defenderIcon) {
         defenderIcon.classList.add('skill-highlight')
-        await smartDelay(1200)
+        await smartDelay(800)
         defenderIcon.classList.remove('skill-highlight')
       }
     } else {
-      // Pokud není obránce, ikona se jen rozbije a zůstane rozbitá až do výměny schopností
-      attackerIcon.classList.add('skill-shatter')
+      // Pokud není obránce, ikona se jen rozpadne
+      attackerIcon.classList.add('shatter')
       await smartDelay(800)
     }
   }
@@ -4611,13 +4920,11 @@ async function showSkillClash(attacker, defender, result) {
   const evalDiv = getEvaluationDiv()
 
   // Calculate ratings
-  const attackerRating = Math.round((attacker.player.stats.rychlost + attacker.player.stats.obratnost +
-    attacker.player.stats.rana + attacker.player.stats.technika + attacker.player.stats.obrana) / 5)
+  const attackerRating = Math.round((attacker.player.stats.rychlost + attacker.player.stats.obratnost + attacker.player.stats.sila + attacker.player.stats.svih + attacker.player.stats.technika + attacker.player.stats.obetavost + attacker.player.stats.psychika + attacker.player.stats.cteniHry + attacker.player.stats.odolnost) / 9)
 
   let defenderHTML = '<p class="no-defense">Žádná obrana!</p>'
   if (defender) {
-    const defenderRating = Math.round((defender.player.stats.rychlost + defender.player.stats.obratnost +
-      defender.player.stats.rana + defender.player.stats.technika + defender.player.stats.obrana) / 5)
+    const defenderRating = Math.round((defender.player.stats.rychlost + defender.player.stats.obratnost + defender.player.stats.sila + defender.player.stats.svih + defender.player.stats.technika + defender.player.stats.obetavost + defender.player.stats.psychika + defender.player.stats.cteniHry + defender.player.stats.odolnost) / 9)
 
     defenderHTML = `
       <div class="game-hexagon-card opponent-card">
@@ -4673,18 +4980,18 @@ async function showSkillClash(attacker, defender, result) {
 
   // Přehrát zvuk útoku
   if (attacker.isUltimate) {
-    playSound('ultimate')
+    soundManager.playUltimateAttack()
   } else {
-    playSound('attack')
+    soundManager.playBallHit()
   }
   await smartDelay(800)
 
   // Přehrát zvuk obrany (pokud existuje)
   if (defender) {
     if (defender.isUltimate) {
-      playSound('ultimate')
+      soundManager.playUltimateDefense()
     } else {
-      playSound('defend')
+      soundManager.playBallHit()
     }
     await smartDelay(800)
   }
@@ -4693,11 +5000,12 @@ async function showSkillClash(attacker, defender, result) {
   const resultDiv = document.createElement('div')
   resultDiv.className = `clash-result ${result}`
   if (result === 'blocked') {
-    resultDiv.innerHTML = `<h2>🛡️ ${getRandomBlockedText()}!</h2>`
-    playSound('blocked')
+    const defensiveSkillId = defender ? defender.skill : null
+    resultDiv.innerHTML = `<h2>🛡️ ${getRandomBlockedText(defensiveSkillId)}!</h2>`
+    soundManager.playDefenseBlock()
   } else if (result === 'success') {
     resultDiv.innerHTML = '<h2>✅ ÚSPĚCH!</h2>'
-    playSound('success')
+    soundManager.playBallHit()
   }
   evalDiv.appendChild(resultDiv)
   await smartDelay(1500)
@@ -4752,10 +5060,16 @@ async function showActionVideo(interaction, videoSrc, isDefender = false, isFail
     resultLabel = '✅ ÚSPĚŠNÝ ÚTOK!'
     resultClass = 'success'
     soundType = 'success'
-  } else {
-    resultLabel = `🛡️ ${getRandomBlockedText()}!`
+  } else if (interaction.result === 'blocked') {
+    const defensiveSkillId = interaction.defender ? interaction.defender.skill : null
+    resultLabel = `🛡️ ${getRandomBlockedText(defensiveSkillId)}!`
     resultClass = 'blocked'
     soundType = 'blocked'
+  } else {
+    // Fallback pro neznámý stav - nemělo by se stát
+    resultLabel = '⚠️ NEZNÁMÝ VÝSLEDEK'
+    resultClass = 'unknown'
+    soundType = null
   }
 
   // SKRÝT IKONKY A KARTY před přehráním videa
@@ -4791,7 +5105,13 @@ async function showActionVideo(interaction, videoSrc, isDefender = false, isFail
 
   // Přehrát zvukový efekt podle výsledku
   if (soundType) {
-    playSound(soundType)
+    if (soundType === 'defend' || soundType === 'success') {
+      soundManager.playBallHit()
+    } else if (soundType === 'blocked') {
+      soundManager.playDefenseBlock()
+    } else if (soundType === 'fail') {
+      soundManager.playSkillFail()
+    }
   }
 
   // Počkat na dokončení videa (v plné délce)
@@ -4930,7 +5250,7 @@ async function showCoinFlip(numCoins, results) {
 // Funkce pro animaci rozpadnutí ikony neúspěšné dovednosti
 async function shatterSkillIcon(skillObj) {
   // Najít ikonu podle player.id
-  const icons = document.querySelectorAll(`.skill-icon-display[data-player-id="${skillObj.player.id}"]`)
+  const icons = document.querySelectorAll(`.skill-ball-container[data-player-id="${skillObj.player.id}"]`)
 
   for (const icon of icons) {
     // Přidat třídu pro animaci - ikona zůstane rozbitá až do výměny schopností
@@ -4945,7 +5265,24 @@ async function shatterSkillIcon(skillObj) {
 // Funkce pro náhodný výběr mezi "do autu" a "do sítě"
 function getFailedAttackMessage(skillObj, winningTeam) {
   const skill = skills[skillObj.skill]
-  const failType = Math.random() < 0.5 ? 'do autu' : 'do sítě'
+  const playerFirstName = skillObj.player.name.split(' ')[0]
+
+  // Různé typy chyb útočícího hráče
+  const failTypes = [
+    'do autu',
+    'do sítě',
+    'těsně vedle',
+    'dvojdotek',
+    `${playerFirstName} se při hraní dotkl sítě`
+  ]
+
+  const failType = failTypes[Math.floor(Math.random() * failTypes.length)]
+
+  // Pro variantu s dotykem sítě nemá smysl přidávat název útoku
+  if (failType.includes('dotkl sítě')) {
+    return `${failType}. ${winningTeam}: +1 bod`
+  }
+
   return `${skill.name} ${failType}. ${winningTeam}: +1 bod`
 }
 
@@ -5014,6 +5351,164 @@ async function showSkillComment(skillObj, successRate, isSuccess, additionalInfo
   await smartDelay(3000)
 }
 
+// Aktualizovat ikonu speciální schopnosti na základě hodu mincí
+function reclassifySpecialSkillIcon(specialSkill, isTeam1, skillIndex, teamFlag) {
+  // Najít kontejner ikony
+  const teamSkillsContainers = document.querySelectorAll('.game-container .skill-ball-container')
+
+  // Najít správný kontejner (musíme projít všechny a najít ten s odpovídajícím hráčem)
+  let targetContainer = null
+  for (const container of teamSkillsContainers) {
+    const playerId = container.getAttribute('data-player-id')
+    const team = container.getAttribute('data-team')
+    if (playerId == specialSkill.player.id && ((isTeam1 && team === 'team1') || (!isTeam1 && team === 'team2'))) {
+      targetContainer = container
+      break
+    }
+  }
+
+  if (!targetContainer) return
+
+  const skillBall = targetContainer.querySelector('.skill-ball')
+  const skillTag = targetContainer.querySelector('.skill-ball-tag')
+
+  if (!skillBall || !skillTag) return
+
+  // Odstranit všechny staré třídy
+  skillBall.classList.remove('offensive', 'defensive', 'ultimate-offensive', 'ultimate-defensive', 'special')
+  skillTag.classList.remove('offensive', 'defensive', 'ultimate-offensive', 'ultimate-defensive', 'special')
+
+  // Přidat nové třídy podle výsledku
+  if (specialSkill.isFailedSpecial) {
+    // Neudělat nic - ponechat původní vzhled, protože hra končí
+  } else if (specialSkill.coinFlipResult === 'ultimate') {
+    if (specialSkill.isOffensive) {
+      skillBall.classList.add('ultimate-offensive')
+      skillTag.classList.add('ultimate-offensive')
+    } else if (specialSkill.isDefensive) {
+      skillBall.classList.add('ultimate-defensive')
+      skillTag.classList.add('ultimate-defensive')
+    }
+  } else if (specialSkill.coinFlipResult === 'standard') {
+    if (specialSkill.isOffensive) {
+      skillBall.classList.add('offensive')
+      skillTag.classList.add('offensive')
+    } else if (specialSkill.isDefensive) {
+      skillBall.classList.add('defensive')
+      skillTag.classList.add('defensive')
+    }
+  }
+}
+
+// Zpracování speciálních schopností - hození mincí a reklasifikace
+async function processSpecialSkillsCoinFlip(team1Skills, team2Skills, evalDiv) {
+  // Najít všechny speciální schopnosti (ID 10, 11, 19)
+  const specialSkills = [...team1Skills, ...team2Skills].filter(s => s.isSpecial && (s.skill === 10 || s.skill === 11 || s.skill === 19))
+
+  if (specialSkills.length === 0) return
+
+  // Pro každou speciální schopnost hodit mincemi
+  for (const specialSkill of specialSkills) {
+    const isTeam1 = team1Skills.includes(specialSkill)
+    const skillData = skills[specialSkill.skill]
+
+    // Hodit dvěma mincemi (true = panna/tails, false = hlava/heads)
+    const coin1 = Math.random() < 0.5 // true = panna
+    const coin2 = Math.random() < 0.5 // true = panna
+    const pannyCount = (coin1 ? 1 : 0) + (coin2 ? 1 : 0)
+
+    // Zobrazit hození mincí
+    evalDiv.innerHTML = `
+      <div class="coin-flip-result" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; margin: 20px 0; border-radius: 15px; color: white; text-align: center;">
+        <h3>🪙 Speciální schopnost: ${skillData.name}</h3>
+        <p><strong>${specialSkill.player.name}</strong></p>
+        <div style="display: flex; gap: 20px; justify-content: center; margin: 20px 0; font-size: 3rem;">
+          <div>${coin1 ? '🟡' : '⚪'}</div>
+          <div>${coin2 ? '🟡' : '⚪'}</div>
+        </div>
+        <p style="font-size: 1.3rem; font-weight: bold;">Počet panen: ${pannyCount}</p>
+      </div>
+    `
+    await smartDelay(2000)
+
+    // Reklasifikovat schopnost na základě výsledku
+    if (pannyCount === 0) {
+      // 0 panen = prohraná výměna
+      specialSkill.coinFlipResult = 'failed'
+      specialSkill.isFailedSpecial = true
+
+      evalDiv.innerHTML = `
+        <div style="background: rgba(255,0,0,0.2); padding: 20px; margin: 20px 0; border-radius: 15px; color: white; text-align: center;">
+          <p style="font-size: 1.2rem;">❌ 0 panen - Prohraná výměna!</p>
+        </div>
+      `
+      await smartDelay(1500)
+
+    } else if (pannyCount === 1) {
+      // 1 panna = standardní útok
+      specialSkill.coinFlipResult = 'standard'
+
+      // Určit, zda jde o útočnou nebo obrannou schopnost
+      if (specialSkill.skill === 10 || specialSkill.skill === 19) {
+        // Skákaná smeč a Vytlučený blok = útočná
+        specialSkill.isOffensive = true
+        specialSkill.isDefensive = false
+        specialSkill.isUltimate = false
+
+        evalDiv.innerHTML = `
+          <div style="background: rgba(237,28,36,0.3); padding: 20px; margin: 20px 0; border-radius: 15px; color: white; text-align: center;">
+            <p style="font-size: 1.2rem;">⚔️ 1 panna - Standardní útočná schopnost!</p>
+          </div>
+        `
+      } else if (specialSkill.skill === 11) {
+        // Smečovaný servis = útočná
+        specialSkill.isOffensive = true
+        specialSkill.isDefensive = false
+        specialSkill.isUltimate = false
+
+        evalDiv.innerHTML = `
+          <div style="background: rgba(237,28,36,0.3); padding: 20px; margin: 20px 0; border-radius: 15px; color: white; text-align: center;">
+            <p style="font-size: 1.2rem;">⚔️ 1 panna - Standardní útočná schopnost!</p>
+          </div>
+        `
+      }
+      await smartDelay(1500)
+
+    } else if (pannyCount === 2) {
+      // 2 panny = ultimate
+      specialSkill.coinFlipResult = 'ultimate'
+      specialSkill.isUltimate = true
+
+      // Určit typ ultimate
+      if (specialSkill.skill === 10 || specialSkill.skill === 19) {
+        // Skákaná smeč a Vytlučený blok = útočná ultimate
+        specialSkill.isOffensive = true
+        specialSkill.isDefensive = false
+
+        evalDiv.innerHTML = `
+          <div style="background: rgba(0,0,0,0.8); padding: 20px; margin: 20px 0; border-radius: 15px; color: white; text-align: center;">
+            <p style="font-size: 1.2rem;">⭐ 2 panny - Útočná ULTIMATE schopnost!</p>
+          </div>
+        `
+      } else if (specialSkill.skill === 11) {
+        // Smečovaný servis = obranná ultimate
+        specialSkill.isOffensive = false
+        specialSkill.isDefensive = true
+
+        evalDiv.innerHTML = `
+          <div style="background: rgba(0,0,0,0.8); padding: 20px; margin: 20px 0; border-radius: 15px; color: white; text-align: center;">
+            <p style="font-size: 1.2rem;">⭐ 2 panny - Obranná ULTIMATE schopnost!</p>
+          </div>
+        `
+      }
+      await smartDelay(1500)
+    }
+
+    // Aktualizovat ikonu schopnosti
+    reclassifySpecialSkillIcon(specialSkill, isTeam1, team1Skills.indexOf(specialSkill) !== -1 ? team1Skills.indexOf(specialSkill) : team2Skills.indexOf(specialSkill), isTeam1)
+  }
+}
+
 // Fázové vyhodnocení s animacemi - NOVÝ BODOVÝ SYSTÉM
 async function evaluatePointWithPhases(team1Skills, team2Skills) {
   const evalDiv = getEvaluationDiv()
@@ -5023,6 +5518,39 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
 
   // Resetovat ikony speciálních schopností na začátku výměny
   resetSpecialSkillIcons()
+
+  // FÁZE 0: Hodit mincemi pro všechny speciální schopnosti a reklasifikovat je
+  await processSpecialSkillsCoinFlip(team1Skills, team2Skills, evalDiv)
+
+  // FÁZE 0B: Zpracovat neúspěšné speciální schopnosti (0 panen)
+  const failedSpecialSkills = [...team1Skills, ...team2Skills].filter(s => s.isFailedSpecial)
+
+  if (failedSpecialSkills.length > 0) {
+    // Pokud je nějaká neúspěšná speciální schopnost, bod pro soupeře
+    const failedSkill = failedSpecialSkills[0] // Použít první neúspěšnou
+    const isTeam1 = team1Skills.includes(failedSkill)
+    const skillData = skills[failedSkill.skill]
+
+    evalDiv.innerHTML = `
+      <div style="background: rgba(255,0,0,0.3); padding: 25px; margin: 20px 0; border-radius: 15px; color: white; text-align: center;">
+        <h2>❌ Speciální schopnost selhala!</h2>
+        <p><strong>${failedSkill.player.name}</strong>: ${skillData.name}</p>
+        <p style="font-size: 1.2rem; margin-top: 15px;">⚠️ Bod pro soupeře!</p>
+      </div>
+    `
+    await smartDelay(2500)
+
+    // Přehrát animaci selhání
+    await animateSkillEvaluation(failedSkill, null, 'failed')
+
+    return {
+      winner: isTeam1 ? 'team2' : 'team1',
+      reason: `${failedSkill.player.name} neuspěl se speciální schopností ${skillData.name}`,
+      team1Points: isTeam1 ? 0 : 1,
+      team2Points: isTeam1 ? 1 : 0,
+      interactions: []
+    }
+  }
 
   // FÁZE 0A: Zpracovat NESMYSL (priorita před všemi ostatními schopnostmi)
   const nonsenseAttempts = [...team1Skills, ...team2Skills].filter(s => s.isNonsense)
@@ -5071,6 +5599,9 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
       // Přehrát epickou hudbu a wow zvuky
       const epicMusic = playAudioBackground(epicNonsenseMusic, 0.6)
       playAudioBackground(wowSound, 0.7)
+
+      // Přehrát zvuk úspěšného nesmyslu
+      soundManager.playNonsenseSuccess()
 
       evalDiv.innerHTML = `
         <div class="nonsense-success">
@@ -5141,6 +5672,9 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
       }
 
       // Zobrazit výsledek
+      // Přehrát zvuk neúspěchu
+      soundManager.playSkillFail()
+
       evalDiv.innerHTML = `
         <div class="nonsense-fail">
           <h2>❌ NESMYSL SELHAL!</h2>
@@ -5223,278 +5757,8 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
   }
 
   // ====================================================================
-  // FÁZE 0B: Zpracovat SPECIÁLNÍ SCHOPNOSTI S HODEM MINCÍ (Tupá rána a Smečovaný servis)
-  // Tyto schopnosti NEJSOU ultimate, ale mohou mít efekt ultimate při správném výsledku
+  // POZNÁMKA: SPECIÁLNÍ SCHOPNOSTI (4, 11) se vyhodnotí AŽ PO ultimate!
   // ====================================================================
-
-  // Smečovaný servis Týmu 1 (ID 11)
-  for (const skillObj of team1Skills.filter(s => s.skill === 11)) {
-    const successRate = calculateSkillSuccessRate(skillObj.player, 11, gameState.nonsenseDebuffs.team1)
-    const coin1 = Math.random() < 0.5
-    const coin2 = Math.random() < 0.5
-    const tails = (coin1 ? 1 : 0) + (coin2 ? 1 : 0)
-    const coin1Text = coin1 ? 'Panna' : 'Hlava'
-    const coin2Text = coin2 ? 'Panna' : 'Hlava'
-
-    await showCoinFlip(2, [coin1, coin2])
-
-    if (tails === 0) {
-      // Hlava + Hlava = prohraná výměna
-      updateSpecialSkillIcon(skillObj, 'team1', 'offensive')
-      const failureType = Math.random() < 0.5 ? 'do autu' : 'do sítě'
-      const comment = `Smečovaný servis: ${coin1Text} + ${coin2Text} = <strong>Prohraná výměna!</strong>`
-      await showSkillComment(skillObj, successRate, false, comment)
-      await showSkillClash(skillObj, null, 'blocked')
-
-      // Přehrát video neúspěšného Smečovaného servisu (pokud existuje)
-      const failedVideo = getPlayerSkillVideo(skillObj.player.id, 11, 'fail')
-      if (failedVideo) {
-        await showActionVideo({ attacker: skillObj, defender: null, result: 'failed' }, failedVideo, false, true)
-      }
-
-      return {
-        winner: 'team2',
-        reason: `Smečovaný servis...${failureType}!`,
-        team1Points: 0,
-        team2Points: 1,
-        decisiveSkill: skillObj,
-        interactions: []
-      }
-    } else if (tails === 1) {
-      // 1 panna = standardní útok
-      updateSpecialSkillIcon(skillObj, 'team1', 'offensive')
-      const comment = `Smečovaný servis: ${coin1Text} + ${coin2Text} = <strong>Standardní útok</strong>`
-      await showSkillComment(skillObj, successRate, true, comment)
-    } else {
-      // 2 panny = efekt obranné ultimate
-      updateSpecialSkillIcon(skillObj, 'team1', 'ultimate-defensive')
-      const comment = `Smečovaný servis: ${coin1Text} + ${coin2Text} = <strong>Efekt obranné ultimate!</strong>`
-      await showSkillComment(skillObj, successRate, true, comment)
-      team1SuccessfulUltimateDefensive.push(skillObj)
-    }
-  }
-
-  // Smečovaný servis Týmu 2 (ID 11)
-  for (const skillObj of team2Skills.filter(s => s.skill === 11)) {
-    const successRate = calculateSkillSuccessRate(skillObj.player, 11, gameState.nonsenseDebuffs.team2)
-    const coin1 = Math.random() < 0.5
-    const coin2 = Math.random() < 0.5
-    const tails = (coin1 ? 1 : 0) + (coin2 ? 1 : 0)
-    const coin1Text = coin1 ? 'Panna' : 'Hlava'
-    const coin2Text = coin2 ? 'Panna' : 'Hlava'
-
-    await showCoinFlip(2, [coin1, coin2])
-
-    if (tails === 0) {
-      // Hlava + Hlava = prohraná výměna
-      updateSpecialSkillIcon(skillObj, 'team2', 'offensive')
-      const failureType = Math.random() < 0.5 ? 'do autu' : 'do sítě'
-      const comment = `Smečovaný servis: ${coin1Text} + ${coin2Text} = <strong>Prohraná výměna!</strong>`
-      await showSkillComment(skillObj, successRate, false, comment)
-      await showSkillClash(skillObj, null, 'blocked')
-
-      // Přehrát video neúspěšného Smečovaného servisu (pokud existuje)
-      const failedVideo = getPlayerSkillVideo(skillObj.player.id, 11, 'fail')
-      if (failedVideo) {
-        await showActionVideo({ attacker: skillObj, defender: null, result: 'failed' }, failedVideo, false, true)
-      }
-
-      return {
-        winner: 'team1',
-        reason: `Smečovaný servis...${failureType}!`,
-        team1Points: 1,
-        team2Points: 0,
-        decisiveSkill: skillObj,
-        interactions: []
-      }
-    } else if (tails === 1) {
-      // 1 panna = standardní útok
-      updateSpecialSkillIcon(skillObj, 'team2', 'offensive')
-      const comment = `Smečovaný servis: ${coin1Text} + ${coin2Text} = <strong>Standardní útok</strong>`
-      await showSkillComment(skillObj, successRate, true, comment)
-    } else {
-      // 2 panny = efekt obranné ultimate
-      updateSpecialSkillIcon(skillObj, 'team2', 'ultimate-defensive')
-      const comment = `Smečovaný servis: ${coin1Text} + ${coin2Text} = <strong>Efekt obranné ultimate!</strong>`
-      await showSkillComment(skillObj, successRate, true, comment)
-      team2SuccessfulUltimateDefensive.push(skillObj)
-    }
-  }
-
-  // Tupá rána Týmu 1 (ID 4)
-  for (const skillObj of team1Skills.filter(s => s.skill === 4)) {
-    const successRate = calculateSkillSuccessRate(skillObj.player, 4, gameState.nonsenseDebuffs.team1)
-    const coin1 = Math.random() < 0.5
-    const coin2 = Math.random() < 0.5
-    const tails = (coin1 ? 1 : 0) + (coin2 ? 1 : 0)
-    const coin1Text = coin1 ? 'Panna' : 'Hlava'
-    const coin2Text = coin2 ? 'Panna' : 'Hlava'
-
-    await showCoinFlip(2, [coin1, coin2])
-
-    if (tails === 0) {
-      // Hlava + Hlava = prohraná výměna
-      updateSpecialSkillIcon(skillObj, 'team1', 'defensive')
-      const failureType = Math.random() < 0.5 ? 'do autu' : 'do sítě'
-      const comment = `Tupá rána: ${coin1Text} + ${coin2Text} = <strong>Prohraná výměna!</strong>`
-      await showSkillComment(skillObj, successRate, false, comment)
-      await showSkillClash(skillObj, null, 'blocked')
-
-      // Přehrát video neúspěšné Tupé rány (pokud existuje)
-      const failedVideo = getPlayerSkillVideo(skillObj.player.id, 4, 'fail')
-      if (failedVideo) {
-        await showActionVideo({ attacker: skillObj, defender: null, result: 'failed' }, failedVideo, false, true)
-      }
-
-      return {
-        winner: 'team2',
-        reason: `Tupá rána...${failureType}!`,
-        team1Points: 0,
-        team2Points: 1,
-        decisiveSkill: skillObj,
-        interactions: []
-      }
-    } else if (tails === 1) {
-      // 1 panna = standardní útok (zůstane jako útočná)
-      const comment = `Tupá rána: ${coin1Text} + ${coin2Text} = <strong>Standardní útok</strong>`
-      await showSkillComment(skillObj, successRate, true, comment)
-    } else {
-      // 2 panny = efekt útočné ultimate
-      updateSpecialSkillIcon(skillObj, 'team1', 'ultimate-offensive')
-      const comment = `Tupá rána: ${coin1Text} + ${coin2Text} = <strong>Efekt útočné ultimate!</strong>`
-      await showSkillComment(skillObj, successRate, true, comment)
-      team1SuccessfulUltimateOffensive.push(skillObj)
-    }
-  }
-
-  // Tupá rána Týmu 2 (ID 4)
-  for (const skillObj of team2Skills.filter(s => s.skill === 4)) {
-    const successRate = calculateSkillSuccessRate(skillObj.player, 4, gameState.nonsenseDebuffs.team2)
-    const coin1 = Math.random() < 0.5
-    const coin2 = Math.random() < 0.5
-    const tails = (coin1 ? 1 : 0) + (coin2 ? 1 : 0)
-    const coin1Text = coin1 ? 'Panna' : 'Hlava'
-    const coin2Text = coin2 ? 'Panna' : 'Hlava'
-
-    await showCoinFlip(2, [coin1, coin2])
-
-    if (tails === 0) {
-      // Hlava + Hlava = prohraná výměna
-      updateSpecialSkillIcon(skillObj, 'team2', 'defensive')
-      const failureType = Math.random() < 0.5 ? 'do autu' : 'do sítě'
-      const comment = `Tupá rána: ${coin1Text} + ${coin2Text} = <strong>Prohraná výměna!</strong>`
-      await showSkillComment(skillObj, successRate, false, comment)
-      await showSkillClash(skillObj, null, 'blocked')
-
-      // Přehrát video neúspěšné Tupé rány (pokud existuje)
-      const failedVideo = getPlayerSkillVideo(skillObj.player.id, 4, 'fail')
-      if (failedVideo) {
-        await showActionVideo({ attacker: skillObj, defender: null, result: 'failed' }, failedVideo, false, true)
-      }
-
-      return {
-        winner: 'team1',
-        reason: `Tupá rána...${failureType}!`,
-        team1Points: 1,
-        team2Points: 0,
-        decisiveSkill: skillObj,
-        interactions: []
-      }
-    } else if (tails === 1) {
-      // 1 panna = standardní útok (zůstane jako útočná)
-      const comment = `Tupá rána: ${coin1Text} + ${coin2Text} = <strong>Standardní útok</strong>`
-      await showSkillComment(skillObj, successRate, true, comment)
-    } else {
-      // 2 panny = efekt útočné ultimate
-      updateSpecialSkillIcon(skillObj, 'team2', 'ultimate-offensive')
-      const comment = `Tupá rána: ${coin1Text} + ${coin2Text} = <strong>Efekt útočné ultimate!</strong>`
-      await showSkillComment(skillObj, successRate, true, comment)
-      team2SuccessfulUltimateOffensive.push(skillObj)
-    }
-  }
-
-  // ====================================================================
-  // FÁZE 0C: UNIVERZÁLNÍ OBRANY PROTI SPECIÁLNÍM SCHOPNOSTEM (skills 4 a 11 se standardním efektem)
-  // ====================================================================
-  // Univerzální obrany (Hruď 16 a Silnější noha 17) mohou zablokovat Tupou ránu a Smečovaný servis
-  // pokud tyto schopnosti NEMAJÍ efekt ultimate (tj. padla 1 panna = standardní útok)
-  // Šance na blok: 50%
-
-  // Najít univerzální obrany v obou týmech
-  const team1UniversalDefenses = team1Skills.filter(s => (s.skill === 16 || s.skill === 17) && !s.isUltimate)
-  const team2UniversalDefenses = team2Skills.filter(s => (s.skill === 16 || s.skill === 17) && !s.isUltimate)
-
-  // Týmy 1 universal defense vs Tým 2 special skills (4, 11) se standardním efektem
-  for (const univDef of team1UniversalDefenses) {
-    const targetSpecialSkill = team2Skills.find(s =>
-      (s.skill === 4 || s.skill === 11) &&
-      !team2SuccessfulUltimateOffensive.includes(s) &&
-      !team2SuccessfulUltimateDefensive.includes(s)
-    )
-
-    if (targetSpecialSkill) {
-      // 50% šance na blok
-      const blockSuccess = Math.random() < 0.5
-
-      if (blockSuccess) {
-        const defenseSuccessRate = calculateSkillSuccessRate(univDef.player, univDef.skill, gameState.nonsenseDebuffs.team1)
-        await showSkillComment(univDef, defenseSuccessRate, true, `${getPlayerFirstNameOrNickname(univDef.player)} použil ${skills[univDef.skill].name} a zablokoval ${skills[targetSpecialSkill.skill].name}! (50% šance)`, 'defensive')
-        await showSkillClash(targetSpecialSkill, univDef, 'blocked')
-
-        return {
-          winner: 'team1',
-          reason: `Tým 2 prohrál výměnu - ${skills[targetSpecialSkill.skill].name} byl zablokován univerzální obranou!`,
-          team1Points: 1,
-          team2Points: 0,
-          decisiveSkill: univDef,
-          interactions: [{
-            attacker: targetSpecialSkill,
-            defender: univDef,
-            result: 'blocked_by_universal_defense',
-            attackingTeam: 'team2',
-            defendingTeam: 'team1',
-            pointChange: +1
-          }]
-        }
-      }
-    }
-  }
-
-  // Tým 2 universal defense vs Tým 1 special skills (4, 11) se standardním efektem
-  for (const univDef of team2UniversalDefenses) {
-    const targetSpecialSkill = team1Skills.find(s =>
-      (s.skill === 4 || s.skill === 11) &&
-      !team1SuccessfulUltimateOffensive.includes(s) &&
-      !team1SuccessfulUltimateDefensive.includes(s)
-    )
-
-    if (targetSpecialSkill) {
-      // 50% šance na blok
-      const blockSuccess = Math.random() < 0.5
-
-      if (blockSuccess) {
-        const defenseSuccessRate = calculateSkillSuccessRate(univDef.player, univDef.skill, gameState.nonsenseDebuffs.team2)
-        await showSkillComment(univDef, defenseSuccessRate, true, `${getPlayerFirstNameOrNickname(univDef.player)} použil ${skills[univDef.skill].name} a zablokoval ${skills[targetSpecialSkill.skill].name}! (50% šance)`, 'defensive')
-        await showSkillClash(targetSpecialSkill, univDef, 'blocked')
-
-        return {
-          winner: 'team2',
-          reason: `Tým 1 prohrál výměnu - ${skills[targetSpecialSkill.skill].name} byl zablokován univerzální obranou!`,
-          team1Points: 0,
-          team2Points: 1,
-          decisiveSkill: univDef,
-          interactions: [{
-            attacker: targetSpecialSkill,
-            defender: univDef,
-            result: 'blocked_by_universal_defense',
-            attackingTeam: 'team1',
-            defendingTeam: 'team2',
-            pointChange: +1
-          }]
-        }
-      }
-    }
-  }
 
   // ====================================================================
   // VYHODNOTIT OBRANNÉ ULTIMATE (mají přednost!)
@@ -5691,13 +5955,41 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
       team1Points = team1UltimatePoints
       team2Points = team2UltimatePoints
     } else {
-      // Stejný počet bodů z ultimate (ale méně než 10) - remíza
+      // Stejný počet bodů z ultimate - OBA TÝMY ZÍSKÁVAJÍ BODY!
+      // Důvod: Útočné ultimate jsou na stejné úrovni, obě mají právo na bod
+      evalDiv.innerHTML = `
+        <div class="equal-ultimates">
+          <h3>⚖️ Rovnocenné ultimate!</h3>
+          <p>Oba týmy mají po ${team1UltimatePoints} bodech z útočných ultimate.</p>
+          <p class="ultimate-equal">✅ Obě strany dostávají body! (${team1UltimatePoints}:${team2UltimatePoints})</p>
+        </div>
+      `
+      await smartDelay(2500)
+
+      // Vytvořit interakce pro oba týmy
+      const allUltimateInteractions = [
+        ...team1SuccessfulUltimateOffensive.map(ultimate => ({
+          attacker: ultimate,
+          defender: null,
+          result: 'success',
+          attackingTeam: 'team1',
+          pointChange: 1
+        })),
+        ...team2SuccessfulUltimateOffensive.map(ultimate => ({
+          attacker: ultimate,
+          defender: null,
+          result: 'success',
+          attackingTeam: 'team2',
+          pointChange: 1
+        }))
+      ]
+
       return {
         winner: 'draw',
-        reason: `Stejný počet bodů z ultimate ${team1UltimatePoints}:${team2UltimatePoints}`,
+        reason: `Rovnocenné útočné ultimate - body pro oba týmy (${team1UltimatePoints}:${team2UltimatePoints})`,
         team1Points: team1UltimatePoints,
         team2Points: team2UltimatePoints,
-        interactions: []
+        interactions: allUltimateInteractions
       }
     }
   }
@@ -5706,6 +5998,379 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
   const team1AllAttacksBlocked = team2HasDefense
   const team2AllAttacksBlocked = team1HasDefense
 
+  // ====================================================================
+  // FÁZE SPECIÁLNÍCH SCHOPNOSTÍ: Vyhodnotit Tupou ránu (4) a Smečovaný servis (11)
+  // Tyto schopnosti se vyhodnocují AŽ PO ultimate
+  // ====================================================================
+
+  // Sledovat, které speciální schopnosti mají standardní efekt (1 panna)
+  const specialSkillsWithStandardEffect = new Set()
+
+  // Najít univerzální obrany (budou potřeba později)
+  const team1UniversalDefenses = team1Skills.filter(s => (s.skill === 16 || s.skill === 17) && !s.isUltimate)
+  const team2UniversalDefenses = team2Skills.filter(s => (s.skill === 16 || s.skill === 17) && !s.isUltimate)
+
+  // Smečovaný servis Týmu 1 (ID 11)
+  for (const skillObj of team1Skills.filter(s => s.skill === 11)) {
+    const successRate = calculateSkillSuccessRate(skillObj.player, 11, gameState.nonsenseDebuffs.team1)
+    const coin1 = Math.random() < 0.5
+    const coin2 = Math.random() < 0.5
+    const tails = (coin1 ? 1 : 0) + (coin2 ? 1 : 0)
+    const coin1Text = coin1 ? 'Panna' : 'Hlava'
+    const coin2Text = coin2 ? 'Panna' : 'Hlava'
+
+    await showCoinFlip(2, [coin1, coin2])
+
+    if (tails === 0) {
+      // Hlava + Hlava = prohraná výměna
+      updateSpecialSkillIcon(skillObj, 'team1', 'offensive')
+      const failureType = Math.random() < 0.5 ? 'do autu' : 'do sítě'
+      const comment = `Smečovaný servis: ${coin1Text} + ${coin2Text} = <strong>Prohraná výměna!</strong>`
+      await showSkillComment(skillObj, successRate, false, comment)
+      // Přehrát zvuk neúspěchu
+      soundManager.playSkillFail()
+      await showSkillClash(skillObj, null, 'failed')
+
+      const failedVideo = getPlayerSkillVideo(skillObj.player.id, 11, 'fail')
+      if (failedVideo) {
+        await showActionVideo({ attacker: skillObj, defender: null, result: 'failed' }, failedVideo, false, true)
+      }
+
+      return {
+        winner: 'team2',
+        reason: `Smečovaný servis...${failureType}!`,
+        team1Points: 0,
+        team2Points: 1,
+        decisiveSkill: skillObj,
+        interactions: []
+      }
+    } else if (tails === 1) {
+      // 1 panna = standardní útok
+      updateSpecialSkillIcon(skillObj, 'team1', 'offensive')
+      const comment = `Smečovaný servis: ${coin1Text} + ${coin2Text} = <strong>Standardní útok</strong>`
+      await showSkillComment(skillObj, successRate, true, comment)
+      specialSkillsWithStandardEffect.add(skillObj)
+      // Přehrát zvuk kontaktu s míčem pro standardní útok ze smečovaného servisu
+      soundManager.playBallHit()
+    } else {
+      // 2 panny = nebránitelný bod!
+      updateSpecialSkillIcon(skillObj, 'team1', 'ultimate-defensive')
+      const comment = `Smečovaný servis: ${coin1Text} + ${coin2Text} = <strong>Efekt obranné ultimate - nebránitelný bod!</strong>`
+      await showSkillComment(skillObj, successRate, true, comment)
+      // Přehrát zvuk obranné ultimate
+      soundManager.playUltimateDefense()
+      await showSkillClash(skillObj, null, 'success')
+
+      const successVideo = getPlayerSkillVideo(skillObj.player.id, 11, 'success')
+      if (successVideo) {
+        await showActionVideo({ attacker: skillObj, defender: null, result: 'success' }, successVideo, false)
+      }
+
+      return {
+        winner: 'team1',
+        reason: `Smečovaný servis s efektem obranné ultimate - nebránitelný bod!`,
+        team1Points: 1,
+        team2Points: 0,
+        decisiveSkill: skillObj,
+        interactions: [{
+          attacker: skillObj,
+          defender: null,
+          result: 'success',
+          attackingTeam: 'team1',
+          pointChange: 1
+        }]
+      }
+    }
+  }
+
+  // Smečovaný servis Týmu 2 (ID 11)
+  for (const skillObj of team2Skills.filter(s => s.skill === 11)) {
+    const successRate = calculateSkillSuccessRate(skillObj.player, 11, gameState.nonsenseDebuffs.team2)
+    const coin1 = Math.random() < 0.5
+    const coin2 = Math.random() < 0.5
+    const tails = (coin1 ? 1 : 0) + (coin2 ? 1 : 0)
+    const coin1Text = coin1 ? 'Panna' : 'Hlava'
+    const coin2Text = coin2 ? 'Panna' : 'Hlava'
+
+    await showCoinFlip(2, [coin1, coin2])
+
+    if (tails === 0) {
+      // Hlava + Hlava = prohraná výměna
+      updateSpecialSkillIcon(skillObj, 'team2', 'offensive')
+      const failureType = Math.random() < 0.5 ? 'do autu' : 'do sítě'
+      const comment = `Smečovaný servis: ${coin1Text} + ${coin2Text} = <strong>Prohraná výměna!</strong>`
+      await showSkillComment(skillObj, successRate, false, comment)
+      // Přehrát zvuk neúspěchu
+      soundManager.playSkillFail()
+      await showSkillClash(skillObj, null, 'failed')
+
+      const failedVideo = getPlayerSkillVideo(skillObj.player.id, 11, 'fail')
+      if (failedVideo) {
+        await showActionVideo({ attacker: skillObj, defender: null, result: 'failed' }, failedVideo, false, true)
+      }
+
+      return {
+        winner: 'team1',
+        reason: `Smečovaný servis...${failureType}!`,
+        team1Points: 1,
+        team2Points: 0,
+        decisiveSkill: skillObj,
+        interactions: []
+      }
+    } else if (tails === 1) {
+      // 1 panna = standardní útok
+      updateSpecialSkillIcon(skillObj, 'team2', 'offensive')
+      const comment = `Smečovaný servis: ${coin1Text} + ${coin2Text} = <strong>Standardní útok</strong>`
+      await showSkillComment(skillObj, successRate, true, comment)
+      specialSkillsWithStandardEffect.add(skillObj)
+      // Přehrát zvuk kontaktu s míčem pro standardní útok ze smečovaného servisu
+      soundManager.playBallHit()
+    } else {
+      // 2 panny = nebránitelný bod!
+      updateSpecialSkillIcon(skillObj, 'team2', 'ultimate-defensive')
+      const comment = `Smečovaný servis: ${coin1Text} + ${coin2Text} = <strong>Efekt obranné ultimate - nebránitelný bod!</strong>`
+      await showSkillComment(skillObj, successRate, true, comment)
+      // Přehrát zvuk obranné ultimate
+      soundManager.playUltimateDefense()
+      await showSkillClash(skillObj, null, 'success')
+
+      const successVideo = getPlayerSkillVideo(skillObj.player.id, 11, 'success')
+      if (successVideo) {
+        await showActionVideo({ attacker: skillObj, defender: null, result: 'success' }, successVideo, false)
+      }
+
+      return {
+        winner: 'team2',
+        reason: `Smečovaný servis s efektem obranné ultimate - nebránitelný bod!`,
+        team1Points: 0,
+        team2Points: 1,
+        decisiveSkill: skillObj,
+        interactions: [{
+          attacker: skillObj,
+          defender: null,
+          result: 'success',
+          attackingTeam: 'team2',
+          pointChange: 1
+        }]
+      }
+    }
+  }
+
+  // Skákaná smeč Týmu 1 (ID 10)
+  for (const skillObj of team1Skills.filter(s => s.skill === 10)) {
+    const successRate = calculateSkillSuccessRate(skillObj.player, 10, gameState.nonsenseDebuffs.team1)
+    const coin1 = Math.random() < 0.5
+    const coin2 = Math.random() < 0.5
+    const tails = (coin1 ? 1 : 0) + (coin2 ? 1 : 0)
+    const coin1Text = coin1 ? 'Panna' : 'Hlava'
+    const coin2Text = coin2 ? 'Panna' : 'Hlava'
+
+    await showCoinFlip(2, [coin1, coin2])
+
+    if (tails === 0) {
+      // Hlava + Hlava = prohraná výměna
+      updateSpecialSkillIcon(skillObj, 'team1', 'defensive')
+      const failureType = Math.random() < 0.5 ? 'do autu' : 'do sítě'
+      const comment = `Skákaná smeč: ${coin1Text} + ${coin2Text} = <strong>Prohraná výměna!</strong>`
+      await showSkillComment(skillObj, successRate, false, comment)
+      // Přehrát zvuk neúspěchu
+      soundManager.playSkillFail()
+      await showSkillClash(skillObj, null, 'failed')
+
+      const failedVideo = getPlayerSkillVideo(skillObj.player.id, 10, 'fail')
+      if (failedVideo) {
+        await showActionVideo({ attacker: skillObj, defender: null, result: 'failed' }, failedVideo, false, true)
+      }
+
+      return {
+        winner: 'team2',
+        reason: `Skákaná smeč...${failureType}!`,
+        team1Points: 0,
+        team2Points: 1,
+        decisiveSkill: skillObj,
+        interactions: []
+      }
+    } else if (tails === 1) {
+      // 1 panna = standardní útok
+      updateSpecialSkillIcon(skillObj, 'team1', 'offensive')
+      const comment = `Skákaná smeč: ${coin1Text} + ${coin2Text} = <strong>Standardní útok</strong>`
+      await showSkillComment(skillObj, successRate, true, comment)
+      specialSkillsWithStandardEffect.add(skillObj)
+      // Přehrát zvuk kontaktu s míčem pro standardní útok ze skákané smeče
+      soundManager.playBallHit()
+    } else {
+      // 2 panny = nebránitelný bod!
+      updateSpecialSkillIcon(skillObj, 'team1', 'ultimate-offensive')
+      const comment = `Skákaná smeč: ${coin1Text} + ${coin2Text} = <strong>Efekt útočné ultimate - nebránitelný bod!</strong>`
+      await showSkillComment(skillObj, successRate, true, comment)
+      // Přehrát zvuk útočné ultimate
+      soundManager.playUltimateAttack()
+      await showSkillClash(skillObj, null, 'success')
+
+      const successVideo = getPlayerSkillVideo(skillObj.player.id, 10, 'success')
+      if (successVideo) {
+        await showActionVideo({ attacker: skillObj, defender: null, result: 'success' }, successVideo, false)
+      }
+
+      return {
+        winner: 'team1',
+        reason: `Skákaná smeč s efektem útočné ultimate - nebránitelný bod!`,
+        team1Points: 1,
+        team2Points: 0,
+        decisiveSkill: skillObj,
+        interactions: [{
+          attacker: skillObj,
+          defender: null,
+          result: 'success',
+          attackingTeam: 'team1',
+          pointChange: 1
+        }]
+      }
+    }
+  }
+
+  // Skákaná smeč Týmu 2 (ID 10)
+  for (const skillObj of team2Skills.filter(s => s.skill === 10)) {
+    const successRate = calculateSkillSuccessRate(skillObj.player, 10, gameState.nonsenseDebuffs.team2)
+    const coin1 = Math.random() < 0.5
+    const coin2 = Math.random() < 0.5
+    const tails = (coin1 ? 1 : 0) + (coin2 ? 1 : 0)
+    const coin1Text = coin1 ? 'Panna' : 'Hlava'
+    const coin2Text = coin2 ? 'Panna' : 'Hlava'
+
+    await showCoinFlip(2, [coin1, coin2])
+
+    if (tails === 0) {
+      // Hlava + Hlava = prohraná výměna
+      updateSpecialSkillIcon(skillObj, 'team2', 'defensive')
+      const failureType = Math.random() < 0.5 ? 'do autu' : 'do sítě'
+      const comment = `Skákaná smeč: ${coin1Text} + ${coin2Text} = <strong>Prohraná výměna!</strong>`
+      await showSkillComment(skillObj, successRate, false, comment)
+      // Přehrát zvuk neúspěchu
+      soundManager.playSkillFail()
+      await showSkillClash(skillObj, null, 'failed')
+
+      const failedVideo = getPlayerSkillVideo(skillObj.player.id, 10, 'fail')
+      if (failedVideo) {
+        await showActionVideo({ attacker: skillObj, defender: null, result: 'failed' }, failedVideo, false, true)
+      }
+
+      return {
+        winner: 'team1',
+        reason: `Skákaná smeč...${failureType}!`,
+        team1Points: 1,
+        team2Points: 0,
+        decisiveSkill: skillObj,
+        interactions: []
+      }
+    } else if (tails === 1) {
+      // 1 panna = standardní útok
+      updateSpecialSkillIcon(skillObj, 'team2', 'offensive')
+      const comment = `Skákaná smeč: ${coin1Text} + ${coin2Text} = <strong>Standardní útok</strong>`
+      await showSkillComment(skillObj, successRate, true, comment)
+      specialSkillsWithStandardEffect.add(skillObj)
+      // Přehrát zvuk kontaktu s míčem pro standardní útok ze skákané smeče
+      soundManager.playBallHit()
+    } else {
+      // 2 panny = nebránitelný bod!
+      updateSpecialSkillIcon(skillObj, 'team2', 'ultimate-offensive')
+      const comment = `Skákaná smeč: ${coin1Text} + ${coin2Text} = <strong>Efekt útočné ultimate - nebránitelný bod!</strong>`
+      await showSkillComment(skillObj, successRate, true, comment)
+      // Přehrát zvuk útočné ultimate
+      soundManager.playUltimateAttack()
+      await showSkillClash(skillObj, null, 'success')
+
+      const successVideo = getPlayerSkillVideo(skillObj.player.id, 10, 'success')
+      if (successVideo) {
+        await showActionVideo({ attacker: skillObj, defender: null, result: 'success' }, successVideo, false)
+      }
+
+      return {
+        winner: 'team2',
+        reason: `Skákaná smeč s efektem útočné ultimate - nebránitelný bod!`,
+        team1Points: 0,
+        team2Points: 1,
+        decisiveSkill: skillObj,
+        interactions: [{
+          attacker: skillObj,
+          defender: null,
+          result: 'success',
+          attackingTeam: 'team2',
+          pointChange: 1
+        }]
+      }
+    }
+  }
+
+  // ====================================================================
+  // UNIVERZÁLNÍ OBRANY PROTI SPECIÁLNÍM SCHOPNOSTEM (50% šance)
+  // ====================================================================
+  // Univerzální obrany (Hruď 16 a Silnější noha 17) mohou zablokovat speciální schopnosti
+  // se standardním efektem (1 panna) s 50% šancí
+
+  // Tým 1 universal defense vs Tým 2 special skills se standardním efektem
+  for (const univDef of team1UniversalDefenses) {
+    const targetSpecialSkill = Array.from(specialSkillsWithStandardEffect).find(s => team2Skills.includes(s))
+
+    if (targetSpecialSkill) {
+      const blockSuccess = Math.random() < 0.5
+
+      if (blockSuccess) {
+        const defenseSuccessRate = calculateSkillSuccessRate(univDef.player, univDef.skill, gameState.nonsenseDebuffs.team1)
+        await showSkillComment(univDef, defenseSuccessRate, true, `${getPlayerFirstNameOrNickname(univDef.player)} použil ${skills[univDef.skill].name} a zablokoval ${skills[targetSpecialSkill.skill].name}! (50% šance)`, 'defensive')
+        await showSkillClash(targetSpecialSkill, univDef, 'blocked')
+
+        return {
+          winner: 'team1',
+          reason: `Tým 2 prohrál výměnu - ${skills[targetSpecialSkill.skill].name} byl zablokován univerzální obranou!`,
+          team1Points: 1,
+          team2Points: 0,
+          decisiveSkill: univDef,
+          interactions: [{
+            attacker: targetSpecialSkill,
+            defender: univDef,
+            result: 'blocked_by_universal_defense',
+            attackingTeam: 'team2',
+            defendingTeam: 'team1',
+            pointChange: +1
+          }]
+        }
+      }
+    }
+  }
+
+  // Tým 2 universal defense vs Tým 1 special skills se standardním efektem
+  for (const univDef of team2UniversalDefenses) {
+    const targetSpecialSkill = Array.from(specialSkillsWithStandardEffect).find(s => team1Skills.includes(s))
+
+    if (targetSpecialSkill) {
+      const blockSuccess = Math.random() < 0.5
+
+      if (blockSuccess) {
+        const defenseSuccessRate = calculateSkillSuccessRate(univDef.player, univDef.skill, gameState.nonsenseDebuffs.team2)
+        await showSkillComment(univDef, defenseSuccessRate, true, `${getPlayerFirstNameOrNickname(univDef.player)} použil ${skills[univDef.skill].name} a zablokoval ${skills[targetSpecialSkill.skill].name}! (50% šance)`, 'defensive')
+        await showSkillClash(targetSpecialSkill, univDef, 'blocked')
+
+        return {
+          winner: 'team2',
+          reason: `Tým 1 prohrál výměnu - ${skills[targetSpecialSkill.skill].name} byl zablokován univerzální obranou!`,
+          team1Points: 0,
+          team2Points: 1,
+          decisiveSkill: univDef,
+          interactions: [{
+            attacker: targetSpecialSkill,
+            defender: univDef,
+            result: 'blocked_by_universal_defense',
+            attackingTeam: 'team1',
+            defendingTeam: 'team2',
+            pointChange: +1
+          }]
+        }
+      }
+    }
+  }
+
+  // ====================================================================
   // FÁZE 2: Vyhodnocení standardních schopností
   // DŮLEŽITÉ: Vyhodnocovat podle TYPU, ne podle týmů!
   evalDiv.innerHTML = '<h3>🔍 Vyhodnocení útoků a obran...</h3>'
@@ -5722,43 +6387,44 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
 
   // Mapování útoků na obrany (které útoky blokují které obrany)
   const attackDefenseMap = {
-    1: [14],  // Smeč přes blok -> Levá noha
+    1: [12],  // Smeč přes blok -> Blok
     2: [14],  // Smeč do béčka/do paty -> Levá noha
     3: [13],  // Smeč po noze -> Skluz
+    4: [12],  // Tupá rána kamkoliv -> Blok
     5: [12],  // Klepák -> Blok
     6: [14],  // Pata -> Levá noha
     7: [13],  // Kraťas -> Skluz
     8: [13],  // Kraťas za blok -> Skluz
     9: [12],  // Šlapaný kraťas -> Blok
-    10: [12], // Skákaná smeč -> Blok
-    4: [],    // Tupá rána - už zpracováno ve FÁZI 0
-    11: []    // Smečovaný servis - už zpracováno ve FÁZI 0
+    10: [],   // Skákaná smeč - už zpracováno ve FÁZI SPECIÁLNÍCH SCHOPNOSTÍ
+    11: [],   // Smečovaný servis - už zpracováno ve FÁZI SPECIÁLNÍCH SCHOPNOSTÍ
+    19: []    // Vytlučený blok - už zpracováno ve FÁZI SPECIÁLNÍCH SCHOPNOSTÍ
   }
 
-  // Získat všechny standardní útočné a obranné schopnosti (ne ultimate, ne ID 4 a 11)
+  // Získat všechny standardní útočné a obranné schopnosti
+  // Nyní zahrnujeme i skills 10, 11, 19, pokud mají standardní efekt (1 panna)
   const team1Attacks = team1Skills.filter(s =>
     s.isOffensive &&
     !s.isUltimate &&
-    s.skill !== 4 &&
-    s.skill !== 11 &&
     !team1SuccessfulUltimateOffensive.includes(s) &&
-    !team1SuccessfulUltimateDefensive.includes(s)
+    !team1SuccessfulUltimateDefensive.includes(s) &&
+    ((s.skill !== 10 && s.skill !== 11 && s.skill !== 19) || specialSkillsWithStandardEffect.has(s))
   )
 
   const team2Attacks = team2Skills.filter(s =>
     s.isOffensive &&
     !s.isUltimate &&
-    s.skill !== 4 &&
-    s.skill !== 11 &&
     !team2SuccessfulUltimateOffensive.includes(s) &&
-    !team2SuccessfulUltimateDefensive.includes(s)
+    !team2SuccessfulUltimateDefensive.includes(s) &&
+    ((s.skill !== 10 && s.skill !== 11 && s.skill !== 19) || specialSkillsWithStandardEffect.has(s))
   )
 
   const team1Defenses = team1Skills.filter(s =>
     s.isDefensive &&
     !s.isUltimate &&
-    s.skill !== 4 &&
+    s.skill !== 10 &&
     s.skill !== 11 &&
+    s.skill !== 19 &&
     !team1SuccessfulUltimateOffensive.includes(s) &&
     !team1SuccessfulUltimateDefensive.includes(s)
   )
@@ -5766,8 +6432,9 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
   const team2Defenses = team2Skills.filter(s =>
     s.isDefensive &&
     !s.isUltimate &&
-    s.skill !== 4 &&
+    s.skill !== 10 &&
     s.skill !== 11 &&
+    s.skill !== 19 &&
     !team2SuccessfulUltimateOffensive.includes(s) &&
     !team2SuccessfulUltimateDefensive.includes(s)
   )
@@ -5798,6 +6465,9 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
 
       if (attackSuccess) {
         // Útok byl úspěšně aktivován, teď test univerzální obrany (30% šance)
+        // Přehrát zvuk kontaktu s míčem pro úspěšně aktivovaný standardní útok
+        soundManager.playBallHit()
+
         const universalBlockSuccess = Math.random() < 0.3
 
         if (universalBlockSuccess) {
@@ -5808,6 +6478,9 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
 
           const defenseSuccessRate = calculateSkillSuccessRate(univDef.player, univDef.skill, gameState.nonsenseDebuffs.team1)
           await showSkillComment(randomAttack, attackSuccessRate, true, `Útok byl úspěšně proveden, ale ${getPlayerFirstNameOrNickname(univDef.player)} ho ubránil univerzální obranou <strong>${skills[univDef.skill].name}</strong>! (30% šance)`, 'defensive')
+
+          // Přehrát zvuk úspěšně zablokovaného útoku
+          soundManager.playDefenseBlock()
 
           // VŽDY zobrazit animaci ikon
           await showSkillClash(randomAttack, univDef, 'blocked')
@@ -5867,6 +6540,9 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
 
       if (attackSuccess) {
         // Útok byl úspěšně aktivován, teď test univerzální obrany (30% šance)
+        // Přehrát zvuk kontaktu s míčem pro úspěšně aktivovaný standardní útok
+        soundManager.playBallHit()
+
         const universalBlockSuccess = Math.random() < 0.3
 
         if (universalBlockSuccess) {
@@ -5877,6 +6553,9 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
 
           const defenseSuccessRate = calculateSkillSuccessRate(univDef.player, univDef.skill, gameState.nonsenseDebuffs.team2)
           await showSkillComment(randomAttack, attackSuccessRate, true, `Útok byl úspěšně proveden, ale ${getPlayerFirstNameOrNickname(univDef.player)} ho ubránil univerzální obranou <strong>${skills[univDef.skill].name}</strong>! (30% šance)`, 'defensive')
+
+          // Přehrát zvuk úspěšně zablokovaného útoku
+          soundManager.playDefenseBlock()
 
           // VŽDY zobrazit animaci ikon
           await showSkillClash(randomAttack, univDef, 'blocked')
@@ -5984,6 +6663,9 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
       }
 
       // Útok byl úspěšně aktivován, nyní kontrola blokace
+      // Přehrát zvuk kontaktu s míčem pro úspěšně aktivovaný standardní útok
+      soundManager.playBallHit()
+
       // KONTROLA: Pokud je aktivní obranná ultimate týmu 1, všechny útoky týmu 2 automaticky selhávají
       if (team1HasDefense) {
         trackPlayerPerformance(matchingAttack.player.id, false)
@@ -5993,6 +6675,9 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
 
         // Zobrazit srážku útoku s obrannou ultimate
         await showSkillClash(matchingAttack, ultimateDefenseTeam1, 'blocked')
+
+        // Přehrát zvuk úspěšně zablokovaného útoku
+        soundManager.playDefenseBlock()
 
         await showSkillComment(matchingAttack, attackSuccessRate, true, '🛡️ Útok byl zablokován obrannou ultimate! Tým 1: +1 bod', 'defensive')
         team1Points += 1
@@ -6064,6 +6749,9 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
       showCoachQuote('team2', coachComment)
 
       await showSkillComment(matchingAttack, attackSuccessRate, true, `Útok byl úspěšně proveden, ale ${getPlayerFirstNameOrNickname(defense.player)} ho ubránil dovedností <strong>${skills[defense.skill].name}</strong>. Útok byl zablokován.`, 'defensive')
+
+      // Přehrát zvuk úspěšně zablokovaného útoku
+      soundManager.playDefenseBlock()
 
       // Přidat bod obránci za zablokování (i když tým nezískal bod, obránce zabránil bodům soupeře)
       addPlayerPointContribution(defense.player, 'team1')
@@ -6177,6 +6865,9 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
       }
 
       // Útok byl úspěšně aktivován, nyní kontrola blokace
+      // Přehrát zvuk kontaktu s míčem pro úspěšně aktivovaný standardní útok
+      soundManager.playBallHit()
+
       // KONTROLA: Pokud je aktivní obranná ultimate týmu 2, všechny útoky týmu 1 automaticky selhávají
       if (team2HasDefense) {
         trackPlayerPerformance(matchingAttack.player.id, false)
@@ -6186,6 +6877,9 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
 
         // Zobrazit srážku útoku s obrannou ultimate
         await showSkillClash(matchingAttack, ultimateDefenseTeam2, 'blocked')
+
+        // Přehrát zvuk úspěšně zablokovaného útoku
+        soundManager.playDefenseBlock()
 
         await showSkillComment(matchingAttack, attackSuccessRate, true, '🛡️ Útok byl zablokován obrannou ultimate! Tým 2: +1 bod', 'defensive')
         team2Points += 1
@@ -6241,6 +6935,9 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
       }
 
       await showSkillComment(matchingAttack, attackSuccessRate, true, `Útok byl úspěšně proveden, ale ${getPlayerFirstNameOrNickname(defense.player)} ho ubránil dovedností <strong>${skills[defense.skill].name}</strong>. Útok byl zablokován.`, 'defensive')
+
+      // Přehrát zvuk úspěšně zablokovaného útoku
+      soundManager.playDefenseBlock()
 
       // Přidat bod obránci za zablokování (i když tým nezískal bod, obránce zabránil bodům soupeře)
       addPlayerPointContribution(defense.player, 'team2')
@@ -6498,6 +7195,9 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
     }
 
     // Útok byl úspěšně aktivován, nyní kontrola blokace
+    // Přehrát zvuk kontaktu s míčem pro úspěšně aktivovaný standardní útok
+    soundManager.playBallHit()
+
     // KONTROLA: Pokud je aktivní obranná ultimate druhého týmu, útok automaticky selže
     if ((isTeam1 && team2HasDefense) || (!isTeam1 && team1HasDefense)) {
       trackPlayerPerformance(attack.player.id, false)
@@ -6981,7 +7681,7 @@ async function showPointResult(result) {
               <strong class="attack-skill">⚔️ ${skills[interaction.attacker.skill].name}</strong>
             </div>
             ${interaction.defender ? `
-              <div class="interaction-arrow">${interaction.result === 'blocked' ? `🛡️ ${getRandomBlockedText()}!` : '→'}</div>
+              <div class="interaction-arrow">${interaction.result === 'blocked' ? `🛡️ ${getRandomBlockedText(interaction.defender.skill)}!` : '→'}</div>
               <div class="interaction-player">
                 <img src="${interaction.defender.player.photo}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23667eea%22 width=%22100%22 height=%22100%22/%3E%3Ctext fill=%22white%22 font-size=%2230%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3E${interaction.defender.player.number}%3C/text%3E%3C/svg%3E'" />
                 <p>${interaction.defender.player.name}</p>
@@ -7467,6 +8167,9 @@ function showLeagueFinalResult() {
   gameState.isPlaying = false
   gameState.isPaused = false
 
+  // Zastavit pozadové crowd sounds
+  soundManager.stopCrowdSounds()
+
   document.querySelector('.game-court').style.display = 'none'
   document.querySelector('.game-over').style.display = 'block'
 
@@ -7496,6 +8199,9 @@ function endGame() {
   gameState.isPlaying = false
   gameState.isPaused = false
   gameState.skipToEnd = false  // Reset skipToEnd flag
+
+  // Zastavit pozadové crowd sounds
+  soundManager.stopCrowdSounds()
 
   console.log('🏁 endGame() - Zápas skončil')
 

@@ -12,19 +12,19 @@ export const extraligaTeams = [
         "id": "MODR_1",
         "name": "Michael Svoboda",
         "number": 1,
-        "position": "Nahravač/Smečař",
+        "position": "Nahravač/Polař",
         "dominantFoot": "right",
         "photo": "https://www.nohejbal.org/photo/player/player_3716.jpg",
         "stats": {
           "rychlost": 95,
           "obratnost": 94,
-          "rana": 97,
-          "technika": 89,
+          "sila": 87,
+          "technika": 93,
           "obetavost": 92,
-          "psychickaOdolnost": 90,
-          "obrana": 92,
-          "cteniHry": 89,
-          "vydrz": 90
+          "psychika": 90,
+          "svih": 87,
+          "cteniHry": 92,
+          "odolnost": 90
         },
         "regularSeason": {
           "matches": 40,
@@ -45,6 +45,11 @@ export const extraligaTeams = [
             "wins": 22,
             "winRate": 100
           }
+        },
+        "playoff": {
+          "matches": 7,
+          "wins": 4,
+          "winRate": 57
         },
         "seasonStats": [
           {
@@ -98,6 +103,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 3,
+          "wins": 2,
+          "winRate": 67,
+          "singl": {
+            "matches": 1,
+            "wins": 1,
+            "winRate": 100
+          },
+          "dvojice": {
+            "matches": 1,
+            "wins": 1,
+            "winRate": 100
+          },
+          "trojice": {
+            "matches": 2,
+            "wins": 1,
+            "winRate": 50
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -118,13 +143,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 90,
           "obratnost": 91,
-          "rana": 89,
+          "sila": 89,
           "technika": 99,
           "obetavost": 94,
-          "psychickaOdolnost": 94,
-          "obrana": 99,
+          "psychika": 94,
+          "svih": 99,
           "cteniHry": 98,
-          "vydrz": 92
+          "odolnost": 92
         },
         "regularSeason": {
           "matches": 4,
@@ -218,13 +243,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 84,
           "obratnost": 85,
-          "rana": 83,
+          "sila": 83,
           "technika": 91,
           "obetavost": 87,
-          "psychickaOdolnost": 87,
-          "obrana": 91,
+          "psychika": 87,
+          "svih": 91,
           "cteniHry": 90,
-          "vydrz": 85
+          "odolnost": 85
         },
         "regularSeason": {
           "matches": 27,
@@ -298,6 +323,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 1,
+          "wins": 0,
+          "winRate": 0,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "trojice": {
+            "matches": 1,
+            "wins": 0,
+            "winRate": 0
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -318,13 +363,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 99,
           "obratnost": 99,
-          "rana": 99,
+          "sila": 99,
           "technika": 91,
           "obetavost": 96,
-          "psychickaOdolnost": 92,
-          "obrana": 99,
+          "psychika": 92,
+          "svih": 99,
           "cteniHry": 91,
-          "vydrz": 93
+          "odolnost": 93
         },
         "regularSeason": {
           "matches": 36,
@@ -398,6 +443,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 3,
+          "wins": 2,
+          "winRate": 67,
+          "singl": {
+            "matches": 1,
+            "wins": 1,
+            "winRate": 100
+          },
+          "dvojice": {
+            "matches": 1,
+            "wins": 1,
+            "winRate": 100
+          },
+          "trojice": {
+            "matches": 2,
+            "wins": 1,
+            "winRate": 50
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -414,17 +479,18 @@ export const extraligaTeams = [
         "number": 5,
         "position": "Smečař/Blokař",
         "dominantFoot": "right",
+        "nonsenseName": "Nenápadná výměna balonu za přefoukaný",
         "photo": "https://www.nohejbal.org/photo/player/player_3710.jpg",
         "stats": {
           "rychlost": 96,
           "obratnost": 95,
-          "rana": 98,
+          "sila": 98,
           "technika": 87,
           "obetavost": 92,
-          "psychickaOdolnost": 88,
-          "obrana": 96,
+          "psychika": 88,
+          "svih": 96,
           "cteniHry": 87,
-          "vydrz": 89
+          "odolnost": 89
         },
         "regularSeason": {
           "matches": 27,
@@ -445,6 +511,11 @@ export const extraligaTeams = [
             "wins": 13,
             "winRate": 72
           }
+        },
+        "playoff": {
+          "matches": 9,
+          "wins": 8,
+          "winRate": 89
         },
         "seasonStats": [
           {
@@ -498,6 +569,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 3,
+          "wins": 3,
+          "winRate": 100,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 1,
+            "wins": 1,
+            "winRate": 100
+          },
+          "trojice": {
+            "matches": 2,
+            "wins": 2,
+            "winRate": 100
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -514,17 +605,18 @@ export const extraligaTeams = [
         "number": 6,
         "position": "Nahravač/Polař",
         "dominantFoot": "left",
+        "nonsenseName": "Lehké povolení saka",
         "photo": "https://www.nohejbal.org/photo/player/player_3711.jpg",
         "stats": {
           "rychlost": 88,
           "obratnost": 89,
-          "rana": 86,
+          "sila": 86,
           "technika": 98,
           "obetavost": 92,
-          "psychickaOdolnost": 92,
-          "obrana": 97,
+          "psychika": 92,
+          "svih": 97,
           "cteniHry": 97,
-          "vydrz": 89
+          "odolnost": 89
         },
         "regularSeason": {
           "matches": 26,
@@ -545,6 +637,11 @@ export const extraligaTeams = [
             "wins": 11,
             "winRate": 73
           }
+        },
+        "playoff": {
+          "matches": 9,
+          "wins": 6,
+          "winRate": 67
         },
         "seasonStats": [
           {
@@ -598,6 +695,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 3,
+          "wins": 3,
+          "winRate": 100,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 1,
+            "wins": 1,
+            "winRate": 100
+          },
+          "trojice": {
+            "matches": 2,
+            "wins": 2,
+            "winRate": 100
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -617,13 +734,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 82,
           "obratnost": 83,
-          "rana": 81,
+          "sila": 81,
           "technika": 89,
           "obetavost": 85,
-          "psychickaOdolnost": 85,
-          "obrana": 89,
+          "psychika": 85,
+          "svih": 89,
           "cteniHry": 88,
-          "vydrz": 83
+          "odolnost": 83
         },
         "regularSeason": {
           "matches": 13,
@@ -643,7 +760,27 @@ export const extraligaTeams = [
             "matches": 0,
             "wins": 0,
             "winRate": 0
+          },
+        "playoff": {
+          "matches": 1,
+          "wins": 1,
+          "winRate": 100,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "trojice": {
+            "matches": 1,
+            "wins": 1,
+            "winRate": 100
           }
+        }
         },
         "typicalPositions": [
           "dvojice2",
@@ -660,13 +797,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 86,
           "obratnost": 87,
-          "rana": 84,
+          "sila": 84,
           "technika": 96,
           "obetavost": 90,
-          "psychickaOdolnost": 90,
-          "obrana": 95,
+          "psychika": 90,
+          "svih": 95,
           "cteniHry": 95,
-          "vydrz": 87
+          "odolnost": 87
         },
         "regularSeason": {
           "matches": 11,
@@ -759,13 +896,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 87,
           "obratnost": 88,
-          "rana": 86,
+          "sila": 86,
           "technika": 94,
           "obetavost": 90,
-          "psychickaOdolnost": 90,
-          "obrana": 94,
+          "psychika": 90,
+          "svih": 94,
           "cteniHry": 93,
-          "vydrz": 88
+          "odolnost": 88
         },
         "regularSeason": {
           "matches": 35,
@@ -786,6 +923,11 @@ export const extraligaTeams = [
             "wins": 13,
             "winRate": 81
           }
+        },
+        "playoff": {
+          "matches": 11,
+          "wins": 7,
+          "winRate": 64
         },
         "seasonStats": [
           {
@@ -839,6 +981,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 4,
+          "wins": 2,
+          "winRate": 50,
+          "singl": {
+            "matches": 1,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 1,
+            "wins": 1,
+            "winRate": 100
+          },
+          "trojice": {
+            "matches": 2,
+            "wins": 1,
+            "winRate": 50
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -856,17 +1018,18 @@ export const extraligaTeams = [
         "number": 10,
         "position": "Smečař/Polař",
         "dominantFoot": "right",
+        "nonsenseName": "Boží ruka",
         "photo": "https://www.nohejbal.org/photo/player/player_711.jpg",
         "stats": {
           "rychlost": 87,
           "obratnost": 88,
-          "rana": 86,
+          "sila": 86,
           "technika": 94,
           "obetavost": 90,
-          "psychickaOdolnost": 90,
-          "obrana": 94,
+          "psychika": 90,
+          "svih": 94,
           "cteniHry": 93,
-          "vydrz": 88
+          "odolnost": 88
         },
         "regularSeason": {
           "matches": 33,
@@ -940,6 +1103,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 2,
+          "wins": 2,
+          "winRate": 100,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "trojice": {
+            "matches": 2,
+            "wins": 2,
+            "winRate": 100
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -1009,13 +1192,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 89,
           "obratnost": 90,
-          "rana": 88,
+          "sila": 88,
           "technika": 96,
           "obetavost": 92,
-          "psychickaOdolnost": 92,
-          "obrana": 96,
+          "psychika": 92,
+          "svih": 96,
           "cteniHry": 95,
-          "vydrz": 90
+          "odolnost": 90
         },
         "regularSeason": {
           "matches": 38,
@@ -1036,6 +1219,11 @@ export const extraligaTeams = [
             "wins": 0,
             "winRate": 0
           }
+        },
+        "playoff": {
+          "matches": 6,
+          "wins": 5,
+          "winRate": 83
         },
         "seasonStats": [
           {
@@ -1089,6 +1277,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 3,
+          "wins": 2,
+          "winRate": 67,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 1,
+            "wins": 1,
+            "winRate": 100
+          },
+          "trojice": {
+            "matches": 2,
+            "wins": 1,
+            "winRate": 50
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -1109,13 +1317,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 87,
           "obratnost": 88,
-          "rana": 86,
+          "sila": 86,
           "technika": 94,
           "obetavost": 90,
-          "psychickaOdolnost": 90,
-          "obrana": 94,
+          "psychika": 90,
+          "svih": 94,
           "cteniHry": 93,
-          "vydrz": 88
+          "odolnost": 88
         },
         "regularSeason": {
           "matches": 42,
@@ -1136,6 +1344,11 @@ export const extraligaTeams = [
             "wins": 16,
             "winRate": 67
           }
+        },
+        "playoff": {
+          "matches": 10,
+          "wins": 7,
+          "winRate": 70
         },
         "seasonStats": [
           {
@@ -1209,13 +1422,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 90,
           "obratnost": 91,
-          "rana": 89,
+          "sila": 89,
           "technika": 97,
           "obetavost": 93,
-          "psychickaOdolnost": 93,
-          "obrana": 97,
+          "psychika": 93,
+          "svih": 97,
           "cteniHry": 96,
-          "vydrz": 91
+          "odolnost": 91
         },
         "regularSeason": {
           "matches": 24,
@@ -1236,6 +1449,11 @@ export const extraligaTeams = [
             "wins": 10,
             "winRate": 77
           }
+        },
+        "playoff": {
+          "matches": 12,
+          "wins": 8,
+          "winRate": 67
         },
         "seasonStats": [
           {
@@ -1309,13 +1527,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 84,
           "obratnost": 85,
-          "rana": 82,
+          "sila": 82,
           "technika": 94,
           "obetavost": 88,
-          "psychickaOdolnost": 88,
-          "obrana": 93,
+          "psychika": 88,
+          "svih": 93,
           "cteniHry": 93,
-          "vydrz": 85
+          "odolnost": 85
         },
         "regularSeason": {
           "matches": 19,
@@ -1336,6 +1554,11 @@ export const extraligaTeams = [
             "wins": 4,
             "winRate": 44
           }
+        },
+        "playoff": {
+          "matches": 7,
+          "wins": 5,
+          "winRate": 71
         },
         "seasonStats": [
           {
@@ -1409,13 +1632,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 84,
           "obratnost": 85,
-          "rana": 83,
+          "sila": 83,
           "technika": 92,
           "obetavost": 87,
-          "psychickaOdolnost": 87,
-          "obrana": 90,
+          "psychika": 87,
+          "svih": 90,
           "cteniHry": 91,
-          "vydrz": 84
+          "odolnost": 84
         },
         "regularSeason": {
           "matches": 35,
@@ -1489,6 +1712,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 3,
+          "wins": 0,
+          "winRate": 0,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 1,
+            "wins": 0,
+            "winRate": 0
+          },
+          "trojice": {
+            "matches": 2,
+            "wins": 0,
+            "winRate": 0
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -1508,13 +1751,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 88,
           "obratnost": 87,
-          "rana": 90,
+          "sila": 90,
           "technika": 79,
           "obetavost": 84,
-          "psychickaOdolnost": 80,
-          "obrana": 88,
+          "psychika": 80,
+          "svih": 88,
           "cteniHry": 79,
-          "vydrz": 81
+          "odolnost": 81
         },
         "regularSeason": {
           "matches": 9,
@@ -1607,13 +1850,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 94,
           "obratnost": 93,
-          "rana": 96,
+          "sila": 96,
           "technika": 85,
           "obetavost": 90,
-          "psychickaOdolnost": 86,
-          "obrana": 94,
+          "psychika": 86,
+          "svih": 94,
           "cteniHry": 85,
-          "vydrz": 87
+          "odolnost": 87
         },
         "regularSeason": {
           "matches": 50,
@@ -1687,6 +1930,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 4,
+          "wins": 2,
+          "winRate": 50,
+          "singl": {
+            "matches": 1,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 1,
+            "wins": 1,
+            "winRate": 100
+          },
+          "trojice": {
+            "matches": 2,
+            "wins": 1,
+            "winRate": 50
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -1709,13 +1972,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 86,
           "obratnost": 85,
-          "rana": 88,
+          "sila": 88,
           "technika": 77,
           "obetavost": 82,
-          "psychickaOdolnost": 78,
-          "obrana": 86,
+          "psychika": 78,
+          "svih": 86,
           "cteniHry": 77,
-          "vydrz": 79
+          "odolnost": 79
         },
         "regularSeason": {
           "matches": 6,
@@ -1789,6 +2052,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 3,
+          "wins": 0,
+          "winRate": 0,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 1,
+            "wins": 0,
+            "winRate": 0
+          },
+          "trojice": {
+            "matches": 2,
+            "wins": 0,
+            "winRate": 0
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -1808,13 +2091,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 83,
           "obratnost": 84,
-          "rana": 81,
+          "sila": 81,
           "technika": 93,
           "obetavost": 87,
-          "psychickaOdolnost": 87,
-          "obrana": 92,
+          "psychika": 87,
+          "svih": 92,
           "cteniHry": 92,
-          "vydrz": 84
+          "odolnost": 84
         },
         "regularSeason": {
           "matches": 28,
@@ -1888,6 +2171,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 2,
+          "wins": 1,
+          "winRate": 50,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "trojice": {
+            "matches": 2,
+            "wins": 1,
+            "winRate": 50
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -1907,13 +2210,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 81,
           "obratnost": 80,
-          "rana": 83,
+          "sila": 83,
           "technika": 72,
           "obetavost": 77,
-          "psychickaOdolnost": 73,
-          "obrana": 81,
+          "psychika": 73,
+          "svih": 81,
           "cteniHry": 72,
-          "vydrz": 74
+          "odolnost": 74
         },
         "regularSeason": {
           "matches": 3,
@@ -1987,6 +2290,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 2,
+          "wins": 0,
+          "winRate": 0,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 1,
+            "wins": 0,
+            "winRate": 0
+          },
+          "trojice": {
+            "matches": 1,
+            "wins": 0,
+            "winRate": 0
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -2006,13 +2329,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 75,
           "obratnost": 76,
-          "rana": 74,
+          "sila": 74,
           "technika": 80,
           "obetavost": 77,
-          "psychickaOdolnost": 77,
-          "obrana": 80,
+          "psychika": 77,
+          "svih": 80,
           "cteniHry": 79,
-          "vydrz": 75
+          "odolnost": 75
         },
         "regularSeason": {
           "matches": 14,
@@ -2132,13 +2455,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 98,
           "obratnost": 94,
-          "rana": 99,
+          "sila": 99,
           "technika": 86,
           "obetavost": 91,
-          "psychickaOdolnost": 87,
-          "obrana": 98,
+          "psychika": 87,
+          "svih": 98,
           "cteniHry": 86,
-          "vydrz": 88
+          "odolnost": 88
         },
         "regularSeason": {
           "matches": 49,
@@ -2279,13 +2602,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 83,
           "obratnost": 87,
-          "rana": 84,
+          "sila": 84,
           "technika": 93,
           "obetavost": 90,
-          "psychickaOdolnost": 87,
-          "obrana": 92,
+          "psychika": 87,
+          "svih": 92,
           "cteniHry": 92,
-          "vydrz": 84
+          "odolnost": 84
         },
         "regularSeason": {
           "matches": 31,
@@ -2452,13 +2775,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 79,
           "obratnost": 80,
-          "rana": 78,
+          "sila": 78,
           "technika": 89,
           "obetavost": 82,
-          "psychickaOdolnost": 85,
-          "obrana": 86,
+          "psychika": 85,
+          "svih": 86,
           "cteniHry": 88,
-          "vydrz": 80
+          "odolnost": 80
         },
         "regularSeason": {
           "matches": 30,
@@ -2603,10 +2926,10 @@ export const extraligaTeams = [
           }
         ],
         "availableSkills": [
-          7,
-          9,
-          16,
-          17
+          3,
+          4,
+          11,
+          16
         ],
         "typicalPositions": [
           "singl",
@@ -2624,13 +2947,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 76,
           "obratnost": 77,
-          "rana": 75,
+          "sila": 75,
           "technika": 83,
           "obetavost": 79,
-          "psychickaOdolnost": 79,
-          "obrana": 83,
+          "psychika": 79,
+          "svih": 83,
           "cteniHry": 82,
-          "vydrz": 77
+          "odolnost": 77
         },
         "regularSeason": {
           "matches": 30,
@@ -2768,13 +3091,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 77,
           "obratnost": 78,
-          "rana": 75,
+          "sila": 75,
           "technika": 87,
           "obetavost": 81,
-          "psychickaOdolnost": 81,
-          "obrana": 86,
+          "psychika": 81,
+          "svih": 86,
           "cteniHry": 86,
-          "vydrz": 78
+          "odolnost": 78
         },
         "regularSeason": {
           "matches": 32,
@@ -2848,6 +3171,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 1,
+          "wins": 1,
+          "winRate": 100,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "trojice": {
+            "matches": 1,
+            "wins": 1,
+            "winRate": 100
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -2867,13 +3210,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 88,
           "obratnost": 92,
-          "rana": 87,
+          "sila": 87,
           "technika": 95,
           "obetavost": 94,
-          "psychickaOdolnost": 91,
-          "obrana": 95,
+          "psychika": 91,
+          "svih": 95,
           "cteniHry": 94,
-          "vydrz": 89
+          "odolnost": 89
         },
         "regularSeason": {
           "matches": 56,
@@ -3013,13 +3356,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 86,
           "obratnost": 85,
-          "rana": 88,
+          "sila": 88,
           "technika": 80,
           "obetavost": 82,
-          "psychickaOdolnost": 81,
-          "obrana": 86,
+          "psychika": 81,
+          "svih": 86,
           "cteniHry": 77,
-          "vydrz": 79
+          "odolnost": 79
         },
         "regularSeason": {
           "matches": 41,
@@ -3093,6 +3436,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 8,
+          "wins": 5,
+          "winRate": 63,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 3,
+            "wins": 1,
+            "winRate": 33
+          },
+          "trojice": {
+            "matches": 5,
+            "wins": 4,
+            "winRate": 80
+          }
+        },
         "availableSkills": [
           6,
           16,
@@ -3115,13 +3478,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 89,
           "obratnost": 85,
-          "rana": 91,
+          "sila": 91,
           "technika": 80,
           "obetavost": 83,
-          "psychickaOdolnost": 81,
-          "obrana": 83,
+          "psychika": 81,
+          "svih": 83,
           "cteniHry": 80,
-          "vydrz": 81
+          "odolnost": 81
         },
         "regularSeason": {
           "matches": 18,
@@ -3285,13 +3648,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 81,
           "obratnost": 82,
-          "rana": 80,
+          "sila": 80,
           "technika": 86,
           "obetavost": 83,
-          "psychickaOdolnost": 83,
-          "obrana": 86,
+          "psychika": 83,
+          "svih": 86,
           "cteniHry": 85,
-          "vydrz": 81
+          "odolnost": 81
         },
         "regularSeason": {
           "matches": 25,
@@ -3506,13 +3869,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 93,
           "obratnost": 92,
-          "rana": 95,
+          "sila": 95,
           "technika": 84,
           "obetavost": 89,
-          "psychickaOdolnost": 85,
-          "obrana": 93,
+          "psychika": 85,
+          "svih": 93,
           "cteniHry": 84,
-          "vydrz": 86
+          "odolnost": 86
         },
         "regularSeason": {
           "matches": 30,
@@ -3672,17 +4035,18 @@ export const extraligaTeams = [
         "number": 5,
         "position": "Smečař/Blokař",
         "dominantFoot": "left",
+        "nonsenseName": "Bodlo do koulí",
         "photo": "https://www.nohejbal.org/photo/player/player_4181.jpg",
         "stats": {
           "rychlost": 94,
           "obratnost": 93,
-          "rana": 96,
+          "sila": 96,
           "technika": 85,
           "obetavost": 90,
-          "psychickaOdolnost": 86,
-          "obrana": 94,
+          "psychika": 86,
+          "svih": 94,
           "cteniHry": 85,
-          "vydrz": 87
+          "odolnost": 87
         },
         "regularSeason": {
           "matches": 24,
@@ -3820,13 +4184,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 83,
           "obratnost": 84,
-          "rana": 81,
+          "sila": 81,
           "technika": 93,
           "obetavost": 87,
-          "psychickaOdolnost": 87,
-          "obrana": 92,
+          "psychika": 87,
+          "svih": 92,
           "cteniHry": 92,
-          "vydrz": 84
+          "odolnost": 84
         },
         "regularSeason": {
           "matches": 38,
@@ -3964,13 +4328,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 83,
           "obratnost": 84,
-          "rana": 82,
+          "sila": 82,
           "technika": 92,
           "obetavost": 87,
-          "psychickaOdolnost": 87,
-          "obrana": 92,
+          "psychika": 87,
+          "svih": 92,
           "cteniHry": 91,
-          "vydrz": 85
+          "odolnost": 85
         },
         "regularSeason": {
           "matches": 18,
@@ -4083,13 +4447,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 84,
           "obratnost": 85,
-          "rana": 83,
+          "sila": 83,
           "technika": 91,
           "obetavost": 87,
-          "psychickaOdolnost": 87,
-          "obrana": 91,
+          "psychika": 87,
+          "svih": 91,
           "cteniHry": 90,
-          "vydrz": 85
+          "odolnost": 85
         },
         "regularSeason": {
           "matches": 49,
@@ -4227,13 +4591,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 84,
           "obratnost": 83,
-          "rana": 86,
+          "sila": 86,
           "technika": 75,
           "obetavost": 80,
-          "psychickaOdolnost": 76,
-          "obrana": 84,
+          "psychika": 76,
+          "svih": 84,
           "cteniHry": 75,
-          "vydrz": 77
+          "odolnost": 77
         },
         "regularSeason": {
           "matches": 5,
@@ -4326,13 +4690,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 81,
           "obratnost": 82,
-          "rana": 79,
+          "sila": 79,
           "technika": 91,
           "obetavost": 85,
-          "psychickaOdolnost": 85,
-          "obrana": 90,
+          "psychika": 85,
+          "svih": 90,
           "cteniHry": 90,
-          "vydrz": 82
+          "odolnost": 82
         },
         "regularSeason": {
           "matches": 36,
@@ -4469,13 +4833,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 83,
           "obratnost": 84,
-          "rana": 81,
+          "sila": 81,
           "technika": 93,
           "obetavost": 87,
-          "psychickaOdolnost": 87,
-          "obrana": 92,
+          "psychika": 87,
+          "svih": 92,
           "cteniHry": 92,
-          "vydrz": 84
+          "odolnost": 84
         },
         "regularSeason": {
           "matches": 3,
@@ -4608,18 +4972,19 @@ export const extraligaTeams = [
         "number": 13,
         "position": "Smečař/Blokař",
         "dominantFoot": "right",
+        "nonsenseName": "Hledání formy",
         "photo": "https://www.nohejbal.org/photo/player/player_4084.jpg",
         "trainingAttendance2025": 50,
         "stats": {
           "rychlost": 88,
           "obratnost": 87,
-          "rana": 90,
+          "sila": 90,
           "technika": 79,
           "obetavost": 84,
-          "psychickaOdolnost": 80,
-          "obrana": 88,
+          "psychika": 80,
+          "svih": 88,
           "cteniHry": 79,
-          "vydrz": 81
+          "odolnost": 81
         },
         "regularSeason": {
           "matches": 39,
@@ -4756,13 +5121,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 87,
           "obratnost": 86,
-          "rana": 89,
+          "sila": 89,
           "technika": 78,
           "obetavost": 83,
-          "psychickaOdolnost": 79,
-          "obrana": 87,
+          "psychika": 79,
+          "svih": 87,
           "cteniHry": 78,
-          "vydrz": 80
+          "odolnost": 80
         },
         "regularSeason": {
           "matches": 29,
@@ -4985,13 +5350,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 85,
           "obratnost": 86,
-          "rana": 84,
+          "sila": 84,
           "technika": 90,
           "obetavost": 87,
-          "psychickaOdolnost": 87,
-          "obrana": 90,
+          "psychika": 87,
+          "svih": 90,
           "cteniHry": 89,
-          "vydrz": 85
+          "odolnost": 85
         }
       },
       {
@@ -5020,6 +5385,11 @@ export const extraligaTeams = [
             "wins": 7,
             "winRate": 70
           }
+        },
+        "playoff": {
+          "matches": 9,
+          "wins": 6,
+          "winRate": 67
         },
         "seasonStats": [
           {
@@ -5085,13 +5455,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 86,
           "obratnost": 87,
-          "rana": 85,
+          "sila": 85,
           "technika": 91,
           "obetavost": 88,
-          "psychickaOdolnost": 88,
-          "obrana": 91,
+          "psychika": 88,
+          "svih": 91,
           "cteniHry": 90,
-          "vydrz": 86
+          "odolnost": 86
         }
       },
       {
@@ -5120,6 +5490,11 @@ export const extraligaTeams = [
             "wins": 6,
             "winRate": 67
           }
+        },
+        "playoff": {
+          "matches": 6,
+          "wins": 5,
+          "winRate": 83
         },
         "seasonStats": [
           {
@@ -5185,13 +5560,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 85,
           "obratnost": 86,
-          "rana": 84,
+          "sila": 84,
           "technika": 90,
           "obetavost": 87,
-          "psychickaOdolnost": 87,
-          "obrana": 90,
+          "psychika": 87,
+          "svih": 90,
           "cteniHry": 89,
-          "vydrz": 85
+          "odolnost": 85
         }
       },
       {
@@ -5220,6 +5595,11 @@ export const extraligaTeams = [
             "wins": 5,
             "winRate": 63
           }
+        },
+        "playoff": {
+          "matches": 5,
+          "wins": 3,
+          "winRate": 60
         },
         "seasonStats": [
           {
@@ -5284,13 +5664,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 85,
           "obratnost": 86,
-          "rana": 84,
+          "sila": 84,
           "technika": 90,
           "obetavost": 87,
-          "psychickaOdolnost": 87,
-          "obrana": 90,
+          "psychika": 87,
+          "svih": 90,
           "cteniHry": 89,
-          "vydrz": 85
+          "odolnost": 85
         }
       },
       {
@@ -5383,13 +5763,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 86,
           "obratnost": 87,
-          "rana": 85,
+          "sila": 85,
           "technika": 91,
           "obetavost": 88,
-          "psychickaOdolnost": 88,
-          "obrana": 91,
+          "psychika": 88,
+          "svih": 91,
           "cteniHry": 90,
-          "vydrz": 86
+          "odolnost": 86
         }
       },
       {
@@ -5482,13 +5862,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 83,
           "obratnost": 84,
-          "rana": 82,
+          "sila": 82,
           "technika": 88,
           "obetavost": 85,
-          "psychickaOdolnost": 85,
-          "obrana": 88,
+          "psychika": 85,
+          "svih": 88,
           "cteniHry": 87,
-          "vydrz": 83
+          "odolnost": 83
         }
       },
       {
@@ -5581,13 +5961,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 83,
           "obratnost": 84,
-          "rana": 82,
+          "sila": 82,
           "technika": 88,
           "obetavost": 85,
-          "psychickaOdolnost": 85,
-          "obrana": 88,
+          "psychika": 85,
+          "svih": 88,
           "cteniHry": 87,
-          "vydrz": 83
+          "odolnost": 83
         }
       },
       {
@@ -5680,13 +6060,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 80,
           "obratnost": 81,
-          "rana": 79,
+          "sila": 79,
           "technika": 85,
           "obetavost": 82,
-          "psychickaOdolnost": 82,
-          "obrana": 85,
+          "psychika": 82,
+          "svih": 85,
           "cteniHry": 84,
-          "vydrz": 80
+          "odolnost": 80
         }
       },
       {
@@ -5779,13 +6159,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 84,
           "obratnost": 85,
-          "rana": 83,
+          "sila": 83,
           "technika": 89,
           "obetavost": 86,
-          "psychickaOdolnost": 86,
-          "obrana": 89,
+          "psychika": 86,
+          "svih": 89,
           "cteniHry": 88,
-          "vydrz": 84
+          "odolnost": 84
         }
       },
       {
@@ -5796,9 +6176,29 @@ export const extraligaTeams = [
         "dominantFoot": "right",
         "photo": "/players/placeholder.jpg",
         "regularSeason": {
-          "matches": 6,
-          "wins": 3,
-          "winRate": 50,
+          "matches": 45,
+          "wins": 18,
+          "winRate": 40,
+          "singl": {
+            "matches": 11,
+            "wins": 5,
+            "winRate": 45
+          },
+          "dvojice": {
+            "matches": 14,
+            "wins": 8,
+            "winRate": 57
+          },
+          "trojice": {
+            "matches": 20,
+            "wins": 5,
+            "winRate": 25
+          }
+        },
+        "playoff": {
+          "matches": 7,
+          "wins": 2,
+          "winRate": 29,
           "singl": {
             "matches": 2,
             "wins": 1,
@@ -5810,19 +6210,44 @@ export const extraligaTeams = [
             "winRate": 50
           },
           "trojice": {
-            "matches": 2,
-            "wins": 1,
-            "winRate": 50
+            "matches": 3,
+            "wins": 0,
+            "winRate": 0
           }
         },
         "seasonStats": [
           {
             "season": "2025 - základní část",
             "league": "Extraliga muži",
-            "matches": 6,
-            "wins": 3,
-            "losses": 3,
-            "winRate": 50,
+            "matches": 45,
+            "wins": 18,
+            "losses": 27,
+            "winRate": 40,
+            "disciplines": {
+              "singl": {
+                "matches": 11,
+                "wins": 5,
+                "winRate": 45
+              },
+              "dvojice": {
+                "matches": 14,
+                "wins": 8,
+                "winRate": 57
+              },
+              "trojice": {
+                "matches": 20,
+                "wins": 5,
+                "winRate": 25
+              }
+            }
+          },
+          {
+            "season": "2025 - play-off/out",
+            "league": "Extraliga muži",
+            "matches": 7,
+            "wins": 2,
+            "losses": 5,
+            "winRate": 29,
             "disciplines": {
               "singl": {
                 "matches": 2,
@@ -5835,9 +6260,9 @@ export const extraligaTeams = [
                 "winRate": 50
               },
               "trojice": {
-                "matches": 2,
-                "wins": 1,
-                "winRate": 50
+                "matches": 3,
+                "wins": 0,
+                "winRate": 0
               }
             }
           },
@@ -5877,13 +6302,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 82,
           "obratnost": 83,
-          "rana": 81,
+          "sila": 81,
           "technika": 87,
           "obetavost": 84,
-          "psychickaOdolnost": 84,
-          "obrana": 87,
+          "psychika": 84,
+          "svih": 87,
           "cteniHry": 86,
-          "vydrz": 82
+          "odolnost": 82
         }
       },
       {
@@ -5975,13 +6400,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 79,
           "obratnost": 80,
-          "rana": 78,
+          "sila": 78,
           "technika": 84,
           "obetavost": 81,
-          "psychickaOdolnost": 81,
-          "obrana": 84,
+          "psychika": 81,
+          "svih": 84,
           "cteniHry": 83,
-          "vydrz": 79
+          "odolnost": 79
         }
       },
       {
@@ -6113,6 +6538,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 3,
+          "wins": 3,
+          "winRate": 100,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 1,
+            "wins": 1,
+            "winRate": 100
+          },
+          "trojice": {
+            "matches": 2,
+            "wins": 2,
+            "winRate": 100
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -6125,13 +6570,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 91,
           "obratnost": 92,
-          "rana": 90,
+          "sila": 90,
           "technika": 96,
           "obetavost": 93,
-          "psychickaOdolnost": 93,
-          "obrana": 96,
+          "psychika": 93,
+          "svih": 96,
           "cteniHry": 95,
-          "vydrz": 91
+          "odolnost": 91
         }
       },
       {
@@ -6213,6 +6658,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 7,
+          "wins": 3,
+          "winRate": 43,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 3,
+            "wins": 1,
+            "winRate": 33
+          },
+          "trojice": {
+            "matches": 4,
+            "wins": 2,
+            "winRate": 50
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -6225,13 +6690,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 90,
           "obratnost": 91,
-          "rana": 89,
+          "sila": 89,
           "technika": 95,
           "obetavost": 92,
-          "psychickaOdolnost": 92,
-          "obrana": 95,
+          "psychika": 92,
+          "svih": 95,
           "cteniHry": 94,
-          "vydrz": 90
+          "odolnost": 90
         }
       },
       {
@@ -6313,6 +6778,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 1,
+          "wins": 1,
+          "winRate": 100,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "trojice": {
+            "matches": 1,
+            "wins": 1,
+            "winRate": 100
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -6325,13 +6810,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 88,
           "obratnost": 89,
-          "rana": 87,
+          "sila": 87,
           "technika": 93,
           "obetavost": 90,
-          "psychickaOdolnost": 90,
-          "obrana": 93,
+          "psychika": 90,
+          "svih": 93,
           "cteniHry": 92,
-          "vydrz": 88
+          "odolnost": 88
         }
       },
       {
@@ -6413,6 +6898,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 6,
+          "wins": 3,
+          "winRate": 50,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 2,
+            "wins": 1,
+            "winRate": 50
+          },
+          "trojice": {
+            "matches": 4,
+            "wins": 2,
+            "winRate": 50
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -6424,13 +6929,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 87,
           "obratnost": 88,
-          "rana": 86,
+          "sila": 86,
           "technika": 92,
           "obetavost": 89,
-          "psychickaOdolnost": 89,
-          "obrana": 92,
+          "psychika": 89,
+          "svih": 92,
           "cteniHry": 91,
-          "vydrz": 87
+          "odolnost": 87
         }
       },
       {
@@ -6523,13 +7028,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 85,
           "obratnost": 86,
-          "rana": 84,
+          "sila": 84,
           "technika": 90,
           "obetavost": 87,
-          "psychickaOdolnost": 87,
-          "obrana": 90,
+          "psychika": 87,
+          "svih": 90,
           "cteniHry": 89,
-          "vydrz": 85
+          "odolnost": 85
         }
       },
       {
@@ -6566,13 +7071,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 83,
           "obratnost": 84,
-          "rana": 82,
+          "sila": 82,
           "technika": 88,
           "obetavost": 85,
-          "psychickaOdolnost": 85,
-          "obrana": 88,
+          "psychika": 85,
+          "svih": 88,
           "cteniHry": 87,
-          "vydrz": 83
+          "odolnost": 83
         }
       },
       {
@@ -6609,13 +7114,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 83,
           "obratnost": 84,
-          "rana": 82,
+          "sila": 82,
           "technika": 88,
           "obetavost": 85,
-          "psychickaOdolnost": 85,
-          "obrana": 88,
+          "psychika": 85,
+          "svih": 88,
           "cteniHry": 87,
-          "vydrz": 83
+          "odolnost": 83
         }
       },
       {
@@ -6652,13 +7157,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 83,
           "obratnost": 84,
-          "rana": 82,
+          "sila": 82,
           "technika": 88,
           "obetavost": 85,
-          "psychickaOdolnost": 85,
-          "obrana": 88,
+          "psychika": 85,
+          "svih": 88,
           "cteniHry": 87,
-          "vydrz": 83
+          "odolnost": 83
         }
       },
       {
@@ -6695,13 +7200,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 83,
           "obratnost": 84,
-          "rana": 82,
+          "sila": 82,
           "technika": 88,
           "obetavost": 85,
-          "psychickaOdolnost": 85,
-          "obrana": 88,
+          "psychika": 85,
+          "svih": 88,
           "cteniHry": 87,
-          "vydrz": 83
+          "odolnost": 83
         }
       },
       {
@@ -6783,6 +7288,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 8,
+          "wins": 6,
+          "winRate": 75,
+          "singl": {
+            "matches": 2,
+            "wins": 1,
+            "winRate": 50
+          },
+          "dvojice": {
+            "matches": 3,
+            "wins": 2,
+            "winRate": 67
+          },
+          "trojice": {
+            "matches": 3,
+            "wins": 3,
+            "winRate": 100
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -6793,13 +7318,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 82,
           "obratnost": 83,
-          "rana": 81,
+          "sila": 81,
           "technika": 87,
           "obetavost": 84,
-          "psychickaOdolnost": 84,
-          "obrana": 87,
+          "psychika": 84,
+          "svih": 87,
           "cteniHry": 86,
-          "vydrz": 82
+          "odolnost": 82
         }
       },
       {
@@ -6943,13 +7468,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 86,
           "obratnost": 87,
-          "rana": 85,
+          "sila": 85,
           "technika": 91,
           "obetavost": 88,
-          "psychickaOdolnost": 88,
-          "obrana": 91,
+          "psychika": 88,
+          "svih": 91,
           "cteniHry": 90,
-          "vydrz": 86
+          "odolnost": 86
         }
       },
       {
@@ -7031,6 +7556,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 4,
+          "wins": 2,
+          "winRate": 50,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 1,
+            "wins": 1,
+            "winRate": 100
+          },
+          "trojice": {
+            "matches": 3,
+            "wins": 1,
+            "winRate": 33
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -7043,13 +7588,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 88,
           "obratnost": 89,
-          "rana": 87,
+          "sila": 87,
           "technika": 93,
           "obetavost": 90,
-          "psychickaOdolnost": 90,
-          "obrana": 93,
+          "psychika": 90,
+          "svih": 93,
           "cteniHry": 92,
-          "vydrz": 88
+          "odolnost": 88
         }
       },
       {
@@ -7143,13 +7688,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 92,
           "obratnost": 93,
-          "rana": 91,
+          "sila": 91,
           "technika": 97,
           "obetavost": 94,
-          "psychickaOdolnost": 94,
-          "obrana": 97,
+          "psychika": 94,
+          "svih": 97,
           "cteniHry": 96,
-          "vydrz": 92
+          "odolnost": 92
         }
       },
       {
@@ -7177,7 +7722,27 @@ export const extraligaTeams = [
             "matches": 8,
             "wins": 5,
             "winRate": 63
+          },
+        "playoff": {
+          "matches": 7,
+          "wins": 3,
+          "winRate": 43,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 3,
+            "wins": 2,
+            "winRate": 67
+          },
+          "trojice": {
+            "matches": 4,
+            "wins": 1,
+            "winRate": 25
           }
+        }
         },
         "typicalPositions": [
           "dvojice2",
@@ -7186,13 +7751,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 83,
           "obratnost": 84,
-          "rana": 82,
+          "sila": 82,
           "technika": 88,
           "obetavost": 85,
-          "psychickaOdolnost": 85,
-          "obrana": 88,
+          "psychika": 85,
+          "svih": 88,
           "cteniHry": 87,
-          "vydrz": 83
+          "odolnost": 83
         }
       },
       {
@@ -7274,6 +7839,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 7,
+          "wins": 3,
+          "winRate": 43,
+          "singl": {
+            "matches": 1,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 3,
+            "wins": 2,
+            "winRate": 67
+          },
+          "trojice": {
+            "matches": 3,
+            "wins": 1,
+            "winRate": 33
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -7285,13 +7870,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 87,
           "obratnost": 88,
-          "rana": 86,
+          "sila": 86,
           "technika": 92,
           "obetavost": 89,
-          "psychickaOdolnost": 89,
-          "obrana": 92,
+          "psychika": 89,
+          "svih": 92,
           "cteniHry": 91,
-          "vydrz": 87
+          "odolnost": 87
         }
       },
       {
@@ -7373,6 +7958,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 6,
+          "wins": 2,
+          "winRate": 33,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 3,
+            "wins": 1,
+            "winRate": 33
+          },
+          "trojice": {
+            "matches": 3,
+            "wins": 1,
+            "winRate": 33
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -7384,13 +7989,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 84,
           "obratnost": 85,
-          "rana": 83,
+          "sila": 83,
           "technika": 89,
           "obetavost": 86,
-          "psychickaOdolnost": 86,
-          "obrana": 89,
+          "psychika": 86,
+          "svih": 89,
           "cteniHry": 88,
-          "vydrz": 84
+          "odolnost": 84
         }
       },
       {
@@ -7472,6 +8077,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 6,
+          "wins": 2,
+          "winRate": 33,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 2,
+            "wins": 1,
+            "winRate": 50
+          },
+          "trojice": {
+            "matches": 4,
+            "wins": 1,
+            "winRate": 25
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -7483,13 +8108,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 85,
           "obratnost": 86,
-          "rana": 84,
+          "sila": 84,
           "technika": 90,
           "obetavost": 87,
-          "psychickaOdolnost": 87,
-          "obrana": 90,
+          "psychika": 87,
+          "svih": 90,
           "cteniHry": 89,
-          "vydrz": 85
+          "odolnost": 85
         }
       },
       {
@@ -7571,6 +8196,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 1,
+          "wins": 0,
+          "winRate": 0,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "trojice": {
+            "matches": 1,
+            "wins": 0,
+            "winRate": 0
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -7582,13 +8227,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 84,
           "obratnost": 85,
-          "rana": 83,
+          "sila": 83,
           "technika": 89,
           "obetavost": 86,
-          "psychickaOdolnost": 86,
-          "obrana": 89,
+          "psychika": 86,
+          "svih": 89,
           "cteniHry": 88,
-          "vydrz": 84
+          "odolnost": 84
         }
       },
       {
@@ -7625,13 +8270,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 83,
           "obratnost": 84,
-          "rana": 82,
+          "sila": 82,
           "technika": 88,
           "obetavost": 85,
-          "psychickaOdolnost": 85,
-          "obrana": 88,
+          "psychika": 85,
+          "svih": 88,
           "cteniHry": 87,
-          "vydrz": 83
+          "odolnost": 83
         }
       },
       {
@@ -7713,6 +8358,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 8,
+          "wins": 3,
+          "winRate": 38,
+          "singl": {
+            "matches": 1,
+            "wins": 1,
+            "winRate": 100
+          },
+          "dvojice": {
+            "matches": 3,
+            "wins": 1,
+            "winRate": 33
+          },
+          "trojice": {
+            "matches": 4,
+            "wins": 1,
+            "winRate": 25
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -7723,13 +8388,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 83,
           "obratnost": 84,
-          "rana": 82,
+          "sila": 82,
           "technika": 88,
           "obetavost": 85,
-          "psychickaOdolnost": 85,
-          "obrana": 88,
+          "psychika": 85,
+          "svih": 88,
           "cteniHry": 87,
-          "vydrz": 83
+          "odolnost": 83
         }
       },
       {
@@ -7812,6 +8477,11 @@ export const extraligaTeams = [
             "wins": 9,
             "winRate": 45
           }
+        },
+        "playoff": {
+          "matches": 12,
+          "wins": 7,
+          "winRate": 58
         },
         "seasonStats": [
           {
@@ -7915,6 +8585,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 6,
+          "wins": 2,
+          "winRate": 33,
+          "singl": {
+            "matches": 3,
+            "wins": 1,
+            "winRate": 33
+          },
+          "dvojice": {
+            "matches": 3,
+            "wins": 1,
+            "winRate": 33
+          },
+          "trojice": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -7927,13 +8617,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 81,
           "obratnost": 82,
-          "rana": 80,
+          "sila": 80,
           "technika": 88,
           "obetavost": 84,
-          "psychickaOdolnost": 84,
-          "obrana": 88,
+          "psychika": 84,
+          "svih": 88,
           "cteniHry": 87,
-          "vydrz": 82
+          "odolnost": 82
         }
       },
       {
@@ -8080,13 +8770,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 82,
           "obratnost": 83,
-          "rana": 81,
+          "sila": 81,
           "technika": 89,
           "obetavost": 85,
-          "psychickaOdolnost": 85,
-          "obrana": 89,
+          "psychika": 85,
+          "svih": 89,
           "cteniHry": 88,
-          "vydrz": 83
+          "odolnost": 83
         }
       },
       {
@@ -8222,6 +8912,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 6,
+          "wins": 2,
+          "winRate": 33,
+          "singl": {
+            "matches": 3,
+            "wins": 1,
+            "winRate": 33
+          },
+          "dvojice": {
+            "matches": 3,
+            "wins": 1,
+            "winRate": 33
+          },
+          "trojice": {
+            "matches": 3,
+            "wins": 1,
+            "winRate": 33
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -8234,13 +8944,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 80,
           "obratnost": 81,
-          "rana": 78,
+          "sila": 78,
           "technika": 90,
           "obetavost": 84,
-          "psychickaOdolnost": 84,
-          "obrana": 89,
+          "psychika": 84,
+          "svih": 89,
           "cteniHry": 89,
-          "vydrz": 81
+          "odolnost": 81
         }
       },
       {
@@ -8375,6 +9085,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 8,
+          "wins": 3,
+          "winRate": 38,
+          "singl": {
+            "matches": 3,
+            "wins": 1,
+            "winRate": 33
+          },
+          "dvojice": {
+            "matches": 3,
+            "wins": 1,
+            "winRate": 33
+          },
+          "trojice": {
+            "matches": 2,
+            "wins": 1,
+            "winRate": 50
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -8387,13 +9117,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 81,
           "obratnost": 82,
-          "rana": 80,
+          "sila": 80,
           "technika": 88,
           "obetavost": 84,
-          "psychickaOdolnost": 84,
-          "obrana": 88,
+          "psychika": 84,
+          "svih": 88,
           "cteniHry": 87,
-          "vydrz": 82
+          "odolnost": 82
         }
       },
       {
@@ -8426,6 +9156,11 @@ export const extraligaTeams = [
             "wins": 13,
             "winRate": 54
           }
+        },
+        "playoff": {
+          "matches": 8,
+          "wins": 6,
+          "winRate": 75
         },
         "seasonStats": [
           {
@@ -8529,6 +9264,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 3,
+          "wins": 1,
+          "winRate": 33,
+          "singl": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "dvojice": {
+            "matches": 0,
+            "wins": 0,
+            "winRate": 0
+          },
+          "trojice": {
+            "matches": 3,
+            "wins": 1,
+            "winRate": 33
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -8540,13 +9295,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 89,
           "obratnost": 88,
-          "rana": 91,
+          "sila": 91,
           "technika": 80,
           "obetavost": 85,
-          "psychickaOdolnost": 81,
-          "obrana": 89,
+          "psychika": 81,
+          "svih": 89,
           "cteniHry": 80,
-          "vydrz": 82
+          "odolnost": 82
         }
       },
       {
@@ -8555,6 +9310,7 @@ export const extraligaTeams = [
         "number": 44,
         "position": "Smečař/Blokař",
         "dominantFoot": "right",
+        "nonsenseName": "Dát něco do pití sobě i blokaři",
         "favoriteShots": [
           "klepák"
         ],
@@ -8681,6 +9437,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 6,
+          "wins": 2,
+          "winRate": 33,
+          "singl": {
+            "matches": 3,
+            "wins": 1,
+            "winRate": 33
+          },
+          "dvojice": {
+            "matches": 3,
+            "wins": 1,
+            "winRate": 33
+          },
+          "trojice": {
+            "matches": 3,
+            "wins": 1,
+            "winRate": 33
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -8693,13 +9469,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 88,
           "obratnost": 87,
-          "rana": 90,
+          "sila": 90,
           "technika": 79,
           "obetavost": 84,
-          "psychickaOdolnost": 80,
-          "obrana": 88,
+          "psychika": 80,
+          "svih": 88,
           "cteniHry": 79,
-          "vydrz": 81
+          "odolnost": 81
         }
       },
       {
@@ -8731,6 +9507,11 @@ export const extraligaTeams = [
             "wins": 11,
             "winRate": 48
           }
+        },
+        "playoff": {
+          "matches": 10,
+          "wins": 7,
+          "winRate": 70
         },
         "seasonStats": [
           {
@@ -8834,6 +9615,26 @@ export const extraligaTeams = [
             }
           }
         ],
+        "playoff": {
+          "matches": 6,
+          "wins": 2,
+          "winRate": 33,
+          "singl": {
+            "matches": 3,
+            "wins": 1,
+            "winRate": 33
+          },
+          "dvojice": {
+            "matches": 3,
+            "wins": 1,
+            "winRate": 33
+          },
+          "trojice": {
+            "matches": 3,
+            "wins": 1,
+            "winRate": 33
+          }
+        },
         "availableSkills": [
           16,
           17
@@ -8846,13 +9647,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 81,
           "obratnost": 82,
-          "rana": 79,
+          "sila": 79,
           "technika": 91,
           "obetavost": 85,
-          "psychickaOdolnost": 85,
-          "obrana": 90,
+          "psychika": 85,
+          "svih": 90,
           "cteniHry": 90,
-          "vydrz": 82
+          "odolnost": 82
         }
       },
       {
@@ -8882,6 +9683,11 @@ export const extraligaTeams = [
             "wins": 7,
             "winRate": 70
           }
+        },
+        "playoff": {
+          "matches": 5,
+          "wins": 4,
+          "winRate": 80
         },
         "seasonStats": [
           {
@@ -8996,13 +9802,13 @@ export const extraligaTeams = [
         "stats": {
           "rychlost": 84,
           "obratnost": 85,
-          "rana": 82,
+          "sila": 82,
           "technika": 94,
           "obetavost": 88,
-          "psychickaOdolnost": 88,
-          "obrana": 93,
+          "psychika": 88,
+          "svih": 93,
           "cteniHry": 93,
-          "vydrz": 85
+          "odolnost": 85
         }
       },
       {

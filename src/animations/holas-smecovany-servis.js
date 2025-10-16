@@ -1,0 +1,9 @@
+export const holasSmecovanyServisAnimation = `
+<div class="skill-animation-container">
+  <div class="video-animation">
+    <video autoplay loop muted playsinline class="skill-video">
+      <source src="/videos/holas-smecovany-servis.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+`

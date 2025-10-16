@@ -2,6 +2,7 @@ import './newStyle.css'
 import './playerDetailStyle.css'
 import './simulationModeStyle.css'
 import './leagueMatchSetupStyle.css'
+import './schoolOfNohejbalStyle.css'
 import { players, skills } from './playerData.js'
 import { createHomeView, setupHomeHandlers as setupHomeViewHandlers } from './views/Home.js'
 import { createTeamView, setupTeamHandlers } from './views/Team.js'
@@ -9,15 +10,15 @@ import { createSimulationView, setupSimulationHandlers } from './views/Simulatio
 import { createSimulationModeView, setupSimulationModeHandlers } from './views/SimulationMode.js'
 import { createPlayerDetailView, setupPlayerDetailHandlers } from './views/PlayerDetail.js'
 import { createTeamRosterView, setupTeamRosterHandlers } from './views/TeamRosterView.js'
-import { smecAnimation } from './animations/smec.js'
+import { createSchoolOfNohejbalView, setupSchoolOfNohejbalHandlers } from './views/SchoolOfNohejbal.js'
+import { skillAnimations } from './skillAnimations.js'
 import { bokischSmecAnimation } from './animations/bokisch-smec.js'
 import { kurkaNonsenseSuccessAnimation, kurkaNonsenseFailAnimation } from './animations/kurka-shaolin.js'
 import { majstinikNonsenseAnimation } from './animations/majstinik-pozdrav.js'
 
-// Mapa animací pro jednotlivé schopnosti (globální)
-export const skillAnimations = {
-  // 12: blok - video bude doplněno
-}
+// Re-export pro zpětnou kompatibilitu
+export { skillAnimations }
+// Force reload
 
 // Mapa animací specifických pro jednotlivé hráče a jejich dovednosti
 export const playerSkillAnimations = {
@@ -211,22 +212,128 @@ function createPlayerModal(player) {
   return modal
 }
 
+// Funkce pro vytvoření URL podle view
+function getUrlForView(view, params = null) {
+  switch (view) {
+    case 'home':
+      return '/'
+    case 'team':
+      return '/team'
+    case 'school':
+      return '/school'
+    case 'simulation':
+      return '/simulation'
+    case 'player':
+      return `/player/${params}`
+    case 'team-roster':
+      // Pro team-roster může být params buď string (teamId) nebo objekt {teamId, isExtraliga}
+      if (params && typeof params === 'object' && params.teamId) {
+        return params.isExtraliga
+          ? `/team-roster/${params.teamId}?extraliga=true`
+          : `/team-roster/${params.teamId}`
+      }
+      return `/team-roster/${params}`
+    case 'simulation-game':
+      if (params && params.mode) {
+        // Pro extraligu serializovat object jako JSON
+        let opponentIdParam = params.opponentId || ''
+        if (params.mode === 'extraliga' && typeof params.opponentId === 'object') {
+          opponentIdParam = JSON.stringify(params.opponentId)
+        }
+
+        const queryParams = new URLSearchParams({
+          mode: params.mode,
+          opponentId: opponentIdParam,
+          playersPerTeam: params.playersPerTeam || 3,
+          substitutionMode: params.substitutionMode || 'auto'
+        })
+        return `/simulation-game?${queryParams.toString()}`
+      }
+      return '/simulation-game'
+    default:
+      return '/'
+  }
+}
+
+// Funkce pro parsování URL a získání view + params
+function parseUrl(url = window.location.pathname + window.location.search) {
+  const path = url.split('?')[0]
+  const searchParams = new URLSearchParams(url.split('?')[1] || '')
+
+  // Odstranit trailing slash
+  const cleanPath = path.replace(/\/$/, '') || '/'
+
+  if (cleanPath === '/' || cleanPath === '') {
+    return { view: 'home', params: null }
+  }
+
+  if (cleanPath === '/team') {
+    return { view: 'team', params: null }
+  }
+
+  if (cleanPath === '/school') {
+    return { view: 'school', params: null }
+  }
+
+  if (cleanPath === '/simulation') {
+    return { view: 'simulation', params: null }
+  }
+
+  if (cleanPath.startsWith('/player/')) {
+    const playerId = cleanPath.replace('/player/', '')
+    return { view: 'player', params: playerId }
+  }
+
+  if (cleanPath.startsWith('/team-roster/')) {
+    const teamId = cleanPath.replace('/team-roster/', '')
+    // Zkontrolovat, jestli je v query parametru isExtraliga
+    const isExtraliga = searchParams.get('extraliga') === 'true'
+    return { view: 'team-roster', params: { teamId, isExtraliga } }
+  }
+
+  if (cleanPath === '/simulation-game') {
+    const mode = searchParams.get('mode') || 'training'
+    let opponentId = searchParams.get('opponentId') || null
+
+    // Pro extraligu deserializovat JSON zpět na object
+    if (mode === 'extraliga' && opponentId && opponentId.startsWith('{')) {
+      try {
+        opponentId = JSON.parse(opponentId)
+      } catch (e) {
+        console.error('Failed to parse extraliga teams from URL:', e)
+        opponentId = null
+      }
+    }
+
+    const playersPerTeam = parseInt(searchParams.get('playersPerTeam')) || 3
+    const substitutionMode = searchParams.get('substitutionMode') || 'auto'
+
+    return {
+      view: 'simulation-game',
+      params: { mode, opponentId, playersPerTeam, substitutionMode }
+    }
+  }
+
+  // Fallback na home
+  return { view: 'home', params: null }
+}
+
 // Globální funkce pro navigaci
 window.navigateToView = navigateTo
 
 // Globální funkce pro otevření player detailu
 window.openPlayerDetail = function(playerId) {
-  navigateTo('player', playerId)
+  navigateTo('player', playerId, true)
 }
 
 // Globální funkce pro spuštění simulace
 window.startSimulation = function(mode, opponentId, playersPerTeam = 3, substitutionMode = 'auto') {
   if (mode === 'training') {
-    navigateTo('simulation-game', { mode: 'training', opponentId: null, playersPerTeam, substitutionMode })
+    navigateTo('simulation-game', { mode: 'training', opponentId: null, playersPerTeam, substitutionMode }, true)
   } else if (mode === 'league') {
-    navigateTo('simulation-game', { mode: 'league', opponentId: opponentId, playersPerTeam: 3, substitutionMode })
+    navigateTo('simulation-game', { mode: 'league', opponentId: opponentId, playersPerTeam: 3, substitutionMode }, true)
   } else if (mode === 'extraliga') {
-    navigateTo('simulation-game', { mode: 'extraliga', opponentId: opponentId, playersPerTeam: 3, substitutionMode })
+    navigateTo('simulation-game', { mode: 'extraliga', opponentId: opponentId, playersPerTeam: 3, substitutionMode }, true)
   }
 }
 
@@ -236,7 +343,7 @@ function createNavigation() {
     <nav class="main-nav">
       <div class="nav-container">
         <div class="nav-logo">
-          <img src="/images/logo-mini.jpg" alt="NK Opava" />
+          <img src="/images/logo-nove.jpg" alt="NK Opava" />
           <div class="nav-logo-text">
             <p>1. LIGA MUŽŮ</p>
           </div>
@@ -245,6 +352,7 @@ function createNavigation() {
           <li><a class="nav-link ${currentView === 'home' ? 'active' : ''}" data-view="home">Domů</a></li>
           <li><a class="nav-link ${currentView === 'team' ? 'active' : ''}" data-view="team">Tým</a></li>
           <li><a class="nav-link ${currentView === 'simulation' ? 'active' : ''}" data-view="simulation">Simulace</a></li>
+          <li><a class="nav-link ${currentView === 'school' ? 'active' : ''}" data-view="school">Škola nohejbalu</a></li>
         </ul>
       </div>
     </nav>
@@ -252,8 +360,14 @@ function createNavigation() {
 }
 
 // Funkce pro navigaci mezi views
-function navigateTo(view, playerId = null, isExtraliga = false) {
+function navigateTo(view, playerId = null, isExtraliga = false, skipHistoryUpdate = false) {
   currentView = view
+
+  // Aktualizovat URL v prohlížeči (pokud není skipHistoryUpdate)
+  if (!skipHistoryUpdate) {
+    const url = getUrlForView(view, playerId || (isExtraliga !== undefined ? { teamId: playerId, isExtraliga } : null))
+    history.pushState({ view, playerId, isExtraliga }, '', url)
+  }
 
   // Pro team-roster view (karty hráčů libovolného týmu)
   if (view === 'team-roster') {
@@ -336,6 +450,8 @@ function navigateTo(view, playerId = null, isExtraliga = false) {
     content = createHomeView()
   } else if (view === 'team') {
     content = createTeamView()
+  } else if (view === 'school') {
+    content = createSchoolOfNohejbalView()
   } else if (view === 'player') {
     content = createPlayerDetailView(playerId)
   }
@@ -349,6 +465,8 @@ function navigateTo(view, playerId = null, isExtraliga = false) {
     setupHomeHandlers()
   } else if (view === 'team') {
     setupTeamHandlers()
+  } else if (view === 'school') {
+    setupSchoolOfNohejbalHandlers()
   } else if (view === 'player') {
     setupPlayerDetailHandlers()
   }
@@ -379,5 +497,26 @@ function setupHomeHandlers() {
   setupHomeViewHandlers()
 }
 
-// Inicializace
-navigateTo('home')
+// Handler pro zpětné tlačítko prohlížeče
+window.addEventListener('popstate', (event) => {
+  if (event.state) {
+    // Máme uložený stav, použijeme ho
+    navigateTo(event.state.view, event.state.playerId, event.state.isExtraliga, true)
+  } else {
+    // Nemáme stav, musíme parsovat URL
+    const { view, params } = parseUrl()
+    if (view === 'team-roster' && params) {
+      navigateTo(view, params.teamId, params.isExtraliga, true)
+    } else {
+      navigateTo(view, params, false, true)
+    }
+  }
+})
+
+// Inicializace - parsovat URL a navigovat na správný view
+const initialUrl = parseUrl()
+if (initialUrl.view === 'team-roster' && initialUrl.params) {
+  navigateTo(initialUrl.view, initialUrl.params.teamId, initialUrl.params.isExtraliga, true)
+} else {
+  navigateTo(initialUrl.view, initialUrl.params, false, true)
+}

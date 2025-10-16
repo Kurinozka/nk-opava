@@ -1,0 +1,355 @@
+.school-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+  padding: 2rem;
+}
+
+.school-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.school-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-red);
+  margin-bottom: 1rem;
+}
+
+.school-subtitle {
+  font-size: 1.3rem;
+  color: var(--color-gray-dark);
+  margin-bottom: 0.5rem;
+}
+
+.school-coach {
+  font-size: 1.1rem;
+  color: var(--color-black);
+}
+
+.school-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Video sekce */
+.school-video-section {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.video-player-container {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.school-video {
+  width: 100%;
+  border-radius: 8px;
+  background: #000;
+}
+
+.video-info {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.video-skill-badge {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.video-skill-badge.success {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+}
+
+.video-skill-badge.fail {
+  background: linear-gradient(135deg, #f44336 0%, #da190b 100%);
+  color: white;
+}
+
+.video-skill-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: 0.5rem;
+}
+
+.video-player-name {
+  font-size: 1.2rem;
+  color: var(--color-gray-dark);
+  margin: 0;
+}
+
+/* Ovládání videa */
+.video-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.control-btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--color-red);
+  color: white;
+}
+
+.control-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 47, 62, 0.3);
+}
+
+.random-btn {
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF5252 100%);
+}
+
+/* Rychlost přehrávání */
+.playback-speed {
+  text-align: center;
+}
+
+.playback-speed label {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-black);
+  margin-bottom: 0.75rem;
+}
+
+.speed-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.speed-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 2px solid var(--color-gray);
+  border-radius: 6px;
+  background: white;
+  color: var(--color-black);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.speed-btn:hover {
+  border-color: var(--color-red);
+  background: rgba(220, 47, 62, 0.1);
+}
+
+.speed-btn.active {
+  border-color: var(--color-red);
+  background: var(--color-red);
+  color: white;
+}
+
+/* Filtry */
+.school-filters {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+}
+
+.school-filters h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.filter-group {
+  margin-bottom: 1.5rem;
+}
+
+.filter-group label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-black);
+  margin-bottom: 0.5rem;
+}
+
+.filter-select {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 2px solid var(--color-gray);
+  border-radius: 6px;
+  background: white;
+  color: var(--color-black);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-select:hover {
+  border-color: var(--color-red);
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: var(--color-red);
+  box-shadow: 0 0 0 3px rgba(220, 47, 62, 0.1);
+}
+
+.reset-filters-btn {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  background: var(--color-gray);
+  color: var(--color-black);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+
+.reset-filters-btn:hover {
+  background: var(--color-gray-dark);
+  color: white;
+}
+
+.video-counter {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(220, 47, 62, 0.1);
+  border-radius: 6px;
+}
+
+.video-counter p {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--color-black);
+}
+
+/* Komentář Okurky */
+.okurka-comment-section {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #70B85E 0%, #5fa84d 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-top: 2rem;
+}
+
+.okurka-avatar {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.okurka-avatar img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.okurka-badge {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  color: #70B85E;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.okurka-comment-content {
+  flex: 1;
+  color: white;
+}
+
+.okurka-comment-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.okurka-comment-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.95);
+  text-align: justify;
+}
+
+/* Responsivní design */
+@media (max-width: 1024px) {
+  .school-content {
+    grid-template-columns: 1fr;
+  }
+
+  .school-filters {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .school-header h1 {
+    font-size: 2rem;
+  }
+
+  .school-subtitle {
+    font-size: 1rem;
+  }
+
+  .video-skill-name {
+    font-size: 1.3rem;
+  }
+
+  .video-controls {
+    flex-direction: column;
+  }
+
+  .control-btn {
+    width: 100%;
+  }
+
+  .okurka-comment-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .okurka-avatar {
+    margin-bottom: 1rem;
+  }
+
+  .okurka-comment-text {
+    text-align: center;
+  }
+}

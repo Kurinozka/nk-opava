@@ -5,8 +5,8 @@ import { getTeamColors } from '../teamColors.js'
 // Funkce pro výpočet průměrného ratingu
 function calculateAvgRating(player) {
   if (!player.stats) return 0
-  const { rychlost, obratnost, rana, technika, obetavost, psychickaOdolnost, obrana, cteniHry, vydrz } = player.stats
-  return Math.round((rychlost + obratnost + rana + technika + obetavost + psychickaOdolnost + obrana + cteniHry + vydrz) / 9)
+  const { rychlost, obratnost, sila, svih, technika, obetavost, psychika, cteniHry, odolnost } = player.stats
+  return Math.round((rychlost + obratnost + sila + svih + technika + obetavost + psychika + cteniHry + odolnost) / 9)
 }
 
 // Funkce pro vytvoření player karty
@@ -54,13 +54,13 @@ function createPlayerCard(player, teamId) {
         <div class="player-stats-mini">
           <div class="stat"><span class="stat-value">${player.stats.rychlost}</span><span class="stat-label">Rychlost</span></div>
           <div class="stat"><span class="stat-value">${player.stats.obratnost}</span><span class="stat-label">Obratnost</span></div>
-          <div class="stat"><span class="stat-value">${player.stats.rana}</span><span class="stat-label">Rána</span></div>
+          <div class="stat"><span class="stat-value">${player.stats.sila}</span><span class="stat-label">Rána</span></div>
           <div class="stat"><span class="stat-value">${player.stats.technika}</span><span class="stat-label">Technika</span></div>
           <div class="stat"><span class="stat-value">${player.stats.obetavost}</span><span class="stat-label">Obětavost</span></div>
-          <div class="stat"><span class="stat-value">${player.stats.psychickaOdolnost}</span><span class="stat-label">Psychika</span></div>
-          <div class="stat"><span class="stat-value">${player.stats.obrana}</span><span class="stat-label">Obrana</span></div>
+          <div class="stat"><span class="stat-value">${player.stats.psychika}</span><span class="stat-label">Psychika</span></div>
+          <div class="stat"><span class="stat-value">${player.stats.odolnost}</span><span class="stat-label">Obrana</span></div>
           <div class="stat"><span class="stat-value">${player.stats.cteniHry}</span><span class="stat-label">Čtení hry</span></div>
-          <div class="stat"><span class="stat-value">${player.stats.vydrz}</span><span class="stat-label">Výdrž</span></div>
+          <div class="stat"><span class="stat-value">${player.stats.svih}</span><span class="stat-label">Švih</span></div>
         </div>
       </div>
     </div>
@@ -106,6 +106,54 @@ export function createTeamRosterView(teamId, isExtraliga = false) {
         <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
           <video autoplay loop muted playsinline style="width: 100%; display: block;">
             <source src="/videos/modrice-team.mov" type="video/mp4">
+          </video>
+        </div>
+      ` : ''}
+
+      ${teamId === 'CELA' ? `
+        <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+          <video autoplay loop muted playsinline style="width: 100%; display: block;">
+            <source src="/videos/celakovice-team.mov" type="video/mp4">
+          </video>
+        </div>
+      ` : ''}
+
+      ${teamId === 'KVAR' ? `
+        <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+          <video autoplay loop muted playsinline style="width: 100%; display: block;">
+            <source src="/videos/karlovy-vary-team.mov" type="video/mp4">
+          </video>
+        </div>
+      ` : ''}
+
+      ${teamId === 'VSET' ? `
+        <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+          <video autoplay loop muted playsinline style="width: 100%; display: block;">
+            <source src="/videos/vsetin-team.mov" type="video/mp4">
+          </video>
+        </div>
+      ` : ''}
+
+      ${teamId === 'ZATEC' ? `
+        <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+          <video autoplay loop muted playsinline style="width: 100%; display: block;">
+            <source src="/videos/zatec-team.mov" type="video/mp4">
+          </video>
+        </div>
+      ` : ''}
+
+      ${teamId === 'RADO' ? `
+        <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+          <video autoplay loop muted playsinline style="width: 100%; display: block;">
+            <source src="/videos/radomysl-team.mov" type="video/mp4">
+          </video>
+        </div>
+      ` : ''}
+
+      ${teamId === 'SOLI' ? `
+        <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+          <video autoplay loop muted playsinline style="width: 100%; display: block;">
+            <source src="/videos/solidarita-team.mov" type="video/mp4">
           </video>
         </div>
       ` : ''}

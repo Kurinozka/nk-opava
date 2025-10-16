@@ -1,5 +1,6 @@
 import { getOpponentTeams } from '../leagueTeams.js'
 import { getOpponentTeams as getExtraligaTeams } from '../extraligaTeams.js'
+import { getTeamColors } from '../teamColors.js'
 
 export function createSimulationModeView() {
   const opponents = getOpponentTeams()
@@ -19,6 +20,7 @@ export function createSimulationModeView() {
   return `
     <div class="simulation-mode-container">
       <div class="mode-selection-wrapper">
+        <h3 class="league-selector-label">Dostupné týmy:</h3>
         <div class="league-selector-top">
           <button class="league-selector-btn league-btn-red" data-league="league">1. liga</button>
           <button class="league-selector-btn league-btn-black" data-league="extraliga">Extraliga</button>
@@ -92,12 +94,14 @@ export function createSimulationModeView() {
         <div id="league-teams-view" style="display: none;">
           <h1 class="mode-title">Týmy 1. ligy</h1>
           <div class="teams-logos-grid">
-            ${allLeagueTeams.map(team => `
-              <div class="team-logo-card" data-team-id="${team.id}">
+            ${allLeagueTeams.map(team => {
+              const colors = getTeamColors(team.id)
+              return `
+              <div class="team-logo-card" data-team-id="${team.id}" style="--team-primary: ${colors.primary}; --team-accent: ${colors.accent};">
                 <img src="${team.logo}" alt="${team.name}" class="team-logo-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%23DC2F3E%22 width=%22200%22 height=%22200%22/%3E%3Ctext fill=%22white%22 font-size=%2240%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3E${team.shortName}%3C/text%3E%3C/svg%3E'" />
                 <p class="team-logo-name">${team.shortName}</p>
               </div>
-            `).join('')}
+            `}).join('')}
           </div>
         </div>
 
@@ -105,12 +109,14 @@ export function createSimulationModeView() {
         <div id="extraliga-teams-view" style="display: none;">
           <h1 class="mode-title">Týmy Extraligy</h1>
           <div class="teams-logos-grid">
-            ${extraligaTeams.map(team => `
-              <div class="team-logo-card" data-team-id="${team.id}">
+            ${extraligaTeams.map(team => {
+              const colors = getTeamColors(team.id)
+              return `
+              <div class="team-logo-card" data-team-id="${team.id}" style="--team-primary: ${colors.primary}; --team-accent: ${colors.accent};">
                 <img src="${team.logo}" alt="${team.name}" class="team-logo-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%23000%22 width=%22200%22 height=%22200%22/%3E%3Ctext fill=%22white%22 font-size=%2240%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22%3E${team.shortName}%3C/text%3E%3C/svg%3E'" />
                 <p class="team-logo-name">${team.shortName}</p>
               </div>
-            `).join('')}
+            `}).join('')}
           </div>
         </div>
       </div>

@@ -3,8 +3,8 @@ import { players } from '../playerData.js'
 // Funkce pro výpočet průměrného ratingu
 function calculateAvgRating(player) {
   if (!player.stats) return 0
-  const { rychlost, obratnost, rana, technika, obetavost, psychickaOdolnost, obrana, cteniHry, vydrz } = player.stats
-  return Math.round((rychlost + obratnost + rana + technika + obetavost + psychickaOdolnost + obrana + cteniHry + vydrz) / 9)
+  const { rychlost, obratnost, sila, svih, technika, obetavost, psychika, cteniHry, odolnost } = player.stats
+  return Math.round((rychlost + obratnost + sila + svih + technika + obetavost + psychika + cteniHry + odolnost) / 9)
 }
 
 // Funkce pro vytvoření player karty
@@ -51,13 +51,13 @@ function createPlayerCard(player) {
         <div class="player-stats-mini">
           <div class="stat"><span class="stat-value">${player.stats.rychlost}</span><span class="stat-label">Rychlost</span></div>
           <div class="stat"><span class="stat-value">${player.stats.obratnost}</span><span class="stat-label">Obratnost</span></div>
-          <div class="stat"><span class="stat-value">${player.stats.rana}</span><span class="stat-label">Rána</span></div>
+          <div class="stat"><span class="stat-value">${player.stats.sila}</span><span class="stat-label">Rána</span></div>
           <div class="stat"><span class="stat-value">${player.stats.technika}</span><span class="stat-label">Technika</span></div>
           <div class="stat"><span class="stat-value">${player.stats.obetavost}</span><span class="stat-label">Obětavost</span></div>
-          <div class="stat"><span class="stat-value">${player.stats.psychickaOdolnost}</span><span class="stat-label">Psychika</span></div>
-          <div class="stat"><span class="stat-value">${player.stats.obrana}</span><span class="stat-label">Obrana</span></div>
+          <div class="stat"><span class="stat-value">${player.stats.psychika}</span><span class="stat-label">Psychika</span></div>
+          <div class="stat"><span class="stat-value">${player.stats.odolnost}</span><span class="stat-label">Obrana</span></div>
           <div class="stat"><span class="stat-value">${player.stats.cteniHry}</span><span class="stat-label">Čtení hry</span></div>
-          <div class="stat"><span class="stat-value">${player.stats.vydrz}</span><span class="stat-label">Výdrž</span></div>
+          <div class="stat"><span class="stat-value">${player.stats.svih}</span><span class="stat-label">Švih</span></div>
         </div>
       </div>
     </div>
