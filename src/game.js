@@ -3053,7 +3053,7 @@ async function checkRefereeDecision() {
 
       // Soupeř získává bod
       const opponentTeam = team === 'team1' ? 'team2' : 'team1'
-      addEventToHistory(`🟨 ${player.name} dostal žlutou kartu! ${opponentTeam === 'team1' ? 'Tým 1' : 'Tým 2'} získává bod.`)
+      addEventToHistory(`🟨 ${player.name} dostal žlutou kartu! ${opponentTeam === 'team1' ? gameState.team1Name : gameState.team2Name} získává bod.`)
 
       // Kontrola druhé žluté = červená
       if (gameState.playerYellowCards[player.id] >= 2) {
@@ -3130,7 +3130,7 @@ async function checkRefereeDecision() {
     await smartDelay(3000)
 
     const opponentTeam = team === 'team1' ? 'team2' : 'team1'
-    addEventToHistory(`🟨 ${player.name} dostal žlutou kartu! ${opponentTeam === 'team1' ? 'Tým 1' : 'Tým 2'} získává bod.`)
+    addEventToHistory(`🟨 ${player.name} dostal žlutou kartu! ${opponentTeam === 'team1' ? gameState.team1Name : gameState.team2Name} získává bod.`)
 
     // Kontrola druhé žluté = červená
     if (gameState.playerYellowCards[player.id] >= 2) {
@@ -3735,7 +3735,7 @@ async function playPointWithPhases() {
                   <div class="red-card-removal">
                     <h3>🟥 VYLOUČENÍ Z HŘIŠTĚ</h3>
                     <p><strong>${playerOut.name}</strong> opouští hřiště!</p>
-                    <p>${teamName === 'team1' ? 'Tým 1' : 'Tým 2'} pokračuje s ${teamPlayers.length} hráči!</p>
+                    <p>${teamName === 'team1' ? gameState.team1Name : gameState.team2Name} pokračuje s ${teamPlayers.length} hráči!</p>
                   </div>
                 `
                 await smartDelay(2500)
@@ -5693,7 +5693,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
 
   for (const nonsenseSkill of nonsenseAttempts) {
     const isTeam1 = team1Skills.includes(nonsenseSkill)
-    const teamName = isTeam1 ? 'Tým 1' : 'Tým 2'
+    const teamName = isTeam1 ? gameState.team1Name : gameState.team2Name
     const opponentTeam = isTeam1 ? 'team2' : 'team1'
     const playerNonsenseName = nonsenseSkill.player.nonsenseName || 'Nesmysl'
     const playerId = nonsenseSkill.player.id
@@ -6011,13 +6011,13 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
     if (team1UltimatePoints > 0) {
       const chosenUltimate = team1SuccessfulUltimateOffensive[Math.floor(Math.random() * team1SuccessfulUltimateOffensive.length)]
       await showSkillClash(chosenUltimate, null, 'success')
-      evalDiv.innerHTML = `<p class="ultimate-success">⚔️ Tým 1 získal ${team1UltimatePoints} bod(y) z útočné ultimate!</p>`
+      evalDiv.innerHTML = `<p class="ultimate-success">⚔️ ${gameState.team1Name} získal ${team1UltimatePoints} bod(y) z útočné ultimate!</p>`
       await smartDelay(1500)
     }
     if (team2UltimatePoints > 0) {
       const chosenUltimate = team2SuccessfulUltimateOffensive[Math.floor(Math.random() * team2SuccessfulUltimateOffensive.length)]
       await showSkillClash(chosenUltimate, null, 'success')
-      evalDiv.innerHTML = `<p class="ultimate-success">⚔️ Tým 2 získal ${team2UltimatePoints} bod(y) z útočné ultimate!</p>`
+      evalDiv.innerHTML = `<p class="ultimate-success">⚔️ ${gameState.team2Name} získal ${team2UltimatePoints} bod(y) z útočné ultimate!</p>`
       await smartDelay(1500)
     }
 
@@ -6053,7 +6053,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
 
       return {
         winner: 'team1',
-        reason: `Tým 1 získal výměnu z útočné ultimate (${team1UltimatePoints}:${team2UltimatePoints})`,
+        reason: `${gameState.team1Name} získal výměnu z útočné ultimate (${team1UltimatePoints}:${team2UltimatePoints})`,
         team1Points: team1UltimatePoints,
         team2Points: team2UltimatePoints,
         interactions: ultimateInteractions
@@ -6070,7 +6070,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
 
       return {
         winner: 'team2',
-        reason: `Tým 2 získal výměnu z útočné ultimate (${team2UltimatePoints}:${team1UltimatePoints})`,
+        reason: `${gameState.team2Name} získal výměnu z útočné ultimate (${team2UltimatePoints}:${team1UltimatePoints})`,
         team1Points: team1UltimatePoints,
         team2Points: team2UltimatePoints,
         interactions: ultimateInteractions
@@ -6458,7 +6458,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
 
         return {
           winner: 'team1',
-          reason: `Tým 2 prohrál výměnu - ${skills[targetSpecialSkill.skill].name} byl zablokován univerzální obranou!`,
+          reason: `${gameState.team2Name} prohrál výměnu - ${skills[targetSpecialSkill.skill].name} byl zablokován univerzální obranou!`,
           team1Points: 1,
           team2Points: 0,
           decisiveSkill: univDef,
@@ -6489,7 +6489,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
 
         return {
           winner: 'team2',
-          reason: `Tým 1 prohrál výměnu - ${skills[targetSpecialSkill.skill].name} byl zablokován univerzální obranou!`,
+          reason: `${gameState.team1Name} prohrál výměnu - ${skills[targetSpecialSkill.skill].name} byl zablokován univerzální obranou!`,
           team1Points: 0,
           team2Points: 1,
           decisiveSkill: univDef,
@@ -6650,7 +6650,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
             <div class="defense-successful">
               <h3>🛡️ Úspěšná univerzální obrana!</h3>
               <p><strong>${getPlayerFirstNameOrNickname(univDef.player)}</strong> ubránil útok ${getPlayerFirstNameOrNickname(randomAttack.player)} univerzální obranou!</p>
-              <p class="effect">Tým 2 už nemůže získat body z útoků ve této výměně!</p>
+              <p class="effect">${gameState.team2Name} už nemůže získat body z útoků ve této výměně!</p>
             </div>
           `
           await smartDelay(2000)
@@ -6725,7 +6725,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
             <div class="defense-successful">
               <h3>🛡️ Úspěšná univerzální obrana!</h3>
               <p><strong>${getPlayerFirstNameOrNickname(univDef.player)}</strong> ubránil útok ${getPlayerFirstNameOrNickname(randomAttack.player)} univerzální obranou!</p>
-              <p class="effect">Tým 1 už nemůže získat body z útoků ve této výměně!</p>
+              <p class="effect">${gameState.team1Name} už nemůže získat body z útoků ve této výměně!</p>
             </div>
           `
           await smartDelay(2000)
@@ -6768,7 +6768,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
         // Animace rozpadnutí ikony
         await shatterSkillIcon(matchingAttack)
 
-        await showSkillComment(matchingAttack, attackSuccessRate, false, getFailedAttackMessage(matchingAttack, 'Tým 1'), 'offensive')
+        await showSkillComment(matchingAttack, attackSuccessRate, false, getFailedAttackMessage(matchingAttack, gameState.team1Name), 'offensive')
 
         // Přehrát video neúspěšné útočné dovednosti (pokud existuje)
         const failedVideo = getPlayerSkillVideo(matchingAttack.player.id, matchingAttack.skill, 'fail')
@@ -6815,7 +6815,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
         // Přehrát zvuk úspěšně zablokovaného útoku
         soundManager.playDefenseBlock()
 
-        await showSkillComment(matchingAttack, attackSuccessRate, true, '🛡️ Útok byl zablokován obrannou ultimate! Tým 1: +1 bod', 'defensive')
+        await showSkillComment(matchingAttack, attackSuccessRate, true, `🛡️ Útok byl zablokován obrannou ultimate! ${gameState.team1Name}: +1 bod`, 'defensive')
         team1Points += 1
         gameState.lastScoredAgainst = 'team2'
         interactions.push({
@@ -6856,7 +6856,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
         // Animace rozpadnutí ikony obranné dovednosti
         await shatterSkillIcon(defense)
 
-        await showSkillComment(matchingAttack, attackSuccessRate, true, `${defense.player.name} se pokusil bránit dovedností <strong>${skills[defense.skill].name}</strong>, ale kvůli debuffu selhal! Tým 2: +1 bod`, 'offensive')
+        await showSkillComment(matchingAttack, attackSuccessRate, true, `${defense.player.name} se pokusil bránit dovedností <strong>${skills[defense.skill].name}</strong>, ale kvůli debuffu selhal! ${gameState.team2Name}: +1 bod`, 'offensive')
         team2Points += 1
         gameState.lastScoredAgainst = 'team1'  // Tým 1 inkasoval
 
@@ -6970,7 +6970,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
         // Animace rozpadnutí ikony
         await shatterSkillIcon(matchingAttack)
 
-        await showSkillComment(matchingAttack, attackSuccessRate, false, getFailedAttackMessage(matchingAttack, 'Tým 2'), 'offensive')
+        await showSkillComment(matchingAttack, attackSuccessRate, false, getFailedAttackMessage(matchingAttack, gameState.team2Name), 'offensive')
 
         // Přehrát video neúspěšné útočné dovednosti (pokud existuje)
         const failedVideo = getPlayerSkillVideo(matchingAttack.player.id, matchingAttack.skill, 'fail')
@@ -7017,7 +7017,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
         // Přehrát zvuk úspěšně zablokovaného útoku
         soundManager.playDefenseBlock()
 
-        await showSkillComment(matchingAttack, attackSuccessRate, true, '🛡️ Útok byl zablokován obrannou ultimate! Tým 2: +1 bod', 'defensive')
+        await showSkillComment(matchingAttack, attackSuccessRate, true, `🛡️ Útok byl zablokován obrannou ultimate! ${gameState.team2Name}: +1 bod`, 'defensive')
         team2Points += 1
         gameState.lastScoredAgainst = 'team1'
         interactions.push({
@@ -7050,7 +7050,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
         // Animace rozpadnutí ikony obranné dovednosti
         await shatterSkillIcon(defense)
 
-        await showSkillComment(matchingAttack, attackSuccessRate, true, `${defense.player.name} se pokusil bránit dovedností <strong>${skills[defense.skill].name}</strong>, ale kvůli debuffu selhal! Tým 1: +1 bod`, 'offensive')
+        await showSkillComment(matchingAttack, attackSuccessRate, true, `${defense.player.name} se pokusil bránit dovedností <strong>${skills[defense.skill].name}</strong>, ale kvůli debuffu selhal! ${gameState.team1Name}: +1 bod`, 'offensive')
         team1Points += 1
 
         // Přidat bod útočníkovi a případně pochválit
@@ -7108,7 +7108,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
         <div class="defense-successful">
           <h3>🛡️ Úspěšná obrana!</h3>
           <p><strong>${getPlayerFirstNameOrNickname(defense.player)}</strong> ubránil útok ${getPlayerFirstNameOrNickname(matchingAttack.player)}!</p>
-          <p class="effect">Tým 1 už nemůže získat body z útoků ve této výměně!</p>
+          <p class="effect">${gameState.team1Name} už nemůže získat body z útoků ve této výměně!</p>
         </div>
       `
       await smartDelay(2000)
@@ -7136,7 +7136,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
           // Animace rozpadnutí ikony
           await shatterSkillIcon(attack)
 
-          await showSkillComment(attack, successRate, false, getFailedAttackMessage(attack, 'Tým 2'), 'offensive')
+          await showSkillComment(attack, successRate, false, getFailedAttackMessage(attack, gameState.team2Name), 'offensive')
 
           // Přehrát video neúspěšné útočné dovednosti (pokud existuje)
           const failedVideo = getPlayerSkillVideo(attack.player.id, attack.skill, 'fail')
@@ -7205,7 +7205,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
           // Animace rozpadnutí ikony
           await shatterSkillIcon(attack)
 
-          await showSkillComment(attack, successRate, false, getFailedAttackMessage(attack, 'Tým 1'), 'offensive')
+          await showSkillComment(attack, successRate, false, getFailedAttackMessage(attack, gameState.team1Name), 'offensive')
 
           // Přehrát video neúspěšné útočné dovednosti (pokud existuje)
           const failedVideo = getPlayerSkillVideo(attack.player.id, attack.skill, 'fail')
@@ -7296,7 +7296,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
       // Animace rozpadnutí ikony
       await shatterSkillIcon(attack)
 
-      await showSkillComment(attack, successRate, false, getFailedAttackMessage(attack, isTeam1 ? 'Tým 2' : 'Tým 1'), 'offensive')
+      await showSkillComment(attack, successRate, false, getFailedAttackMessage(attack, isTeam1 ? gameState.team2Name : gameState.team1Name), 'offensive')
 
       // Přehrát video neúspěšné útočné dovednosti (pokud existuje)
       const failedVideo = getPlayerSkillVideo(attack.player.id, attack.skill, 'fail')
@@ -7345,7 +7345,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
       const blockingDefense = isTeam1 ? ultimateDefenseTeam2 : ultimateDefenseTeam1
       await showSkillClash(attack, blockingDefense, 'blocked')
 
-      await showSkillComment(attack, successRate, true, `🛡️ Útok byl zablokován obrannou ultimate! ${isTeam1 ? 'Tým 2' : 'Tým 1'}: +1 bod`, 'defensive')
+      await showSkillComment(attack, successRate, true, `🛡️ Útok byl zablokován obrannou ultimate! ${isTeam1 ? gameState.team2Name : gameState.team1Name}: +1 bod`, 'defensive')
       if (isTeam1) {
         team2Points += 1
         gameState.lastScoredAgainst = 'team1'
@@ -7375,7 +7375,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
 
     // Útok je úspěšný a není blokován
     {
-      await showSkillComment(attack, successRate, true, `Útok byl úspěšný a nebyl ubráněn. ${isTeam1 ? 'Tým 1' : 'Tým 2'}: +1 bod`, 'offensive')
+      await showSkillComment(attack, successRate, true, `Útok byl úspěšný a nebyl ubráněn. ${isTeam1 ? gameState.team1Name : gameState.team2Name}: +1 bod`, 'offensive')
       if (isTeam1) {
         team1Points += 1
         gameState.lastScoredAgainst = 'team2'  // Tým 2 inkasoval
@@ -7462,7 +7462,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
     finalCommentary = `
       <div class="skill-commentary modern">
         <div class="commentary-header" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 15px 20px; border-radius: 12px 12px 0 0; border-bottom: 3px solid rgba(255,255,255,0.3);">
-          <h3 style="margin: 0; color: white; font-size: 1.4rem; font-weight: 600;">🏆 Výměna byla zakončena bodem pro Tým 1!</h3>
+          <h3 style="margin: 0; color: white; font-size: 1.4rem; font-weight: 600;">🏆 Výměna byla zakončena bodem pro ${gameState.team1Name}!</h3>
         </div>
         <div class="commentary-body" style="background: linear-gradient(to bottom, #d1fae5 0%, #a7f3d0 100%); padding: 20px; border-radius: 0 0 12px 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
           <p style="margin: 0; font-size: 1.1rem; color: #065f46; text-align: center; font-weight: 600;">Zahajuji novou výměnu...</p>
@@ -7474,7 +7474,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
     finalCommentary = `
       <div class="skill-commentary modern">
         <div class="commentary-header" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); padding: 15px 20px; border-radius: 12px 12px 0 0; border-bottom: 3px solid rgba(255,255,255,0.3);">
-          <h3 style="margin: 0; color: white; font-size: 1.4rem; font-weight: 600;">🏆 Výměna byla zakončena bodem pro Tým 2!</h3>
+          <h3 style="margin: 0; color: white; font-size: 1.4rem; font-weight: 600;">🏆 Výměna byla zakončena bodem pro ${gameState.team2Name}!</h3>
         </div>
         <div class="commentary-body" style="background: linear-gradient(to bottom, #dbeafe 0%, #bfdbfe 100%); padding: 20px; border-radius: 0 0 12px 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
           <p style="margin: 0; font-size: 1.1rem; color: #1e40af; text-align: center; font-weight: 600;">Zahajuji novou výměnu...</p>
@@ -7645,7 +7645,7 @@ function evaluatePoint(team1Skills, team2Skills) {
     })
     return {
       winner: 'team1',
-      reason: 'Tým 1 dal bod útočnou ultimate!',
+      reason: `${gameState.team1Name} dal bod útočnou ultimate!`,
       interactions
     }
   }
@@ -7659,7 +7659,7 @@ function evaluatePoint(team1Skills, team2Skills) {
     })
     return {
       winner: 'team2',
-      reason: 'Tým 2 dal bod útočnou ultimate!',
+      reason: `${gameState.team2Name} dal bod útočnou ultimate!`,
       interactions
     }
   }
@@ -7720,7 +7720,7 @@ function evaluatePoint(team1Skills, team2Skills) {
           rallyContinues = false
           return {
             winner: attackingTeam,
-            reason: `${attackingTeam === 'team1' ? 'Tým 1' : 'Tým 2'} dal bod!`,
+            reason: `${attackingTeam === 'team1' ? gameState.team1Name : gameState.team2Name} dal bod!`,
             interactions
           }
         }
@@ -7737,7 +7737,7 @@ function evaluatePoint(team1Skills, team2Skills) {
           rallyContinues = false
           return {
             winner: attackingTeam,
-            reason: `${attackingTeam === 'team1' ? 'Tým 1' : 'Tým 2'} dal bod (smečovaný servis - 2 panny)!`,
+            reason: `${attackingTeam === 'team1' ? gameState.team1Name : gameState.team2Name} dal bod (smečovaný servis - 2 panny)!`,
             interactions
           }
         } else if (heads === 0) {
@@ -7752,7 +7752,7 @@ function evaluatePoint(team1Skills, team2Skills) {
           rallyContinues = false
           return {
             winner: defendingTeam,
-            reason: `${defendingTeam === 'team1' ? 'Tým 1' : 'Tým 2'} dal bod (smečovaný servis soupeře - 0 panny)!`,
+            reason: `${defendingTeam === 'team1' ? gameState.team1Name : gameState.team2Name} dal bod (smečovaný servis soupeře - 0 panny)!`,
             interactions
           }
         }
@@ -7781,7 +7781,7 @@ function evaluatePoint(team1Skills, team2Skills) {
       rallyContinues = false
       return {
         winner: attackingTeam,
-        reason: `${attackingTeam === 'team1' ? 'Tým 1' : 'Tým 2'} dal bod!`,
+        reason: `${attackingTeam === 'team1' ? gameState.team1Name : gameState.team2Name} dal bod!`,
         interactions
       }
     }
@@ -7839,7 +7839,7 @@ async function showPointResult(result) {
   if (result.winner) {
     resultDiv.innerHTML = `
       <div class="point-winner">
-        <h2>${result.winner === 'team1' ? 'BOD PRO TÝM 1!' : 'BOD PRO TÝM 2!'}</h2>
+        <h2>${result.winner === 'team1' ? `BOD PRO ${gameState.team1Name.toUpperCase()}!` : `BOD PRO ${gameState.team2Name.toUpperCase()}!`}</h2>
         <p>${result.reason}</p>
       </div>
     `
@@ -8315,7 +8315,7 @@ function showLeagueFinalResult() {
 
   let resultText = ''
   if (t1Score === 6 || t2Score === 6) {
-    resultText = `<h2>${t1Score === 6 ? 'Vyhrál Tým 1!' : 'Vyhrál Tým 2!'}</h2>`
+    resultText = `<h2>${t1Score === 6 ? `Vyhrál ${gameState.team1Name}!` : `Vyhrál ${gameState.team2Name}!`}</h2>`
   } else if (t1Score === 5 && t2Score === 5) {
     resultText = '<h2>Remíza 5:5!</h2>'
   }
@@ -8382,7 +8382,7 @@ function endGame() {
     const matchInfo = gameState.matchSchedule[gameState.currentMatch - 1]
     const coachBubble = document.getElementById('coach-bubble')
     if (coachBubble) {
-      coachBubble.innerHTML = `<p>${matchInfo.label} dokončen! ${t1Wins > t2Wins ? 'Tým 1' : 'Tým 2'} vyhrává ${t1Wins}:${t2Wins}. Připravte se na další zápas...</p>`
+      coachBubble.innerHTML = `<p>${matchInfo.label} dokončen! ${t1Wins > t2Wins ? gameState.team1Name : gameState.team2Name} vyhrává ${t1Wins}:${t2Wins}. Připravte se na další zápas...</p>`
     }
 
     // Resetovat skóre setů pro další zápas
@@ -8409,7 +8409,7 @@ function endGame() {
 
   const finalScore = document.getElementById('final-score')
   finalScore.innerHTML = `
-    <h2>${t1Wins > t2Wins ? 'Vyhrál Tým 1!' : 'Vyhrál Tým 2!'}</h2>
+    <h2>${t1Wins > t2Wins ? `Vyhrál ${gameState.team1Name}!` : `Vyhrál ${gameState.team2Name}!`}</h2>
     <div class="final-sets">
       <p>Set 1: ${gameState.score.team1[0]} - ${gameState.score.team2[0]}</p>
       <p>Set 2: ${gameState.score.team1[1]} - ${gameState.score.team2[1]}</p>
