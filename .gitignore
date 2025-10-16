@@ -27,5 +27,13 @@ nul
 # Claude Code settings
 .claude/
 
-# Videos - too large for GitHub
-public/videos/
+# Large team videos - too large for GitHub (200-295MB)
+public/videos/*-team.mov
+public/videos/cakovice-team.mov
+public/videos/celakovice-team.mov
+public/videos/karlovy-vary-team.mov
+public/videos/modrice-team.mov
+public/videos/radomysl-team.mov
+public/videos/solidarita-team.mov
+public/videos/vsetin-team.mov
+public/videos/zatec-team.mov
