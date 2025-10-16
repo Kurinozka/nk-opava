@@ -9859,8 +9859,21 @@ export const extraligaTeams = [
 
 // Funkce pro výpočet statistik hráče
 function calculatePlayerStats(player) {
+  // Trenéři nemají hráčské statistiky - vrátit null bez varování
+  if (player.position === 'Trenér') {
+    return null
+  }
+
+  // Pokud nemá seasonStats, zkusit zkontrolovat starý formát (regularSeason + playoff)
   if (!player.seasonStats || player.seasonStats.length === 0) {
-    console.warn('Player missing seasonStats data:', player.name)
+    // Pokud má alespoň regularSeason a předpočítané stats, vrátit je
+    if (player.regularSeason && player.stats) {
+      return player.stats
+    }
+    // Pokud nemá ani regularSeason, je to skutečný problém (ale u trenérů to nevadí)
+    if (!player.coachQuotes) {
+      console.warn('Player missing seasonStats data:', player.name)
+    }
     return null
   }
 
