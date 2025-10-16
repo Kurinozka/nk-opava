@@ -2385,48 +2385,48 @@ p, h1, h2, h3, h4, h5, h6, span, div {
   flex-shrink: 0;
 }
 
-/* Responsive layout pro menší obrazovky */
+/* Responsive layout pro menší obrazovky - pouze pro simulaci */
 @media (max-width: 1400px) {
-  .coach-card {
+  .game-container .coach-card {
     width: 160px;
     height: 220px;
   }
 
-  .skills-reveal-container-with-coaches {
+  .game-container .skills-reveal-container-with-coaches {
     gap: 1rem;
   }
 }
 
 @media (max-width: 1200px) {
-  .coach-card {
+  .game-container .coach-card {
     width: 140px;
     height: 200px;
   }
 
-  .coach-card-name {
+  .game-container .coach-card-name {
     font-size: 0.9rem;
   }
 
-  .coach-card-role {
+  .game-container .coach-card-role {
     font-size: 0.7rem;
   }
 
-  .skills-reveal-container-with-coaches {
+  .game-container .skills-reveal-container-with-coaches {
     gap: 0.75rem;
   }
 }
 
 @media (max-width: 1000px) {
-  .coach-card {
+  .game-container .coach-card {
     width: 120px;
     height: 180px;
   }
 
-  .coach-card-name {
+  .game-container .coach-card-name {
     font-size: 0.8rem;
   }
 
-  .coach-card-role {
+  .game-container .coach-card-role {
     font-size: 0.65rem;
   }
 }

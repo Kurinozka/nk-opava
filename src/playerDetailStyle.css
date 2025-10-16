@@ -241,7 +241,7 @@
   transform: translateX(-50%) translateY(0);
 }
 
-.stat-value {
+.player-detail-container .stat-value {
   display: block;
   font-size: 2rem;
   font-weight: 900;
