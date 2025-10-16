@@ -121,7 +121,7 @@ export const schoolVideos = {
       { playerId: 'RADO_11', playerName: 'David Dvořák', teamCode: 'RADO', video: '/videos/rado-11-blok.mp4', success: true },
       { playerId: 'RADO_17', playerName: 'Petr Vít', teamCode: 'RADO', video: '/videos/rado-17-blok.mp4', success: true },
       { playerId: 'RADO_2', playerName: 'Jakub Medek', teamCode: 'RADO', video: '/videos/rado-2-blok.mp4', success: true },
-      { playerId: 'VSET_3', playerName: 'Jan Chalupa', teamCode: 'VSET', video: '/videos/vset-2-blok.mp4', success: true },
+      // { playerId: 'VSET_3', playerName: 'Jan Chalupa', teamCode: 'VSET', video: '/videos/vset-2-blok.mp4', success: true }, // Toto video patří jen k vytlučenému bloku
       { playerId: 'VSET_5', playerName: 'Martin Zbranek', teamCode: 'VSET', video: '/videos/vset-1-blok.mp4', success: true },
       { playerId: 'KVAR_9', playerName: 'Marek Vojtíšek', teamCode: 'KVAR', video: '/videos/kvar-9-blok.mp4', success: true },
       { playerId: 'KVAR_1', playerName: 'Jan Hanus', teamCode: 'KVAR', video: '/videos/kvar-1-blok.mp4', success: true },
