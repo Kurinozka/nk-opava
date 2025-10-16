@@ -1,3 +1,4 @@
+import './style.css'
 import './newStyle.css'
 import './playerDetailStyle.css'
 import './simulationModeStyle.css'
@@ -409,14 +410,9 @@ function navigateTo(view, playerId = null, isExtraliga = false, skipHistoryUpdat
 
   // Pro samotnou hru: celá obrazovka bez navigace, použít starý CSS
   if (view === 'simulation-game') {
-    // Přepnout na starý CSS pro hru
-    const oldStyleLink = document.querySelector('link[href*="style.css"]')
-    if (!oldStyleLink) {
-      const link = document.createElement('link')
-      link.rel = 'stylesheet'
-      link.href = '/src/style.css'
-      document.head.appendChild(link)
-    }
+    // Aktivovat starý CSS pro hru
+    const oldStyleLinks = document.querySelectorAll('link[href*="style.css"]:not([href*="newStyle"]):not([href*="simulationMode"]):not([href*="playerDetail"]):not([href*="leagueMatchSetup"]):not([href*="schoolOfNohejbal"])')
+    oldStyleLinks.forEach(link => link.disabled = false)
 
     // Skrýt nový CSS
     const newStyleLinks = document.querySelectorAll('link[href*="newStyle.css"], link[href*="simulationModeStyle.css"]')
