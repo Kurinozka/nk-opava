@@ -572,13 +572,13 @@ export function renderGameScreen() {
 
                 <!-- Timeout tlačítka -->
                 <div class="timeout-buttons" style="display: flex; gap: 10px; margin-top: 10px; justify-content: center;">
-                  <button class="timeout-btn" id="timeout-team1-btn" title="TIME-OUT Tým 1">
+                  <button class="timeout-btn" id="timeout-team1-btn" title="TIME-OUT ${gameState.team1Name}">
                     <span class="btn-icon">⏸️</span>
-                    <span class="btn-label">TIME-OUT Tým 1</span>
+                    <span class="btn-label">TIME-OUT ${gameState.team1Name}</span>
                   </button>
-                  <button class="timeout-btn" id="timeout-team2-btn" title="TIME-OUT Tým 2">
+                  <button class="timeout-btn" id="timeout-team2-btn" title="TIME-OUT ${gameState.team2Name}">
                     <span class="btn-icon">⏸️</span>
-                    <span class="btn-label">TIME-OUT Tým 2</span>
+                    <span class="btn-label">TIME-OUT ${gameState.team2Name}</span>
                   </button>
                 </div>
 
@@ -653,12 +653,12 @@ export function renderGameScreen() {
             <h2>Střídání hráčů</h2>
             <div class="substitution-teams">
               <div class="substitution-team">
-                <h3>Tým 1</h3>
+                <h3>${gameState.team1Name}</h3>
                 <div class="current-lineup" id="sub-team1-current"></div>
                 <div class="bench-players" id="sub-team1-bench"></div>
               </div>
               <div class="substitution-team">
-                <h3>Tým 2</h3>
+                <h3>${gameState.team2Name}</h3>
                 <div class="current-lineup" id="sub-team2-current"></div>
                 <div class="bench-players" id="sub-team2-bench"></div>
               </div>
@@ -1683,7 +1683,7 @@ export function initGame() {
 
         <div class="teams-selection">
           <div class="team-select">
-            <h3>Tým 1</h3>
+            <h3>${gameState.team1Name}</h3>
 
             <div class="team-sub-mode-selection">
               <label>Režim střídání:</label>
@@ -1706,7 +1706,7 @@ export function initGame() {
             <div class="available-players" id="team1-available"></div>
           </div>
           <div class="team-select">
-            <h3>Tým 2</h3>
+            <h3>${gameState.team2Name}</h3>
 
             <div class="team-sub-mode-selection">
               <label>Režim střídání:</label>
@@ -1809,12 +1809,12 @@ export function initGame() {
             <h2>Střídání hráčů</h2>
             <div class="substitution-teams">
               <div class="substitution-team">
-                <h3>Tým 1</h3>
+                <h3>${gameState.team1Name}</h3>
                 <div class="current-lineup" id="sub-team1-current"></div>
                 <div class="bench-players" id="sub-team1-bench"></div>
               </div>
               <div class="substitution-team">
-                <h3>Tým 2</h3>
+                <h3>${gameState.team2Name}</h3>
                 <div class="current-lineup" id="sub-team2-current"></div>
                 <div class="bench-players" id="sub-team2-bench"></div>
               </div>
@@ -2783,11 +2783,11 @@ function startGame() {
   if (gameState.substitutionMode !== 'none' && gameState.mode !== '1v1') {
     const benchRequired = requiredTotal - playersPerTeam
     if (team1Total < requiredTotal) {
-      alert(`Tým 1 potřebuje celkem ${requiredTotal} hráčů (${playersPerTeam} na hřišti + ${benchRequired} na lavičce). Momentálně má jen ${team1Total}.`)
+      alert(`${gameState.team1Name} potřebuje celkem ${requiredTotal} hráčů (${playersPerTeam} na hřišti + ${benchRequired} na lavičce). Momentálně má jen ${team1Total}.`)
       return
     }
     if (team2Total < requiredTotal) {
-      alert(`Tým 2 potřebuje celkem ${requiredTotal} hráčů (${playersPerTeam} na hřišti + ${benchRequired} na lavičce). Momentálně má jen ${team2Total}.`)
+      alert(`${gameState.team2Name} potřebuje celkem ${requiredTotal} hráčů (${playersPerTeam} na hřišti + ${benchRequired} na lavičce). Momentálně má jen ${team2Total}.`)
       return
     }
   }
@@ -5303,7 +5303,7 @@ async function showActivatedSkills(team1Skills, team2Skills) {
   skillDiv.innerHTML = `
     <div class="skills-display">
       <div class="team-skills">
-        <h3>Tým 1</h3>
+        <h3>${gameState.team1Name}</h3>
         ${team1Skills.map(s => `
           <div class="skill-item-with-card ${s.isUltimate ? 'ultimate' : ''}">
             <div class="mini-player-card team1-card small">
@@ -5318,7 +5318,7 @@ async function showActivatedSkills(team1Skills, team2Skills) {
         `).join('')}
       </div>
       <div class="team-skills">
-        <h3>Tým 2</h3>
+        <h3>${gameState.team2Name}</h3>
         ${team2Skills.map(s => `
           <div class="skill-item-with-card ${s.isUltimate ? 'ultimate' : ''}">
             <div class="mini-player-card team2-card small">
@@ -6028,11 +6028,11 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
         <h3>Součet bodů z ultimate:</h3>
         <div class="team-points">
           <div class="team-point-box">
-            <h4>Tým 1</h4>
+            <h4>${gameState.team1Name}</h4>
             <div class="point-value ${team1UltimatePoints > 0 ? 'positive' : 'neutral'}">${team1UltimatePoints > 0 ? '+' : ''}${team1UltimatePoints}</div>
           </div>
           <div class="team-point-box">
-            <h4>Tým 2</h4>
+            <h4>${gameState.team2Name}</h4>
             <div class="point-value ${team2UltimatePoints > 0 ? 'positive' : 'neutral'}">${team2UltimatePoints > 0 ? '+' : ''}${team2UltimatePoints}</div>
           </div>
         </div>
@@ -6923,7 +6923,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
         <div class="defense-successful">
           <h3>🛡️ Úspěšná obrana!</h3>
           <p><strong>${getPlayerFirstNameOrNickname(defense.player)}</strong> ubránil útok ${getPlayerFirstNameOrNickname(matchingAttack.player)}!</p>
-          <p class="effect">Tým 2 už nemůže získat body z útoků ve této výměně!</p>
+          <p class="effect">${gameState.team2Name} už nemůže získat body z útoků ve této výměně!</p>
         </div>
       `
       await smartDelay(2000)
@@ -7431,11 +7431,11 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
       <h3>Součet dílčích bodů:</h3>
       <div class="team-points">
         <div class="team-point-box">
-          <h4>Tým 1</h4>
+          <h4>${gameState.team1Name}</h4>
           <div class="point-value ${team1Points > 0 ? 'positive' : team1Points < 0 ? 'negative' : 'neutral'}">${team1Points > 0 ? '+' : ''}${team1Points}</div>
         </div>
         <div class="team-point-box">
-          <h4>Tým 2</h4>
+          <h4>${gameState.team2Name}</h4>
           <div class="point-value ${team2Points > 0 ? 'positive' : team2Points < 0 ? 'negative' : 'neutral'}">${team2Points > 0 ? '+' : ''}${team2Points}</div>
         </div>
       </div>
@@ -7491,11 +7491,11 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
         <div class="commentary-body" style="background: linear-gradient(to bottom, #ffffff 0%, #f9fafb 100%); padding: 20px; border-radius: 0 0 12px 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
           <div style="display: flex; gap: 20px; margin-bottom: 15px;">
             <div style="flex: 1; padding: 15px; background: #d1fae5; border-radius: 8px; border-left: 4px solid #10b981;">
-              <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 0.9rem;">👥 Tým 1</p>
+              <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 0.9rem;">👥 ${gameState.team1Name}</p>
               <p style="margin: 0; font-size: 1.3rem; font-weight: bold; color: #065f46;">${team1Points} ${team1Points === 1 ? 'bod' : team1Points < 5 ? 'body' : 'bodů'}</p>
             </div>
             <div style="flex: 1; padding: 15px; background: #dbeafe; border-radius: 8px; border-left: 4px solid #3b82f6;">
-              <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 0.9rem;">👥 Tým 2</p>
+              <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 0.9rem;">👥 ${gameState.team2Name}</p>
               <p style="margin: 0; font-size: 1.3rem; font-weight: bold; color: #1e40af;">${team2Points} ${team2Points === 1 ? 'bod' : team2Points < 5 ? 'body' : 'bodů'}</p>
             </div>
           </div>
@@ -7522,7 +7522,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
 
     return {
       winner: 'team1',
-      reason: `Tým 1 získal výměnu (${finalTeam1Points}:${finalTeam2Points})`,
+      reason: `${gameState.team1Name} získal výměnu (${finalTeam1Points}:${finalTeam2Points})`,
       team1Points: finalTeam1Points,
       team2Points: finalTeam2Points,
       interactions
@@ -7538,7 +7538,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
 
     return {
       winner: 'team2',
-      reason: `Tým 2 získal výměnu (${finalTeam1Points}:${finalTeam2Points})`,
+      reason: `${gameState.team2Name} získal výměnu (${finalTeam1Points}:${finalTeam2Points})`,
       team1Points: finalTeam1Points,
       team2Points: finalTeam2Points,
       interactions
