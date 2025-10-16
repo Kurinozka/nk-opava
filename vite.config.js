@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  // Base URL pro nasazení na nkopava.cz
-  base: '/',
+  // Base URL - pro GitHub Pages použij '/nk-opava/', pro vlastní doménu '/'
+  base: '/nk-opava/',
 
   // Build options for production
   build: {
