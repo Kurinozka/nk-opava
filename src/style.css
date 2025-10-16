@@ -1540,22 +1540,25 @@ p, h1, h2, h3, h4, h5, h6, span, div {
   flex: 2;
   background: linear-gradient(135deg, rgba(30, 50, 70, 0.95) 0%, rgba(20, 40, 60, 0.95) 100%);
   border-radius: 12px;
-  padding: 1.2rem 1.8rem;
+  padding: 0.8rem 1rem;
   border: 2px solid rgba(102, 126, 234, 0.5);
   box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
-  min-height: 180px;
-  max-height: 400px;
+  min-height: 120px;
+  max-height: 300px;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
+  word-wrap: break-word;
 }
 
 .commentary-content {
   color: white;
-  font-size: 0.85rem;
-  line-height: 1.4;
+  font-size: 0.75rem;
+  line-height: 1.3;
   flex: 1;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .commentary-placeholder {

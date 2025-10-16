@@ -1,104 +1,105 @@
 /* ====================================
    MOBILNÍ OPTIMALIZACE PRO SIMULACI ZÁPASU
    Zmenšení všech komponent pro čitelnost na malých obrazovkách
+   POUZE pro .game-container (simulaci), ne pro ostatní stránky
    ==================================== */
 
 /* TABLETY A MENŠÍ NOTEBOOKY (do 768px) */
 @media (max-width: 768px) {
   /* Hexagon karty hráčů - zmenšit */
-  .hexagon-card {
+  .game-container .hexagon-card {
     width: 140px !important;
     height: 190px !important;
   }
 
-  .hexagon-card .player-name {
+  .game-container .hexagon-card .player-name {
     font-size: 0.75rem !important;
   }
 
-  .hexagon-card .player-number {
+  .game-container .hexagon-card .player-number {
     font-size: 0.9rem !important;
   }
 
-  .card-badge-rating {
+  .game-container .card-badge-rating {
     font-size: 1.3rem !important;
     width: 36px !important;
     height: 36px !important;
   }
 
-  .skill-icon-display {
+  .game-container .skill-icon-display {
     width: 20px !important;
     height: 20px !important;
     font-size: 0.7rem !important;
   }
 
-  .skill-icon-overlay {
+  .game-container .skill-icon-overlay {
     font-size: 0.7rem !important;
   }
 
-  .player-skill-icons {
+  .game-container .player-skill-icons {
     gap: 0.2rem !important;
     padding: 0.3rem !important;
   }
 
   /* Pole hřiště - posunout níže */
-  .field-container {
+  .game-container .field-container {
     margin-top: 2rem !important;
   }
 
   /* Karty trenérů - zmenšit */
-  .coach-card {
+  .game-container .coach-card {
     width: 130px !important;
     height: 180px !important;
   }
 
-  .coach-card-name {
+  .game-container .coach-card-name {
     font-size: 0.85rem !important;
   }
 
-  .coach-card-role {
+  .game-container .coach-card-role {
     font-size: 0.7rem !important;
   }
 
-  .coach-card-mood .mood-emoji {
+  .game-container .coach-card-mood .mood-emoji {
     font-size: 1.2rem !important;
   }
 
   /* Komentáře - optimalizace */
-  .action-commentary-panel {
+  .game-container .action-commentary-panel {
     padding: 1rem 1.2rem !important;
     min-height: 140px !important;
     max-height: 300px !important;
   }
 
-  .commentary-content {
+  .game-container .commentary-content {
     font-size: 0.8rem !important;
   }
 
-  .action-entry {
+  .game-container .action-entry {
     padding: 0.5rem 0.7rem !important;
     margin-bottom: 0.3rem !important;
   }
 
   /* Skóre panel */
-  .score-display {
+  .game-container .score-display {
     padding: 0.4rem 0.8rem !important;
     font-size: 0.9rem !important;
   }
 
-  .current-match-info {
+  .game-container .current-match-info {
     font-size: 0.85rem !important;
   }
 
   /* Skill komentáře */
-  .skill-commentary {
+  .game-container .skill-commentary {
     padding: 0.9rem !important;
   }
 
-  .skill-commentary h3 {
+  .game-container .skill-commentary h3 {
     font-size: 1rem !important;
   }
 
-  .skill-commentary p {
+  .game-container .skill-commentary p {
     font-size: 0.85rem !important;
   }
 }
@@ -106,151 +107,151 @@
 /* MOBILNÍ TELEFONY (do 480px) */
 @media (max-width: 480px) {
   /* Hexagon karty - větší zmenšení */
-  .hexagon-card {
+  .game-container .hexagon-card {
     width: 90px !important;
     height: 125px !important;
   }
 
-  .hexagon-card .player-name {
+  .game-container .hexagon-card .player-name {
     font-size: 0.55rem !important;
     line-height: 1 !important;
     padding: 0 0.2rem !important;
   }
 
-  .hexagon-card .player-number {
+  .game-container .hexagon-card .player-number {
     font-size: 0.65rem !important;
   }
 
-  .card-badge-rating {
+  .game-container .card-badge-rating {
     font-size: 0.95rem !important;
     width: 26px !important;
     height: 26px !important;
   }
 
   /* Player stats mini - skrýt nebo minimalizovat */
-  .player-stats-mini {
+  .game-container .player-stats-mini {
     gap: 0.1rem !important;
     padding: 0.2rem !important;
   }
 
-  .stat-item {
+  .game-container .stat-item {
     gap: 0.1rem !important;
   }
 
-  .stat-label {
+  .game-container .stat-label {
     font-size: 0.45rem !important;
   }
 
-  .stat-value {
+  .game-container .stat-value {
     font-size: 0.7rem !important;
   }
 
   /* Ikony dovedností - velmi zmenšit */
-  .skill-icon-display {
+  .game-container .skill-icon-display {
     width: 14px !important;
     height: 14px !important;
     font-size: 0.5rem !important;
   }
 
-  .skill-icon-overlay {
+  .game-container .skill-icon-overlay {
     font-size: 0.5rem !important;
   }
 
-  .player-skill-icons {
+  .game-container .player-skill-icons {
     gap: 0.1rem !important;
     padding: 0.15rem !important;
   }
 
   /* Trenéři - velmi zmenšit */
-  .coach-card {
+  .game-container .coach-card {
     width: 80px !important;
     height: 110px !important;
   }
 
-  .coach-card-name {
+  .game-container .coach-card-name {
     font-size: 0.6rem !important;
     line-height: 1 !important;
   }
 
-  .coach-card-role {
+  .game-container .coach-card-role {
     font-size: 0.5rem !important;
   }
 
-  .coach-card-mood .mood-emoji {
+  .game-container .coach-card-mood .mood-emoji {
     font-size: 0.85rem !important;
   }
 
-  .coach-card-mood .mood-text {
+  .game-container .coach-card-mood .mood-text {
     font-size: 0.55rem !important;
   }
 
   /* Komentáře - velmi kompaktní */
-  .action-commentary-panel {
+  .game-container .action-commentary-panel {
     padding: 0.6rem 0.8rem !important;
     min-height: 100px !important;
     max-height: 180px !important;
     font-size: 0.7rem !important;
   }
 
-  .commentary-content {
+  .game-container .commentary-content {
     font-size: 0.65rem !important;
     line-height: 1.2 !important;
   }
 
-  .action-entry {
+  .game-container .action-entry {
     padding: 0.3rem 0.5rem !important;
     margin-bottom: 0.2rem !important;
     font-size: 0.65rem !important;
   }
 
   /* Skóre - kompaktní */
-  .score-display {
+  .game-container .score-display {
     padding: 0.3rem 0.6rem !important;
     font-size: 0.8rem !important;
   }
 
-  .current-match-info {
+  .game-container .current-match-info {
     font-size: 0.75rem !important;
     margin-top: 0.3rem !important;
     padding-top: 0.3rem !important;
   }
 
   /* Skill komentáře */
-  .skill-commentary {
+  .game-container .skill-commentary {
     padding: 0.7rem !important;
   }
 
-  .skill-commentary h3 {
+  .game-container .skill-commentary h3 {
     font-size: 0.9rem !important;
     margin-bottom: 0.4rem !important;
   }
 
-  .skill-commentary p {
+  .game-container .skill-commentary p {
     font-size: 0.75rem !important;
   }
 
   /* Buttons a controls */
-  .game-controls button {
+  .game-container .game-controls button {
     padding: 0.5rem 1rem !important;
     font-size: 0.85rem !important;
   }
 
   /* Pole hřiště - posunout níže a zmenšit */
-  .field-container {
+  .game-container .field-container {
     padding: 0.5rem !important;
     margin-top: 3rem !important;
   }
 
-  .court {
+  .game-container .court {
     padding: 0.8rem !important;
   }
 
-  .court-player img {
+  .game-container .court-player img {
     width: 50px !important;
     height: 50px !important;
   }
 
-  .court-player span {
+  .game-container .court-player span {
     font-size: 0.7rem !important;
   }
 }
@@ -258,128 +259,128 @@
 /* VELMI MALÉ TELEFONY (do 360px) */
 @media (max-width: 360px) {
   /* Hexagon karty - minimální velikost */
-  .hexagon-card {
+  .game-container .hexagon-card {
     width: 95px !important;
     height: 130px !important;
   }
 
-  .hexagon-card .player-name {
+  .game-container .hexagon-card .player-name {
     font-size: 0.6rem !important;
   }
 
-  .hexagon-card .player-number {
+  .game-container .hexagon-card .player-number {
     font-size: 0.7rem !important;
   }
 
-  .card-badge-rating {
+  .game-container .card-badge-rating {
     font-size: 1rem !important;
     width: 26px !important;
     height: 26px !important;
   }
 
   /* Stats */
-  .stat-label {
+  .game-container .stat-label {
     font-size: 0.45rem !important;
   }
 
-  .stat-value {
+  .game-container .stat-value {
     font-size: 0.75rem !important;
   }
 
   /* Ikony - minimální */
-  .skill-icon-display {
+  .game-container .skill-icon-display {
     width: 12px !important;
     height: 12px !important;
     font-size: 0.45rem !important;
   }
 
-  .skill-icon-overlay {
+  .game-container .skill-icon-overlay {
     font-size: 0.45rem !important;
   }
 
-  .player-skill-icons {
+  .game-container .player-skill-icons {
     gap: 0.08rem !important;
     padding: 0.1rem !important;
   }
 
   /* Pole hřiště - extra posun dolů */
-  .field-container {
+  .game-container .field-container {
     margin-top: 3.5rem !important;
   }
 
   /* Trenéři - minimální */
-  .coach-card {
+  .game-container .coach-card {
     width: 85px !important;
     height: 120px !important;
   }
 
-  .coach-card-name {
+  .game-container .coach-card-name {
     font-size: 0.65rem !important;
   }
 
-  .coach-card-role {
+  .game-container .coach-card-role {
     font-size: 0.55rem !important;
   }
 
-  .coach-card-mood .mood-emoji {
+  .game-container .coach-card-mood .mood-emoji {
     font-size: 0.9rem !important;
   }
 
-  .coach-card-mood .mood-text {
+  .game-container .coach-card-mood .mood-text {
     font-size: 0.6rem !important;
   }
 
   /* Komentáře - extra kompaktní */
-  .action-commentary-panel {
+  .game-container .action-commentary-panel {
     padding: 0.6rem 0.8rem !important;
     min-height: 100px !important;
     max-height: 200px !important;
   }
 
-  .commentary-content {
+  .game-container .commentary-content {
     font-size: 0.7rem !important;
   }
 
-  .action-entry {
+  .game-container .action-entry {
     padding: 0.3rem 0.5rem !important;
   }
 
   /* Skóre */
-  .score-display {
+  .game-container .score-display {
     padding: 0.25rem 0.5rem !important;
     font-size: 0.75rem !important;
   }
 
-  .current-match-info {
+  .game-container .current-match-info {
     font-size: 0.7rem !important;
   }
 
   /* Skill komentáře */
-  .skill-commentary {
+  .game-container .skill-commentary {
     padding: 0.6rem !important;
   }
 
-  .skill-commentary h3 {
+  .game-container .skill-commentary h3 {
     font-size: 0.85rem !important;
   }
 
-  .skill-commentary p {
+  .game-container .skill-commentary p {
     font-size: 0.7rem !important;
   }
 
   /* Buttons */
-  .game-controls button {
+  .game-container .game-controls button {
     padding: 0.4rem 0.8rem !important;
     font-size: 0.8rem !important;
   }
 
   /* Pole */
-  .court-player img {
+  .game-container .court-player img {
     width: 45px !important;
     height: 45px !important;
   }
 
-  .court-player span {
+  .game-container .court-player span {
     font-size: 0.65rem !important;
   }
 }
@@ -387,7 +388,7 @@
 /* VIDEA - FULLSCREEN NA MOBILECH */
 @media (max-width: 768px) {
   /* Video kontejner - fullscreen režim */
-  .action-video-container {
+  .game-container .action-video-container {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
@@ -404,14 +405,14 @@
     justify-content: center !important;
   }
 
-  .action-video-container video {
+  .game-container .action-video-container video {
     width: 100% !important;
     height: 100% !important;
     object-fit: contain !important;
   }
 
   /* Animation box - fullscreen */
-  .animation-box.fullscreen-mobile {
+  .game-container .animation-box.fullscreen-mobile {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
@@ -422,8 +423,8 @@
     background: #000 !important;
   }
 
-  .animation-box.fullscreen-mobile video,
-  .animation-box.fullscreen-mobile canvas {
+  .game-container .animation-box.fullscreen-mobile video,
+  .game-container .animation-box.fullscreen-mobile canvas {
     width: 100% !important;
     height: 100% !important;
     object-fit: contain !important;
@@ -433,21 +434,21 @@
 /* LANDSCAPE ORIENTACE NA MOBILECH */
 @media (max-width: 768px) and (orientation: landscape) {
   /* V landscape režimu zmenšit výšky */
-  .hexagon-card {
+  .game-container .hexagon-card {
     height: 120px !important;
   }
 
-  .coach-card {
+  .game-container .coach-card {
     height: 110px !important;
   }
 
-  .action-commentary-panel {
+  .game-container .action-commentary-panel {
     max-height: 150px !important;
     min-height: 80px !important;
   }
 
   /* Skrýt některé méně důležité elementy v landscape */
-  .player-stats-mini {
+  .game-container .player-stats-mini {
     display: none !important;
   }
 }
@@ -455,8 +456,8 @@
 /* OPRAVY PŘEKRÝVÁNÍ TEXTU */
 @media (max-width: 480px) {
   /* Zabránit překrývání názvů dovedností */
-  .skill-name,
-  .skill-label {
+  .game-container .skill-name,
+  .game-container .skill-label {
     font-size: 0.65rem !important;
     line-height: 1.1 !important;
     overflow: hidden !important;
@@ -465,7 +466,7 @@
   }
 
   /* Jména hráčů - zkrátit pokud je potřeba */
-  .player-name {
+  .game-container .player-name {
     max-width: 100% !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
@@ -473,7 +474,7 @@
   }
 
   /* Tooltip pro celé názvy */
-  .skill-icon-display[title] {
+  .game-container .skill-icon-display[title] {
     cursor: help !important;
   }
 }
@@ -482,11 +483,11 @@
 @media (max-width: 480px) and (-webkit-min-device-pixel-ratio: 2),
        (max-width: 480px) and (min-resolution: 192dpi) {
   /* Na Retina displejích může být text menší ale stále čitelný */
-  .commentary-content {
+  .game-container .commentary-content {
     font-size: 0.7rem !important;
   }
 
-  .skill-commentary p {
+  .game-container .skill-commentary p {
     font-size: 0.72rem !important;
   }
 }
