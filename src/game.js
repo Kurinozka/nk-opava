@@ -1416,18 +1416,48 @@ function getPlayerSkillVideo(playerId, skillId, successType = null, interaction 
 
 // Funkce pro náhodný výběr 4 skills pro hráče
 function assignRandomSkills(player) {
-  // Vybrat 1 náhodnou obrannou
+  // POKUD má hráč availableSkills v profilu, použít ty (obsahují dovednosti, pro které má videa)
+  if (player.availableSkills && player.availableSkills.length > 0) {
+    // Filtrovat obranné a útočné dovednosti
+    const playerDefensive = player.availableSkills.filter(id =>
+      defensiveSkills.includes(id) && id !== 16 && id !== 17 && id !== 18
+    )
+    const playerOffensive = player.availableSkills.filter(id =>
+      offensiveSkills.includes(id) && id !== 10 && id !== 11 && id !== 19
+    )
+
+    // Pokud má alespoň jednu obrannou a dvě útočné, použít je
+    if (playerDefensive.length > 0 && playerOffensive.length >= 2) {
+      const defensive = playerDefensive[Math.floor(Math.random() * playerDefensive.length)]
+      const shuffledOffensive = [...playerOffensive].sort(() => Math.random() - 0.5)
+      const offensive1 = shuffledOffensive[0]
+      const offensive2 = shuffledOffensive[1]
+
+      // Ultimate z dostupných dovedností (kromě speciálních)
+      const validUltimate = player.availableSkills.filter(id =>
+        id !== 16 && id !== 17 && id !== 18 && id !== 10 && id !== 11 && id !== 19
+      )
+      const ultimate = validUltimate.length > 0
+        ? validUltimate[Math.floor(Math.random() * validUltimate.length)]
+        : defensive
+
+      return {
+        ...player,
+        assignedSkills: [defensive, offensive1, offensive2, ultimate],
+        ultimateSkill: ultimate
+      }
+    }
+  }
+
+  // FALLBACK: Vybrat náhodné dovednosti (původní logika)
   const defensive = defensiveSkills[Math.floor(Math.random() * defensiveSkills.length)]
 
-  // Vybrat 2 náhodné útočné
   const shuffledOffensive = [...offensiveSkills].sort(() => Math.random() - 0.5)
   const offensive1 = shuffledOffensive[0]
   const offensive2 = shuffledOffensive[1]
 
-  // Vybrat 1 náhodnou ultimate (může být útočná i obranná)
-  // DŮLEŽITÉ: Skákaná smeč (10), Smečovaný servis (11), Vytlučený blok (19), Hruď (16), Silnější noha (17) a Hlava (18) NEMOHOU být ultimate
   const allSkillsExceptSpecial = [
-    ...defensiveSkills.filter(s => s !== 16 && s !== 17 && s !== 18), // Vyloučit univerzální obrany
+    ...defensiveSkills.filter(s => s !== 16 && s !== 17 && s !== 18),
     ...offensiveSkills.filter(s => s !== 10 && s !== 11 && s !== 19)
   ]
   const ultimate = allSkillsExceptSpecial[Math.floor(Math.random() * allSkillsExceptSpecial.length)]
