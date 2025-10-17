@@ -1908,6 +1908,32 @@ export function initGame() {
 }
 
 export function setupGameHandlers() {
+  // Orientace overlay handler pro mobilní zařízení
+  function handleOrientationChange() {
+    const overlay = document.querySelector('.portrait-warning-overlay')
+    if (!overlay) return
+
+    const isPortrait = window.matchMedia('(orientation: portrait)').matches
+    const isMobile = window.innerWidth <= 768 || window.innerHeight <= 768
+
+    if (isPortrait && isMobile) {
+      overlay.style.display = 'flex'
+      console.log('Portrait mode detected - showing overlay')
+    } else {
+      overlay.style.display = 'none'
+      console.log('Landscape mode detected - hiding overlay')
+    }
+  }
+
+  // Kontrola orientace při načtení
+  setTimeout(handleOrientationChange, 100)
+
+  // Přidat event listeners pro změnu orientace
+  window.addEventListener('orientationchange', () => {
+    setTimeout(handleOrientationChange, 100)
+  })
+  window.addEventListener('resize', handleOrientationChange)
+
   // Mode selection
   document.querySelectorAll('.mode-btn').forEach(btn => {
     btn.addEventListener('click', () => {
