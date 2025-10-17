@@ -197,14 +197,88 @@ function updateCoachMood(team, didWin) {
 
 // Show coach quote overlay (stays visible until replaced by next quote)
 function showCoachQuote(team, quote) {
-  const quoteOverlay = document.getElementById(`${team}-coach-quote-overlay`)
+  // Panel trenéra a komentář
+  const panelId = team === 'team1' ? 'coach1-panel-side' : 'coach2-panel-side'
+  const commentId = team === 'team1' ? 'coach1-comment' : 'coach2-comment'
 
-  if (quoteOverlay) {
-    // Aktualizovat text v bublině
-    quoteOverlay.innerHTML = `<p>${quote}</p>`
-    quoteOverlay.classList.add('active')
+  const panel = document.getElementById(panelId)
+  const comment = document.getElementById(commentId)
 
-    // Bublina zůstává viditelná permanentně, dokud není nahrazena dalším komentářem
+  if (panel && comment) {
+    // Aktualizovat text v komentáři
+    comment.innerHTML = `<p>${quote}</p>`
+
+    // Zobrazit komentář přidáním třídy "active"
+    comment.classList.add('active')
+
+    // Automaticky skrýt komentář po 8 sekundách
+    setTimeout(() => {
+      comment.classList.remove('active')
+    }, 8000)
+  }
+}
+
+// Funkce pro inicializaci panelů trenérů
+function initializeCoachCards() {
+  // Zkontrolovat, jestli jsou týmy načteny
+  if (!gameState.team1 || !gameState.team2) {
+    return
+  }
+
+  // Najít trenéry v týmech (v sestavě nebo na lavičce)
+  const team1Players = gameState.team1 || []
+  const team1Bench = gameState.team1Bench || []
+  const team2Players = gameState.team2 || []
+  const team2Bench = gameState.team2Bench || []
+
+  const team1Coach = [...team1Players, ...team1Bench].find(p => p.position === 'Trenér')
+  const team2Coach = [...team2Players, ...team2Bench].find(p => p.position === 'Trenér')
+
+  // Nastavit panel trenéra týmu 1
+  if (team1Coach) {
+    const photo = document.getElementById('coach1-photo')
+    const name = document.getElementById('coach1-name')
+    const mood = document.getElementById('coach1-mood')
+
+    if (photo) photo.src = team1Coach.photo
+    if (name) name.textContent = team1Coach.name
+    if (mood) mood.textContent = '😊' // Výchozí nálada
+  }
+
+  // Nastavit panel trenéra týmu 2
+  if (team2Coach) {
+    const photo = document.getElementById('coach2-photo')
+    const name = document.getElementById('coach2-name')
+    const mood = document.getElementById('coach2-mood')
+
+    if (photo) photo.src = team2Coach.photo
+    if (name) name.textContent = team2Coach.name
+    if (mood) mood.textContent = '😊' // Výchozí nálada
+  }
+
+  // Nastavit event listenery pro tlačítka TIME-OUT
+  setupTimeoutButtons()
+}
+
+// Funkce pro nastavení tlačítek TIME-OUT v panelech trenérů
+function setupTimeoutButtons() {
+  const timeout1Btn = document.getElementById('timeout-team1-btn-coach')
+  const timeout2Btn = document.getElementById('timeout-team2-btn-coach')
+
+  if (timeout1Btn) {
+    timeout1Btn.addEventListener('click', () => {
+      // Zavolat stejnou funkci jako původní TIME-OUT tlačítko
+      const originalBtn = document.getElementById('timeout-team1-btn')
+      if (originalBtn) originalBtn.click()
+    })
+  }
+
+  if (timeout2Btn) {
+    timeout2Btn.addEventListener('click', () => {
+      // Zavolat stejnou funkci jako původní TIME-OUT tlačítko
+      const originalBtn = document.getElementById('timeout-team2-btn')
+      if (originalBtn) originalBtn.click()
+    })
   }
 }
 
@@ -434,16 +508,20 @@ function updateCoachMoodUI(team) {
   const moodLevel = gameState[moodKey]
   const mood = COACH_MOODS[moodLevel]
 
-  const moodText = document.getElementById(`${team}-mood-text`)
+  // Aktualizovat emoji nálady v novém panelu
+  const moodId = team === 'team1' ? 'coach1-mood' : 'coach2-mood'
+  const moodElement = document.getElementById(moodId)
 
-  if (moodText) {
-    moodText.textContent = mood.text
+  if (moodElement) {
+    moodElement.textContent = mood.emoji
   }
 
-  // Also update emoji if there's a separate emoji element
-  const moodCard = document.querySelector(`.${team}-coach-card .mood-emoji`)
-  if (moodCard) {
-    moodCard.textContent = mood.emoji
+  // Aktualizovat text nálady
+  const moodTextId = team === 'team1' ? 'coach1-mood-text' : 'coach2-mood-text'
+  const moodTextElement = document.getElementById(moodTextId)
+
+  if (moodTextElement) {
+    moodTextElement.textContent = mood.text
   }
 
   // Show quote overlay if mood is not the best
@@ -572,111 +650,72 @@ export function renderGameScreen() {
     <div class="game-container">
       <div class="game-court" style="display: block;">
         <button class="back-to-home-btn" onclick="window.location.reload()">← Zpět na úvodní stránku</button>
-        <div class="game-layout-new">
-          <!-- Horní část - Dvě pole vedle sebe -->
-          <div class="top-bar">
-            <!-- Levé pole - Skóre -->
-            <div class="scoreboard-panel">
-              <!-- Ovládání přehrávání - horní část -->
-              <div class="playback-controls">
-                <div class="playback-buttons">
-                  <button class="control-btn" id="restart-match-btn" title="Na začátek dílčího zápasu">
-                    <span class="btn-icon">|◄</span>
-                  </button>
-                  <button class="control-btn" id="previous-rally-btn" title="Předchozí výměna">
-                    <span class="btn-icon">◄◄</span>
-                  </button>
-                  <button class="control-btn" id="pause-rally-btn" title="Zastavit">
-                    <span class="btn-icon">❚❚</span>
-                  </button>
-                  <button class="control-btn" id="next-rally-btn" title="Další výměna">
-                    <span class="btn-icon">►►</span>
-                  </button>
-                  <button class="control-btn" id="skip-to-result-btn" title="Přeskočit na výsledek">
-                    <span class="btn-icon">►|</span>
-                  </button>
-                  <button class="control-btn back-menu-btn" title="Zpět do menu">
-                    <span class="btn-icon">🏠</span>
-                  </button>
-                </div>
+        <div class="game-layout-unified">
 
-                <!-- Timeout tlačítka -->
-                <div class="timeout-buttons" style="display: flex; gap: 10px; margin-top: 10px; justify-content: center;">
-                  <button class="timeout-btn" id="timeout-team1-btn" title="TIME-OUT ${gameState.team1Name}">
-                    <span class="btn-icon">⏸️</span>
-                    <span class="btn-label">TIME-OUT ${gameState.team1Name}</span>
-                  </button>
-                  <button class="timeout-btn" id="timeout-team2-btn" title="TIME-OUT ${gameState.team2Name}">
-                    <span class="btn-icon">⏸️</span>
-                    <span class="btn-label">TIME-OUT ${gameState.team2Name}</span>
-                  </button>
-                </div>
-
-                <div class="speed-slider-container">
-                  <label for="playback-speed">Rychlost:</label>
-                  <input type="range" id="playback-speed" min="0" max="100" value="50" step="5">
-                  <span id="speed-percentage">50%</span>
+          <!-- TOP BAR - Skóre + Ovládání (kompaktní horní lišta) -->
+          <div class="top-bar-unified">
+            <div class="controls-unified">
+              <div class="playback-controls-unified">
+                <button class="control-btn-unified" id="restart-match-btn" title="Na začátek">|◄</button>
+                <button class="control-btn-unified" id="previous-rally-btn" title="Předchozí">◄◄</button>
+                <button class="control-btn-unified" id="pause-rally-btn" title="Pauza">❚❚</button>
+                <button class="control-btn-unified" id="next-rally-btn" title="Další">►►</button>
+                <button class="control-btn-unified" id="skip-to-result-btn" title="Konec">►|</button>
+                <button class="control-btn-unified back-menu-btn" title="Menu">🏠</button>
+                <div class="speed-control-unified">
+                  <label for="playback-speed">⚡</label>
+                  <input type="range" id="playback-speed" min="0" max="100" value="30" step="5">
+                  <span id="speed-percentage">30%</span>
                 </div>
               </div>
 
-              <!-- Skóre - dolní část -->
-              <div class="score-section">
-                <!-- Body a Sety vedle sebe -->
-                <div class="score-row-inline">
-                  <div class="current-set-score">
-                    <span class="score-label">Body:</span>
-                    <span class="score-value" id="current-set-score">0 : 0</span>
-                  </div>
-
-                  <div class="sets-score">
-                    <span class="score-label">Sety:</span>
-                    <span class="score-value" id="sets-score">0 : 0</span>
-                  </div>
+              <div class="score-display-unified">
+                <div class="score-item">
+                  <span class="score-label-unified">Body:</span>
+                  <span class="score-value-unified" id="current-set-score">0 : 0</span>
                 </div>
-
-                <!-- Ligový režim - celkový stav -->
-                <div class="matches-score" id="matches-score-display" style="display: block;">
-                  <span class="score-label">Stav:</span>
-                  <span class="score-value" id="matches-score">0 : 0</span>
+                <div class="score-separator">|</div>
+                <div class="score-item">
+                  <span class="score-label-unified">Sety:</span>
+                  <span class="score-value-unified" id="sets-score">0 : 0</span>
                 </div>
-
-                <!-- Popis disciplíny -->
-                <div class="current-match-info" id="current-match-info"></div>
+                <div class="score-separator">|</div>
+                <div class="score-item" id="matches-score-display" style="display: flex;">
+                  <span class="score-label-unified">Stav:</span>
+                  <span class="score-value-unified" id="matches-score">0 : 0</span>
+                </div>
               </div>
 
-              <!-- Zvuková tlačítka -->
-              <div class="sound-controls" style="display: flex; gap: 10px; margin-top: 15px; justify-content: center;">
-                <button class="sound-btn" id="mute-crowd-btn" title="Ztlumit diváky">
-                  <span class="btn-icon">👥🔊</span>
-                  <span class="btn-label">Diváci</span>
-                </button>
-                <button class="sound-btn" id="mute-all-btn" title="Ztlumit všechny zvuky">
-                  <span class="btn-icon">🔊</span>
-                  <span class="btn-label">Všechny zvuky</span>
-                </button>
-              </div>
-
-              <!-- Hidden helper elements for compatibility -->
-              <div style="display: none;">
-                <b id="t1-s1">0</b>
-                <b id="t1-s2">0</b>
-                <b id="t1-s3">5</b>
-                <b id="t2-s1">0</b>
-                <b id="t2-s2">0</b>
-                <b id="t2-s3">5</b>
+              <div class="action-buttons-unified">
+                <button class="action-btn-unified" id="mute-crowd-btn" title="Ztlumit diváky">👥🔊</button>
+                <button class="action-btn-unified" id="mute-all-btn" title="Ztlumit vše">🔊</button>
               </div>
             </div>
 
-            <!-- Pravé pole - Vyhodnocení akcí a komentáře -->
-            <div class="action-commentary-panel" id="action-commentary">
-              <div class="commentary-content">
-                <p class="commentary-placeholder">Připravte se na zápas...</p>
+            <div class="timeout-row">
+              <button class="coach-timeout-btn" id="timeout-team1-btn-coach" title="TIME-OUT pro ${gameState.team1Name || 'Tým 1'}">TIME OUT</button>
+              <div class="team-names-centered">
+                <span class="team-name-left" id="team-name-left">${gameState.team1Name || 'Tým 1'}</span>
+                <span class="team-name-right" id="team-name-right">${gameState.team2Name || 'Tým 2'}</span>
               </div>
+              <button class="coach-timeout-btn" id="timeout-team2-btn-coach" title="TIME-OUT pro ${gameState.team2Name || 'Tým 2'}">TIME OUT</button>
+            </div>
+
+            <div class="match-info-unified" id="current-match-info"></div>
+
+            <!-- Hidden helper elements -->
+            <div style="display: none;">
+              <b id="t1-s1">0</b>
+              <b id="t1-s2">0</b>
+              <b id="t1-s3">5</b>
+              <b id="t2-s1">0</b>
+              <b id="t2-s2">0</b>
+              <b id="t2-s3">5</b>
             </div>
           </div>
 
-          <!-- Hlavní pole - Animace, dovednosti a vyhodnocování -->
-          <div class="game-center-main">
+          <!-- MAIN AREA - Hřiště + Trenéři + Dovednosti -->
+          <div class="main-area-unified">
             <!-- Persistentní zobrazení trenérů, hráčů a dovedností -->
             <div id="skill-reveal" class="skill-reveal-persistent"></div>
 
@@ -685,6 +724,25 @@ export function renderGameScreen() {
               <div id="current-phase"></div>
               <div id="evaluation-phase"></div>
               <div id="decisive-skill-video"></div>
+            </div>
+          </div>
+
+          <!-- BOTTOM BAR - Komentáře -->
+          <div class="bottom-bar-unified" id="bottom-bar-unified">
+            <div class="commentary-split">
+              <!-- Levý sloupec - Tým 1 -->
+              <div class="commentary-team commentary-team-1">
+                <div class="commentary-team-content" id="team1-commentary">
+                  <p class="commentary-placeholder">Čeká se na akci...</p>
+                </div>
+              </div>
+
+              <!-- Pravý sloupec - Tým 2 -->
+              <div class="commentary-team commentary-team-2">
+                <div class="commentary-team-content" id="team2-commentary">
+                  <p class="commentary-placeholder">Čeká se na akci...</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -754,6 +812,9 @@ export function startLeagueMatch() {
 
   // Inicializovat jednoduchý scoreboard
   updateSimpleScoreboard()
+
+  // Inicializovat karty trenérů v komentářových oknech
+  initializeCoachCards()
 
   // Inicializovat ligový režim pouze pro ligové zápasy
   if (gameState.gameMode === 'league') {
@@ -1145,31 +1206,30 @@ function getCoachQuote(type, playerName) {
   return `${nickname}, ${quote.toLowerCase()}`
 }
 
-// Funkce pro přidání komentáře do action-commentary panelu
-function addActionCommentary(message, type = 'info') {
-  const panel = document.getElementById('action-commentary')
+// Funkce pro přidání komentáře do týmového komentářového panelu
+function addActionCommentary(message, type = 'info', teamNumber = 1) {
+  // Určit správný panel podle týmu
+  const panelId = `team${teamNumber}-commentary`
+  const panel = document.getElementById(panelId)
   if (!panel) return
 
-  const content = panel.querySelector('.commentary-content')
-  if (!content) return
-
   // Odstranit placeholder pokud existuje
-  const placeholder = content.querySelector('.commentary-placeholder')
+  const placeholder = panel.querySelector('.commentary-placeholder')
   if (placeholder) {
     placeholder.remove()
   }
 
-  // Vytvořit nový entry
-  const entry = document.createElement('div')
+  // Vytvořit nový entry jako <p> element
+  const entry = document.createElement('p')
   entry.className = 'action-entry'
   entry.innerHTML = message
 
   // Přidat na začátek (nejnovější nahoře)
-  content.insertBefore(entry, content.firstChild)
+  panel.insertBefore(entry, panel.firstChild)
 
-  // Omezit na posledních 10 komentářů
-  const entries = content.querySelectorAll('.action-entry')
-  if (entries.length > 10) {
+  // Omezit na posledních 8 komentářů
+  const entries = panel.querySelectorAll('.action-entry')
+  if (entries.length > 8) {
     entries[entries.length - 1].remove()
   }
 
@@ -1187,74 +1247,72 @@ function resetActionCounter() {
 
 // Funkce pro získání evaluation div, ale přesměrovat na commentary panel
 function getEvaluationDiv() {
-  // Vrátit commentary panel místo evaluation-phase
-  const panel = document.getElementById('action-commentary')
-  if (!panel) {
-    // Fallback na původní evaluation-phase pokud panel neexistuje
+  // Vrátit wrapper, který zapisuje do obou týmových panelů
+  const team1Panel = document.getElementById('team1-commentary')
+  const team2Panel = document.getElementById('team2-commentary')
+
+  if (!team1Panel || !team2Panel) {
+    // Fallback na původní evaluation-phase pokud panely neexistují
     return document.getElementById('evaluation-phase')
   }
 
-  // Vytvořit wrapper objekt, který se chová jako div
+  // Vytvořit wrapper objekt, který zapisuje do obou panelů
   return {
     innerHTML: '',
     set innerHTML(value) {
-      const content = panel.querySelector('.commentary-content')
-      if (!content) return
-
-      // Odstranit placeholder pokud existuje
-      const placeholder = content.querySelector('.commentary-placeholder')
-      if (placeholder) {
-        placeholder.remove()
-      }
-
-      // NEMAZAT předchozí obsah - místo toho přidat nový entry
-      // Inkrementovat counter akce
-      actionCounter++
-
-      // Vytvořit nový entry s obsahem a číslem akce
-      const entry = document.createElement('div')
-      entry.className = 'action-entry'
-      entry.setAttribute('data-action-number', actionCounter)
-
-      // Přidat oddělovač s číslem akce
-      const separator = document.createElement('div')
-      separator.className = 'action-separator'
-      separator.innerHTML = `<span class="action-number">Akce #${actionCounter}</span>`
-      content.appendChild(separator)
-
-      // Přidat samotný obsah
-      entry.innerHTML = value
-      content.appendChild(entry)
-
-      // Automaticky scrollovat DOLŮ (na nejnovější akci)
-      setTimeout(() => {
-        panel.scrollTop = panel.scrollHeight
-      }, 50)
-    },
-    get innerHTML() {
-      const content = panel.querySelector('.commentary-content')
-      return content ? content.innerHTML : ''
-    },
-    appendChild(child) {
-      const content = panel.querySelector('.commentary-content')
-      if (content) {
-        // Odstranit placeholder pokud existuje
-        const placeholder = content.querySelector('.commentary-placeholder')
+      // Odstranit placeholdery z obou panelů
+      [team1Panel, team2Panel].forEach(panel => {
+        const placeholder = panel.querySelector('.commentary-placeholder')
         if (placeholder) {
           placeholder.remove()
         }
-        content.appendChild(child)
-        setTimeout(() => {
-          panel.scrollTop = panel.scrollHeight
-        }, 50)
-      }
+      })
+
+      // Inkrementovat counter akce
+      actionCounter++
+
+      // Přidat content do obou panelů
+      [team1Panel, team2Panel].forEach(panel => {
+        // Vytvořit nový entry jako <p> element
+        const entry = document.createElement('p')
+        entry.className = 'action-entry'
+        entry.setAttribute('data-action-number', actionCounter)
+
+        // Přidat oddělovač s číslem akce
+        const separator = document.createElement('p')
+        separator.className = 'action-separator'
+        separator.innerHTML = `<strong>Akce #${actionCounter}</strong>`
+        panel.appendChild(separator)
+
+        // Přidat samotný obsah
+        entry.innerHTML = value
+        panel.appendChild(entry)
+      })
+
+      // BEZ automatického scrollu - nechat informace viditelné
+    },
+    get innerHTML() {
+      return team1Panel ? team1Panel.innerHTML : ''
+    },
+    appendChild(child) {
+      // Přidat do obou panelů
+      [team1Panel, team2Panel].forEach(panel => {
+        // Odstranit placeholder pokud existuje
+        const placeholder = panel.querySelector('.commentary-placeholder')
+        if (placeholder) {
+          placeholder.remove()
+        }
+        // Klonovat child pro každý panel
+        const clonedChild = child.cloneNode(true)
+        panel.appendChild(clonedChild)
+      })
+      // BEZ automatického scrollu - nechat informace viditelné
     },
     // Přidat metodu pro vyčištění (např. při startu nového setu)
     clear() {
-      const content = panel.querySelector('.commentary-content')
-      if (content) {
-        content.innerHTML = '<div class="commentary-placeholder">Čekám na první akci...</div>'
-      }
+      [team1Panel, team2Panel].forEach(panel => {
+        panel.innerHTML = '<p class="commentary-placeholder">Čekám na první akci...</p>'
+      })
       resetActionCounter()
     }
   }
@@ -2881,11 +2939,13 @@ function setupPlaybackControls() {
       // Toggle crowd sounds
       if (soundManager.crowdVolume > 0) {
         soundManager.setCrowdVolume(0)
-        muteCrowdBtn.querySelector('.btn-icon').textContent = '👥🔇'
+        const iconEl = muteCrowdBtn.querySelector('.btn-icon')
+        if (iconEl) iconEl.textContent = '👥🔇'
         muteCrowdBtn.title = 'Zapnout diváky'
       } else {
         soundManager.setCrowdVolume(0.2)
-        muteCrowdBtn.querySelector('.btn-icon').textContent = '👥🔊'
+        const iconEl = muteCrowdBtn.querySelector('.btn-icon')
+        if (iconEl) iconEl.textContent = '👥🔊'
         muteCrowdBtn.title = 'Ztlumit diváky'
       }
     })
@@ -2897,7 +2957,8 @@ function setupPlaybackControls() {
       if (soundManager.enabled) {
         soundManager.enabled = false
         soundManager.stopAll()
-        muteAllBtn.querySelector('.btn-icon').textContent = '🔇'
+        const iconEl = muteAllBtn.querySelector('.btn-icon')
+        if (iconEl) iconEl.textContent = '🔇'
         muteAllBtn.title = 'Zapnout všechny zvuky'
       } else {
         soundManager.enabled = true
@@ -2905,7 +2966,8 @@ function setupPlaybackControls() {
         if (gameState.isPlaying && !gameState.isPaused) {
           soundManager.startCrowdSounds()
         }
-        muteAllBtn.querySelector('.btn-icon').textContent = '🔊'
+        const iconEl = muteAllBtn.querySelector('.btn-icon')
+        if (iconEl) iconEl.textContent = '🔊'
         muteAllBtn.title = 'Ztlumit všechny zvuky'
       }
     })
@@ -2956,6 +3018,9 @@ function startGame() {
 
   // Inicializovat jednoduchý scoreboard
   updateSimpleScoreboard()
+
+  // Inicializovat karty trenérů v komentářových oknech
+  initializeCoachCards()
 
   // Inicializovat ligový režim pokud je potřeba
   if (gameState.gameMode === 'league') {
@@ -4177,57 +4242,52 @@ function displayPlayersAndSkills() {
   const team2NetPlayerIndex = getNetPlayerIndex(team2Skills)
 
   revealDiv.innerHTML = `
-    <div class="skills-reveal-container-with-coaches">
-      <div class="coach-card team1-coach-card" id="team1-coach-card">
-        <div class="coach-card-background" style="background-image: url('${team1Coach?.photo || '/players/sirocky.jpg'}');"></div>
-        <div class="coach-card-overlay">
-          <div class="coach-card-name">${team1Coach?.name || 'Trenér'}</div>
-          <div class="coach-card-role">Trenér</div>
-          <div class="coach-card-mood">
-            <span class="mood-emoji">${team1Mood.emoji}</span>
-            <span class="mood-text" id="team1-mood-text">${team1Mood.text}</span>
-          </div>
+    <div class="skills-reveal-container">
+      <!-- Levý trenérský panel -->
+      <div class="coach-panel coach-panel-left" id="coach1-panel-side">
+        <div class="coach-panel-header">
+          <img class="coach-photo" id="coach1-photo" src="${team1Coach?.photo || '/players/sirocky.jpg'}" alt="Trenér">
+          <div class="coach-name" id="coach1-name">${team1Coach?.name || 'Trenér'}</div>
         </div>
-        <div class="coach-quote-overlay" id="team1-coach-quote-overlay"></div>
+        <div class="coach-comment" id="coach1-comment"></div>
       </div>
 
-      <div class="court-area">
-        <div class="court-lines">
-          <div class="court-net"></div>
-          <div class="court-service-line court-service-line-left"></div>
-          <div class="court-service-line court-service-line-right"></div>
-        </div>
-
-        <div class="team-section team-left">
-          <div class="team-horizontal-layout">
-            <div id="team1-players-skills-list" class="team-players-skills-list"></div>
+      <!-- Hřiště uprostřed -->
+      <div class="court-center">
+        <div class="court-area">
+          <div class="court-lines">
+            <div class="court-net"></div>
+            <div class="court-service-line court-service-line-left"></div>
+            <div class="court-service-line court-service-line-right"></div>
           </div>
-        </div>
 
-        <div class="team-section team-right">
-          <div class="team-horizontal-layout">
-            <div id="team2-players-skills-list" class="team-players-skills-list"></div>
+          <div class="team-section team-left">
+            <div class="team-horizontal-layout">
+              <div id="team1-players-skills-list" class="team-players-skills-list"></div>
+            </div>
           </div>
-        </div>
 
-        <!-- Hráči u sítě (jen pro trojice) -->
-        <div class="net-players-section">
-          <div id="team1-net-player" class="net-player team1-net-player"></div>
-          <div id="team2-net-player" class="net-player team2-net-player"></div>
+          <div class="team-section team-right">
+            <div class="team-horizontal-layout">
+              <div id="team2-players-skills-list" class="team-players-skills-list"></div>
+            </div>
+          </div>
+
+          <!-- Hráči u sítě (jen pro trojice) -->
+          <div class="net-players-section">
+            <div id="team1-net-player" class="net-player team1-net-player"></div>
+            <div id="team2-net-player" class="net-player team2-net-player"></div>
+          </div>
         </div>
       </div>
 
-      <div class="coach-card team2-coach-card" id="team2-coach-card">
-        <div class="coach-card-background" style="background-image: url('${team2Coach?.photo || '/images/avatar-placeholder.png'}');"></div>
-        <div class="coach-card-overlay">
-          <div class="coach-card-name">${team2Coach?.name || 'Trenér'}</div>
-          <div class="coach-card-role">Trenér</div>
-          <div class="coach-card-mood">
-            <span class="mood-emoji">${team2Mood.emoji}</span>
-            <span class="mood-text" id="team2-mood-text">${team2Mood.text}</span>
-          </div>
+      <!-- Pravý trenérský panel -->
+      <div class="coach-panel coach-panel-right" id="coach2-panel-side">
+        <div class="coach-panel-header">
+          <img class="coach-photo" id="coach2-photo" src="${team2Coach?.photo || '/images/avatar-placeholder.png'}" alt="Trenér">
+          <div class="coach-name" id="coach2-name">${team2Coach?.name || 'Trenér'}</div>
         </div>
-        <div class="coach-quote-overlay" id="team2-coach-quote-overlay"></div>
+        <div class="coach-comment" id="coach2-comment"></div>
       </div>
     </div>
   `
@@ -4284,6 +4344,7 @@ function displayPlayersAndSkills() {
 
     const playerSkillPair = document.createElement('div')
     playerSkillPair.className = `player-skill-pair ${isNetPlayer ? 'net-player-pair' : ''}`
+    const displayStats = skill.player.stats || {}
     playerSkillPair.innerHTML = `
       <div class="game-hexagon-card opava-card">
         <div class="game-player-image">
@@ -4295,6 +4356,18 @@ function displayPlayersAndSkills() {
         <div class="game-player-number">${skill.player.number || ''}</div>
         <div class="game-player-info">
           <h3 class="game-player-name">${skill.player.name}</h3>
+          <p class="game-player-position">${skill.player.position || 'Univerzál'}</p>
+          <div class="game-player-stats-mini">
+            <div class="game-stat"><span class="game-stat-value">${displayStats.rychlost || '-'}</span><span class="game-stat-label">Rychlost</span></div>
+            <div class="game-stat"><span class="game-stat-value">${displayStats.obratnost || '-'}</span><span class="game-stat-label">Obratnost</span></div>
+            <div class="game-stat"><span class="game-stat-value">${displayStats.sila || '-'}</span><span class="game-stat-label">Rána</span></div>
+            <div class="game-stat"><span class="game-stat-value">${displayStats.technika || '-'}</span><span class="game-stat-label">Technika</span></div>
+            <div class="game-stat"><span class="game-stat-value">${displayStats.obetavost || '-'}</span><span class="game-stat-label">Obětavost</span></div>
+            <div class="game-stat"><span class="game-stat-value">${displayStats.svih || '-'}</span><span class="game-stat-label">Svih</span></div>
+            <div class="game-stat"><span class="game-stat-value">${displayStats.psychika || '-'}</span><span class="game-stat-label">Psychika</span></div>
+            <div class="game-stat"><span class="game-stat-value">${displayStats.cteniHry || '-'}</span><span class="game-stat-label">Čtení hry</span></div>
+            <div class="game-stat"><span class="game-stat-value">${displayStats.odolnost || '-'}</span><span class="game-stat-label">Odolnost</span></div>
+          </div>
         </div>
       </div>
       <div class="skill-ball-container" data-skill-index="${i}" data-team="team1" data-player-id="${skill.player.id}">
@@ -4363,6 +4436,7 @@ function displayPlayersAndSkills() {
 
     const playerSkillPair = document.createElement('div')
     playerSkillPair.className = `player-skill-pair`
+    const displayStats2 = skill.player.stats || {}
     playerSkillPair.innerHTML = `
       <div class="skill-ball-container" data-skill-index="${i}" data-team="team2" data-player-id="${skill.player.id}">
         <div class="skill-ball ${skillType}">
@@ -4383,6 +4457,18 @@ function displayPlayersAndSkills() {
         <div class="game-player-number">${skill.player.number || ''}</div>
         <div class="game-player-info">
           <h3 class="game-player-name">${skill.player.name}</h3>
+          <p class="game-player-position">${skill.player.position || 'Univerzál'}</p>
+          <div class="game-player-stats-mini">
+            <div class="game-stat"><span class="game-stat-value">${displayStats2.rychlost || '-'}</span><span class="game-stat-label">Rychlost</span></div>
+            <div class="game-stat"><span class="game-stat-value">${displayStats2.obratnost || '-'}</span><span class="game-stat-label">Obratnost</span></div>
+            <div class="game-stat"><span class="game-stat-value">${displayStats2.sila || '-'}</span><span class="game-stat-label">Rána</span></div>
+            <div class="game-stat"><span class="game-stat-value">${displayStats2.technika || '-'}</span><span class="game-stat-label">Technika</span></div>
+            <div class="game-stat"><span class="game-stat-value">${displayStats2.obetavost || '-'}</span><span class="game-stat-label">Obětavost</span></div>
+            <div class="game-stat"><span class="game-stat-value">${displayStats2.svih || '-'}</span><span class="game-stat-label">Svih</span></div>
+            <div class="game-stat"><span class="game-stat-value">${displayStats2.psychika || '-'}</span><span class="game-stat-label">Psychika</span></div>
+            <div class="game-stat"><span class="game-stat-value">${displayStats2.cteniHry || '-'}</span><span class="game-stat-label">Čtení hry</span></div>
+            <div class="game-stat"><span class="game-stat-value">${displayStats2.odolnost || '-'}</span><span class="game-stat-label">Odolnost</span></div>
+          </div>
         </div>
       </div>
     `
@@ -4405,6 +4491,9 @@ function displayPlayersAndSkills() {
 
   // Po vykreslení aplikovat inteligentní pozicování visaček
   setTimeout(() => positionTagsIntelligently(), 100)
+
+  // Nastavit event listenery pro tlačítka TIME-OUT v panelech trenérů
+  setupTimeoutButtons()
 }
 
 // Funkce pro inteligentní pozicování visaček s detekcí kolizí
@@ -4664,57 +4753,52 @@ async function revealSkillsGradually(team1Skills, team2Skills) {
   const team2NetPlayerIndex = getNetPlayerIndex(team2Skills)
 
   revealDiv.innerHTML = `
-    <div class="skills-reveal-container-with-coaches">
-      <div class="coach-card team1-coach-card" id="team1-coach-card">
-        <div class="coach-card-background" style="background-image: url('${team1Coach?.photo || '/players/sirocky.jpg'}');"></div>
-        <div class="coach-card-overlay">
-          <div class="coach-card-name">${team1Coach?.name || 'Trenér'}</div>
-          <div class="coach-card-role">Trenér</div>
-          <div class="coach-card-mood">
-            <span class="mood-emoji">${team1Mood.emoji}</span>
-            <span class="mood-text" id="team1-mood-text">${team1Mood.text}</span>
-          </div>
+    <div class="skills-reveal-container">
+      <!-- Levý trenérský panel -->
+      <div class="coach-panel coach-panel-left" id="coach1-panel-side">
+        <div class="coach-panel-header">
+          <img class="coach-photo" id="coach1-photo" src="${team1Coach?.photo || '/players/sirocky.jpg'}" alt="Trenér">
+          <div class="coach-name" id="coach1-name">${team1Coach?.name || 'Trenér'}</div>
         </div>
-        <div class="coach-quote-overlay" id="team1-coach-quote-overlay"></div>
+        <div class="coach-comment" id="coach1-comment"></div>
       </div>
 
-      <div class="court-area">
-        <div class="court-lines">
-          <div class="court-net"></div>
-          <div class="court-service-line court-service-line-left"></div>
-          <div class="court-service-line court-service-line-right"></div>
-        </div>
-
-        <div class="team-section team-left">
-          <div class="team-horizontal-layout">
-            <div id="team1-players-skills-list" class="team-players-skills-list"></div>
+      <!-- Hřiště uprostřed -->
+      <div class="court-center">
+        <div class="court-area">
+          <div class="court-lines">
+            <div class="court-net"></div>
+            <div class="court-service-line court-service-line-left"></div>
+            <div class="court-service-line court-service-line-right"></div>
           </div>
-        </div>
 
-        <div class="team-section team-right">
-          <div class="team-horizontal-layout">
-            <div id="team2-players-skills-list" class="team-players-skills-list"></div>
+          <div class="team-section team-left">
+            <div class="team-horizontal-layout">
+              <div id="team1-players-skills-list" class="team-players-skills-list"></div>
+            </div>
           </div>
-        </div>
 
-        <!-- Hráči u sítě (jen pro trojice) -->
-        <div class="net-players-section">
-          <div id="team1-net-player" class="net-player team1-net-player"></div>
-          <div id="team2-net-player" class="net-player team2-net-player"></div>
+          <div class="team-section team-right">
+            <div class="team-horizontal-layout">
+              <div id="team2-players-skills-list" class="team-players-skills-list"></div>
+            </div>
+          </div>
+
+          <!-- Hráči u sítě (jen pro trojice) -->
+          <div class="net-players-section">
+            <div id="team1-net-player" class="net-player team1-net-player"></div>
+            <div id="team2-net-player" class="net-player team2-net-player"></div>
+          </div>
         </div>
       </div>
 
-      <div class="coach-card team2-coach-card" id="team2-coach-card">
-        <div class="coach-card-background" style="background-image: url('${team2Coach?.photo || '/images/avatar-placeholder.png'}');"></div>
-        <div class="coach-card-overlay">
-          <div class="coach-card-name">${team2Coach?.name || 'Trenér'}</div>
-          <div class="coach-card-role">Trenér</div>
-          <div class="coach-card-mood">
-            <span class="mood-emoji">${team2Mood.emoji}</span>
-            <span class="mood-text" id="team2-mood-text">${team2Mood.text}</span>
-          </div>
+      <!-- Pravý trenérský panel -->
+      <div class="coach-panel coach-panel-right" id="coach2-panel-side">
+        <div class="coach-panel-header">
+          <img class="coach-photo" id="coach2-photo" src="${team2Coach?.photo || '/images/avatar-placeholder.png'}" alt="Trenér">
+          <div class="coach-name" id="coach2-name">${team2Coach?.name || 'Trenér'}</div>
         </div>
-        <div class="coach-quote-overlay" id="team2-coach-quote-overlay"></div>
+        <div class="coach-comment" id="coach2-comment"></div>
       </div>
     </div>
   `
@@ -5223,63 +5307,23 @@ async function animateSkillEvaluation(attackerSkill, defenderSkill, result) {
 
 // Animace střetu schopností
 async function showSkillClash(attacker, defender, result) {
-  const evalDiv = getEvaluationDiv()
+  // Určit týmy útočníka a obránce
+  const attackerTeam = gameState.team1 && gameState.team1.some(p => p.id === attacker.player.id) ? 1 : 2
+  const defenderTeam = defender ? (gameState.team1 && gameState.team1.some(p => p.id === defender.player.id) ? 1 : 2) : null
 
-  // Calculate ratings
-  const attackerRating = Math.round((attacker.player.stats.rychlost + attacker.player.stats.obratnost + attacker.player.stats.sila + attacker.player.stats.svih + attacker.player.stats.technika + attacker.player.stats.obetavost + attacker.player.stats.psychika + attacker.player.stats.cteniHry + attacker.player.stats.odolnost) / 9)
-
-  let defenderHTML = '<p class="no-defense">Žádná obrana!</p>'
-  if (defender) {
-    const defenderRating = Math.round((defender.player.stats.rychlost + defender.player.stats.obratnost + defender.player.stats.sila + defender.player.stats.svih + defender.player.stats.technika + defender.player.stats.obetavost + defender.player.stats.psychika + defender.player.stats.cteniHry + defender.player.stats.odolnost) / 9)
-
-    defenderHTML = `
-      <div class="game-hexagon-card opponent-card">
-        <div class="game-player-image">
-          <img src="${defender.player.photo}" alt="${defender.player.name}" />
-        </div>
-        <div class="game-card-badge">
-          <div class="game-card-badge-rating">${defenderRating}</div>
-        </div>
-        <div class="game-player-number">${defender.player.number || ''}</div>
-        <div class="game-player-info">
-          <h3 class="game-player-name">${defender.player.name}</h3>
-          <p class="game-player-position">${defender.player.position || 'Univerzál'}</p>
-        </div>
-      </div>
-      <div class="clash-skill defend-animation ${defender.isUltimate ? 'ultimate-glow' : ''}">
-        ${defender.isUltimate ? '⭐' : '🛡️'} ${skills[defender.skill].name}
-      </div>
-    `
+  // Zobrazit křížek mezi okny
+  const clashIndicator = document.getElementById('skill-clash-indicator')
+  if (clashIndicator) {
+    clashIndicator.style.display = 'block'
   }
 
-  evalDiv.innerHTML = `
-    <div class="skill-clash-container">
-      <div class="clash-attacker">
-        <div class="game-hexagon-card opava-card">
-          <div class="game-player-image">
-            <img src="${attacker.player.photo}" alt="${attacker.player.name}" />
-          </div>
-          <div class="game-card-badge">
-            <div class="game-card-badge-rating">${attackerRating}</div>
-          </div>
-          <div class="game-player-number">${attacker.player.number || ''}</div>
-          <div class="game-player-info">
-            <h3 class="game-player-name">${attacker.player.name}</h3>
-            <p class="game-player-position">${attacker.player.position || 'Univerzál'}</p>
-          </div>
-        </div>
-        <div class="clash-skill attack-animation ${attacker.isUltimate ? 'ultimate-glow' : ''}">
-          ${attacker.isUltimate ? '⭐' : '⚔️'} ${skills[attacker.skill].name}
-        </div>
-      </div>
+  // Získat panely
+  const team1Panel = document.getElementById('team1-commentary')
+  const team2Panel = document.getElementById('team2-commentary')
 
-      <div class="clash-vs">VS</div>
-
-      <div class="clash-defender ${defender ? '' : 'no-defender'}">
-        ${defenderHTML}
-      </div>
-    </div>
-  `
+  // Vyčistit předchozí obsah
+  if (team1Panel) team1Panel.innerHTML = ''
+  if (team2Panel) team2Panel.innerHTML = ''
 
   // Spustit animaci střetu dovedností
   await animateSkillEvaluation(attacker, defender, result)
@@ -5290,7 +5334,7 @@ async function showSkillClash(attacker, defender, result) {
   } else {
     soundManager.playBallHit()
   }
-  await smartDelay(800)
+  await smartDelay(500)
 
   // Přehrát zvuk obrany (pokud existuje)
   if (defender) {
@@ -5299,22 +5343,65 @@ async function showSkillClash(attacker, defender, result) {
     } else {
       soundManager.playBallHit()
     }
-    await smartDelay(800)
+    await smartDelay(500)
   }
 
-  // Zobrazit výsledek
-  const resultDiv = document.createElement('div')
-  resultDiv.className = `clash-result ${result}`
+  // Určit výsledek
+  let resultEmoji = ''
+  let resultText = ''
   if (result === 'blocked') {
     const defensiveSkillId = defender ? defender.skill : null
-    resultDiv.innerHTML = `<h2>🛡️ ${getRandomBlockedText(defensiveSkillId)}!</h2>`
+    resultEmoji = '🛡️'
+    resultText = getRandomBlockedText(defensiveSkillId)
     soundManager.playDefenseBlock()
   } else if (result === 'success') {
-    resultDiv.innerHTML = '<h2>✅ ÚSPĚCH!</h2>'
+    resultEmoji = '✅'
+    resultText = 'ÚSPĚCH'
     soundManager.playBallHit()
   }
-  evalDiv.appendChild(resultDiv)
+
+  // Vytvoření kompaktních jednořádkových notifikací s výsledkem
+  const attackerEmoji = attacker.isUltimate ? '⭐' : '⚔️'
+  const attackerText = `
+    <span class="skill-emoji">${attackerEmoji}</span>
+    <span class="player-name">${attacker.player.name}</span>
+    <span class="skill-name">${skills[attacker.skill].name}</span>
+    <span class="result-emoji">${resultEmoji}</span>
+    <span class="result-text">${resultText}</span>
+  `
+
+  const attackerPanel = attackerTeam === 1 ? team1Panel : team2Panel
+  if (attackerPanel) {
+    const notification = document.createElement('div')
+    notification.className = `clash-notification ${result}`
+    notification.innerHTML = attackerText
+    attackerPanel.appendChild(notification)
+  }
+
+  // Notifikace pro obránce (pokud existuje) - bez výsledku
+  if (defender && defenderTeam) {
+    const defenderEmoji = defender.isUltimate ? '⭐' : '🛡️'
+    const defenderText = `
+      <span class="skill-emoji">${defenderEmoji}</span>
+      <span class="player-name">${defender.player.name}</span>
+      <span class="skill-name">${skills[defender.skill].name}</span>
+    `
+
+    const defenderPanel = defenderTeam === 1 ? team1Panel : team2Panel
+    if (defenderPanel) {
+      const notification = document.createElement('div')
+      notification.className = 'clash-notification'
+      notification.innerHTML = defenderText
+      defenderPanel.appendChild(notification)
+    }
+  }
+
   await smartDelay(1500)
+
+  // Skrýt křížek po skončení střetu
+  if (clashIndicator) {
+    clashIndicator.style.display = 'none'
+  }
 }
 
 // Zobrazit rozhodující schopnost
@@ -5713,72 +5800,45 @@ async function processSpecialSkillsCoinFlip(team1Skills, team2Skills, evalDiv) {
 
   if (specialSkills.length === 0) return
 
+  // Získat komentářové panely
+  const team1Panel = document.getElementById('team1-commentary')
+  const team2Panel = document.getElementById('team2-commentary')
+
   // Pro každou speciální schopnost hodit mincemi
   for (const specialSkill of specialSkills) {
     const isTeam1 = team1Skills.includes(specialSkill)
     const skillData = skills[specialSkill.skill]
+    const targetPanel = isTeam1 ? team1Panel : team2Panel
 
     // Hodit dvěma mincemi (true = panna/tails, false = hlava/heads)
     const coin1 = Math.random() < 0.5 // true = panna
     const coin2 = Math.random() < 0.5 // true = panna
     const pannyCount = (coin1 ? 1 : 0) + (coin2 ? 1 : 0)
 
-    // Zobrazit hození mincí
-    evalDiv.innerHTML = `
-      <div class="coin-flip-result" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; margin: 20px 0; border-radius: 15px; color: white; text-align: center;">
-        <h3>🪙 Speciální schopnost: ${skillData.name}</h3>
-        <p><strong>${specialSkill.player.name}</strong></p>
-        <div style="display: flex; gap: 20px; justify-content: center; margin: 20px 0; font-size: 3rem;">
-          <div>${coin1 ? '🟡' : '⚪'}</div>
-          <div>${coin2 ? '🟡' : '⚪'}</div>
-        </div>
-        <p style="font-size: 1.3rem; font-weight: bold;">Počet panen: ${pannyCount}</p>
-      </div>
-    `
-    await smartDelay(2000)
+    // Vytvořit výsledný typ schopnosti
+    let resultType = ''
+    let resultEmoji = ''
 
     // Reklasifikovat schopnost na základě výsledku
     if (pannyCount === 0) {
       // 0 panen = prohraná výměna
       specialSkill.coinFlipResult = 'failed'
       specialSkill.isFailedSpecial = true
-
-      evalDiv.innerHTML = `
-        <div style="background: rgba(255,0,0,0.2); padding: 20px; margin: 20px 0; border-radius: 15px; color: white; text-align: center;">
-          <p style="font-size: 1.2rem;">❌ 0 panen - Prohraná výměna!</p>
-        </div>
-      `
-      await smartDelay(1500)
+      resultType = 'Prohraná výměna'
+      resultEmoji = '❌'
 
     } else if (pannyCount === 1) {
       // 1 panna = standardní útok
       specialSkill.coinFlipResult = 'standard'
 
       // Určit, zda jde o útočnou nebo obrannou schopnost
-      if (specialSkill.skill === 10 || specialSkill.skill === 19) {
-        // Skákaná smeč a Vytlučený blok = útočná
+      if (specialSkill.skill === 10 || specialSkill.skill === 19 || specialSkill.skill === 11) {
         specialSkill.isOffensive = true
         specialSkill.isDefensive = false
         specialSkill.isUltimate = false
-
-        evalDiv.innerHTML = `
-          <div style="background: rgba(237,28,36,0.3); padding: 20px; margin: 20px 0; border-radius: 15px; color: white; text-align: center;">
-            <p style="font-size: 1.2rem;">⚔️ 1 panna - Standardní útočná schopnost!</p>
-          </div>
-        `
-      } else if (specialSkill.skill === 11) {
-        // Smečovaný servis = útočná
-        specialSkill.isOffensive = true
-        specialSkill.isDefensive = false
-        specialSkill.isUltimate = false
-
-        evalDiv.innerHTML = `
-          <div style="background: rgba(237,28,36,0.3); padding: 20px; margin: 20px 0; border-radius: 15px; color: white; text-align: center;">
-            <p style="font-size: 1.2rem;">⚔️ 1 panna - Standardní útočná schopnost!</p>
-          </div>
-        `
+        resultType = 'Standardní útok'
+        resultEmoji = '⚔️'
       }
-      await smartDelay(1500)
 
     } else if (pannyCount === 2) {
       // 2 panny = ultimate
@@ -5790,25 +5850,34 @@ async function processSpecialSkillsCoinFlip(team1Skills, team2Skills, evalDiv) {
         // Skákaná smeč a Vytlučený blok = útočná ultimate
         specialSkill.isOffensive = true
         specialSkill.isDefensive = false
-
-        evalDiv.innerHTML = `
-          <div style="background: rgba(0,0,0,0.8); padding: 20px; margin: 20px 0; border-radius: 15px; color: white; text-align: center;">
-            <p style="font-size: 1.2rem;">⭐ 2 panny - Útočná ULTIMATE schopnost!</p>
-          </div>
-        `
+        resultType = 'Útočná ULTIMATE'
+        resultEmoji = '⭐'
       } else if (specialSkill.skill === 11) {
         // Smečovaný servis = obranná ultimate
         specialSkill.isOffensive = false
         specialSkill.isDefensive = true
-
-        evalDiv.innerHTML = `
-          <div style="background: rgba(0,0,0,0.8); padding: 20px; margin: 20px 0; border-radius: 15px; color: white; text-align: center;">
-            <p style="font-size: 1.2rem;">⭐ 2 panny - Obranná ULTIMATE schopnost!</p>
-          </div>
-        `
+        resultType = 'Obranná ULTIMATE'
+        resultEmoji = '⭐'
       }
-      await smartDelay(1500)
     }
+
+    // Kompaktní zobrazení v komentářovém okně
+    if (targetPanel) {
+      const coinText = `${coin1 ? '🟡' : '⚪'}${coin2 ? '🟡' : '⚪'}`
+      const notification = document.createElement('div')
+      notification.className = 'clash-notification coin-flip'
+      notification.innerHTML = `
+        <span class="skill-emoji">🪙</span>
+        <span class="player-name">${specialSkill.player.name}</span>
+        <span class="skill-name">${skillData.name}</span>
+        <span class="coin-result">${coinText}</span>
+        <span class="result-emoji">${resultEmoji}</span>
+        <span class="result-text">${resultType}</span>
+      `
+      targetPanel.appendChild(notification)
+    }
+
+    await smartDelay(2000)
 
     // Aktualizovat ikonu schopnosti
     reclassifySpecialSkillIcon(specialSkill, isTeam1, team1Skills.indexOf(specialSkill) !== -1 ? team1Skills.indexOf(specialSkill) : team2Skills.indexOf(specialSkill), isTeam1)
@@ -8048,6 +8117,13 @@ async function showPointResult(result) {
 // Funkce pro aktualizaci jednoduchého skóre displeje
 function updateSimpleScoreboard() {
   const currentSet = gameState.currentSet
+
+  // Aktuální stav míčů v setu
+  const ballsScore = `${gameState.ballsWon?.team1 || 0} : ${gameState.ballsWon?.team2 || 0}`
+  const ballsEl = document.getElementById('balls-score')
+  if (ballsEl) {
+    ballsEl.textContent = ballsScore
+  }
 
   // Aktuální set skóre
   const currentSetScore = `${gameState.score.team1[currentSet]} : ${gameState.score.team2[currentSet]}`
