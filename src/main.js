@@ -10,7 +10,7 @@ import { players, skills } from './playerData.js'
 // Globální handler pro portrait warning overlay
 window.checkOrientationForGame = function() {
   const overlay = document.querySelector('.portrait-warning-overlay')
-  if (!overlay) return
+  const debugInfo = document.getElementById('debug-info')
 
   const width = window.innerWidth
   const height = window.innerHeight
@@ -22,6 +22,16 @@ window.checkOrientationForGame = function() {
 
   console.log('Orientation check:', { width, height, isPortrait, isNarrowScreen })
 
+  // Aktualizovat debug info pokud existuje
+  if (debugInfo && debugInfo.style.display !== 'none') {
+    document.getElementById('debug-width').textContent = width
+    document.getElementById('debug-height').textContent = height
+    document.getElementById('debug-orientation').textContent = isPortrait ? 'Portrait' : 'Landscape'
+    document.getElementById('debug-narrow').textContent = isNarrowScreen ? 'Yes' : 'No'
+  }
+
+  if (!overlay) return
+
   // Zobrazit overlay pokud:
   // 1. Je v portrait módu A je to úzká obrazovka (běžný telefon nebo cover screen)
   // 2. NEBO pokud je šířka menší než 600px v portrait módu
@@ -32,6 +42,32 @@ window.checkOrientationForGame = function() {
     overlay.style.display = 'none'
     console.log('→ Hiding portrait warning overlay')
   }
+}
+
+// Handler pro debug tlačítko
+window.enableDebugMode = function() {
+  const debugInfo = document.getElementById('debug-info')
+  const overlay = document.querySelector('.portrait-warning-overlay')
+
+  if (debugInfo) {
+    debugInfo.style.display = 'block'
+  }
+
+  if (overlay) {
+    overlay.style.display = 'none'
+  }
+
+  // Aktivovat Screen Orientation Lock API (pokud je podporováno)
+  if (screen.orientation && screen.orientation.lock) {
+    screen.orientation.lock('landscape').then(() => {
+      console.log('✅ Screen locked to landscape')
+    }).catch(err => {
+      console.log('❌ Screen lock failed:', err)
+    })
+  }
+
+  // Znovu zkontrolovat orientaci
+  window.checkOrientationForGame()
 }
 
 // Spustit kontrolu při načtení stránky
