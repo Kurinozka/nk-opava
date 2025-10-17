@@ -570,26 +570,6 @@ export function setLeagueTeams(opavaLineup, opavaBench, opponentLineup, opponent
 export function renderGameScreen() {
   return `
     <div class="game-container">
-      <!-- Debug info overlay -->
-      <div id="debug-info" style="position: fixed; top: 10px; right: 10px; background: rgba(0,0,0,0.8); color: white; padding: 10px; z-index: 9999; font-size: 12px; border-radius: 5px; display: none;">
-        <div>Width: <span id="debug-width"></span>px</div>
-        <div>Height: <span id="debug-height"></span>px</div>
-        <div>Orientation: <span id="debug-orientation"></span></div>
-        <div>IsNarrow: <span id="debug-narrow"></span></div>
-      </div>
-
-      <!-- Portrait mode warning overlay -->
-      <div class="portrait-warning-overlay">
-        <div class="portrait-warning-content">
-          <div class="portrait-warning-icon">📱</div>
-          <h2 class="portrait-warning-title">Otoč telefon na šířku</h2>
-          <p class="portrait-warning-message">Pro optimální zážitek ze simulace otočte telefon do landscape režimu (na šířku).</p>
-          <button id="enable-debug" style="margin-top: 1rem; padding: 0.5rem 1rem; font-size: 1rem; background: #DC2F3E; color: white; border: none; border-radius: 5px; cursor: pointer;">
-            Povolit Debug Mód
-          </button>
-        </div>
-      </div>
-
       <div class="game-court" style="display: block;">
         <button class="back-to-home-btn" onclick="window.location.reload()">← Zpět na úvodní stránku</button>
         <div class="game-layout-new">
@@ -1919,23 +1899,6 @@ export function initGame() {
 }
 
 export function setupGameHandlers() {
-  // Použít globální handler pro orientaci (definovaný v main.js)
-  if (window.checkOrientationForGame) {
-    setTimeout(() => {
-      window.checkOrientationForGame()
-    }, 100)
-  }
-
-  // Handler pro debug tlačítko
-  const debugBtn = document.getElementById('enable-debug')
-  if (debugBtn) {
-    debugBtn.addEventListener('click', () => {
-      if (window.enableDebugMode) {
-        window.enableDebugMode()
-      }
-    })
-  }
-
   // Mode selection
   document.querySelectorAll('.mode-btn').forEach(btn => {
     btn.addEventListener('click', () => {
