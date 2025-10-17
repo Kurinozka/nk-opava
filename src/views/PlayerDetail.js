@@ -1536,11 +1536,6 @@ function showSkillDetailModal(skillId, playerId = null, isSuccessTab = true) {
         ` : ''}
 
         <div class="skill-detail-section">
-          <h3>📝 Popis</h3>
-          <p>${details.description}</p>
-        </div>
-
-        <div class="skill-detail-section">
           <h3>📊 Klíčové atributy</h3>
           <p><strong>${details.keyStats}</strong></p>
           <p class="skill-detail-hint">Úspěšnost schopnosti se vypočítá jako průměr těchto atributů hráče.</p>
