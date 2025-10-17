@@ -5236,7 +5236,9 @@ export const extraligaTeams = [
             "Kde to bereš?",
             "Tohle nechci!",
             "Přemýšlej!",
-            "Aktivita!"
+            "Aktivita!",
+            "Jestli to kopneš znovu, tak jdu zpátky do Startu",
+            "Tohle jsem kopal líp ve dvanácti, se zavřenýma očima a svázanýma rukama"
           ],
           "defensiveFail": [
             "Pohyb!",

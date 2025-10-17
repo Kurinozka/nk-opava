@@ -1133,7 +1133,7 @@
 /* Větší video/animace v modalu */
 .skill-animation-large {
   border-left-color: #f0f6fc !important;
-  background: rgba(30, 30, 30, 0.8) !important;
+  background: transparent !important;
   padding: 0 !important;
   overflow: hidden;
 }
@@ -1141,13 +1141,11 @@
 .animation-box-large {
   width: 100%;
   height: auto;
-  min-height: 300px;
-  max-height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #000;
-  border-radius: 6px;
+  background: transparent;
+  border-radius: 0;
   overflow: hidden;
 }
 
