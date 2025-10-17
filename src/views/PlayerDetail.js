@@ -150,6 +150,9 @@ import { oVitTupaRanaAnimation } from '../animations/o-vit-tupa-rana.js'
 import { oVitSkakanaSmecFailAnimation } from '../animations/o-vit-skakana-smec-fail.js'
 import { oVitSlapanyKratasFailAnimation } from '../animations/o-vit-slapany-kratas-fail.js'
 import { pVitVytlucenyBlokFailAnimation } from '../animations/p-vit-vytluceny-blok-fail.js'
+import { vKalousSmecStredAnimation } from '../animations/v-kalous-smec-stred.js'
+import { vKalousSmecovanyServisAnimation } from '../animations/v-kalous-smecovany-servis.js'
+import { vKalousVytlucenyBlokAnimation } from '../animations/v-kalous-vytluceny-blok.js'
 import { getTeamColors } from '../teamColors.js'
 
 // Funkce pro nalezení hráče napříč všemi týmy
@@ -436,6 +439,11 @@ const playerSkillAnimations = {
   },
   'ZATEC_11': {
     19: [null, pVitVytlucenyBlokFailAnimation]
+  },
+  'CELA_B_3': {
+    1: vKalousSmecStredAnimation,
+    11: vKalousSmecovanyServisAnimation,
+    19: vKalousVytlucenyBlokAnimation
   },
 }
 

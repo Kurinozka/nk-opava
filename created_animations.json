@@ -1,0 +1,494 @@
+[
+  {
+    "player_id": "VSET_5",
+    "skill_id": 13,
+    "anim_file": "vset-5-smecovany-servis.js",
+    "const_name": "vset_5_smecovany_servis_animation"
+  },
+  {
+    "player_id": "CELA_4",
+    "skill_id": 6,
+    "anim_file": "cela-4-skakana-smec.js",
+    "const_name": "cela_4_skakana_smec_animation"
+  },
+  {
+    "player_id": "VSET_4",
+    "skill_id": 7,
+    "anim_file": "vset-4-klepak.js",
+    "const_name": "vset_4_klepak_animation"
+  },
+  {
+    "player_id": "VSET_4",
+    "skill_id": 17,
+    "anim_file": "vset-4-silnejsi-noha.js",
+    "const_name": "vset_4_silnejsi_noha_animation"
+  },
+  {
+    "player_id": "MODR_9",
+    "skill_id": 16,
+    "anim_file": "modr-9-hrud.js",
+    "const_name": "modr_9_hrud_animation"
+  },
+  {
+    "player_id": "MODR_9",
+    "skill_id": 15,
+    "anim_file": "modr-9-bozi-ruka.js",
+    "const_name": "modr_9_bozi_ruka_animation"
+  },
+  {
+    "player_id": "MODR_9",
+    "skill_id": 12,
+    "anim_file": "modr-9-blok.js",
+    "const_name": "modr_9_blok_animation"
+  },
+  {
+    "player_id": "MODR_9",
+    "skill_id": 6,
+    "anim_file": "modr-9-skakana-smec.js",
+    "const_name": "modr_9_skakana_smec_animation"
+  },
+  {
+    "player_id": "MODR_9",
+    "skill_id": 1,
+    "anim_file": "modr-9-smec-stred.js",
+    "const_name": "modr_9_smec_stred_animation"
+  },
+  {
+    "player_id": "MODR_3",
+    "skill_id": 12,
+    "anim_file": "modr-3-blok.js",
+    "const_name": "modr_3_blok_animation"
+  },
+  {
+    "player_id": "MODR_3",
+    "skill_id": 3,
+    "anim_file": "modr-3-smec-becko.js",
+    "const_name": "modr_3_smec_becko_animation"
+  },
+  {
+    "player_id": "KVAR_8",
+    "skill_id": 12,
+    "anim_file": "kvar-8-blok.js",
+    "const_name": "kvar_8_blok_animation"
+  },
+  {
+    "player_id": "KVAR_8",
+    "skill_id": 17,
+    "anim_file": "kvar-8-silnejsi-noha.js",
+    "const_name": "kvar_8_silnejsi_noha_animation"
+  },
+  {
+    "player_id": "KVAR_8",
+    "skill_id": 3,
+    "anim_file": "kvar-8-smec-becko.js",
+    "const_name": "kvar_8_smec_becko_animation"
+  },
+  {
+    "player_id": "KVAR_8",
+    "skill_id": 9,
+    "anim_file": "kvar-8-smec-pata.js",
+    "const_name": "kvar_8_smec_pata_animation"
+  },
+  {
+    "player_id": "MODR_5",
+    "skill_id": 15,
+    "anim_file": "modr-5-nenapadna-vymena-balonu-za-prefoukany.js",
+    "const_name": "modr_5_nenapadna_vymena_balonu_za_prefoukany_animation"
+  },
+  {
+    "player_id": "MODR_5",
+    "skill_id": 1,
+    "anim_file": "modr-5-smec-stred.js",
+    "const_name": "modr_5_smec_stred_animation"
+  },
+  {
+    "player_id": "VSET_2",
+    "skill_id": 16,
+    "anim_file": "vset-2-hrud.js",
+    "const_name": "vset_2_hrud_animation"
+  },
+  {
+    "player_id": "VSET_2",
+    "skill_id": 10,
+    "anim_file": "vset-2-kratas-za-blok.js",
+    "const_name": "vset_2_kratas_za_blok_animation"
+  },
+  {
+    "player_id": "VSET_2",
+    "skill_id": 17,
+    "anim_file": "vset-2-silnejsi-noha.js",
+    "const_name": "vset_2_silnejsi_noha_animation"
+  },
+  {
+    "player_id": "VSET_2",
+    "skill_id": 12,
+    "anim_file": "vset-2-blok.js",
+    "const_name": "vset_2_blok_animation"
+  },
+  {
+    "player_id": "MODR_10",
+    "skill_id": 10,
+    "anim_file": "modr-10-kratas-za-blok.js",
+    "const_name": "modr_10_kratas_za_blok_animation"
+  },
+  {
+    "player_id": "MODR_10",
+    "skill_id": 13,
+    "anim_file": "modr-10-smecovany-servis.js",
+    "const_name": "modr_10_smecovany_servis_animation"
+  },
+  {
+    "player_id": "RADO_14",
+    "skill_id": 16,
+    "anim_file": "rado-14-hrud.js",
+    "const_name": "rado_14_hrud_animation"
+  },
+  {
+    "player_id": "KVAR_1",
+    "skill_id": 12,
+    "anim_file": "kvar-1-blok.js",
+    "const_name": "kvar_1_blok_animation"
+  },
+  {
+    "player_id": "KVAR_1",
+    "skill_id": 16,
+    "anim_file": "kvar-1-hrud.js",
+    "const_name": "kvar_1_hrud_animation"
+  },
+  {
+    "player_id": "KVAR_1",
+    "skill_id": 4,
+    "anim_file": "kvar-1-tupa-rana.js",
+    "const_name": "kvar_1_tupa_rana_animation"
+  },
+  {
+    "player_id": "KVAR_3",
+    "skill_id": 16,
+    "anim_file": "kvar-3-hrud.js",
+    "const_name": "kvar_3_hrud_animation"
+  },
+  {
+    "player_id": "KVAR_3",
+    "skill_id": 3,
+    "anim_file": "kvar-3-smec-becko.js",
+    "const_name": "kvar_3_smec_becko_animation"
+  },
+  {
+    "player_id": "KVAR_3",
+    "skill_id": 13,
+    "anim_file": "kvar-3-smecovany-servis.js",
+    "const_name": "kvar_3_smecovany_servis_animation"
+  },
+  {
+    "player_id": "KVAR_3",
+    "skill_id": 4,
+    "anim_file": "kvar-3-tupa-rana.js",
+    "const_name": "kvar_3_tupa_rana_animation"
+  },
+  {
+    "player_id": "MODR_6",
+    "skill_id": 15,
+    "anim_file": "modr-6-lehke-povoleni-saka.js",
+    "const_name": "modr_6_lehke_povoleni_saka_animation"
+  },
+  {
+    "player_id": "KVAR_6",
+    "skill_id": 16,
+    "anim_file": "kvar-6-hrud.js",
+    "const_name": "kvar_6_hrud_animation"
+  },
+  {
+    "player_id": "CELA_10",
+    "skill_id": 12,
+    "anim_file": "cela-10-blok.js",
+    "const_name": "cela_10_blok_animation"
+  },
+  {
+    "player_id": "CELA_10",
+    "skill_id": 16,
+    "anim_file": "cela-10-hrud.js",
+    "const_name": "cela_10_hrud_animation"
+  },
+  {
+    "player_id": "CELA_10",
+    "skill_id": 8,
+    "anim_file": "cela-10-kratas-pod-sebe.js",
+    "const_name": "cela_10_kratas_pod_sebe_animation"
+  },
+  {
+    "player_id": "RADO_11",
+    "skill_id": 17,
+    "anim_file": "rado-11-silnejsi-noha.js",
+    "const_name": "rado_11_silnejsi_noha_animation"
+  },
+  {
+    "player_id": "RADO_11",
+    "skill_id": 12,
+    "anim_file": "rado-11-blok.js",
+    "const_name": "rado_11_blok_animation"
+  },
+  {
+    "player_id": "RADO_13",
+    "skill_id": 4,
+    "anim_file": "rado-13-tupa-rana.js",
+    "const_name": "rado_13_tupa_rana_animation"
+  },
+  {
+    "player_id": "VSET_1",
+    "skill_id": 12,
+    "anim_file": "vset-1-blok.js",
+    "const_name": "vset_1_blok_animation"
+  },
+  {
+    "player_id": "VSET_1",
+    "skill_id": 15,
+    "anim_file": "vset-1-bodlo-do-kouli.js",
+    "const_name": "vset_1_bodlo_do_kouli_animation"
+  },
+  {
+    "player_id": "KVAR_5",
+    "skill_id": 14,
+    "anim_file": "kvar-5-slabsi-noha.js",
+    "const_name": "kvar_5_slabsi_noha_animation"
+  },
+  {
+    "player_id": "RADO_17",
+    "skill_id": 12,
+    "anim_file": "rado-17-blok.js",
+    "const_name": "rado_17_blok_animation"
+  },
+  {
+    "player_id": "MODR_1",
+    "skill_id": 16,
+    "anim_file": "modr-1-hrud.js",
+    "const_name": "modr_1_hrud_animation"
+  },
+  {
+    "player_id": "MODR_1",
+    "skill_id": 8,
+    "anim_file": "modr-1-kratas-pod-sebe.js",
+    "const_name": "modr_1_kratas_pod_sebe_animation"
+  },
+  {
+    "player_id": "MODR_1",
+    "skill_id": 13,
+    "anim_file": "modr-1-smecovany-servis.js",
+    "const_name": "modr_1_smecovany_servis_animation"
+  },
+  {
+    "player_id": "RADO_9",
+    "skill_id": 16,
+    "anim_file": "rado-9-hrud.js",
+    "const_name": "rado_9_hrud_animation"
+  },
+  {
+    "player_id": "RADO_9",
+    "skill_id": 7,
+    "anim_file": "rado-9-klepak.js",
+    "const_name": "rado_9_klepak_animation"
+  },
+  {
+    "player_id": "RADO_3",
+    "skill_id": 9,
+    "anim_file": "rado-3-smec-pata.js",
+    "const_name": "rado_3_smec_pata_animation"
+  },
+  {
+    "player_id": "RADO_3",
+    "skill_id": 1,
+    "anim_file": "rado-3-smec-stred.js",
+    "const_name": "rado_3_smec_stred_animation"
+  },
+  {
+    "player_id": "RADO_3",
+    "skill_id": 8,
+    "anim_file": "rado-3-kratas-pod-sebe.js",
+    "const_name": "rado_3_kratas_pod_sebe_animation"
+  },
+  {
+    "player_id": "RADO_3",
+    "skill_id": 4,
+    "anim_file": "rado-3-tupa-rana.js",
+    "const_name": "rado_3_tupa_rana_animation"
+  },
+  {
+    "player_id": "RADO_1",
+    "skill_id": 6,
+    "anim_file": "rado-1-skakana-smec.js",
+    "const_name": "rado_1_skakana_smec_animation"
+  },
+  {
+    "player_id": "RADO_1",
+    "skill_id": 4,
+    "anim_file": "rado-1-tupa-rana.js",
+    "const_name": "rado_1_tupa_rana_animation"
+  },
+  {
+    "player_id": "RADO_1",
+    "skill_id": 5,
+    "anim_file": "rado-1-slapany-kratas.js",
+    "const_name": "rado_1_slapany_kratas_animation"
+  },
+  {
+    "player_id": "KVAR_9",
+    "skill_id": 12,
+    "anim_file": "kvar-9-blok.js",
+    "const_name": "kvar_9_blok_animation"
+  },
+  {
+    "player_id": "MODR_4",
+    "skill_id": 17,
+    "anim_file": "modr-4-silnejsi-noha.js",
+    "const_name": "modr_4_silnejsi_noha_animation"
+  },
+  {
+    "player_id": "MODR_2",
+    "skill_id": 10,
+    "anim_file": "modr-2-kratas-za-blok.js",
+    "const_name": "modr_2_kratas_za_blok_animation"
+  },
+  {
+    "player_id": "CELA_3",
+    "skill_id": 15,
+    "anim_file": "cela-3-dat-neco-do-piti-sobe-i-blokari.js",
+    "const_name": "cela_3_dat_neco_do_piti_sobe_i_blokari_animation"
+  },
+  {
+    "player_id": "CELA_3",
+    "skill_id": 2,
+    "anim_file": "cela-3-smec-acko.js",
+    "const_name": "cela_3_smec_acko_animation"
+  },
+  {
+    "player_id": "CELA_3",
+    "skill_id": 4,
+    "anim_file": "cela-3-tupa-rana.js",
+    "const_name": "cela_3_tupa_rana_animation"
+  },
+  {
+    "player_id": "RADO_2",
+    "skill_id": 12,
+    "anim_file": "rado-2-blok.js",
+    "const_name": "rado_2_blok_animation"
+  },
+  {
+    "player_id": "CELA_3",
+    "skill_id": 12,
+    "anim_file": "cela-3-blok.js",
+    "const_name": "cela_3_blok_animation"
+  },
+  {
+    "player_id": "VSET_9",
+    "skill_id": 15,
+    "anim_file": "vset-9-staredown.js",
+    "const_name": "vset_9_staredown_animation"
+  },
+  {
+    "player_id": "VSET_9",
+    "skill_id": 4,
+    "anim_file": "vset-9-tupa-rana.js",
+    "const_name": "vset_9_tupa_rana_animation"
+  },
+  {
+    "player_id": "KVAR_7",
+    "skill_id": 10,
+    "anim_file": "kvar-7-kratas-za-blok.js",
+    "const_name": "kvar_7_kratas_za_blok_animation"
+  },
+  {
+    "player_id": "KVAR_7",
+    "skill_id": 14,
+    "anim_file": "kvar-7-slabsi-noha.js",
+    "const_name": "kvar_7_slabsi_noha_animation"
+  },
+  {
+    "player_id": "KVAR_7",
+    "skill_id": 6,
+    "anim_file": "kvar-7-skakana-smec.js",
+    "const_name": "kvar_7_skakana_smec_animation"
+  },
+  {
+    "player_id": "KVAR_7",
+    "skill_id": 1,
+    "anim_file": "kvar-7-smec-stred.js",
+    "const_name": "kvar_7_smec_stred_animation"
+  },
+  {
+    "player_id": "KVAR_7",
+    "skill_id": 13,
+    "anim_file": "kvar-7-smecovany-servis.js",
+    "const_name": "kvar_7_smecovany_servis_animation"
+  },
+  {
+    "player_id": "CELA_2",
+    "skill_id": 11,
+    "anim_file": "cela-2-pata.js",
+    "const_name": "cela_2_pata_animation"
+  },
+  {
+    "player_id": "CELA_2",
+    "skill_id": 4,
+    "anim_file": "cela-2-tupa-rana.js",
+    "const_name": "cela_2_tupa_rana_animation"
+  },
+  {
+    "player_id": "KVAR_4",
+    "skill_id": 1,
+    "anim_file": "kvar-4-smec-stred.js",
+    "const_name": "kvar_4_smec_stred_animation"
+  },
+  {
+    "player_id": "KVAR_4",
+    "skill_id": 12,
+    "anim_file": "kvar-4-blok.js",
+    "const_name": "kvar_4_blok_animation"
+  },
+  {
+    "player_id": "RADO_15",
+    "skill_id": 8,
+    "anim_file": "rado-15-kratas-pod-sebe.js",
+    "const_name": "rado_15_kratas_pod_sebe_animation"
+  },
+  {
+    "player_id": "CELA_5",
+    "skill_id": 14,
+    "anim_file": "cela-5-slabsi-noha.js",
+    "const_name": "cela_5_slabsi_noha_animation"
+  },
+  {
+    "player_id": "CELA_5",
+    "skill_id": 13,
+    "anim_file": "cela-5-smecovany-servis.js",
+    "const_name": "cela_5_smecovany_servis_animation"
+  },
+  {
+    "player_id": "CELA_1",
+    "skill_id": 1,
+    "anim_file": "cela-1-smec-stred.js",
+    "const_name": "cela_1_smec_stred_animation"
+  },
+  {
+    "player_id": "CELA_1",
+    "skill_id": 13,
+    "anim_file": "cela-1-smecovany-servis.js",
+    "const_name": "cela_1_smecovany_servis_animation"
+  },
+  {
+    "player_id": "CELA_1",
+    "skill_id": 12,
+    "anim_file": "cela-1-blok.js",
+    "const_name": "cela_1_blok_animation"
+  },
+  {
+    "player_id": "KVAR_1",
+    "skill_id": 11,
+    "anim_file": "kvar-1-pata.js",
+    "const_name": "kvar_1_pata_animation"
+  },
+  {
+    "player_id": "RADO_16",
+    "skill_id": 13,
+    "anim_file": "rado-16-smecovany-servis.js",
+    "const_name": "rado_16_smecovany_servis_animation"
+  }
+]

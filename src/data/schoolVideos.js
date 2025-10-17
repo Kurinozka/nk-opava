@@ -6,27 +6,28 @@ export const schoolVideos = {
   1: { // Smeč do středu/přes blok
     name: 'Smeč do středu/přes blok',
     videos: [
-      { playerId: 'CAKO_2', playerName: 'Filip Chádim', teamCode: 'CAKO', video: '/videos/chadim-t-smec-stred.mp4', success: true },
-      { playerId: 'GREGOR', playerName: 'Tobiáš Gregor', teamCode: 'RADO', video: '/videos/gregor-smec-stred.mp4', success: true },
+      { playerId: 'CAKO_2', playerName: 'Tomáš Chadim', teamCode: 'CAKO', video: '/videos/chadim-t-smec-stred.mp4', success: true },
+      { playerId: 'KVAR_7', playerName: 'Tobiáš Gregor', teamCode: 'KVAR', video: '/videos/gregor-smec-stred.mp4', success: true },
       { playerId: 'MODR_10', playerName: 'David Višvader', teamCode: 'MODR', video: '/videos/modr-9-smec-pres-blok.mp4', success: true },
       { playerId: 'MODR_5', playerName: 'Jakub Pospíšil', teamCode: 'MODR', video: '/videos/modr-5-smec-pres-blok.mp4', success: true },
-      { playerId: 'RADO_3', playerName: 'Nikolas Truc', teamCode: 'RADO', video: '/videos/rado-3-smec-do-stredu.mp4', success: true },
-      { playerId: 'KVAR_7', playerName: 'Jan Chalupa', teamCode: 'KVAR', video: '/videos/kvar-7-smec-do-stredu.mp4', success: true },
-      { playerId: 'KVAR_4', playerName: 'Petr Neslídek', teamCode: 'KVAR', video: '/videos/kvar-4-smec-pres-blok.mp4', success: true },
-      { playerId: 'CELA_1', playerName: 'Marek Vojtíšek', teamCode: 'CELA', video: '/videos/cela-1-smec-do-stredu.mp4', success: true }
+      { playerId: 'RADO_3', playerName: 'Michal Nepodal', teamCode: 'RADO', video: '/videos/rado-3-smec-do-stredu.mp4', success: true },
+      { playerId: 'KVAR_7', playerName: 'Tobiáš Gregor', teamCode: 'KVAR', video: '/videos/kvar-7-smec-do-stredu.mp4', success: true },
+      { playerId: 'KVAR_4', playerName: 'Tomáš Bíbr', teamCode: 'KVAR', video: '/videos/kvar-4-smec-pres-blok.mp4', success: true },
+      { playerId: 'CELA_1', playerName: 'Tomáš Andris', teamCode: 'CELA', video: '/videos/cela-1-smec-do-stredu.mp4', success: true },
+      { playerId: 'CELA_B_3', playerName: 'Václav Kalous', teamCode: 'CELA_B', video: '/videos/v-kalous-smec-stred.mp4', success: true }
     ]
   },
   2: { // Smeč pod sebe/do áčka
     name: 'Smeč pod sebe/do áčka',
     videos: [
-      { playerId: 'CELA_3', playerName: 'Petr Neslídek', teamCode: 'CELA', video: '/videos/cela-3-smec-do-acka.mp4', success: true }
+      { playerId: 'CELA_3', playerName: 'Vojtěch Holas', teamCode: 'CELA', video: '/videos/cela-3-smec-do-acka.mp4', success: true }
     ]
   },
   3: { // Smeč od sebe/do béčka
     name: 'Smeč od sebe/do béčka',
     videos: [
-      { playerId: 'CAKO_6', playerName: 'Zdeněk Souček', teamCode: 'CAKO', video: '/videos/soucek-smec-becko.mp4', success: true },
-      { playerId: 'CAKO_3', playerName: 'Václav Kalous', teamCode: 'CAKO', video: '/videos/kalous-smec-becko.mp4', success: true },
+      { playerId: 'CAKO_6', playerName: 'Lukáš Souček', teamCode: 'CAKO', video: '/videos/soucek-smec-becko.mp4', success: true },
+      { playerId: 'CAKO_3', playerName: 'Zdeněk Kalous', teamCode: 'CAKO', video: '/videos/kalous-smec-becko.mp4', success: true },
       { playerId: 'MODR_3', playerName: 'František Kalas', teamCode: 'MODR', video: '/videos/modr-3-smec-do-becka.mp4', success: true },
       { playerId: 'KVAR_8', playerName: 'Jakub Medek', teamCode: 'KVAR', video: '/videos/kvar-8-smec-do-becka.mp4', success: true },
       { playerId: 'KVAR_3', playerName: 'Karel Hron', teamCode: 'KVAR', video: '/videos/kvar-3-smec-do-becka.mp4', success: true }
@@ -35,31 +36,31 @@ export const schoolVideos = {
   4: { // Tupá rána kamkoliv
     name: 'Tupá rána kamkoliv',
     videos: [
-      { playerId: 'VANKE', playerName: 'Jan Vanke', teamCode: 'KVAR', video: '/videos/vanke-tupa-rana.mp4', success: true },
-      { playerId: 'KVAR_1', playerName: 'Jan Hanus', teamCode: 'KVAR', video: '/videos/kvar-1-tupa-rana-kamkoliv.mp4', success: true },
+      { playerId: 'KVAR_1', playerName: 'Jan Vanke', teamCode: 'KVAR', video: '/videos/vanke-tupa-rana.mp4', success: true },
+      { playerId: 'KVAR_1', playerName: 'Jan Vanke', teamCode: 'KVAR', video: '/videos/kvar-1-tupa-rana-kamkoliv.mp4', success: true },
       { playerId: 'KVAR_3', playerName: 'Karel Hron', teamCode: 'KVAR', video: '/videos/kvar-3-tupa-rana-kamkoliv.mp4', success: true },
       { playerId: 'RADO_13', playerName: 'Rudolf Staříčný', teamCode: 'RADO', video: '/videos/rado-13-tupa-rana-kamkoliv.mp4', success: true },
       { playerId: 'VSET_13', playerName: 'Rudolf Stařičný', teamCode: 'VSET', video: '/videos/vset-9-tupa-rana-kamkoliv.mp4', success: false },
-      { playerId: 'RADO_3', playerName: 'Nikolas Truc', teamCode: 'RADO', video: '/videos/rado-3-tupa-rana-kamkoliv.mp4', success: true },
-      { playerId: 'RADO_1', playerName: 'Ondřej Vít', teamCode: 'RADO', video: '/videos/rado-1-tupa-rana-kamkoliv.mp4', success: true },
-      { playerId: 'CELA_3', playerName: 'Petr Neslídek', teamCode: 'CELA', video: '/videos/cela-3-tupa-rana-kamkoliv.mp4', success: true },
-      { playerId: 'CELA_2', playerName: 'Tomáš Andris', teamCode: 'CELA', video: '/videos/cela-2-tupa-rana-kamkoliv.mp4', success: true }
+      { playerId: 'RADO_3', playerName: 'Michal Nepodal', teamCode: 'RADO', video: '/videos/rado-3-tupa-rana-kamkoliv.mp4', success: true },
+      { playerId: 'RADO_1', playerName: 'Lukáš Hokr', teamCode: 'RADO', video: '/videos/rado-1-tupa-rana-kamkoliv.mp4', success: true },
+      { playerId: 'CELA_3', playerName: 'Vojtěch Holas', teamCode: 'CELA', video: '/videos/cela-3-tupa-rana-kamkoliv.mp4', success: true },
+      { playerId: 'CELA_2', playerName: 'Martin Flekač', teamCode: 'CELA', video: '/videos/cela-2-tupa-rana-kamkoliv.mp4', success: true }
     ]
   },
   5: { // Klepák
     name: 'Klepák',
     videos: [
       { playerId: 'VSET_8', playerName: 'David Dvořák', teamCode: 'VSET', video: '/videos/vset-4-klepak.mp4', success: false },
-      { playerId: 'RADO_9', playerName: 'Michal Nepodal', teamCode: 'RADO', video: '/videos/rado-9-klepak.mp4', success: true }
+      { playerId: 'RADO_9', playerName: 'Vojtěch Liška', teamCode: 'RADO', video: '/videos/rado-9-klepak.mp4', success: true }
     ]
   },
   6: { // Pata
     name: 'Pata',
     videos: [
-      { playerId: 'VANKE', playerName: 'Jan Vanke', teamCode: 'KVAR', video: '/videos/vanke-pata.mp4', success: true },
+      { playerId: 'KVAR_1', playerName: 'Jan Vanke', teamCode: 'KVAR', video: '/videos/vanke-pata.mp4', success: true },
       { playerId: 'KVAR_8', playerName: 'Jakub Medek', teamCode: 'KVAR', video: '/videos/kvar-8-smec-do-paty.mp4', success: false },
-      { playerId: 'RADO_3', playerName: 'Nikolas Truc', teamCode: 'RADO', video: '/videos/rado-3-smec-do-paty.mp4', success: true },
-      { playerId: 'CELA_2', playerName: 'Tomáš Andris', teamCode: 'CELA', video: '/videos/cela-2-pata.mp4', success: true }
+      { playerId: 'RADO_3', playerName: 'Michal Nepodal', teamCode: 'RADO', video: '/videos/rado-3-smec-do-paty.mp4', success: true },
+      { playerId: 'CELA_2', playerName: 'Martin Flekač', teamCode: 'CELA', video: '/videos/cela-2-pata.mp4', success: true }
     ]
   },
   7: { // Kraťas pod sebe
@@ -67,67 +68,69 @@ export const schoolVideos = {
     videos: [
       { playerId: 'CELA_10', playerName: 'Michael Svoboda', teamCode: 'CELA', video: '/videos/cela-10-kratas-pod-sebe.mp4', success: true },
       { playerId: 'MODR_1', playerName: 'Michael Svoboda', teamCode: 'MODR', video: '/videos/modr-1-kratas-pod-sebe.mp4', success: true },
-      { playerId: 'RADO_3', playerName: 'Nikolas Truc', teamCode: 'RADO', video: '/videos/rado-3-smec-pod-sebe.mp4', success: true },
+      { playerId: 'RADO_3', playerName: 'Michal Nepodal', teamCode: 'RADO', video: '/videos/rado-3-smec-pod-sebe.mp4', success: true },
       { playerId: 'RADO_15', playerName: 'Michael Svoboda', teamCode: 'RADO', video: '/videos/rado-15-kratas-pod-sebe.mp4', success: true },
-      { playerId: 'CAKO_1', playerName: 'Jakub Chádim', teamCode: 'CAKO', video: '/videos/chadim-kratas-uspesny.mp4', success: true }
+      { playerId: 'CAKO_1', playerName: 'Jakub Chadim', teamCode: 'CAKO', video: '/videos/chadim-kratas-uspesny.mp4', success: true }
     ]
   },
   8: { // Kraťas za blok
     name: 'Kraťas za blok',
     videos: [
-      { playerId: 'GREGOR', playerName: 'Tobiáš Gregor', teamCode: 'RADO', video: '/videos/gregor-kratas-za-blok.mp4', success: true },
+      { playerId: 'KVAR_7', playerName: 'Tobiáš Gregor', teamCode: 'KVAR', video: '/videos/gregor-kratas-za-blok.mp4', success: true },
       { playerId: 'VSET_3', playerName: 'Jan Chalupa', teamCode: 'VSET', video: '/videos/vset-2-kratas-za-blok.mp4', success: true },
-      { playerId: 'MODR_10', playerName: 'Jan Hanus', teamCode: 'MODR', video: '/videos/modr-10-kratas-za-blok.mp4', success: true },
+      { playerId: 'MODR_10', playerName: 'David Višvader', teamCode: 'MODR', video: '/videos/modr-10-kratas-za-blok.mp4', success: true },
       { playerId: 'MODR_2', playerName: 'Petr Bubniak', teamCode: 'MODR', video: '/videos/modr-2-kratas-za-blok.mp4', success: true },
-      { playerId: 'KVAR_7', playerName: 'Jan Chalupa', teamCode: 'KVAR', video: '/videos/kvar-7-kratas-za-blok.mp4', success: true }
+      { playerId: 'KVAR_7', playerName: 'Tobiáš Gregor', teamCode: 'KVAR', video: '/videos/kvar-7-kratas-za-blok.mp4', success: true }
     ]
   },
   9: { // Šlapaný kraťas
     name: 'Šlapaný kraťas',
     videos: [
-      { playerId: 'RADO_1', playerName: 'Ondřej Vít', teamCode: 'RADO', video: '/videos/rado-1-slapany-kratas.mp4', success: false }
+      { playerId: 'RADO_1', playerName: 'Lukáš Hokr', teamCode: 'RADO', video: '/videos/rado-1-slapany-kratas.mp4', success: false }
     ]
   },
   10: { // Skákaná smeč
     name: 'Skákaná smeč',
     videos: [
-      { playerId: 'GREGOR', playerName: 'Tobiáš Gregor', teamCode: 'RADO', video: '/videos/gregor-skakana-smec.mp4', success: true },
+      { playerId: 'KVAR_7', playerName: 'Tobiáš Gregor', teamCode: 'KVAR', video: '/videos/gregor-skakana-smec.mp4', success: true },
       { playerId: 'MODR_10', playerName: 'David Višvader', teamCode: 'MODR', video: '/videos/modr-9-skakana-smec.mp4', success: true },
-      { playerId: 'RADO_1', playerName: 'Ondřej Vít', teamCode: 'RADO', video: '/videos/rado-1-skakana-smec.mp4', success: false },
+      { playerId: 'RADO_1', playerName: 'Lukáš Hokr', teamCode: 'RADO', video: '/videos/rado-1-skakana-smec.mp4', success: false },
       { playerId: 'CELA_4', playerName: 'Daniel Matura', teamCode: 'CELA', video: '/videos/cela-4-skakana-smec.mp4', success: true },
-      { playerId: 'KVAR_7', playerName: 'Jan Chalupa', teamCode: 'KVAR', video: '/videos/kvar-7-skakana-smec.mp4', success: true }
+      { playerId: 'KVAR_7', playerName: 'Tobiáš Gregor', teamCode: 'KVAR', video: '/videos/kvar-7-skakana-smec.mp4', success: true }
     ]
   },
   11: { // Smečovaný servis
     name: 'Smečovaný servis',
     videos: [
-      { playerId: 'VSET_5', playerName: 'Vojt\u011bch Sýs', teamCode: 'VSET', video: '/videos/vset-5-smecovany-servis.mp4', success: true },
+      { playerId: 'VSET_5', playerName: 'Martin Zbranek', teamCode: 'VSET', video: '/videos/vset-5-smecovany-servis.mp4', success: true },
       { playerId: 'CELA_10', playerName: 'Michael Svoboda', teamCode: 'CELA', video: '/videos/modr-1-smecovany-servis.mp4', success: true },
-      { playerId: 'MODR_10', playerName: 'Jan Hanus', teamCode: 'MODR', video: '/videos/modr-10-smecovany-servis.mp4', success: true },
+      { playerId: 'MODR_10', playerName: 'David Višvader', teamCode: 'MODR', video: '/videos/modr-10-smecovany-servis.mp4', success: true },
       { playerId: 'MODR_1', playerName: 'Michael Svoboda', teamCode: 'MODR', video: '/videos/modr-1-smecovany-servis.mp4', success: true },
-      { playerId: 'KVAR_7', playerName: 'Jan Chalupa', teamCode: 'KVAR', video: '/videos/kvar-7-smecovany-servis.mp4', success: true },
+      { playerId: 'KVAR_7', playerName: 'Tobiáš Gregor', teamCode: 'KVAR', video: '/videos/kvar-7-smecovany-servis.mp4', success: true },
       { playerId: 'KVAR_3', playerName: 'Karel Hron', teamCode: 'KVAR', video: '/videos/kvar-3-smecovany-servis.mp4', success: true },
-      { playerId: 'CELA_5', playerName: 'Vojt\u011bch Holas', teamCode: 'CELA', video: '/videos/cela-5-smecovany-servis.mp4', success: true },
-      { playerId: 'CELA_1', playerName: 'Marek Vojtíšek', teamCode: 'CELA', video: '/videos/cela-1-smecovany-servis.mp4', success: true }
+      { playerId: 'CELA_5', playerName: 'Daniel Matura', teamCode: 'CELA', video: '/videos/cela-5-smecovany-servis.mp4', success: true },
+      { playerId: 'CELA_1', playerName: 'Tomáš Andris', teamCode: 'CELA', video: '/videos/cela-1-smecovany-servis.mp4', success: true },
+      { playerId: 'CELA_B_3', playerName: 'Václav Kalous', teamCode: 'CELA_B', video: '/videos/v-kalous-smecovany-servis.mp4', success: true },
+      { playerId: 'CAKO_4', playerName: 'Jiří Kalous', teamCode: 'CAKO', video: '/videos/j-kalous-smecovany-servis.mp4', success: true }
     ]
   },
   12: { // Blok
     name: 'Blok',
     videos: [
-      { playerId: 'VANKE', playerName: 'Jan Vanke', teamCode: 'KVAR', video: '/videos/vanke-blok.mp4', success: true },
+      { playerId: 'KVAR_1', playerName: 'Jan Vanke', teamCode: 'KVAR', video: '/videos/vanke-blok.mp4', success: true },
       { playerId: 'MODR_3', playerName: 'František Kalas', teamCode: 'MODR', video: '/videos/modr-3-blok.mp4', success: true },
       { playerId: 'KVAR_8', playerName: 'Jakub Medek', teamCode: 'KVAR', video: '/videos/kvar-8-blok.mp4', success: true },
       { playerId: 'CELA_10', playerName: 'Michael Svoboda', teamCode: 'CELA', video: '/videos/cela-10-blok.mp4', success: true },
       { playerId: 'RADO_11', playerName: 'David Dvořák', teamCode: 'RADO', video: '/videos/rado-11-blok.mp4', success: true },
       { playerId: 'RADO_17', playerName: 'Petr Vít', teamCode: 'RADO', video: '/videos/rado-17-blok.mp4', success: true },
-      { playerId: 'RADO_2', playerName: 'Jakub Medek', teamCode: 'RADO', video: '/videos/rado-2-blok.mp4', success: true },
+      { playerId: 'RADO_2', playerName: 'Filip Hokr', teamCode: 'RADO', video: '/videos/rado-2-blok.mp4', success: true },
       // { playerId: 'VSET_3', playerName: 'Jan Chalupa', teamCode: 'VSET', video: '/videos/vset-2-blok.mp4', success: true }, // Toto video patří jen k vytlučenému bloku
       { playerId: 'VSET_5', playerName: 'Martin Zbranek', teamCode: 'VSET', video: '/videos/vset-1-blok.mp4', success: true },
-      { playerId: 'KVAR_9', playerName: 'Marek Vojtíšek', teamCode: 'KVAR', video: '/videos/kvar-9-blok.mp4', success: true },
-      { playerId: 'KVAR_1', playerName: 'Jan Hanus', teamCode: 'KVAR', video: '/videos/kvar-1-blok.mp4', success: true },
-      { playerId: 'KVAR_4', playerName: 'Petr Neslídek', teamCode: 'KVAR', video: '/videos/kvar-4-blok.mp4', success: true },
-      { playerId: 'CELA_3', playerName: 'Petr Neslídek', teamCode: 'CELA', video: '/videos/cela-3-blok.mp4', success: true },
-      { playerId: 'CELA_1', playerName: 'Marek Vojtíšek', teamCode: 'CELA', video: '/videos/cela-1-blok.mp4', success: true }
+      { playerId: 'KVAR_9', playerName: 'Pavel Gregor', teamCode: 'KVAR', video: '/videos/kvar-9-blok.mp4', success: true },
+      { playerId: 'KVAR_1', playerName: 'Jan Vanke', teamCode: 'KVAR', video: '/videos/kvar-1-blok.mp4', success: true },
+      { playerId: 'KVAR_4', playerName: 'Tomáš Bíbr', teamCode: 'KVAR', video: '/videos/kvar-4-blok.mp4', success: true },
+      { playerId: 'CELA_3', playerName: 'Vojtěch Holas', teamCode: 'CELA', video: '/videos/cela-3-blok.mp4', success: true },
+      { playerId: 'CELA_1', playerName: 'Tomáš Andris', teamCode: 'CELA', video: '/videos/cela-1-blok.mp4', success: true }
     ]
   },
   13: { // Skluz
@@ -139,10 +142,10 @@ export const schoolVideos = {
   14: { // Slabší noha
     name: 'Slabší noha',
     videos: [
-      { playerId: 'CAKO_1', playerName: 'Filip Chádim', teamCode: 'CAKO', video: '/videos/chadim-slabsi-noha.mp4', success: true },
+      { playerId: 'CAKO_1', playerName: 'Jakub Chadim', teamCode: 'CAKO', video: '/videos/chadim-slabsi-noha.mp4', success: true },
       { playerId: 'KVAR_5', playerName: 'Matěj Medek', teamCode: 'KVAR', video: '/videos/kvar-5-slabsi-noha.mp4', success: true },
       // { playerId: 'KVAR_7', playerName: 'Jan Chalupa', teamCode: 'KVAR', video: '/videos/kvar-7-slabsi-noha.mp4', success: false }, // Video neexistuje
-      { playerId: 'CELA_5', playerName: 'Vojt\u011bch Holas', teamCode: 'CELA', video: '/videos/cela-5-slabsi-noha.mp4', success: true }
+      { playerId: 'CELA_5', playerName: 'Daniel Matura', teamCode: 'CELA', video: '/videos/cela-5-slabsi-noha.mp4', success: true }
     ]
   },
   15: { // Nesmysl
@@ -163,27 +166,27 @@ export const schoolVideos = {
   16: { // Hruď
     name: 'Hruď',
     videos: [
-      { playerId: 'VANKE', playerName: 'Jan Vanke', teamCode: 'KVAR', video: '/videos/vanke-hrud.mp4', success: true },
-      { playerId: 'CAKO_6', playerName: 'Zdeněk Souček', teamCode: 'CAKO', video: '/videos/soucek-hrud.mp4', success: true },
+      { playerId: 'KVAR_1', playerName: 'Jan Vanke', teamCode: 'KVAR', video: '/videos/vanke-hrud.mp4', success: true },
+      { playerId: 'CAKO_6', playerName: 'Lukáš Souček', teamCode: 'CAKO', video: '/videos/soucek-hrud.mp4', success: true },
       { playerId: 'MODR_10', playerName: 'David Višvader', teamCode: 'MODR', video: '/videos/modr-9-hrud.mp4', success: true },
       { playerId: 'VSET_3', playerName: 'Jan Chalupa', teamCode: 'VSET', video: '/videos/vset-2-hrud.mp4', success: true },
       { playerId: 'CELA_10', playerName: 'Michael Svoboda', teamCode: 'CELA', video: '/videos/cela-10-hlava.mp4', success: true },
       { playerId: 'RADO_14', playerName: 'Karel Hron', teamCode: 'RADO', video: '/videos/rado-14-hlavicka.mp4', success: true },
-      { playerId: 'RADO_9', playerName: 'Michal Nepodal', teamCode: 'RADO', video: '/videos/rado-9-hlava.mp4', success: true },
+      { playerId: 'RADO_9', playerName: 'Vojtěch Liška', teamCode: 'RADO', video: '/videos/rado-9-hlava.mp4', success: true },
       { playerId: 'MODR_1', playerName: 'Michael Svoboda', teamCode: 'MODR', video: '/videos/modr-1-hrud.mp4', success: true },
-      { playerId: 'KVAR_6', playerName: 'Jan Chalupa', teamCode: 'KVAR', video: '/videos/kvar-6-hlava.mp4', success: true },
+      { playerId: 'KVAR_6', playerName: 'Lukáš Tolar', teamCode: 'KVAR', video: '/videos/kvar-6-hlava.mp4', success: true },
       { playerId: 'KVAR_3', playerName: 'Karel Hron', teamCode: 'KVAR', video: '/videos/kvar-3-hrud.mp4', success: true },
-      { playerId: 'KVAR_1', playerName: 'Jan Hanus', teamCode: 'KVAR', video: '/videos/kvar-1-hrud.mp4', success: true }
+      { playerId: 'KVAR_1', playerName: 'Jan Vanke', teamCode: 'KVAR', video: '/videos/kvar-1-hrud.mp4', success: true }
     ]
   },
   17: { // Silnější noha
     name: 'Silnější noha',
     videos: [
-      { playerId: 'CAKO_7', playerName: 'Ondřej Kučera', teamCode: 'CAKO', video: '/videos/kucera-silnejsi-noha.mp4', success: true },
-      { playerId: 'GREGOR', playerName: 'Tobiáš Gregor', teamCode: 'RADO', video: '/videos/gregor-leva-noha.mp4', success: true },
-      { playerId: 'MODR_4', playerName: 'Martin Sehrig', teamCode: 'MODR', video: '/videos/modr-4-silnejsi-noha.mp4', success: true },
+      { playerId: 'CAKO_7', playerName: 'Milan Kučera', teamCode: 'CAKO', video: '/videos/kucera-silnejsi-noha.mp4', success: true },
+      { playerId: 'KVAR_7', playerName: 'Tobiáš Gregor', teamCode: 'KVAR', video: '/videos/gregor-leva-noha.mp4', success: true },
+      { playerId: 'MODR_4', playerName: 'Pavel Kop', teamCode: 'MODR', video: '/videos/modr-4-silnejsi-noha.mp4', success: true },
       { playerId: 'KVAR_8', playerName: 'Jakub Medek', teamCode: 'KVAR', video: '/videos/kvar-8-prava-noha.mp4', success: true },
-      { playerId: 'KVAR_7', playerName: 'Jan Chalupa', teamCode: 'KVAR', video: '/videos/kvar-7-leva-noha.mp4', success: false },
+      { playerId: 'KVAR_7', playerName: 'Tobiáš Gregor', teamCode: 'KVAR', video: '/videos/kvar-7-leva-noha.mp4', success: false },
       { playerId: 'VSET_8', playerName: 'David Dvořák', teamCode: 'VSET', video: '/videos/vset-4-silnejsi-noha.mp4', success: true },
       { playerId: 'VSET_3', playerName: 'Jan Chalupa', teamCode: 'VSET', video: '/videos/vset-2-silnejsi-noha.mp4', success: true },
       { playerId: 'RADO_11', playerName: 'David Dvořák', teamCode: 'RADO', video: '/videos/rado-11-prava-noha.mp4', success: true }
@@ -198,7 +201,8 @@ export const schoolVideos = {
   19: { // Vytlučený blok
     name: 'Vytlučený blok',
     videos: [
-      { playerId: 'VSET_3', playerName: 'Jan Chalupa', teamCode: 'VSET', video: '/videos/chalupa-vytluceny-blok.mp4', success: true }
+      { playerId: 'VSET_3', playerName: 'Jan Chalupa', teamCode: 'VSET', video: '/videos/chalupa-vytluceny-blok.mp4', success: true },
+      { playerId: 'CELA_B_3', playerName: 'Václav Kalous', teamCode: 'CELA_B', video: '/videos/v-kalous-vytluceny-blok.mp4', success: true }
       // Note: Další videa v adresáři neexistují, ale ponechávám je pro budoucnost
       // { playerId: 'GREGOR', playerName: 'Tobiáš Gregor', teamCode: 'RADO', video: '/videos/gregor-vytluceny-blok.mp4', success: false },
       // { playerId: 'MODR_4', playerName: 'Martin Sehrig', teamCode: 'MODR', video: '/videos/modr-4-vytluceny-blok.mp4', success: false },

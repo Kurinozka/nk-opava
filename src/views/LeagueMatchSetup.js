@@ -1133,13 +1133,15 @@ async function showSkillSelectionDialog(team1Lineup, team1Bench, team2Lineup, te
   })
 }
 
-export function initializeLeagueSetup(matchInfo, opponentTeamId, playersPerTeam, opavaPlayers, opponentPlayers, state, opavaTeamId = null) {
+export function initializeLeagueSetup(matchInfo, opponentTeamId, playersPerTeam, opavaPlayers, opponentPlayers, state, opavaTeamId = null, team1Name = null, team2Name = null) {
   window.leagueSetupState = {
     state,
     playersPerTeam,
     opavaPlayers,
     opponentPlayers,
     opponentTeamId,
-    opavaTeamId  // Pro extraligu - ID prvního týmu
+    opavaTeamId,  // Pro extraligu - ID prvního týmu
+    team1Name,     // Název prvního týmu
+    team2Name      // Název druhého týmu
   }
 }

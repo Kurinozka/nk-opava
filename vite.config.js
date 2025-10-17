@@ -57,13 +57,17 @@ export default defineConfig({
     port: 3000,
     open: true,
     cors: true,
-    hmr: true
+    hmr: true,
+    // SPA fallback - všechny neexistující cesty přesměrovat na index.html
+    historyApiFallback: true
   },
 
   // Preview server options
   preview: {
     port: 4173,
-    open: true
+    open: true,
+    // SPA fallback pro preview mode
+    historyApiFallback: true
   },
 
   // Public directory

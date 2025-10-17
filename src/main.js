@@ -17,6 +17,10 @@ import { skillAnimations } from './skillAnimations.js'
 import { bokischSmecAnimation } from './animations/bokisch-smec.js'
 import { kurkaNonsenseSuccessAnimation, kurkaNonsenseFailAnimation } from './animations/kurka-shaolin.js'
 import { majstinikNonsenseAnimation } from './animations/majstinik-pozdrav.js'
+import { soundManager } from './soundManager.js'
+
+// Vystavit soundManager na window pro použití v navigaci
+window.soundManager = soundManager
 
 // Re-export pro zpětnou kompatibilitu
 export { skillAnimations }
@@ -344,7 +348,7 @@ function createNavigation() {
   return `
     <nav class="main-nav">
       <div class="nav-container">
-        <div class="nav-logo">
+        <div class="nav-logo clickable-logo" style="cursor: pointer;">
           <img src="/images/logo-nove.jpg" alt="NK Opava" />
           <div class="nav-logo-text">
             <p>1. LIGA MUŽŮ</p>
@@ -363,6 +367,11 @@ function createNavigation() {
 
 // Funkce pro navigaci mezi views
 function navigateTo(view, playerId = null, isExtraliga = false, skipHistoryUpdate = false) {
+  // Zastavit všechny zvuky při změně view (kromě přechodu do simulation-game)
+  if (view !== 'simulation-game' && typeof window.soundManager !== 'undefined' && window.soundManager && window.soundManager.stopAll) {
+    window.soundManager.stopAll()
+  }
+
   currentView = view
 
   // Aktualizovat URL v prohlížeči (pokud není skipHistoryUpdate)
@@ -383,9 +392,16 @@ function navigateTo(view, playerId = null, isExtraliga = false, skipHistoryUpdat
     const simulationModeLinks = document.querySelectorAll('link[href*="simulationModeStyle.css"]')
     simulationModeLinks.forEach(link => link.disabled = true)
 
-    // playerId obsahuje teamId
-    const teamId = playerId
-    const content = createTeamRosterView(teamId, isExtraliga)
+    // playerId může být string (teamId) nebo object { teamId, isExtraliga }
+    let teamId, teamIsExtraliga
+    if (typeof playerId === 'object' && playerId !== null) {
+      teamId = playerId.teamId
+      teamIsExtraliga = playerId.isExtraliga
+    } else {
+      teamId = playerId
+      teamIsExtraliga = isExtraliga
+    }
+    const content = createTeamRosterView(teamId, teamIsExtraliga)
 
     app.innerHTML = createNavigation() + content
 
@@ -478,6 +494,14 @@ function setupNavigationHandlers() {
       navigateTo(view)
     })
   })
+
+  // Logo click handler - návrat na homepage
+  const logo = document.querySelector('.clickable-logo')
+  if (logo) {
+    logo.addEventListener('click', () => {
+      navigateTo('home')
+    })
+  }
 }
 
 // Setup home view handlers
@@ -496,6 +520,11 @@ function setupHomeHandlers() {
 
 // Handler pro zpětné tlačítko prohlížeče
 window.addEventListener('popstate', (event) => {
+  // Zastavit všechny zvuky při navigaci zpět
+  if (typeof window.soundManager !== 'undefined' && window.soundManager && window.soundManager.stopAll) {
+    window.soundManager.stopAll()
+  }
+
   if (event.state) {
     // Máme uložený stav, použijeme ho
     navigateTo(event.state.view, event.state.playerId, event.state.isExtraliga, true)

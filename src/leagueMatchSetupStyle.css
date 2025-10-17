@@ -77,25 +77,25 @@
 }
 
 .teams-setup {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
   margin-bottom: 2rem;
 }
 
 .team-setup {
   background: var(--color-white);
-  border-radius: 16px;
-  padding: 2rem;
+  border-radius: 12px;
+  padding: 1rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .team-setup h2 {
-  font-size: 2rem;
+  font-size: 1.3rem;
   color: var(--color-black);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   text-align: center;
-  padding-bottom: 1rem;
+  padding-bottom: 0.75rem;
   border-bottom: 3px solid var(--color-red);
   font-weight: 800;
   text-transform: uppercase;
@@ -105,8 +105,8 @@
 .lineup-bench-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin-bottom: 2rem;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .lineup-section, .bench-section {
@@ -124,9 +124,9 @@
 }
 
 .lineup-section h3, .bench-section h3, .available-section h3 {
-  font-size: 1.3rem;
+  font-size: 0.95rem;
   color: var(--color-black);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -136,34 +136,34 @@
 .lineup-players {
   display: flex;
   flex-wrap: wrap;
-  gap: 2.5rem;
-  min-height: 300px;
+  gap: 1rem;
+  min-height: 190px;
   justify-content: flex-start;
   border: 2px dashed transparent;
-  border-radius: 12px;
-  padding: 1rem;
+  border-radius: 8px;
+  padding: 0.75rem;
   transition: all 0.3s ease;
 }
 
 .bench-players {
   display: flex;
   flex-wrap: nowrap;  /* Změna z wrap na nowrap - hráči vždy vedle sebe */
-  gap: 2.5rem;
-  min-height: 300px;
+  gap: 1rem;
+  min-height: 190px;
   justify-content: flex-start;
   border: 2px dashed transparent;
-  border-radius: 12px;
-  padding: 1rem;
+  border-radius: 8px;
+  padding: 0.75rem;
   transition: all 0.3s ease;
   overflow-x: auto;  /* Pokud se nevejdou, povolit horizontální scroll */
 }
 
 .lineup-players > .setup-hexagon-card,
 .bench-players > .setup-hexagon-card {
-  width: 192px !important;
-  height: 288px !important;
-  min-width: 192px;
-  max-width: 192px;
+  width: 120px !important;
+  height: 180px !important;
+  min-width: 120px;
+  max-width: 120px;
   flex: 0 0 auto;
 }
 
@@ -178,26 +178,26 @@
   overflow: visible;
 }
 
-/* Container s menšími kartami 140px (scale 0.44 místo 0.6) */
+/* Container s menšími kartami 100px */
 .available-players {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 140px);
-  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fill, 100px);
+  gap: 1rem;
   justify-content: center;
   width: 100%;
   padding: 0;
   margin: 0;
-  min-height: 60px;
+  min-height: 50px;
 }
 
-/* Karty dostupných hráčů - zmenšené na 140px × 210px */
+/* Karty dostupných hráčů - zmenšené na 100px × 150px */
 .available-players > .setup-hexagon-card {
-  width: 140px !important;
-  height: 210px !important;
-  min-width: 140px !important;
-  min-height: 210px !important;
-  max-width: 140px !important;
-  max-height: 210px !important;
+  width: 100px !important;
+  height: 150px !important;
+  min-width: 100px !important;
+  min-height: 150px !important;
+  max-width: 100px !important;
+  max-height: 150px !important;
   flex-shrink: 0;
   box-sizing: border-box;
   transform: scale(1);
@@ -205,10 +205,10 @@
   z-index: 1;
 }
 
-/* Hover efekt - karta vystoupí do popředí v plné velikosti */
+/* Hover efekt - karta vystoupí do popředí ve větší velikosti */
 .available-players > .setup-hexagon-card:hover {
-  width: 192px !important;
-  height: 288px !important;
+  width: 120px !important;
+  height: 180px !important;
   z-index: 100;
   transform: scale(1);
 }
@@ -265,14 +265,14 @@
 
 .setup-hexagon-card {
   position: relative;
-  width: 192px;  /* 320px * 0.6 */
-  height: 288px; /* 480px * 0.6 */
-  border-radius: 12px; /* 20px * 0.6 */
+  width: 120px;  /* 320px * 0.375 */
+  height: 180px; /* 480px * 0.375 */
+  border-radius: 8px; /* 20px * 0.4 */
   overflow: hidden;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow:
-    0 6px 18px rgba(0, 0, 0, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.3),
     0 0 0 1px rgba(255, 255, 255, 0.1) inset;
 }
 
@@ -285,8 +285,8 @@
   bottom: 0;
   background: linear-gradient(
     135deg,
-    color-mix(in srgb, var(--team-primary, #DC2F3E) 85%, transparent) 0%,
-    color-mix(in srgb, var(--team-accent, #000000) 75%, transparent) 100%
+    color-mix(in srgb, var(--team-primary, #DC2F3E) 60%, transparent) 0%,
+    color-mix(in srgb, var(--team-accent, #000000) 50%, transparent) 100%
   );
   z-index: 1;
   transition: opacity 0.4s ease;
@@ -295,8 +295,8 @@
 .setup-hexagon-card.opponent-card::before {
   background: linear-gradient(
     135deg,
-    color-mix(in srgb, var(--team-primary, #0066CC) 85%, transparent) 0%,
-    color-mix(in srgb, var(--team-accent, #003366) 75%, transparent) 100%
+    color-mix(in srgb, var(--team-primary, #0066CC) 60%, transparent) 0%,
+    color-mix(in srgb, var(--team-accent, #003366) 50%, transparent) 100%
   );
 }
 
@@ -305,9 +305,9 @@
 }
 
 .setup-hexagon-card:hover {
-  transform: translateY(-6px) scale(1.02);
+  transform: translateY(-4px) scale(1.02);
   box-shadow:
-    0 12px 36px rgba(220, 47, 62, 0.4),
+    0 8px 24px rgba(220, 47, 62, 0.4),
     0 0 0 1px var(--color-red) inset;
 }
 
@@ -338,41 +338,41 @@
 /* Rating badge - top left */
 .setup-card-badge {
   position: absolute;
-  top: 0.9rem;  /* 1.5rem * 0.6 */
-  left: 0.9rem;
+  top: 0.5rem;
+  left: 0.5rem;
   z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.18rem;  /* 0.3rem * 0.6 */
+  gap: 0.1rem;
 }
 
 .setup-card-badge-rating {
-  font-size: 2.1rem;  /* 3.5rem * 0.6 */
+  font-size: 1.3rem;
   font-weight: 900;
   color: #FFD700;
   line-height: 1;
   text-shadow:
-    1.8px 1.8px 0px rgba(0, 0, 0, 0.8),
-    -0.6px -0.6px 0px rgba(0, 0, 0, 0.8),
-    0.6px -0.6px 0px rgba(0, 0, 0, 0.8),
-    -0.6px 0.6px 0px rgba(0, 0, 0, 0.8);
-  filter: drop-shadow(0 2.4px 6px rgba(0, 0, 0, 0.5));
+    1.2px 1.2px 0px rgba(0, 0, 0, 0.8),
+    -0.4px -0.4px 0px rgba(0, 0, 0, 0.8),
+    0.4px -0.4px 0px rgba(0, 0, 0, 0.8),
+    -0.4px 0.4px 0px rgba(0, 0, 0, 0.8);
+  filter: drop-shadow(0 1.5px 4px rgba(0, 0, 0, 0.5));
 }
 
 /* Player number - top right */
 .setup-player-number {
   position: absolute;
-  top: 0.9rem;
-  right: 0.9rem;
+  top: 0.5rem;
+  right: 0.5rem;
   z-index: 10;
-  font-size: 1.5rem;  /* 2.5rem * 0.6 */
+  font-size: 0.9rem;
   font-weight: 900;
   color: rgba(255, 255, 255, 0.9);
   text-shadow:
-    1.8px 1.8px 0px rgba(0, 0, 0, 0.8),
-    -0.6px -0.6px 0px rgba(0, 0, 0, 0.8);
-  filter: drop-shadow(0 2.4px 6px rgba(0, 0, 0, 0.5));
+    1.2px 1.2px 0px rgba(0, 0, 0, 0.8),
+    -0.4px -0.4px 0px rgba(0, 0, 0, 0.8);
+  filter: drop-shadow(0 1.5px 4px rgba(0, 0, 0, 0.5));
 }
 
 /* Player info - bottom section */
@@ -382,7 +382,7 @@
   left: 0;
   right: 0;
   z-index: 10;
-  padding: 1.2rem 0.9rem 0.9rem;  /* 2rem 1.5rem 1.5rem * 0.6 */
+  padding: 0.7rem 0.5rem 0.5rem;
   background: linear-gradient(
     to top,
     rgba(0, 0, 0, 0.95) 0%,
@@ -393,34 +393,34 @@
 
 /* PLAYER NAME - BÍLÁ BARVA jako v Team sekci */
 .setup-player-name {
-  font-size: 0.9rem !important;  /* 1.5rem * 0.6 */
+  font-size: 0.55rem !important;
   font-weight: 900 !important;
-  color: #FFFFFF !important;  /* BÍLÁ! */
-  margin-bottom: 0.18rem !important;  /* 0.3rem * 0.6 */
+  color: #FFFFFF !important;
+  margin-bottom: 0.1rem !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.6px !important;  /* 1px * 0.6 */
-  text-shadow: 1.2px 1.2px 3.6px rgba(0, 0, 0, 0.9) !important;  /* 2px 2px 6px * 0.6 */
+  letter-spacing: 0.4px !important;
+  text-shadow: 0.8px 0.8px 2.2px rgba(0, 0, 0, 0.9) !important;
   line-height: 1.2 !important;
 }
 
 .setup-player-position {
-  font-size: 0.51rem;  /* 0.85rem * 0.6 */
+  font-size: 0.32rem;
   font-weight: 700;
   color: rgba(255, 255, 255, 0.8);
   text-transform: uppercase;
-  letter-spacing: 0.9px;  /* 1.5px * 0.6 */
-  margin-bottom: 0.6rem;  /* 1rem * 0.6 */
-  text-shadow: 0.6px 0.6px 1.8px rgba(0, 0, 0, 0.9);  /* 1px 1px 3px * 0.6 */
+  letter-spacing: 0.5px;
+  margin-bottom: 0.4rem;
+  text-shadow: 0.4px 0.4px 1.2px rgba(0, 0, 0, 0.9);
 }
 
 /* Stats grid - 3x3 */
 .setup-player-stats-mini {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.48rem;  /* 0.8rem * 0.6 */
+  gap: 0.3rem;
   background: rgba(0, 0, 0, 0.5);
-  padding: 0.6rem;  /* 1rem * 0.6 */
-  border-radius: 7.2px;  /* 12px * 0.6 */
+  padding: 0.35rem;
+  border-radius: 4px;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -429,24 +429,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.18rem;  /* 0.3rem * 0.6 */
+  gap: 0.1rem;
 }
 
 .setup-stat-value {
-  font-size: 0.84rem;  /* 1.4rem * 0.6 */
+  font-size: 0.5rem;
   font-weight: 900;
   color: #FFD700;
   line-height: 1;
-  text-shadow: 1.2px 1.2px 2.4px rgba(0, 0, 0, 0.9);  /* 2px 2px 4px * 0.6 */
+  text-shadow: 0.8px 0.8px 1.5px rgba(0, 0, 0, 0.9);
 }
 
 .setup-stat-label {
-  font-size: 0.39rem;  /* 0.65rem * 0.6 */
+  font-size: 0.24rem;
   font-weight: 800;
   color: rgba(255, 255, 255, 0.9);
   text-transform: uppercase;
-  letter-spacing: 0.18px;  /* 0.3px * 0.6 */
-  text-shadow: 0.6px 0.6px 1.2px rgba(0, 0, 0, 0.9);  /* 1px 1px 2px * 0.6 */
+  letter-spacing: 0.1px;
+  text-shadow: 0.4px 0.4px 0.8px rgba(0, 0, 0, 0.9);
   line-height: 1.1;
   text-align: center;
 }

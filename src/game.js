@@ -410,12 +410,15 @@ async function checkAndSubstituteAfterFailedAttacks(player, team) {
   const bench = isTeam1 ? gameState.team1Bench : gameState.team2Bench
   const teamPlayers = isTeam1 ? gameState.team1 : gameState.team2
 
-  if (bench.length === 0) {
+  // Filtrovat trenéry z lavičky
+  const playersOnly = bench.filter(p => p.position !== 'Trenér')
+
+  if (playersOnly.length === 0) {
     return null // Není za koho střídat
   }
 
-  // Najít nejlepšího náhradníka
-  const substitute = bench[0]
+  // Najít nejlepšího náhradníka (použít první dostupný)
+  const substitute = playersOnly[0]
 
   return {
     teamName: team,
@@ -497,6 +500,12 @@ export function setGameMode(mode, opponentTeamId = null) {
 }
 
 // Funkce pro nastavení týmů v ligovém režimu
+// Funkce pro nastavení názvů týmů
+export function setTeamNames(team1Name, team2Name) {
+  gameState.team1Name = team1Name
+  gameState.team2Name = team2Name
+}
+
 export function setLeagueTeams(opavaLineup, opavaBench, opponentLineup, opponentBench, playersPerTeam, substitutionMode = 'auto', coachMode = 'active') {
   gameState.team1 = opavaLineup
   gameState.team2 = opponentLineup
@@ -519,6 +528,27 @@ export function setLeagueTeams(opavaLineup, opavaBench, opponentLineup, opponent
       gameState.team2Bench = [...opponentBench, team2CoachInRoster]
     }
   }
+
+  // Automaticky nastavit názvy týmů podle režimu
+  if (gameState.gameMode === 'training') {
+    // Pro tréningový režim použít příjmení prvního hráče
+    const team1FirstPlayer = opavaLineup[0]
+    const team2FirstPlayer = opponentLineup[0]
+
+    if (team1FirstPlayer && team2FirstPlayer) {
+      const team1LastName = team1FirstPlayer.name.split(' ').pop()
+      const team2LastName = team2FirstPlayer.name.split(' ').pop()
+      gameState.team1Name = `${team1LastName}ův tým`
+      gameState.team2Name = `${team2LastName}ův tým`
+    }
+  } else if (gameState.gameMode === 'extraliga') {
+    // Pro extraligu použít názvy týmů z window.leagueSetupState
+    if (window.leagueSetupState) {
+      gameState.team1Name = window.leagueSetupState.team1Name || 'Tým 1'
+      gameState.team2Name = window.leagueSetupState.team2Name || 'Tým 2'
+    }
+  }
+  // Pro league mode jsou názvy už nastaveny v setGameMode
 
   // Nastavit mód podle počtu hráčů
   if (playersPerTeam === 1) {
@@ -612,6 +642,18 @@ export function renderGameScreen() {
 
                 <!-- Popis disciplíny -->
                 <div class="current-match-info" id="current-match-info"></div>
+              </div>
+
+              <!-- Zvuková tlačítka -->
+              <div class="sound-controls" style="display: flex; gap: 10px; margin-top: 15px; justify-content: center;">
+                <button class="sound-btn" id="mute-crowd-btn" title="Ztlumit diváky">
+                  <span class="btn-icon">👥🔊</span>
+                  <span class="btn-label">Diváci</span>
+                </button>
+                <button class="sound-btn" id="mute-all-btn" title="Ztlumit všechny zvuky">
+                  <span class="btn-icon">🔊</span>
+                  <span class="btn-label">Všechny zvuky</span>
+                </button>
               </div>
 
               <!-- Hidden helper elements for compatibility -->
@@ -894,7 +936,10 @@ function getWorstPerformer(team) {
   let worstPlayer = null
   let worstRatio = 1
 
-  for (const player of team) {
+  // Filtrovat trenéry - trenéři nemohou být střídáni
+  const playersOnly = team.filter(p => p.position !== 'Trenér')
+
+  for (const player of playersOnly) {
     const perf = gameState.playerPerformance[player.id]
     if (!perf || perf.attempts < 2) continue // Minimum 2 pokusy (sníženo z 3)
 
@@ -915,12 +960,16 @@ function getWorstPerformer(team) {
 function findBestSubstitute(playerOut, bench, team) {
   if (bench.length === 0) return null
 
+  // Filtrovat trenéry - trenéři nemohou hrát na hřišti
+  const playersOnly = bench.filter(p => p.position !== 'Trenér')
+  if (playersOnly.length === 0) return null
+
   // Získat hráče, kteří v aktuálním týmu ještě nehráli (nejsou v allPlayers)
   const isTeam1 = gameState.team1.includes(playerOut) || gameState.team1.some(p => p.id === playerOut.id)
   const allPlayers = isTeam1 ? gameState.team1AllPlayers : gameState.team2AllPlayers
 
   // Hráči, kteří ještě nehráli
-  const freshPlayers = bench.filter(p => !allPlayers.some(ap => ap.id === p.id))
+  const freshPlayers = playersOnly.filter(p => !allPlayers.some(ap => ap.id === p.id))
 
   if (freshPlayers.length > 0) {
     // Preferovat čerstvé hráče - vybrat dle pozice
@@ -934,14 +983,14 @@ function findBestSubstitute(playerOut, bench, team) {
   }
 
   // Všichni už hráli - vybrat toho, kdo je nejdéle na lavičce
-  // (předpokládáme, že první v poli bench je nejdéle tam)
-  const samePosition = bench.filter(p => p.position === playerOut.position)
+  // (předpokládáme, že první v poli playersOnly je nejdéle tam)
+  const samePosition = playersOnly.filter(p => p.position === playerOut.position)
   if (samePosition.length > 0) return samePosition[0]
 
-  const compatiblePosition = getCompatiblePlayers(bench, playerOut.position)
+  const compatiblePosition = getCompatiblePlayers(playersOnly, playerOut.position)
   if (compatiblePosition.length > 0) return compatiblePosition[0]
 
-  return bench[0]
+  return playersOnly[0]
 }
 
 // Pomocná funkce pro získání kompatibilních hráčů podle pozice
@@ -1895,7 +1944,7 @@ export function setupGameHandlers() {
   // New game
   document.querySelector('.new-game-btn')?.addEventListener('click', () => {
     resetGame()
-    showMenu()
+    showPlayerSelection()
   })
 
   // Advance selection mode checkbox
@@ -2448,7 +2497,7 @@ function openTimeoutModal(team) {
   closeBtn.replaceWith(newCloseBtn)
 
   // Přidat nové handlery
-  newConfirmBtn.addEventListener('click', () => {
+  newConfirmBtn.addEventListener('click', async () => {
     const selectors = playersList.querySelectorAll('.skill-selector')
     const selectedSkills = []
 
@@ -2477,16 +2526,45 @@ function openTimeoutModal(team) {
       <div class="timeout-confirmation" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 20px; margin: 20px 0; border-radius: 15px; color: white; text-align: center;">
         <h3>⏸️ TIME-OUT vzat!</h3>
         <p>Dovednosti pro příští výměnu byly vybrány.</p>
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 15px;">
+          ${selectedSkills.map(skill => {
+            const skillData = skills[skill.skill]
+            return `<div style="background: rgba(255,255,255,0.2); padding: 10px 15px; border-radius: 10px;">
+              <strong>${skill.player.name}</strong><br>
+              ${skillData ? skillData.name : 'Dovednost'}
+            </div>`
+          }).join('')}
+        </div>
       </div>
     `
+
+    // Počkat chvíli, aby uživatel viděl potvrzení
+    await smartDelay(2000)
+
+    // Obnovit hru
+    if (gameState.isPlaying) {
+      gameState.isPaused = false
+      // Pokračovat ve hře
+      playNextPoint()
+    }
   })
 
   newCancelBtn.addEventListener('click', () => {
     modal.style.display = 'none'
+    // Obnovit hru pokud byla pozastavena
+    if (gameState.isPlaying && gameState.isPaused) {
+      gameState.isPaused = false
+      playNextPoint()
+    }
   })
 
   newCloseBtn.addEventListener('click', () => {
     modal.style.display = 'none'
+    // Obnovit hru pokud byla pozastavena
+    if (gameState.isPlaying && gameState.isPaused) {
+      gameState.isPaused = false
+      playNextPoint()
+    }
   })
 }
 
@@ -2765,6 +2843,45 @@ function setupPlaybackControls() {
       openTimeoutModal('team2')
     })
   }
+
+  // Zvuková tlačítka
+  const muteCrowdBtn = document.getElementById('mute-crowd-btn')
+  const muteAllBtn = document.getElementById('mute-all-btn')
+
+  if (muteCrowdBtn) {
+    muteCrowdBtn.addEventListener('click', () => {
+      // Toggle crowd sounds
+      if (soundManager.crowdVolume > 0) {
+        soundManager.setCrowdVolume(0)
+        muteCrowdBtn.querySelector('.btn-icon').textContent = '👥🔇'
+        muteCrowdBtn.title = 'Zapnout diváky'
+      } else {
+        soundManager.setCrowdVolume(0.2)
+        muteCrowdBtn.querySelector('.btn-icon').textContent = '👥🔊'
+        muteCrowdBtn.title = 'Ztlumit diváky'
+      }
+    })
+  }
+
+  if (muteAllBtn) {
+    muteAllBtn.addEventListener('click', () => {
+      // Toggle all sounds
+      if (soundManager.enabled) {
+        soundManager.enabled = false
+        soundManager.stopAll()
+        muteAllBtn.querySelector('.btn-icon').textContent = '🔇'
+        muteAllBtn.title = 'Zapnout všechny zvuky'
+      } else {
+        soundManager.enabled = true
+        // Restartovat crowd sounds pokud hra běží
+        if (gameState.isPlaying && !gameState.isPaused) {
+          soundManager.startCrowdSounds()
+        }
+        muteAllBtn.querySelector('.btn-icon').textContent = '🔊'
+        muteAllBtn.title = 'Ztlumit všechny zvuky'
+      }
+    })
+  }
 }
 
 function startGame() {
@@ -2880,11 +2997,14 @@ function renderSubstitutionTeam(teamName) {
     </div>
   `).join('')
 
+  // Filtrovat trenéry z lavičky - trenéři nemohou být střídáni na hřiště
+  const benchPlayersOnly = bench.filter(p => p.position !== 'Trenér')
+
   // Render bench players
-  if (bench.length === 0) {
+  if (benchPlayersOnly.length === 0) {
     benchDiv.innerHTML = '<p class="no-bench">Žádní hráči na lavičce</p>'
   } else {
-    benchDiv.innerHTML = bench.map(p => `
+    benchDiv.innerHTML = benchPlayersOnly.map(p => `
       <div class="sub-player-card bench" data-player-id="${p.id}" data-team="${teamName}" data-location="bench">
         <img src="${p.photo}" alt="${p.name}" />
         <div class="sub-player-info">
@@ -3015,8 +3135,8 @@ async function checkRefereeDecision() {
 
   const evalDiv = getEvaluationDiv()
 
-  // Získat hráče na hřišti
-  const playersOnCourt = [...gameState.team1, ...gameState.team2]
+  // Získat hráče na hřišti (bez trenérů)
+  const playersOnCourt = [...gameState.team1, ...gameState.team2].filter(p => p.position !== 'Trenér')
   if (playersOnCourt.length === 0) return null
 
   // 1% šance na napomenutí
@@ -3513,6 +3633,40 @@ async function playPointWithPhases() {
     if (result.winner) {
       rallyWinner = result.winner
 
+      // OKAMŽITĚ AKTUALIZOVAT SKÓRE PO ROZHODNUTÍ
+      const team1PointsToAdd = Math.max(0, result.team1Points || 0)
+      const team2PointsToAdd = Math.max(0, result.team2Points || 0)
+
+      // Sledovat výkon dovedností PŘED aktualizací skóre
+      if (result.interactions && result.interactions.length > 0) {
+        for (const interaction of result.interactions) {
+          if (interaction.attacker && interaction.pointChange > 0) {
+            trackSkillPerformance(interaction.attacker.player.id, interaction.attacker.skill, interaction.pointChange)
+          }
+          if (interaction.defender && interaction.result === 'blocked') {
+            trackSkillPerformance(interaction.defender.player.id, interaction.defender.skill, 1)
+          }
+        }
+      }
+
+      console.log('📊 Aktualizuji skóre OKAMŽITĚ:', team1PointsToAdd, ':', team2PointsToAdd)
+      const scoreUpdated = await updateScore('both', team1PointsToAdd, team2PointsToAdd)
+      console.log('✅ Skóre aktualizováno:', scoreUpdated)
+
+      // ZOBRAZIT KOMENTÁŘ K VÝSLEDKU
+      const evalDiv = getEvaluationDiv()
+      const winnerName = rallyWinner === 'team1' ? gameState.team1Name : gameState.team2Name
+      const currentScore = `${gameState.score.team1[gameState.currentSet]}:${gameState.score.team2[gameState.currentSet]}`
+
+      evalDiv.innerHTML += `
+        <div class="point-result-commentary" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 20px; margin: 15px 0; border-radius: 12px; text-align: center; border: 3px solid #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
+          <h3 style="margin: 0 0 10px 0; color: white; font-size: 1.8rem; font-weight: 700;">🎯 ${winnerName} získává bod!</h3>
+          <p style="margin: 0; color: white; font-size: 1.4rem; font-weight: 600;">Aktuální skóre: ${currentScore}</p>
+          ${result.reason ? `<p style="margin: 10px 0 0 0; color: rgba(255,255,255,0.9); font-size: 1.1rem;">${result.reason}</p>` : ''}
+        </div>
+      `
+      await smartDelay(2000)
+
       // FÁZE 4: Přehrání klíčových akcí s videem
       // Vyzdvihnout schopnosti, které měly vliv na výsledek
       if (result.interactions && result.interactions.length > 0) {
@@ -3601,26 +3755,6 @@ async function playPointWithPhases() {
         console.log('✅ Všechna videa nesmyslů přehrána')
       }
 
-      // Aktualizovat skóre - přičíst dílčí body oběma týmům
-      const team1PointsToAdd = Math.max(0, result.team1Points || 0)
-      const team2PointsToAdd = Math.max(0, result.team2Points || 0)
-
-      // Sledovat výkon dovedností před aktualizací skóre
-      if (result.interactions && result.interactions.length > 0) {
-        for (const interaction of result.interactions) {
-          if (interaction.attacker && interaction.pointChange > 0) {
-            trackSkillPerformance(interaction.attacker.player.id, interaction.attacker.skill, interaction.pointChange)
-          }
-          if (interaction.defender && interaction.result === 'blocked') {
-            trackSkillPerformance(interaction.defender.player.id, interaction.defender.skill, 1)
-          }
-        }
-      }
-
-      console.log('📊 Aktualizuji skóre:', team1PointsToAdd, ':', team2PointsToAdd)
-      const scoreUpdated = await updateScore('both', team1PointsToAdd, team2PointsToAdd)
-      console.log('✅ Skóre aktualizováno:', scoreUpdated)
-
       // Zkontrolovat možnost time-outu (pokud skóre bylo aktualizováno)
       if (scoreUpdated) {
         await checkAndPerformTimeout()
@@ -3708,8 +3842,11 @@ async function playPointWithPhases() {
           const playerOut = refereeDecision.player
           const bench = teamName === 'team1' ? gameState.team1Bench : gameState.team2Bench
 
-          if (bench.length > 0) {
-            const playerIn = bench[0]  // První hráč z lavičky
+          // Filtrovat trenéry z lavičky
+          const playersOnBench = bench.filter(p => p.position !== 'Trenér')
+
+          if (playersOnBench.length > 0) {
+            const playerIn = playersOnBench[0]  // První hráč z lavičky
             await performSubstitution(teamName, playerOut, playerIn)
 
             const evalDiv = getEvaluationDiv()
@@ -4824,35 +4961,40 @@ function updateSpecialSkillIcon(skillObj, team, effectType, numTails = null) {
   // Odstranit rotující rámečky a alternující ikonu
   skillBall.classList.remove('special-rotating', 'alternating-icon')
 
-  // Určit emoji podle typu efektu
+  // Odstranit všechny předchozí třídy typu
+  skillBall.classList.remove('offensive', 'defensive', 'offensive-skill', 'defensive-skill',
+    'ultimate-offensive', 'ultimate-defensive', 'special-red-border', 'special-black-border')
+
+  // Určit emoji a třídy podle typu efektu
   let newEmoji = ''
+  let newClasses = []
+
   if (effectType === 'offensive') {
     newEmoji = '⚔️'
+    newClasses = ['offensive', 'special-red-border']
   } else if (effectType === 'defensive') {
     newEmoji = '🛡️'
+    newClasses = ['defensive', 'special-red-border']
   } else if (effectType === 'ultimate-offensive') {
-    newEmoji = '⚔️' // Ultimate útok
+    newEmoji = '⚔️'
+    newClasses = ['ultimate-offensive', 'special-black-border']
   } else if (effectType === 'ultimate-defensive') {
-    newEmoji = '🛡️' // Ultimate obrana
+    newEmoji = '🛡️'
+    newClasses = ['ultimate-defensive', 'special-black-border']
   }
 
   // Aktualizovat emoji
   if (newEmoji) {
     skillBall.setAttribute('data-skill-emoji', newEmoji)
+    // Také aktualizovat type-icon element, pokud existuje
+    const typeIcon = skillBall.querySelector('.type-icon')
+    if (typeIcon) {
+      typeIcon.textContent = newEmoji
+    }
   }
 
-  // Určit barvu rámečku podle typu efektu
-  // Ultimate (2 panny) = černý rámeček
-  // Standardní (1 panna) = červený rámeček
-  if (effectType.includes('ultimate')) {
-    // 2 panny = černý rámeček
-    skillBall.classList.remove('special-red-border')
-    skillBall.classList.add('special-black-border')
-  } else {
-    // 1 panna = červený rámeček
-    skillBall.classList.remove('special-black-border')
-    skillBall.classList.add('special-red-border')
-  }
+  // Přidat nové třídy
+  newClasses.forEach(cls => skillBall.classList.add(cls))
 }
 
 // Funkce pro resetování ikon speciálních schopností na začátku výměny
@@ -6189,7 +6331,12 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
       // Přehrát zvuk kontaktu s míčem pro standardní útok ze smečovaného servisu
       soundManager.playBallHit()
     } else {
-      // 2 panny = nebránitelný bod!
+      // 2 panny = nebránitelný bod! Transformovat na obrannou ultimate
+      skillObj.isOffensive = false
+      skillObj.isDefensive = true
+      skillObj.isUltimate = true
+      skillObj.coinFlipResult = 'ultimate'
+
       updateSpecialSkillIcon(skillObj, 'team1', 'ultimate-defensive')
       const comment = `Smečovaný servis: ${coin1Text} + ${coin2Text} = <strong>Efekt obranné ultimate - nebránitelný bod!</strong>`
       await showSkillComment(skillObj, successRate, true, comment)
@@ -6262,7 +6409,12 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
       // Přehrát zvuk kontaktu s míčem pro standardní útok ze smečovaného servisu
       soundManager.playBallHit()
     } else {
-      // 2 panny = nebránitelný bod!
+      // 2 panny = nebránitelný bod! Transformovat na obrannou ultimate
+      skillObj.isOffensive = false
+      skillObj.isDefensive = true
+      skillObj.isUltimate = true
+      skillObj.coinFlipResult = 'ultimate'
+
       updateSpecialSkillIcon(skillObj, 'team2', 'ultimate-defensive')
       const comment = `Smečovaný servis: ${coin1Text} + ${coin2Text} = <strong>Efekt obranné ultimate - nebránitelný bod!</strong>`
       await showSkillComment(skillObj, successRate, true, comment)
@@ -6335,7 +6487,12 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
       // Přehrát zvuk kontaktu s míčem pro standardní útok ze skákané smeče
       soundManager.playBallHit()
     } else {
-      // 2 panny = nebránitelný bod!
+      // 2 panny = nebránitelný bod! Transformovat na útočnou ultimate
+      skillObj.isOffensive = true
+      skillObj.isDefensive = false
+      skillObj.isUltimate = true
+      skillObj.coinFlipResult = 'ultimate'
+
       updateSpecialSkillIcon(skillObj, 'team1', 'ultimate-offensive')
       const comment = `Skákaná smeč: ${coin1Text} + ${coin2Text} = <strong>Efekt útočné ultimate - nebránitelný bod!</strong>`
       await showSkillComment(skillObj, successRate, true, comment)
@@ -6408,7 +6565,12 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
       // Přehrát zvuk kontaktu s míčem pro standardní útok ze skákané smeče
       soundManager.playBallHit()
     } else {
-      // 2 panny = nebránitelný bod!
+      // 2 panny = nebránitelný bod! Transformovat na útočnou ultimate
+      skillObj.isOffensive = true
+      skillObj.isDefensive = false
+      skillObj.isUltimate = true
+      skillObj.coinFlipResult = 'ultimate'
+
       updateSpecialSkillIcon(skillObj, 'team2', 'ultimate-offensive')
       const comment = `Skákaná smeč: ${coin1Text} + ${coin2Text} = <strong>Efekt útočné ultimate - nebránitelný bod!</strong>`
       await showSkillComment(skillObj, successRate, true, comment)
@@ -8408,9 +8570,16 @@ function endGame() {
   document.querySelector('.game-over').style.display = 'block'
 
   const finalScore = document.getElementById('final-score')
+
+  // Sestavit seznam jmen hráčů pro oba týmy
+  const team1Names = gameState.team1.map(p => p.name.split(' ')[0]).join(', ')
+  const team2Names = gameState.team2.map(p => p.name.split(' ')[0]).join(', ')
+
   finalScore.innerHTML = `
-    <h2>${t1Wins > t2Wins ? `Vyhrál ${gameState.team1Name}!` : `Vyhrál ${gameState.team2Name}!`}</h2>
+    <h2>${t1Wins > t2Wins ? `Vyhráli: ${team1Names}` : `Vyhráli: ${team2Names}`}</h2>
+    <p style="font-size: 1.2rem; margin: 1rem 0; color: #ccc;">nad týmem: ${t1Wins > t2Wins ? team2Names : team1Names}</p>
     <div class="final-sets">
+      <h3>Výsledky setů</h3>
       <p>Set 1: ${gameState.score.team1[0]} - ${gameState.score.team2[0]}</p>
       <p>Set 2: ${gameState.score.team1[1]} - ${gameState.score.team2[1]}</p>
       ${gameState.currentSet === 2 ? `<p>Set 3: ${gameState.score.team1[2]} - ${gameState.score.team2[2]}</p>` : ''}

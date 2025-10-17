@@ -96,64 +96,72 @@ export function createTeamRosterView(teamId, isExtraliga = false) {
 
       ${teamId === 'CAKO' ? `
         <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-          <video autoplay loop muted playsinline style="width: 100%; display: block;">
-            <source src="/videos/cakovice-team.mov" type="video/quicktime">
+          <video autoplay loop muted playsinline preload="auto" style="width: 100%; display: block;">
+            <source src="/videos/cakovice-team.mp4" type="video/mp4">
+            Váš prohlížeč nepodporuje přehrávání videa.
           </video>
         </div>
       ` : ''}
 
       ${teamId === 'MODR' ? `
         <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-          <video autoplay loop muted playsinline style="width: 100%; display: block;">
-            <source src="/videos/modrice-team.mov" type="video/quicktime">
+          <video autoplay loop muted playsinline preload="auto" style="width: 100%; display: block;">
+            <source src="/videos/modrice-team.mp4" type="video/mp4">
+            Váš prohlížeč nepodporuje přehrávání videa.
           </video>
         </div>
       ` : ''}
 
       ${teamId === 'CELA' ? `
         <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-          <video autoplay loop muted playsinline style="width: 100%; display: block;">
-            <source src="/videos/celakovice-team.mov" type="video/quicktime">
+          <video autoplay loop muted playsinline preload="auto" style="width: 100%; display: block;">
+            <source src="/videos/celakovice-team.mp4" type="video/mp4">
+            Váš prohlížeč nepodporuje přehrávání videa.
           </video>
         </div>
       ` : ''}
 
       ${teamId === 'KVAR' ? `
         <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-          <video autoplay loop muted playsinline style="width: 100%; display: block;">
-            <source src="/videos/karlovy-vary-team.mov" type="video/quicktime">
+          <video autoplay loop muted playsinline preload="auto" style="width: 100%; display: block;">
+            <source src="/videos/karlovy-vary-team.mp4" type="video/mp4">
+            Váš prohlížeč nepodporuje přehrávání videa.
           </video>
         </div>
       ` : ''}
 
       ${teamId === 'VSET' ? `
         <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-          <video autoplay loop muted playsinline style="width: 100%; display: block;">
-            <source src="/videos/vsetin-team.mov" type="video/quicktime">
+          <video autoplay loop muted playsinline preload="auto" style="width: 100%; display: block;">
+            <source src="/videos/vsetin-team.mp4" type="video/mp4">
+            Váš prohlížeč nepodporuje přehrávání videa.
           </video>
         </div>
       ` : ''}
 
       ${teamId === 'ZATEC' ? `
         <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-          <video autoplay loop muted playsinline style="width: 100%; display: block;">
-            <source src="/videos/zatec-team.mov" type="video/quicktime">
+          <video autoplay loop muted playsinline preload="auto" style="width: 100%; display: block;">
+            <source src="/videos/zatec-team.mp4" type="video/mp4">
+            Váš prohlížeč nepodporuje přehrávání videa.
           </video>
         </div>
       ` : ''}
 
       ${teamId === 'RADO' ? `
         <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-          <video autoplay loop muted playsinline style="width: 100%; display: block;">
-            <source src="/videos/radomysl-team.mov" type="video/quicktime">
+          <video autoplay loop muted playsinline preload="auto" style="width: 100%; display: block;">
+            <source src="/videos/radomysl-team.mp4" type="video/mp4">
+            Váš prohlížeč nepodporuje přehrávání videa.
           </video>
         </div>
       ` : ''}
 
       ${teamId === 'SOLI' ? `
         <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-          <video autoplay loop muted playsinline style="width: 100%; display: block;">
-            <source src="/videos/solidarita-team.mov" type="video/quicktime">
+          <video autoplay loop muted playsinline preload="auto" style="width: 100%; display: block;">
+            <source src="/videos/solidarita-team.mp4" type="video/mp4">
+            Váš prohlížeč nepodporuje přehrávání videa.
           </video>
         </div>
       ` : ''}

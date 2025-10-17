@@ -1,0 +1,20 @@
+[
+  {"name": "David Burian", "team": "Modřice", "matches": 5, "wins": 5, "winRate": 100},
+  {"name": "Jakub Pospíšil", "team": "Modřice", "matches": 9, "wins": 8, "winRate": 89},
+  {"name": "Jaroslav Kovařík", "team": "Žatec", "matches": 6, "wins": 5, "winRate": 83},
+  {"name": "Jakub Chadim", "team": "Čakovice", "matches": 6, "wins": 5, "winRate": 83},
+  {"name": "Marek Vojtíšek", "team": "Holice", "matches": 5, "wins": 4, "winRate": 80},
+  {"name": "Daniel Matura", "team": "Čelákovice", "matches": 8, "wins": 6, "winRate": 75},
+  {"name": "Jiří Kalous", "team": "Čakovice", "matches": 7, "wins": 5, "winRate": 71},
+  {"name": "Radek Šafr", "team": "Čelákovice", "matches": 10, "wins": 7, "winRate": 70},
+  {"name": "Tomáš Chadim", "team": "Čakovice", "matches": 10, "wins": 7, "winRate": 70},
+  {"name": "Zdeněk Kalous ml.", "team": "Čakovice", "matches": 12, "wins": 8, "winRate": 67},
+  {"name": "Lukáš Rosenberk", "team": "Modřice", "matches": 9, "wins": 6, "winRate": 67},
+  {"name": "Jan Jůzek", "team": "Žatec", "matches": 9, "wins": 6, "winRate": 67},
+  {"name": "Jan Hanus", "team": "Modřice", "matches": 11, "wins": 7, "winRate": 64},
+  {"name": "Ondřej Vít", "team": "Žatec", "matches": 11, "wins": 7, "winRate": 64},
+  {"name": "Petr Šimeček", "team": "Holice", "matches": 8, "wins": 5, "winRate": 63},
+  {"name": "Matěj Mužík", "team": "Žatec", "matches": 5, "wins": 3, "winRate": 60},
+  {"name": "Tomáš Andris", "team": "Čelákovice", "matches": 12, "wins": 7, "winRate": 58},
+  {"name": "Michael Svoboda", "team": "Modřice", "matches": 7, "wins": 4, "winRate": 57}
+]

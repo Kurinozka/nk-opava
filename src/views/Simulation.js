@@ -263,8 +263,8 @@ export function setupSimulationHandlers() {
       opponentBench: []
     }
 
-    // Inicializovat globální state s ID obou týmů
-    initializeLeagueSetup(matchInfo, currentExtraligaTeams.team2, playersPerTeam, team1.players, team2.players, state, currentExtraligaTeams.team1)
+    // Inicializovat globální state s ID obou týmů a názvy týmů
+    initializeLeagueSetup(matchInfo, currentExtraligaTeams.team2, playersPerTeam, team1.players, team2.players, state, currentExtraligaTeams.team1, team1.name, team2.name)
 
     // Setup handlers s callback pro potvrzení
     setupLeagueMatchSetupHandlers(matchInfo, currentExtraligaTeams.team2, (team1Lineup, team1Bench, team2Lineup, team2Bench, playersPerTeam, coachMode) => {

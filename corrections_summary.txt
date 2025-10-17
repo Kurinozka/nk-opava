@@ -1,0 +1,35 @@
+=== SCHOOL VIDEOS CORRECTIONS SUMMARY ===
+
+Based on original filenames, here are the key findings:
+
+KAREL HRON (KVAR_3) Videos:
+- "Karel Hron - smeč do béčka (neúspěšná).mp4" - FAIL version
+- "Karel Hron - smeč do béčka (úspěšná).mp4" - SUCCESS version
+- "Karel Hron - smečovaný servis (úspěšný).mp4" - SUCCESS
+- "Karel Hron - tupá rána kamkoliv (úspěšná i neúspěšná).mp4" - Both SUCCESS and FAIL
+- "Karel Hron - hruď (úspěšná).mp4" - SUCCESS
+
+This means Karel Hron SHOULD have:
+1. TWO smeč do béčka videos (one success in skill 3, one fail somewhere)
+2. Smečovaný servis (success) - skill 11
+3. Tupá rána - skill 4
+4. Hruď - skill 16
+
+ISSUES TO FIX:
+1. Line 104: Remove "CELA_10 with modr-1-smecovany-servis.mp4" - WRONG!
+2. Line 143: Remove "KVAR_7 with kvar-7-slabsi-noha.mp4" - File doesn't exist!
+3. Add Karel Hron FAIL version of smeč do béčka
+
+OTHER CORRECTIONS NEEDED:
+- Jan Chalupa has "silnější noha (neúspěšná)" which should map to skill 17 as FAIL
+- Václav Kalous has both success and fail versions
+- Many "úspěšná i neúspěšná" files need to be split into two entries
+
+ALL FIXED:
+✓ kvar-6-hrud.mp4 -> kvar-6-hlava.mp4
+✓ Added Ondřej Kurka's nonsense videos
+✓ Fixed video path names (smec-becko, smec-stred, etc.)
+✓ Fixed Tupá rána paths
+✓ Fixed Hruď paths
+✓ Removed invalid CELA_10 smecovany-servis entry
+✓ Removed invalid KVAR_7 slabsi-noha entry

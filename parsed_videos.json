@@ -1,0 +1,882 @@
+[
+  {
+    "original_file": "Dan Bílý - smečovaný servis (úspěšný).mp4",
+    "player_name": "Dan Bílý",
+    "player_id": "VSET_5",
+    "skill_id": 13,
+    "skill_name": "smečovaný servis",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Daniel Matura - Skákaná smeč (úspěšná).mp4",
+    "player_name": "Daniel Matura",
+    "player_id": "CELA_4",
+    "skill_id": 6,
+    "skill_name": "skákaná smeč",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "David Dvořák - klepák (neúspěšný).mp4",
+    "player_name": "David Dvořák",
+    "player_id": "VSET_4",
+    "skill_id": 7,
+    "skill_name": "klepák",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "David Dvořák - silnější noha (úspěch).mp4",
+    "player_name": "David Dvořák",
+    "player_id": "VSET_4",
+    "skill_id": 17,
+    "skill_name": "silnější noha",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "David Višvader - hruď (úspěšná).mp4",
+    "player_name": "David Višvader",
+    "player_id": "MODR_9",
+    "skill_id": 16,
+    "skill_name": "hruď",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "David Višvader - nesmysl s názvem boží ruka (úspěšný i neúspěšný).mp4",
+    "player_name": "David Višvader",
+    "player_id": "MODR_9",
+    "skill_id": 15,
+    "skill_name": "nesmysl",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": "boží ruka"
+  },
+  {
+    "original_file": "David Višvader - skluz (úspěšný) - video přehraj v případě úspěšné obrany proti kraťasu za blok.mp4",
+    "player_name": "David Višvader",
+    "player_id": "MODR_9",
+    "skill_id": 12,
+    "skill_name": "skluz",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "David Višvader - skákaná smeč (úspěšná).mp4",
+    "player_name": "David Višvader",
+    "player_id": "MODR_9",
+    "skill_id": 6,
+    "skill_name": "skákaná smeč",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "David Višvader - smeč přes blok (úspěšná).mp4",
+    "player_name": "David Višvader",
+    "player_id": "MODR_9",
+    "skill_id": 1,
+    "skill_name": "smeč přes blok",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "František Kalas - blok (úspěšný).mp4",
+    "player_name": "František Kalas",
+    "player_id": "MODR_3",
+    "skill_id": 12,
+    "skill_name": "blok",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "František Kalas - smeč do béčka (úspěšná).mp4",
+    "player_name": "František Kalas",
+    "player_id": "MODR_3",
+    "skill_id": 3,
+    "skill_name": "smeč do béčka",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Jakub Medek - blok (úspěšný).mp4",
+    "player_name": "Jakub Medek",
+    "player_id": "KVAR_8",
+    "skill_id": 12,
+    "skill_name": "blok",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Jakub Medek - pravá noha (úspěšná).mp4",
+    "player_name": "Jakub Medek",
+    "player_id": "KVAR_8",
+    "skill_id": 17,
+    "skill_name": "pravá noha",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Jakub Medek - smeč do béčka (úspěšná).mp4",
+    "player_name": "Jakub Medek",
+    "player_id": "KVAR_8",
+    "skill_id": 3,
+    "skill_name": "smeč do béčka",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Jakub Medek - smeč do paty (neúspěšná).mp4",
+    "player_name": "Jakub Medek",
+    "player_id": "KVAR_8",
+    "skill_id": 9,
+    "skill_name": "smeč do paty",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Jakub Pospíšil - nesmysl s názvem nenápadná výměna balonu za přefoukaný (úspěšná i neúspěšná).mp4",
+    "player_name": "Jakub Pospíšil",
+    "player_id": "MODR_5",
+    "skill_id": 15,
+    "skill_name": "nesmysl",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": "nenápadná výměna balonu za přefoukaný"
+  },
+  {
+    "original_file": "Jakub Pospíšil - smeč přes blok (úspěšná).mp4",
+    "player_name": "Jakub Pospíšil",
+    "player_id": "MODR_5",
+    "skill_id": 1,
+    "skill_name": "smeč přes blok",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Jan Chalupa - hruď (úspěšná).mp4",
+    "player_name": "Jan Chalupa",
+    "player_id": "VSET_2",
+    "skill_id": 16,
+    "skill_name": "hruď",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Jan Chalupa - kraťas za blok (úspěšný).mp4",
+    "player_name": "Jan Chalupa",
+    "player_id": "VSET_2",
+    "skill_id": 10,
+    "skill_name": "kraťas za blok",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Jan Chalupa - silnější noha (neúspěšná).mp4",
+    "player_name": "Jan Chalupa",
+    "player_id": "VSET_2",
+    "skill_id": 17,
+    "skill_name": "silnější noha",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Jan Chalupa - vytlučený blok (úspěšný).mp4",
+    "player_name": "Jan Chalupa",
+    "player_id": "VSET_2",
+    "skill_id": 12,
+    "skill_name": "blok",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Jan Hanus - kraťas za blok (úspěšný).mp4",
+    "player_name": "Jan Hanus",
+    "player_id": "MODR_10",
+    "skill_id": 10,
+    "skill_name": "kraťas za blok",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Jan Hanus - smečovaný servis (úspěšný).mp4",
+    "player_name": "Jan Hanus",
+    "player_id": "MODR_10",
+    "skill_id": 13,
+    "skill_name": "smečovaný servis",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Jan Jůzek - hlavička (úspěšná).mp4",
+    "player_name": "Jan Jůzek",
+    "player_id": "RADO_14",
+    "skill_id": 16,
+    "skill_name": "hlavička",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Jan Vanke - blok (úspěšný).mp4",
+    "player_name": "Jan Vanke",
+    "player_id": "KVAR_1",
+    "skill_id": 12,
+    "skill_name": "blok",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Jan Vanke - hruď (úspěšná).mp4",
+    "player_name": "Jan Vanke",
+    "player_id": "KVAR_1",
+    "skill_id": 16,
+    "skill_name": "hruď",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Jan Vanke - tupá rána kamkoliv (úspěch).mp4",
+    "player_name": "Jan Vanke",
+    "player_id": "KVAR_1",
+    "skill_id": 4,
+    "skill_name": "tupá rána kamkoliv",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Karel Hron - hruď (úspěšná).mp4",
+    "player_name": "Karel Hron",
+    "player_id": "KVAR_3",
+    "skill_id": 16,
+    "skill_name": "hruď",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Karel Hron - smeč do béčka (neúspěšná).mp4",
+    "player_name": "Karel Hron",
+    "player_id": "KVAR_3",
+    "skill_id": 3,
+    "skill_name": "smeč do béčka",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Karel Hron - smeč do béčka (úspěšná).mp4",
+    "player_name": "Karel Hron",
+    "player_id": "KVAR_3",
+    "skill_id": 3,
+    "skill_name": "smeč do béčka",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Karel Hron - smečovaný servis (úspěšný).mp4",
+    "player_name": "Karel Hron",
+    "player_id": "KVAR_3",
+    "skill_id": 13,
+    "skill_name": "smečovaný servis",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Karel Hron - tupá rána kamkoliv (úspěšná i neúspěšná).mp4",
+    "player_name": "Karel Hron",
+    "player_id": "KVAR_3",
+    "skill_id": 4,
+    "skill_name": "tupá rána kamkoliv",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Lukáš Rosenberk - nesmysl s názvem lehké povolení saka (úspěšný i neúspěšný).mp4",
+    "player_name": "Lukáš Rosenberk",
+    "player_id": "MODR_6",
+    "skill_id": 15,
+    "skill_name": "nesmysl",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": "lehké povolení saka"
+  },
+  {
+    "original_file": "Lukáš Tolar - hlava (úspěšná) - tuto verzi přhrát jen proti smeči do béčka a patě.mp4",
+    "player_name": "Lukáš Tolar",
+    "player_id": "KVAR_6",
+    "skill_id": 16,
+    "skill_name": "hlava",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Marek Vojtíšek - blok (úspěšný).mp4",
+    "player_name": "Marek Vojtíšek",
+    "player_id": "CELA_10",
+    "skill_id": 12,
+    "skill_name": "blok",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Marek Vojtíšek - hlava (úspěšná).mp4",
+    "player_name": "Marek Vojtíšek",
+    "player_id": "CELA_10",
+    "skill_id": 16,
+    "skill_name": "hlava",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Marek Vojtíšek - kraťas pod sebe (úspěšný).mp4",
+    "player_name": "Marek Vojtíšek",
+    "player_id": "CELA_10",
+    "skill_id": 8,
+    "skill_name": "kraťas pod sebe",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Marek Vojtíšek - vytlučený blok (neúspěšný).mp4",
+    "player_name": "Marek Vojtíšek",
+    "player_id": "CELA_10",
+    "skill_id": 12,
+    "skill_name": "blok",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Martin Sehrig - pravá noha (úspěšná).mp4",
+    "player_name": "Martin Sehrig",
+    "player_id": "RADO_11",
+    "skill_id": 17,
+    "skill_name": "pravá noha",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Martin Sehrig - vytlučený blok (neúspěšný).mp4",
+    "player_name": "Martin Sehrig",
+    "player_id": "RADO_11",
+    "skill_id": 12,
+    "skill_name": "blok",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Martin Tomek - tupá rána kamkoliv (úspěšná i neúspěšná).mp4",
+    "player_name": "Martin Tomek",
+    "player_id": "RADO_13",
+    "skill_id": 4,
+    "skill_name": "tupá rána kamkoliv",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Martin Zbranek - blok (úspěšný).mp4",
+    "player_name": "Martin Zbranek",
+    "player_id": "VSET_1",
+    "skill_id": 12,
+    "skill_name": "blok",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Martin Zbranek - nesmysl s názvem bodlo do koulí (úspěšný i neúspěšný).mp4",
+    "player_name": "Martin Zbranek",
+    "player_id": "VSET_1",
+    "skill_id": 15,
+    "skill_name": "nesmysl",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": "bodlo do koulí"
+  },
+  {
+    "original_file": "Martin Zbranek - vytlučený blok (úspěšný).mp4",
+    "player_name": "Martin Zbranek",
+    "player_id": "VSET_1",
+    "skill_id": 12,
+    "skill_name": "blok",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Matěj Medek - Slabší noha (úspěšná).mp4",
+    "player_name": "Matěj Medek",
+    "player_id": "KVAR_5",
+    "skill_id": 14,
+    "skill_name": "slabší noha",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Matěj Mužík - vytlučený blok (úspěšný).mp4",
+    "player_name": "Matěj Mužík",
+    "player_id": "RADO_17",
+    "skill_id": 12,
+    "skill_name": "blok",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Michael Svoboda - hruď (úspěšná).mp4",
+    "player_name": "Michael Svoboda",
+    "player_id": "MODR_1",
+    "skill_id": 16,
+    "skill_name": "hruď",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Michael Svoboda - kraťas pod sebe (neúspěšný).mp4",
+    "player_name": "Michael Svoboda",
+    "player_id": "MODR_1",
+    "skill_id": 8,
+    "skill_name": "kraťas pod sebe",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Michael Svoboda - kraťas pod sebe (úspěšný).mp4",
+    "player_name": "Michael Svoboda",
+    "player_id": "MODR_1",
+    "skill_id": 8,
+    "skill_name": "kraťas pod sebe",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Michael Svoboda - smečovaný servis (úspěšný i neúspěšný).mp4",
+    "player_name": "Michael Svoboda",
+    "player_id": "MODR_1",
+    "skill_id": 13,
+    "skill_name": "smečovaný servis",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Michal Nepodal - hlava (úspěšné).mp4",
+    "player_name": "Michal Nepodal",
+    "player_id": "RADO_9",
+    "skill_id": 16,
+    "skill_name": "hlava",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Michal Nepodal - smč do áčka i klepák (úspěšné).mp4",
+    "player_name": "Michal Nepodal",
+    "player_id": "RADO_9",
+    "skill_id": 7,
+    "skill_name": "klepák",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Nikolas Truc - smeč do paty (úspěšná i neúspěšná).mp4",
+    "player_name": "Nikolas Truc",
+    "player_id": "RADO_3",
+    "skill_id": 9,
+    "skill_name": "smeč do paty",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Nikolas Truc - smeč do středu (úspěšná i neúspěšná).mp4",
+    "player_name": "Nikolas Truc",
+    "player_id": "RADO_3",
+    "skill_id": 1,
+    "skill_name": "smeč do středu",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Nikolas Truc - smeč pod sebe (úspěšná).mp4",
+    "player_name": "Nikolas Truc",
+    "player_id": "RADO_3",
+    "skill_id": 8,
+    "skill_name": "smeč pod sebe",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Nikolas Truc - tupá rána kamkoliv (úspěšné i neúspěšné).mp4",
+    "player_name": "Nikolas Truc",
+    "player_id": "RADO_3",
+    "skill_id": 4,
+    "skill_name": "tupá rána kamkoliv",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Nikols Truc - kraťas pod sebe (úspěšný i neúspšěšný).mp4",
+    "player_name": "Nikols Truc",
+    "player_id": "RADO_3",
+    "skill_id": 8,
+    "skill_name": "kraťas pod sebe",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Ondřej Vít - skákaná smeč (neúspěšná).mp4",
+    "player_name": "Ondřej Vít",
+    "player_id": "RADO_1",
+    "skill_id": 6,
+    "skill_name": "skákaná smeč",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Ondřej Vít - tupá rána kamkoliv (úspěšná i neúspěšná).mp4",
+    "player_name": "Ondřej Vít",
+    "player_id": "RADO_1",
+    "skill_id": 4,
+    "skill_name": "tupá rána kamkoliv",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Ondřej Vít - šlapaný kraťas (neúspěšný).mp4",
+    "player_name": "Ondřej Vít",
+    "player_id": "RADO_1",
+    "skill_id": 5,
+    "skill_name": "šlapaný kraťas",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Pavel Gregor - vytlučený blok (neúspěšný).mp4",
+    "player_name": "Pavel Gregor",
+    "player_id": "KVAR_9",
+    "skill_id": 12,
+    "skill_name": "blok",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Pavel Kop - silnější noha (neúspěch).mp4",
+    "player_name": "Pavel Kop",
+    "player_id": "MODR_4",
+    "skill_id": 17,
+    "skill_name": "silnější noha",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Petr Bubniak - kraťas za blok (úspěšný).mp4",
+    "player_name": "Petr Bubniak",
+    "player_id": "MODR_2",
+    "skill_id": 10,
+    "skill_name": "kraťas za blok",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Petr Nesládek - nesmysl s názvem dát něco do pití sobě i blokaři(úspěšný).mp4",
+    "player_name": "Petr Nesládek",
+    "player_id": "CELA_3",
+    "skill_id": 15,
+    "skill_name": "nesmysl",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": "dát něco do pití sobě i blokaři"
+  },
+  {
+    "original_file": "Petr Nesládek - smeč do áčka (úspěšná i neúspěšná).mp4",
+    "player_name": "Petr Nesládek",
+    "player_id": "CELA_3",
+    "skill_id": 2,
+    "skill_name": "smeč do áčka",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Petr Nesládek - tupá rána kamkoliv (úspěšná i neúspěšná).mp4",
+    "player_name": "Petr Nesládek",
+    "player_id": "CELA_3",
+    "skill_id": 4,
+    "skill_name": "tupá rána kamkoliv",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Petr Vít - vytlučený blok (neúspěšný).mp4",
+    "player_name": "Petr Vít",
+    "player_id": "RADO_2",
+    "skill_id": 12,
+    "skill_name": "blok",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Petr nesládek - blok (úspěšný).mp4",
+    "player_name": "Petr nesládek",
+    "player_id": "CELA_3",
+    "skill_id": 12,
+    "skill_name": "blok",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Rudolf Stařičný - nesmysl s názvem staredown (neúspěšný).mp4",
+    "player_name": "Rudolf Stařičný",
+    "player_id": "VSET_9",
+    "skill_id": 15,
+    "skill_name": "nesmysl",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": "staredown"
+  },
+  {
+    "original_file": "Rudolf Stařičný - nesmysl s názvem staredown (úspěšný).mp4",
+    "player_name": "Rudolf Stařičný",
+    "player_id": "VSET_9",
+    "skill_id": 15,
+    "skill_name": "nesmysl",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": "staredown"
+  },
+  {
+    "original_file": "Rudolf Stařičný - tupá rána kamkoliv (úspěšná i neúspěšná).mp4",
+    "player_name": "Rudolf Stařičný",
+    "player_id": "VSET_9",
+    "skill_id": 4,
+    "skill_name": "tupá rána kamkoliv",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Tobiáš Gregor - kraťas za blok (úspěšný).mp4",
+    "player_name": "Tobiáš Gregor",
+    "player_id": "KVAR_7",
+    "skill_id": 10,
+    "skill_name": "kraťas za blok",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Tobiáš Gregor - levá noha (úspěšná).mp4",
+    "player_name": "Tobiáš Gregor",
+    "player_id": "KVAR_7",
+    "skill_id": 14,
+    "skill_name": "levá noha",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Tobiáš Gregor - skákaná smeč (úspěšná).mp4",
+    "player_name": "Tobiáš Gregor",
+    "player_id": "KVAR_7",
+    "skill_id": 6,
+    "skill_name": "skákaná smeč",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Tobiáš Gregor - smeč do středu (úspěšná).mp4",
+    "player_name": "Tobiáš Gregor",
+    "player_id": "KVAR_7",
+    "skill_id": 1,
+    "skill_name": "smeč do středu",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Tobiáš Gregor - smečovaný servis (neúspěšný).mp4",
+    "player_name": "Tobiáš Gregor",
+    "player_id": "KVAR_7",
+    "skill_id": 13,
+    "skill_name": "smečovaný servis",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Tomáš Andris - pata (úspěšná).mp4",
+    "player_name": "Tomáš Andris",
+    "player_id": "CELA_2",
+    "skill_id": 11,
+    "skill_name": "pata",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Tomáš Andris - tupá rána kamkoliv (úspěšná).mp4",
+    "player_name": "Tomáš Andris",
+    "player_id": "CELA_2",
+    "skill_id": 4,
+    "skill_name": "tupá rána kamkoliv",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Tomáš Bíbr - smeč přes blok (do středu).mp4",
+    "player_name": "Tomáš Bíbr",
+    "player_id": "KVAR_4",
+    "skill_id": 1,
+    "skill_name": "smeč přes blok",
+    "is_success": false,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Tomáš Bíbr - vytlučený blok (úspěšný).mp4",
+    "player_name": "Tomáš Bíbr",
+    "player_id": "KVAR_4",
+    "skill_id": 12,
+    "skill_name": "blok",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Vilém Ungermann - kraťas pod sebe (úspěšný).mp4",
+    "player_name": "Vilém Ungermann",
+    "player_id": "RADO_15",
+    "skill_id": 8,
+    "skill_name": "kraťas pod sebe",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Vojtěch Holas - slabší noha (úspěšná).mp4",
+    "player_name": "Vojtěch Holas",
+    "player_id": "CELA_5",
+    "skill_id": 14,
+    "skill_name": "slabší noha",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Vojtěch Holas - smečovaný servis (úspěšný i neúspěšný).mp4",
+    "player_name": "Vojtěch Holas",
+    "player_id": "CELA_5",
+    "skill_id": 13,
+    "skill_name": "smečovaný servis",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Václav Kalous - smeč do středu (úspěšný i neúspěšný).mp4",
+    "player_name": "Václav Kalous",
+    "player_id": "CELA_1",
+    "skill_id": 1,
+    "skill_name": "smeč do středu",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Václav Kalous - smečovaný servis (úspěšný i neúspěšný).mp4",
+    "player_name": "Václav Kalous",
+    "player_id": "CELA_1",
+    "skill_id": 13,
+    "skill_name": "smečovaný servis",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "Václav Kalous - vytlučený blok (úspěšný).mp4",
+    "player_name": "Václav Kalous",
+    "player_id": "CELA_1",
+    "skill_id": 12,
+    "skill_name": "blok",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "jan Vanke - pata (úspěšná).mp4",
+    "player_name": "jan Vanke",
+    "player_id": "KVAR_1",
+    "skill_id": 11,
+    "skill_name": "pata",
+    "is_success": true,
+    "is_fail": false,
+    "nesmysl_name": null
+  },
+  {
+    "original_file": "vojtěch sýs - smečovaný servis (úspěšné i neúspěšné).mp4",
+    "player_name": "vojtěch sýs",
+    "player_id": "RADO_16",
+    "skill_id": 13,
+    "skill_name": "smečovaný servis",
+    "is_success": true,
+    "is_fail": true,
+    "nesmysl_name": null
+  }
+]
