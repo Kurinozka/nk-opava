@@ -157,6 +157,7 @@ export const schoolVideos = {
       { playerId: 'MODR_10', playerName: 'David Višvader', teamCode: 'MODR', video: '/videos/modr-9-bozi-ruka.mp4', success: true },
       { playerId: 'VSET_13', playerName: 'Rudolf Stařičný', teamCode: 'VSET', video: '/videos/vset-9-staredown.mp4', success: true },
       { playerId: 'CELA_6', playerName: 'Petr Nesládek', teamCode: 'CELA', video: '/videos/cela-3-dat-neco-do-piti-sobe-i-blokari.mp4', success: true },
+      { playerId: 'ZATEC_8', playerName: 'Milan Dráždil', teamCode: 'ZATEC', video: '/videos/drazdil-destrukce.mp4', success: true },
       // Neúspěšné nesmysly
       { playerId: 4, playerName: 'Ondřej Kurka', teamCode: 'OPAVA', video: '/videos/kurka-shaolin-fail.mp4', success: false },
       { playerId: 'MODR_6', playerName: 'Lukáš Rosenberk', teamCode: 'MODR', video: '/videos/modr-6-lehke-povoleni-saka.mp4', success: false },
@@ -202,8 +203,9 @@ export const schoolVideos = {
     name: 'Vytlučený blok',
     videos: [
       { playerId: 'VSET_3', playerName: 'Jan Chalupa', teamCode: 'VSET', video: '/videos/chalupa-vytluceny-blok.mp4', success: true },
-      { playerId: 'CELA_B_3', playerName: 'Václav Kalous', teamCode: 'CELA_B', video: '/videos/v-kalous-vytluceny-blok.mp4', success: true }
-      // Note: Další videa v adresáři neexistují, ale ponechávám je pro budoucnost
+      { playerId: 'CELA_B_3', playerName: 'Václav Kalous', teamCode: 'CELA_B', video: '/videos/v-kalous-vytluceny-blok.mp4', success: true },
+      { playerId: 'ZATEC_8', playerName: 'Milan Dráždil', teamCode: 'ZATEC', video: '/videos/drazdil-vytluceny-blok.mp4', success: true }
+      // Note: Další videa v adresáří neexistují, ale ponechávám je pro budoucnost
       // { playerId: 'GREGOR', playerName: 'Tobiáš Gregor', teamCode: 'RADO', video: '/videos/gregor-vytluceny-blok.mp4', success: false },
       // { playerId: 'MODR_4', playerName: 'Martin Sehrig', teamCode: 'MODR', video: '/videos/modr-4-vytluceny-blok.mp4', success: false },
       // { playerId: 'KVAR_7', playerName: 'Jan Chalupa', teamCode: 'KVAR', video: '/videos/kvar-7-vytluceny-blok.mp4', success: false }
