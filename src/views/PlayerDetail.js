@@ -1074,7 +1074,7 @@ export function createPlayerDetailView(playerId) {
                   ` : `
                     <div class="skill-ball-container">
                       <div class="skill-ball offensive">
-                        <img src="/public/images/nohejbalovy-mic.avif" alt="Nohejbalový míč">
+                        <img src="/images/nohejbalovy-mic.avif" alt="Nohejbalový míč">
                       </div>
                       <div class="skill-ball-string"></div>
                       <div class="skill-ball-tag offensive">
@@ -1113,7 +1113,7 @@ export function createPlayerDetailView(playerId) {
                   ` : `
                     <div class="skill-ball-container">
                       <div class="skill-ball defensive">
-                        <img src="/public/images/nohejbalovy-mic.avif" alt="Nohejbalový míč">
+                        <img src="/images/nohejbalovy-mic.avif" alt="Nohejbalový míč">
                       </div>
                       <div class="skill-ball-string"></div>
                       <div class="skill-ball-tag defensive">
@@ -1166,7 +1166,7 @@ export function createPlayerDetailView(playerId) {
                   ` : `
                     <div class="skill-ball-container">
                       <div class="skill-ball nonsense">
-                        <img src="/public/images/nohejbalovy-mic.avif" alt="Nohejbalový míč">
+                        <img src="/images/nohejbalovy-mic.avif" alt="Nohejbalový míč">
                       </div>
                       <div class="skill-ball-string"></div>
                       <div class="skill-ball-tag nonsense">
@@ -1252,7 +1252,7 @@ export function createPlayerDetailView(playerId) {
                   ` : `
                   <div class="skill-ball-container">
                     <div class="skill-ball defensive">
-                      <img src="/public/images/nohejbalovy-mic.avif" alt="Nohejbalový míč">
+                      <img src="/images/nohejbalovy-mic.avif" alt="Nohejbalový míč">
                     </div>
                     <div class="skill-ball-string"></div>
                     <div class="skill-ball-tag defensive">
@@ -1305,7 +1305,7 @@ export function createPlayerDetailView(playerId) {
                   ` : `
                     <div class="skill-ball-container">
                       <div class="skill-ball nonsense">
-                        <img src="/public/images/nohejbalovy-mic.avif" alt="Nohejbalový míč">
+                        <img src="/images/nohejbalovy-mic.avif" alt="Nohejbalový míč">
                       </div>
                       <div class="skill-ball-string"></div>
                       <div class="skill-ball-tag nonsense">

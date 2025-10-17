@@ -1271,7 +1271,6 @@ section {
   background: transparent;
   border-radius: 0;
   overflow: hidden;
-  min-height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1282,7 +1281,6 @@ section {
 .animation-box video,
 .animation-box .skill-video {
   max-width: 100%;
-  max-height: 900px;
   width: 100%;
   height: auto;
   object-fit: contain;
