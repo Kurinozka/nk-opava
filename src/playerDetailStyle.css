@@ -1028,7 +1028,7 @@
 .skill-detail-section {
   margin-bottom: 1.25rem;
   padding: 1rem;
-  background: rgba(30, 30, 30, 0.5);
+  background: transparent;
   border-radius: 6px;
   border-left: 3px solid #58a6ff;
 }
