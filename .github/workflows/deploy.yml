@@ -16,10 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          lfs: false
-
-      - name: Pull LFS files
-        run: git lfs pull
+          lfs: true
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
