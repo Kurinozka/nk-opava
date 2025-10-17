@@ -6268,10 +6268,11 @@ p, h1, h2, h3, h4, h5, h6, span, div {
 
 /* Větší video/animace v modalu */
 .skill-animation-large {
-  border-left-color: #f0f6fc !important;
-  background: rgba(30, 30, 30, 0.8) !important;
+  border: none !important;
+  background: transparent !important;
   padding: 0 !important;
   overflow: hidden;
+  margin: 0 !important;
 }
 
 .animation-box-large {
@@ -6283,6 +6284,7 @@ p, h1, h2, h3, h4, h5, h6, span, div {
   background: transparent;
   border-radius: 0;
   overflow: hidden;
+  border: none;
 }
 
 .animation-box-large video,
