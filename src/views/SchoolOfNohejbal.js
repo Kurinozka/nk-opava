@@ -1,20 +1,50 @@
 import { schoolVideos, okurkaComments } from '../data/schoolVideos.js'
-import { skills } from '../playerData.js'
+import { skills, players } from '../playerData.js'
+import { extraligaTeams } from '../extraligaTeams.js'
 
 let currentVideoIndex = 0
 let allVideos = []
 let filteredVideos = []
 let currentPlaybackRate = 1.0
 
+// Pomocná funkce pro získání názvu nesmyslu hráče
+function getPlayerNonsenseName(playerId) {
+  // Hledat v NK Opava
+  let player = players.find(p => p.id == playerId || p.id === playerId)
+  if (player && player.nonsenseName) {
+    return player.nonsenseName
+  }
+
+  // Hledat v extraligových týmech
+  for (const teamData of extraligaTeams) {
+    if (teamData.players) {
+      player = teamData.players.find(p => p.id == playerId || p.id === playerId)
+      if (player && player.nonsenseName) {
+        return player.nonsenseName
+      }
+    }
+  }
+
+  // Pokud nebyl nalezen specifický název, vytvořit obecný
+  return 'Tajemný nesmysl'
+}
+
 export function createSchoolOfNohejbalView() {
   // Získat všechny videa a náhodně je zamíchat
   allVideos = []
   Object.keys(schoolVideos).forEach(skillId => {
     schoolVideos[skillId].videos.forEach(video => {
+      // Pro nesmysly (skill 15) použít konkrétní název nesmyslu hráče
+      let displayName = schoolVideos[skillId].name
+      if (parseInt(skillId) === 15) {
+        const nonsenseName = getPlayerNonsenseName(video.playerId)
+        displayName = `Nesmyslná dovednost: ${nonsenseName}`
+      }
+
       allVideos.push({
         ...video,
         skillId: parseInt(skillId),
-        skillName: schoolVideos[skillId].name
+        skillName: displayName
       })
     })
   })
