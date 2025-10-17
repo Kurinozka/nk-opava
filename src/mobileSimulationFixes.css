@@ -41,9 +41,9 @@
     padding: 0.3rem !important;
   }
 
-  /* Pole hřiště - zvětšit o 50% a posunout níže */
+  /* Pole hřiště - zvětšit o 50% a posunout výrazně níže */
   .game-container .field-container {
-    margin-top: 2rem !important;
+    margin-top: 8rem !important;  /* Zvětšeno z 2rem na 8rem - posun doprostřed herního pole */
   }
 
   .game-container .court {
@@ -257,10 +257,10 @@
     font-size: 0.85rem !important;
   }
 
-  /* Pole hřiště - zvětšit o 50% a posunout níže */
+  /* Pole hřiště - zvětšit o 50% a posunout výrazně níže */
   .game-container .field-container {
     padding: 0.5rem !important;
-    margin-top: 3rem !important;
+    margin-top: 10rem !important;  /* Zvětšeno z 3rem na 10rem - posun doprostřed herního pole */
   }
 
   .game-container .court {
@@ -341,9 +341,9 @@
     padding: 0.1rem !important;
   }
 
-  /* Pole hřiště - extra posun dolů */
+  /* Pole hřiště - extra posun výrazně dolů */
   .game-container .field-container {
-    margin-top: 3.5rem !important;
+    margin-top: 12rem !important;  /* Zvětšeno z 3.5rem na 12rem - posun doprostřed herního pole */
   }
 
   /* Trenéři - minimální */
