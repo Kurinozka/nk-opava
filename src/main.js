@@ -6,6 +6,50 @@ import './leagueMatchSetupStyle.css'
 import './schoolOfNohejbalStyle.css'
 import './mobileSimulationFixes.css'
 import { players, skills } from './playerData.js'
+
+// Globální handler pro portrait warning overlay
+window.checkOrientationForGame = function() {
+  const overlay = document.querySelector('.portrait-warning-overlay')
+  if (!overlay) return
+
+  const width = window.innerWidth
+  const height = window.innerHeight
+  const isPortrait = height > width
+
+  // Pro fold telefony: detekovat úzké obrazovky (cover screen nebo běžný telefon)
+  // Cover screen Z Fold má šířku ~350-400px, vnitřní displej ~700px+
+  const isNarrowScreen = width < 600
+
+  console.log('Orientation check:', { width, height, isPortrait, isNarrowScreen })
+
+  // Zobrazit overlay pokud:
+  // 1. Je v portrait módu A je to úzká obrazovka (běžný telefon nebo cover screen)
+  // 2. NEBO pokud je šířka menší než 600px v portrait módu
+  if (isPortrait && isNarrowScreen) {
+    overlay.style.display = 'flex'
+    console.log('→ Showing portrait warning overlay')
+  } else {
+    overlay.style.display = 'none'
+    console.log('→ Hiding portrait warning overlay')
+  }
+}
+
+// Spustit kontrolu při načtení stránky
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    window.checkOrientationForGame()
+  }, 100)
+})
+
+// Přidat event listeners pro změnu orientace
+window.addEventListener('orientationchange', () => {
+  setTimeout(() => {
+    window.checkOrientationForGame()
+  }, 100)
+})
+window.addEventListener('resize', () => {
+  window.checkOrientationForGame()
+})
 import { createHomeView, setupHomeHandlers as setupHomeViewHandlers } from './views/Home.js'
 import { createTeamView, setupTeamHandlers } from './views/Team.js'
 import { createSimulationView, setupSimulationHandlers } from './views/Simulation.js'

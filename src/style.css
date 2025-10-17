@@ -6349,15 +6349,9 @@ p, h1, h2, h3, h4, h5, h6, span, div {
   margin-bottom: 2rem;
 }
 
-/* Zobrazit warning pouze v portrait módu na mobilních zařízeních */
-@media (orientation: portrait) and (max-width: 768px) {
-  .game-container .portrait-warning-overlay {
-    display: flex !important;
-  }
-}
-
-/* Pro menší obrazovky v portrait módu */
-@media (orientation: portrait) and (max-height: 1024px) {
+/* Zobrazit warning pouze v portrait módu na úzkých obrazovkách */
+/* Toto pravidlo je teď pouze fallback - hlavní logika je v JavaScript */
+@media (orientation: portrait) and (max-width: 600px) {
   .game-container .portrait-warning-overlay {
     display: flex !important;
   }
