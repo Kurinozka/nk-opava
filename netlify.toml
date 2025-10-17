@@ -1,0 +1,18 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[plugins]]
+  package = "@netlify/plugin-git-lfs"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[dev]
+  command = "npm run dev"
+  port = 5173
