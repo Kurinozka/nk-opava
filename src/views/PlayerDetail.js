@@ -1569,6 +1569,12 @@ function showSkillDetailModal(skillId, playerId = null, isSuccessTab = true) {
   // Přidat modal do body
   document.body.appendChild(modal)
 
+  // Zajistit, že videa v modalu mají zvuk (ne muted)
+  const modalVideos = modal.querySelectorAll('video')
+  modalVideos.forEach(video => {
+    video.muted = false
+  })
+
   // Přidat event listener pro zavření
   const closeBtn = modal.querySelector('.skill-modal-close')
   closeBtn.addEventListener('click', () => {

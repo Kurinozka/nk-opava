@@ -6065,7 +6065,8 @@ export const extraligaTeams = [
           "svih": 85,
           "cteniHry": 84,
           "odolnost": 80
-        }
+        },
+        "availableSkills": [19, 15]
       },
       {
         "id": "ZATEC_9",
