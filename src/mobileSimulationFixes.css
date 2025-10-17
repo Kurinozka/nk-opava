@@ -41,9 +41,30 @@
     padding: 0.3rem !important;
   }
 
-  /* Pole hřiště - posunout níže */
+  /* Pole hřiště - zvětšit o 50% a posunout níže */
   .game-container .field-container {
     margin-top: 2rem !important;
+  }
+
+  .game-container .court {
+    padding: 1.5rem !important;
+    min-height: 600px !important;  /* Zvětšeno z 400px na 600px (50% nárůst) */
+    gap: 3rem !important;
+  }
+
+  /* Ikony dovedností na hřišti - zmenšit o 50% */
+  .game-container .court .skill-icon-display,
+  .game-container .skills-reveal-container .skill-icon-display,
+  .game-container .skills-reveal-container-with-coaches .skill-icon-display {
+    width: 10px !important;  /* Zmenšeno z 20px na 10px (50%) */
+    height: 10px !important;
+    font-size: 0.45rem !important;
+  }
+
+  .game-container .court .skill-icon-overlay,
+  .game-container .skills-reveal-container .skill-icon-overlay,
+  .game-container .skills-reveal-container-with-coaches .skill-icon-overlay {
+    font-size: 0.45rem !important;
   }
 
   /* Karty trenérů - zmenšit */
@@ -236,14 +257,16 @@
     font-size: 0.85rem !important;
   }
 
-  /* Pole hřiště - posunout níže a zmenšit */
+  /* Pole hřiště - zvětšit o 50% a posunout níže */
   .game-container .field-container {
     padding: 0.5rem !important;
     margin-top: 3rem !important;
   }
 
   .game-container .court {
-    padding: 0.8rem !important;
+    padding: 1.2rem !important;
+    min-height: 600px !important;  /* Zvětšeno z 400px na 600px (50% nárůst) */
+    gap: 3rem !important;
   }
 
   .game-container .court-player img {
@@ -253,6 +276,21 @@
 
   .game-container .court-player span {
     font-size: 0.7rem !important;
+  }
+
+  /* Ikony dovedností na hřišti - zmenšit o 50% */
+  .game-container .court .skill-icon-display,
+  .game-container .skills-reveal-container .skill-icon-display,
+  .game-container .skills-reveal-container-with-coaches .skill-icon-display {
+    width: 7px !important;  /* Zmenšeno z 14px na 7px (50%) */
+    height: 7px !important;
+    font-size: 0.35rem !important;
+  }
+
+  .game-container .court .skill-icon-overlay,
+  .game-container .skills-reveal-container .skill-icon-overlay,
+  .game-container .skills-reveal-container-with-coaches .skill-icon-overlay {
+    font-size: 0.35rem !important;
   }
 }
 
@@ -374,7 +412,13 @@
     font-size: 0.8rem !important;
   }
 
-  /* Pole */
+  /* Pole hřiště - zvětšit o 50% */
+  .game-container .court {
+    padding: 1.2rem !important;
+    min-height: 600px !important;  /* Zvětšeno o 50% */
+    gap: 2.5rem !important;
+  }
+
   .game-container .court-player img {
     width: 45px !important;
     height: 45px !important;
@@ -382,6 +426,21 @@
 
   .game-container .court-player span {
     font-size: 0.65rem !important;
+  }
+
+  /* Ikony dovedností na hřišti - zmenšit o 50% */
+  .game-container .court .skill-icon-display,
+  .game-container .skills-reveal-container .skill-icon-display,
+  .game-container .skills-reveal-container-with-coaches .skill-icon-display {
+    width: 6px !important;  /* Zmenšeno z 12px na 6px (50%) */
+    height: 6px !important;
+    font-size: 0.3rem !important;
+  }
+
+  .game-container .court .skill-icon-overlay,
+  .game-container .skills-reveal-container .skill-icon-overlay,
+  .game-container .skills-reveal-container-with-coaches .skill-icon-overlay {
+    font-size: 0.3rem !important;
   }
 }
 
