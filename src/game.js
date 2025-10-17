@@ -8385,13 +8385,13 @@ async function endSet() {
       showCoachQuote('team2', team2Quote)
 
       if (gameState.currentSet === 2) {
-        // Třetí set začíná od 0:0 a končí na 10
-        gameState.score.team1[2] = 0
-        gameState.score.team2[2] = 0
+        // Třetí set začíná od 5:5 a končí na 10
+        gameState.score.team1[2] = 5
+        gameState.score.team2[2] = 5
         gameState.successfulDefenses.team1[2] = 0
         gameState.successfulDefenses.team2[2] = 0
-        document.getElementById('t1-s3').textContent = 0
-        document.getElementById('t2-s3').textContent = 0
+        document.getElementById('t1-s3').textContent = 5
+        document.getElementById('t2-s3').textContent = 5
       }
 
       // Aktualizovat skóre displej
