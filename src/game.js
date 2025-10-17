@@ -816,8 +816,8 @@ export function startLeagueMatch() {
   // Inicializovat karty trenérů v komentářových oknech
   initializeCoachCards()
 
-  // Inicializovat ligový režim pouze pro ligové zápasy
-  if (gameState.gameMode === 'league') {
+  // Inicializovat ligový a extraligový režim
+  if (gameState.gameMode === 'league' || gameState.gameMode === 'extraliga') {
     gameState.matchSchedule = createLeagueMatchSchedule(playersPerTeam)
     gameState.currentMatch = 0
     gameState.matchesScore = { team1: 0, team2: 0 }
@@ -917,7 +917,7 @@ function createLeagueMatchSchedule(playersPerTeam) {
 
 // Funkce pro kontrolu, zda liga skončila
 function checkLeagueEnd() {
-  if (gameState.gameMode !== 'league') return false
+  if (gameState.gameMode !== 'league' && gameState.gameMode !== 'extraliga') return false
 
   const t1Score = gameState.matchesScore.team1
   const t2Score = gameState.matchesScore.team2
@@ -1278,13 +1278,7 @@ function getEvaluationDiv() {
         entry.className = 'action-entry'
         entry.setAttribute('data-action-number', actionCounter)
 
-        // Přidat oddělovač s číslem akce
-        const separator = document.createElement('p')
-        separator.className = 'action-separator'
-        separator.innerHTML = `<strong>Akce #${actionCounter}</strong>`
-        panel.appendChild(separator)
-
-        // Přidat samotný obsah
+        // Přidat samotný obsah (bez separátoru s číslem akce)
         entry.innerHTML = value
         panel.appendChild(entry)
       })
@@ -1699,8 +1693,8 @@ async function checkAndPerformTimeout() {
   evalDiv.innerHTML = `
     <div class="timeout-announcement" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 30px; margin: 20px 0; border-radius: 15px; text-align: center; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
       <h2 style="font-size: 2rem; margin: 0 0 15px 0;">⏸️ TIME-OUT ⏸️</h2>
-      <p style="font-size: 1.3rem; margin: 10px 0;"><strong>${losingTeamName}</strong></p>
-      <p style="font-size: 1.1rem; margin: 10px 0;">${timeoutQuote}</p>
+      <p style="font-size: 0.95rem; margin: 10px 0;"><strong>${losingTeamName}</strong></p>
+      <p style="font-size: 0.85rem; margin: 10px 0;">${timeoutQuote}</p>
       <p style="font-size: 0.9rem; margin-top: 20px; opacity: 0.9;">Trenér vybírá nejlepší dovednosti pro příští výměnu...</p>
     </div>
   `
@@ -1716,7 +1710,7 @@ async function checkAndPerformTimeout() {
     gameState.nextRallySkills[losingTeam] = bestSkills
 
     evalDiv.innerHTML = `
-      <div class="timeout-skills" style="background: rgba(0,0,0,0.8); padding: 20px; margin: 20px 0; border-radius: 15px; color: white;">
+      <div class="timeout-skills" style="background: rgba(0,0,0,0.8); padding: 12px; margin: 20px 0; border-radius: 15px; color: white;">
         <h3 style="margin: 0 0 15px 0;">📊 Vybrané dovednosti pro příští výměnu:</h3>
         <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
           ${bestSkills.map(skill => {
@@ -1754,7 +1748,7 @@ async function checkAndPerformTimeout() {
     gameState.nextRallySkills[losingTeam] = selectedSkills
 
     evalDiv.innerHTML = `
-      <div class="timeout-skills" style="background: rgba(0,0,0,0.8); padding: 20px; margin: 20px 0; border-radius: 15px; color: white;">
+      <div class="timeout-skills" style="background: rgba(0,0,0,0.8); padding: 12px; margin: 20px 0; border-radius: 15px; color: white;">
         <h3 style="margin: 0 0 15px 0;">⭐ Vybrány ULTIMATE dovednosti pro příští výměnu!</h3>
         <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
           ${selectedSkills.map(skill => {
@@ -2071,7 +2065,7 @@ function updateDisciplineInfo() {
   const disciplineInfoDiv = document.querySelector('.current-discipline-info')
   if (!disciplineInfoDiv) return
 
-  if (gameState.advanceSelectionMode && gameState.gameMode === 'league') {
+  if (gameState.advanceSelectionMode && (gameState.gameMode === 'league' || gameState.gameMode === 'extraliga')) {
     const disciplineName = gameState.disciplineNames[gameState.currentDisciplineIndex]
     const total = gameState.disciplineNames.length
     const current = gameState.currentDisciplineIndex + 1
@@ -2609,7 +2603,7 @@ function openTimeoutModal(team) {
     // Zobrazit potvrzení
     const evalDiv = getEvaluationDiv()
     evalDiv.innerHTML = `
-      <div class="timeout-confirmation" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 20px; margin: 20px 0; border-radius: 15px; color: white; text-align: center;">
+      <div class="timeout-confirmation" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 12px; margin: 20px 0; border-radius: 15px; color: white; text-align: center;">
         <h3>⏸️ TIME-OUT vzat!</h3>
         <p>Dovednosti pro příští výměnu byly vybrány.</p>
         <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 15px;">
@@ -2845,8 +2839,8 @@ function setupPlaybackControls() {
   const skipBtn = document.getElementById('skip-to-result-btn')
   if (skipBtn) {
     skipBtn.addEventListener('click', () => {
-      if (gameState.gameMode === 'league') {
-        // Ligový režim - najít konec celého ligového zápasu v historii
+      if (gameState.gameMode === 'league' || gameState.gameMode === 'extraliga') {
+        // Ligový/extraligový režim - najít konec celého ligového zápasu v historii
         const index = findEndOfLeague()
         if (index >= 0) {
           gameState.isPlaying = false
@@ -3022,8 +3016,8 @@ function startGame() {
   // Inicializovat karty trenérů v komentářových oknech
   initializeCoachCards()
 
-  // Inicializovat ligový režim pokud je potřeba
-  if (gameState.gameMode === 'league') {
+  // Inicializovat ligový a extraligový režim pokud je potřeba
+  if (gameState.gameMode === 'league' || gameState.gameMode === 'extraliga') {
     gameState.matchSchedule = createLeagueMatchSchedule(playersPerTeam)
     gameState.currentMatch = 0
     gameState.matchesScore = { team1: 0, team2: 0 }
@@ -3223,8 +3217,8 @@ function skipToEnd() {
 
 // Funkce pro kontrolu rozhodčích rozhodnutí (pouze ligový režim)
 async function checkRefereeDecision() {
-  // Pouze v ligovém režimu
-  if (gameState.gameMode !== 'league') return null
+  // Pouze v ligovém a extraligovém režimu
+  if (gameState.gameMode !== 'league' && gameState.gameMode !== 'extraliga') return null
 
   const evalDiv = getEvaluationDiv()
 
@@ -3423,8 +3417,8 @@ async function showRefereeAnimation(type) {
 
 // Funkce pro kontrolu extrémního počasí (pouze ligový režim)
 async function checkExtremeWeather() {
-  // Pouze v ligovém režimu
-  if (gameState.gameMode !== 'league') return
+  // Pouze v ligovém a extraligovém režimu
+  if (gameState.gameMode !== 'league' && gameState.gameMode !== 'extraliga') return
 
   // 0.5% šance na extrémní počasí
   if (Math.random() * 100 < 0.5 && !gameState.extremeWeather) {
@@ -3752,10 +3746,10 @@ async function playPointWithPhases() {
       const currentScore = `${gameState.score.team1[gameState.currentSet]}:${gameState.score.team2[gameState.currentSet]}`
 
       evalDiv.innerHTML += `
-        <div class="point-result-commentary" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 20px; margin: 15px 0; border-radius: 12px; text-align: center; border: 3px solid #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
+        <div class="point-result-commentary" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 12px; margin: 15px 0; border-radius: 12px; text-align: center; border: 3px solid #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
           <h3 style="margin: 0 0 10px 0; color: white; font-size: 1.8rem; font-weight: 700;">🎯 ${winnerName} získává bod!</h3>
-          <p style="margin: 0; color: white; font-size: 1.4rem; font-weight: 600;">Aktuální skóre: ${currentScore}</p>
-          ${result.reason ? `<p style="margin: 10px 0 0 0; color: rgba(255,255,255,0.9); font-size: 1.1rem;">${result.reason}</p>` : ''}
+          <p style="margin: 0; color: white; font-size: 1rem; font-weight: 600;">Aktuální skóre: ${currentScore}</p>
+          ${result.reason ? `<p style="margin: 10px 0 0 0; color: rgba(255,255,255,0.9); font-size: 0.85rem;">${result.reason}</p>` : ''}
         </div>
       `
       await smartDelay(2000)
@@ -3908,8 +3902,8 @@ async function playPointWithPhases() {
     await checkAndPerformSubstitutions()
   }
 
-  // Zkontrolovat rozhodčího a počasí (pouze v ligovém režimu)
-  if (rallyWinner && gameState.gameMode === 'league') {
+  // Zkontrolovat rozhodčího a počasí (ligový a extraligový režim)
+  if (rallyWinner && (gameState.gameMode === 'league' || gameState.gameMode === 'extraliga')) {
     // Nejprve zkontrolovat počasí
     await checkExtremeWeather()
 
@@ -4213,6 +4207,63 @@ function getNetPlayerIndex(teamSkills) {
   return 1
 }
 
+// Funkce pro vynutí správného mobile layoutu (trenér vlevo | hřiště | trenér vpravo)
+function forceMobileLayout() {
+  const applyLayout = () => {
+    const container = document.querySelector('.skills-reveal-container')
+    const leftCoach = document.querySelector('.coach-panel-left')
+    const rightCoach = document.querySelector('.coach-panel-right')
+    const court = document.querySelector('.court-center')
+
+    if (!container || !leftCoach || !rightCoach || !court) return
+
+    // Detect mobile/tablet
+    const isMobile = window.innerWidth <= 768
+    const coachWidth = (isMobile && window.innerWidth <= 480) ? '84px' : '96px'
+
+    // KRITICKÉ: Inline styly mají nejvyšší prioritu
+    container.style.cssText = `
+      display: grid !important;
+      grid-template-columns: ${coachWidth} 1fr ${coachWidth} !important;
+      gap: ${isMobile ? '0.3rem' : '0.4rem'} !important;
+      width: 100% !important;
+      align-items: start !important;
+    `
+
+    leftCoach.style.cssText = `
+      grid-column: 1 !important;
+      width: ${coachWidth} !important;
+      min-width: ${coachWidth} !important;
+      max-width: ${coachWidth} !important;
+      order: 1 !important;
+      padding: 0.1rem !important;
+    `
+
+    court.style.cssText = `
+      grid-column: 2 !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      order: 2 !important;
+    `
+
+    rightCoach.style.cssText = `
+      grid-column: 3 !important;
+      width: ${coachWidth} !important;
+      min-width: ${coachWidth} !important;
+      max-width: ${coachWidth} !important;
+      order: 3 !important;
+      padding: 0.1rem !important;
+    `
+  }
+
+  // Volat OKAMŽITĚ bez timeoutu
+  applyLayout()
+
+  // A pak ještě 2x jako zálohu (pro případ race condition)
+  setTimeout(applyLayout, 0)
+  setTimeout(applyLayout, 50)
+}
+
 // Okamžité zobrazení hráčů a dovedností (bez animací) - pro navigaci historií
 function displayPlayersAndSkills() {
   const team1Skills = gameState.lastActivatedSkills.team1
@@ -4489,23 +4540,26 @@ function displayPlayersAndSkills() {
   gameState.team1Skills = team1Skills
   gameState.team2Skills = team2Skills
 
-  // Po vykreslení aplikovat inteligentní pozicování visaček
+  // Po vykreslení aplikovat inteligentní pozicování visaček - vícekrát pro zajištění
+  positionTagsIntelligently()
+  setTimeout(() => positionTagsIntelligently(), 0)
   setTimeout(() => positionTagsIntelligently(), 100)
+  setTimeout(() => positionTagsIntelligently(), 300)
 
   // Nastavit event listenery pro tlačítka TIME-OUT v panelech trenérů
   setupTimeoutButtons()
+
+  // KRITICKÉ: Vynutit správný mobile layout
+  forceMobileLayout()
 }
 
-// Funkce pro inteligentní pozicování visaček s detekcí kolizí
+// Funkce pro jednoduché pozicování visaček - levý tým doprava, pravý tým doleva
 function positionTagsIntelligently() {
   const allContainers = document.querySelectorAll('.game-container .skill-ball-container')
   if (allContainers.length === 0) return
 
-  const tags = []
-  const balls = []
-
-  // Shromáždit všechny balony a visačky s jejich pozicemi
-  allContainers.forEach((container, index) => {
+  // Pro každou visačku aplikovat pevný směr podle týmu
+  allContainers.forEach((container) => {
     const ball = container.querySelector('.skill-ball')
     const tag = container.querySelector('.skill-ball-tag')
     const string = container.querySelector('.skill-ball-string')
@@ -4519,188 +4573,44 @@ function positionTagsIntelligently() {
       y: ballRect.top + ballRect.height / 2
     }
 
-    balls.push({ element: ball, rect: ballRect, center: ballCenter })
-    tags.push({
-      element: tag,
-      string: string,
-      container: container,
-      team: team,
-      ballCenter: ballCenter,
-      index: index
-    })
+    // Logika: levý tým (team1) doprava dolů, pravý tým (team2) doleva dolů (úhlopříčně, aby se nevěkrývaly)
+    const angle = team === 'team1' ? 45 : 135
+
+    // Aplikovat směr
+    applyTagDirection(tag, string, ballCenter, angle)
   })
-
-  // Najít nejvyššího hráče každého týmu (ten s nejmenší Y pozicí)
-  const team1Tags = tags.filter(t => t.team === 'team1')
-  const team2Tags = tags.filter(t => t.team === 'team2')
-
-  const topTeam1Player = team1Tags.length > 0
-    ? team1Tags.reduce((top, current) => current.ballCenter.y < top.ballCenter.y ? current : top)
-    : null
-
-  const topTeam2Player = team2Tags.length > 0
-    ? team2Tags.reduce((top, current) => current.ballCenter.y < top.ballCenter.y ? current : top)
-    : null
-
-  // Pro každou visačku najít optimální pozici
-  tags.forEach((tagData, i) => {
-    const { element: tag, string, team, ballCenter, container } = tagData
-
-    // Detekovat, zda je to horní hráč (net player) - má container v net-players-section
-    const isNetPlayer = container.closest('.net-player') !== null
-
-    // Detekovat, zda je to nejvyšší hráč v týmu (podle Y pozice)
-    const isTopPlayer = (team === 'team1' && tagData === topTeam1Player) ||
-                        (team === 'team2' && tagData === topTeam2Player)
-
-    // Možné směry podle týmu a pozice hráče
-    let directions
-
-    if (isNetPlayer || isTopPlayer) {
-      // Pro horního/síťového hráče preferovat směr k soupeři (horizontálně)
-      directions = team === 'team1'
-        ? [
-            { angle: 0, name: 'right' },       // doprava k soupeři (priorita #1)
-            { angle: 45, name: 'right-down' }, // doprava dolů
-            { angle: -45, name: 'right-up' },  // doprava nahoru
-            { angle: 90, name: 'down' },       // dolů
-            { angle: -90, name: 'up' },        // nahoru
-            { angle: 135, name: 'left-down' }  // doleva dolů
-          ]
-        : [
-            { angle: 180, name: 'left' },      // doleva k soupeři (priorita #1)
-            { angle: 135, name: 'left-down' }, // doleva dolů
-            { angle: -135, name: 'left-up' },  // doleva nahoru
-            { angle: 90, name: 'down' },       // dolů
-            { angle: -90, name: 'up' },        // nahoru
-            { angle: 45, name: 'right-down' }  // doprava dolů
-          ]
-    } else {
-      // Pro ostatní hráče standardní směry
-      directions = team === 'team1'
-        ? [
-            { angle: 90, name: 'down' },       // dolů (výchozí)
-            { angle: 45, name: 'right-down' }, // doprava dolů (preferovaný)
-            { angle: 0, name: 'right' },       // doprava
-            { angle: -45, name: 'right-up' },  // doprava nahoru
-            { angle: 135, name: 'left-down' }, // doleva dolů
-            { angle: -90, name: 'up' }         // nahoru
-          ]
-        : [
-            { angle: 90, name: 'down' },       // dolů (výchozí)
-            { angle: 135, name: 'left-down' }, // doleva dolů (preferovaný)
-            { angle: 180, name: 'left' },      // doleva
-            { angle: -135, name: 'left-up' },  // doleva nahoru
-            { angle: 45, name: 'right-down' }, // doprava dolů
-            { angle: -90, name: 'up' }         // nahoru
-          ]
-    }
-
-    let bestDirection = directions[0]
-    let minCollisions = Infinity
-
-    // Pro horní hráče preferovat horizontální směr (první v pořadí) pokud nemá více než 1 kolizi
-    if (isNetPlayer || isTopPlayer) {
-      const firstDirection = directions[0]
-      const firstPosition = calculateTagPosition(ballCenter, firstDirection.angle, 50)
-      const firstCollisionCount = countCollisions(firstPosition, tags, i)
-
-      // Použít horizontální směr pokud má max 1 kolizi
-      if (firstCollisionCount <= 1) {
-        bestDirection = firstDirection
-      } else {
-        // Jinak vyzkoušet další směry
-        for (const direction of directions) {
-          const testPosition = calculateTagPosition(ballCenter, direction.angle, 50)
-          const collisionCount = countCollisions(testPosition, tags, i)
-
-          if (collisionCount < minCollisions) {
-            minCollisions = collisionCount
-            bestDirection = direction
-          }
-
-          if (collisionCount === 0) break
-        }
-      }
-    } else {
-      // Pro ostatní hráče standardní logika
-      for (const direction of directions) {
-        const testPosition = calculateTagPosition(ballCenter, direction.angle, 50)
-        const collisionCount = countCollisions(testPosition, tags, i)
-
-        if (collisionCount < minCollisions) {
-          minCollisions = collisionCount
-          bestDirection = direction
-        }
-
-        // Pokud najdeme směr bez kolizí, použijeme ho
-        if (collisionCount === 0) break
-      }
-    }
-
-    // Aplikovat nejlepší směr
-    applyTagDirection(tag, string, ballCenter, bestDirection.angle)
-  })
-}
-
-// Vypočítat pozici visačky pro daný úhel
-function calculateTagPosition(ballCenter, angle, distance) {
-  const radians = (angle * Math.PI) / 180
-  return {
-    x: ballCenter.x + Math.cos(radians) * distance,
-    y: ballCenter.y + Math.sin(radians) * distance,
-    width: 120,  // min-width visačky
-    height: 40   // přibližná výška
-  }
-}
-
-// Spočítat počet kolizí s ostatními visačkami
-function countCollisions(position, allTags, currentIndex) {
-  let collisions = 0
-
-  allTags.forEach((otherTag, index) => {
-    if (index === currentIndex) return
-
-    const otherRect = otherTag.element.getBoundingClientRect()
-
-    // Kontrola překrytí obdélníků (AABB collision detection)
-    if (!(position.x + position.width < otherRect.left ||
-          position.x > otherRect.right ||
-          position.y + position.height < otherRect.top ||
-          position.y > otherRect.bottom)) {
-      collisions++
-    }
-  })
-
-  return collisions
 }
 
 // Aplikovat směr na visačku a šňůrku
 function applyTagDirection(tag, string, ballCenter, angle) {
-  const distance = 50
-  const stringLength = 40
+  const distance = 40  // Zkráceno z 50 na 40px
+  const stringLength = 30  // Zkráceno z 40 na 30px
   const radians = (angle * Math.PI) / 180
 
   // Vypočítat pozici konce šňůrky (kde začíná visačka)
   const stringEndX = Math.cos(radians) * stringLength
   const stringEndY = Math.sin(radians) * stringLength
 
-  // Nastavit šňůrku
-  string.style.height = `${stringLength}px`
-  string.style.width = '2px'
-  string.style.transform = `rotate(${angle}deg)`
-  string.style.transformOrigin = 'top center'
-  string.style.top = '60px'  // od středu balonu (120px / 2)
-  string.style.left = '50%'
-
   // Vypočítat pozici visačky
   const tagX = Math.cos(radians) * distance
   const tagY = Math.sin(radians) * distance
 
-  // Nastavit visačku
-  tag.style.left = `calc(50% + ${tagX}px)`
-  tag.style.top = `calc(60px + ${tagY}px)`
-  tag.style.transform = 'translate(-50%, -50%)'
+  // Nastavit šňůrku pomocí cssText pro vyšší prioritu
+  string.style.cssText = `
+    height: ${stringLength}px !important;
+    width: 2px !important;
+    transform: rotate(${angle}deg) !important;
+    transform-origin: top center !important;
+    top: 60px !important;
+    left: 50% !important;
+  `
+
+  // Nastavit visačku pomocí cssText pro vyšší prioritu
+  tag.style.cssText = `
+    left: calc(50% + ${tagX}px) !important;
+    top: calc(60px + ${tagY}px) !important;
+    transform: translate(-50%, -50%) !important;
+  `
 
   // Přesunout díru ve visačce podle úhlu
   const holeBefore = tag.querySelector('.skill-ball-tag::before') || tag
@@ -4807,6 +4717,9 @@ async function revealSkillsGradually(team1Skills, team2Skills) {
   const team2PlayerSkillsList = document.getElementById('team2-players-skills-list')
   const team1NetPlayerEl = document.getElementById('team1-net-player')
   const team2NetPlayerEl = document.getElementById('team2-net-player')
+
+  // KRITICKÉ: Vynutit správný mobile layout HNED po vytvoření struktury
+  forceMobileLayout()
 
   // Pole pro uložení ikon dovedností
   const team1SkillIcons = []
@@ -4922,6 +4835,9 @@ async function revealSkillsGradually(team1Skills, team2Skills) {
 
     await smartDelay(500)
   }
+
+  // KRITICKÉ: Vynutit správný mobile layout po přidání team1 hráčů
+  forceMobileLayout()
 
   // Postupně odkrýt schopnosti týmu 2
   for (let i = 0; i < team2Skills.length; i++) {
@@ -5042,8 +4958,11 @@ async function revealSkillsGradually(team1Skills, team2Skills) {
   gameState.team1Skills = team1Skills
   gameState.team2Skills = team2Skills
 
-  // Po vykreslení aplikovat inteligentní pozicování visaček
+  // Po vykreslení aplikovat inteligentní pozicování visaček - vícekrát pro zajištění
+  positionTagsIntelligently()
+  setTimeout(() => positionTagsIntelligently(), 0)
   setTimeout(() => positionTagsIntelligently(), 100)
+  setTimeout(() => positionTagsIntelligently(), 300)
 
   // Počáteční hláška trenérů na začátku prvního setu
   setTimeout(() => {
@@ -5051,6 +4970,11 @@ async function revealSkillsGradually(team1Skills, team2Skills) {
     const team2Quote = getRandomStartQuote(gameState.team2Name, gameState.team1Name)
     showCoachQuote('team1', team1Quote)
     showCoachQuote('team2', team2Quote)
+
+    // KRITICKÉ: Vynutit správný mobile layout
+    forceMobileLayout()
+    // A znovu pozicovat štítky
+    positionTagsIntelligently()
   }, 500)
 }
 
@@ -5532,8 +5456,8 @@ async function showActionVideo(interaction, videoSrc, isDefender = false, isFail
       console.log('Video načteno:', videoSrc, 'délka:', videoElement.duration)
     }, { once: true })
 
-    // Fallback timeout pro případ, že se video nenačte (5 sekund)
-    setTimeout(doResolve, 5000)
+    // Fallback timeout pro případ, že se video nenačte (30 sekund)
+    setTimeout(doResolve, 30000)
 
     // TEĎ TEPRVE spustit video
     videoElement.play().catch(e => {
@@ -5717,16 +5641,16 @@ async function showSkillComment(skillObj, successRate, isSuccess, additionalInfo
 
   evalDiv.innerHTML = `
     <div class="skill-commentary modern">
-      <div class="commentary-header" style="background: linear-gradient(135deg, ${isSuccess ? '#10b981' : '#ef4444'} 0%, ${isSuccess ? '#059669' : '#dc2626'} 100%); padding: 15px 20px; border-radius: 12px 12px 0 0; border-bottom: 3px solid rgba(255,255,255,0.3);">
+      <div class="commentary-header" style="background: linear-gradient(135deg, ${isSuccess ? '#10b981' : '#ef4444'} 0%, ${isSuccess ? '#059669' : '#dc2626'} 100%); padding: 8px 12px; border-radius: 12px 12px 0 0; border-bottom: 3px solid rgba(255,255,255,0.3);">
         <div style="display: flex; align-items: center; justify-content: space-between;">
-          <h3 style="margin: 0; color: white; font-size: 1.4rem; font-weight: 600;">⚡ ${skill.name}</h3>
+          <h3 style="margin: 0; color: white; font-size: 1rem; font-weight: 600;">⚡ ${skill.name}</h3>
           <span style="background: rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 20px; color: white; font-weight: bold;">${successRate}%</span>
         </div>
       </div>
-      <div class="commentary-body" style="background: linear-gradient(to bottom, #ffffff 0%, #f9fafb 100%); padding: 20px; border-radius: 0 0 12px 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+      <div class="commentary-body" style="background: linear-gradient(to bottom, #ffffff 0%, #f9fafb 100%); padding: 12px; border-radius: 0 0 12px 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
         <div style="margin-bottom: 15px;">
           <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 0.95rem;">👤 Hráč</p>
-          <p style="margin: 0; font-size: 1.15rem; font-weight: 600; color: #111827;">${skillObj.player.name}</p>
+          <p style="margin: 0; font-size: 0.9rem; font-weight: 600; color: #111827;">${skillObj.player.name}</p>
         </div>
         <div style="margin-bottom: 15px; padding: 12px; background: #f3f4f6; border-radius: 8px; border-left: 4px solid #8b5cf6;">
           <p style="margin: 0 0 6px 0; color: #6b7280; font-size: 0.9rem;">📊 Klíčové atributy</p>
@@ -5907,7 +5831,7 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
     const skillData = skills[failedSkill.skill]
 
     evalDiv.innerHTML = `
-      <div style="background: rgba(255,0,0,0.3); padding: 25px; margin: 20px 0; border-radius: 15px; color: white; text-align: center;">
+      <div style="background: rgba(255,0,0,0.3); padding: 14px; margin: 20px 0; border-radius: 15px; color: white; text-align: center;">
         <h2>❌ Speciální schopnost selhala!</h2>
         <p><strong>${failedSkill.player.name}</strong>: ${skillData.name}</p>
         <p style="font-size: 1.2rem; margin-top: 15px;">⚠️ Bod pro soupeře!</p>
@@ -7708,11 +7632,11 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
     // Stav 0:0
     finalCommentary = `
       <div class="skill-commentary modern">
-        <div class="commentary-header" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); padding: 15px 20px; border-radius: 12px 12px 0 0; border-bottom: 3px solid rgba(255,255,255,0.3);">
-          <h3 style="margin: 0; color: white; font-size: 1.4rem; font-weight: 600;">⚖️ Výsledek výměny: 0:0</h3>
+        <div class="commentary-header" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); padding: 8px 12px; border-radius: 12px 12px 0 0; border-bottom: 3px solid rgba(255,255,255,0.3);">
+          <h3 style="margin: 0; color: white; font-size: 1rem; font-weight: 600;">⚖️ Výsledek výměny: 0:0</h3>
         </div>
-        <div class="commentary-body" style="background: linear-gradient(to bottom, #ffffff 0%, #f9fafb 100%); padding: 20px; border-radius: 0 0 12px 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-          <p style="margin: 0; font-size: 1.1rem; color: #4b5563; text-align: center;">Výměna pokračuje.</p>
+        <div class="commentary-body" style="background: linear-gradient(to bottom, #ffffff 0%, #f9fafb 100%); padding: 12px; border-radius: 0 0 12px 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          <p style="margin: 0; font-size: 0.85rem; color: #4b5563; text-align: center;">Výměna pokračuje.</p>
         </div>
       </div>
     `
@@ -7720,11 +7644,11 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
     // Stav 1:0 pro Tým 1
     finalCommentary = `
       <div class="skill-commentary modern">
-        <div class="commentary-header" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 15px 20px; border-radius: 12px 12px 0 0; border-bottom: 3px solid rgba(255,255,255,0.3);">
-          <h3 style="margin: 0; color: white; font-size: 1.4rem; font-weight: 600;">🏆 Výměna byla zakončena bodem pro ${gameState.team1Name}!</h3>
+        <div class="commentary-header" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 8px 12px; border-radius: 12px 12px 0 0; border-bottom: 3px solid rgba(255,255,255,0.3);">
+          <h3 style="margin: 0; color: white; font-size: 1rem; font-weight: 600;">🏆 Výměna byla zakončena bodem pro ${gameState.team1Name}!</h3>
         </div>
-        <div class="commentary-body" style="background: linear-gradient(to bottom, #d1fae5 0%, #a7f3d0 100%); padding: 20px; border-radius: 0 0 12px 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-          <p style="margin: 0; font-size: 1.1rem; color: #065f46; text-align: center; font-weight: 600;">Zahajuji novou výměnu...</p>
+        <div class="commentary-body" style="background: linear-gradient(to bottom, #d1fae5 0%, #a7f3d0 100%); padding: 12px; border-radius: 0 0 12px 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          <p style="margin: 0; font-size: 0.85rem; color: #065f46; text-align: center; font-weight: 600;">Zahajuji novou výměnu...</p>
         </div>
       </div>
     `
@@ -7732,11 +7656,11 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
     // Stav 0:1 pro Tým 2
     finalCommentary = `
       <div class="skill-commentary modern">
-        <div class="commentary-header" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); padding: 15px 20px; border-radius: 12px 12px 0 0; border-bottom: 3px solid rgba(255,255,255,0.3);">
-          <h3 style="margin: 0; color: white; font-size: 1.4rem; font-weight: 600;">🏆 Výměna byla zakončena bodem pro ${gameState.team2Name}!</h3>
+        <div class="commentary-header" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); padding: 8px 12px; border-radius: 12px 12px 0 0; border-bottom: 3px solid rgba(255,255,255,0.3);">
+          <h3 style="margin: 0; color: white; font-size: 1rem; font-weight: 600;">🏆 Výměna byla zakončena bodem pro ${gameState.team2Name}!</h3>
         </div>
-        <div class="commentary-body" style="background: linear-gradient(to bottom, #dbeafe 0%, #bfdbfe 100%); padding: 20px; border-radius: 0 0 12px 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-          <p style="margin: 0; font-size: 1.1rem; color: #1e40af; text-align: center; font-weight: 600;">Zahajuji novou výměnu...</p>
+        <div class="commentary-body" style="background: linear-gradient(to bottom, #dbeafe 0%, #bfdbfe 100%); padding: 12px; border-radius: 0 0 12px 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          <p style="margin: 0; font-size: 0.85rem; color: #1e40af; text-align: center; font-weight: 600;">Zahajuji novou výměnu...</p>
         </div>
       </div>
     `
@@ -7744,18 +7668,18 @@ async function evaluatePointWithPhases(team1Skills, team2Skills) {
     // Více bodů během výměny
     finalCommentary = `
       <div class="skill-commentary modern">
-        <div class="commentary-header" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); padding: 15px 20px; border-radius: 12px 12px 0 0; border-bottom: 3px solid rgba(255,255,255,0.3);">
-          <h3 style="margin: 0; color: white; font-size: 1.4rem; font-weight: 600;">🎯 Během této fáze zápasu se podařilo:</h3>
+        <div class="commentary-header" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); padding: 8px 12px; border-radius: 12px 12px 0 0; border-bottom: 3px solid rgba(255,255,255,0.3);">
+          <h3 style="margin: 0; color: white; font-size: 1rem; font-weight: 600;">🎯 Během této fáze zápasu se podařilo:</h3>
         </div>
-        <div class="commentary-body" style="background: linear-gradient(to bottom, #ffffff 0%, #f9fafb 100%); padding: 20px; border-radius: 0 0 12px 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <div class="commentary-body" style="background: linear-gradient(to bottom, #ffffff 0%, #f9fafb 100%); padding: 12px; border-radius: 0 0 12px 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
           <div style="display: flex; gap: 20px; margin-bottom: 15px;">
             <div style="flex: 1; padding: 15px; background: #d1fae5; border-radius: 8px; border-left: 4px solid #10b981;">
               <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 0.9rem;">👥 ${gameState.team1Name}</p>
-              <p style="margin: 0; font-size: 1.3rem; font-weight: bold; color: #065f46;">${team1Points} ${team1Points === 1 ? 'bod' : team1Points < 5 ? 'body' : 'bodů'}</p>
+              <p style="margin: 0; font-size: 0.95rem; font-weight: bold; color: #065f46;">${team1Points} ${team1Points === 1 ? 'bod' : team1Points < 5 ? 'body' : 'bodů'}</p>
             </div>
             <div style="flex: 1; padding: 15px; background: #dbeafe; border-radius: 8px; border-left: 4px solid #3b82f6;">
               <p style="margin: 0 0 8px 0; color: #6b7280; font-size: 0.9rem;">👥 ${gameState.team2Name}</p>
-              <p style="margin: 0; font-size: 1.3rem; font-weight: bold; color: #1e40af;">${team2Points} ${team2Points === 1 ? 'bod' : team2Points < 5 ? 'body' : 'bodů'}</p>
+              <p style="margin: 0; font-size: 0.95rem; font-weight: bold; color: #1e40af;">${team2Points} ${team2Points === 1 ? 'bod' : team2Points < 5 ? 'body' : 'bodů'}</p>
             </div>
           </div>
           <div style="padding: 12px; background: #fef3c7; border-radius: 8px; text-align: center; border: 2px solid #f59e0b;">
@@ -8177,14 +8101,14 @@ async function updateScore(mode, team1PointsToAdd = 0, team2PointsToAdd = 0) {
     const evalDiv = getEvaluationDiv()
     evalDiv.innerHTML = `
       <div class="skill-commentary modern special-rule">
-        <div class="commentary-header" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); padding: 15px 20px; border-radius: 12px 12px 0 0; border-bottom: 3px solid rgba(255,255,255,0.3); box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);">
-          <h3 style="margin: 0; color: white; font-size: 1.5rem; font-weight: 700; text-align: center;">⚠️ SPECIÁLNÍ PRAVIDLO ⚠️</h3>
+        <div class="commentary-header" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); padding: 8px 12px; border-radius: 12px 12px 0 0; border-bottom: 3px solid rgba(255,255,255,0.3); box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);">
+          <h3 style="margin: 0; color: white; font-size: 0.85rem; font-weight: 700; text-align: center;">⚠️ SPECIÁLNÍ PRAVIDLO ⚠️</h3>
         </div>
-        <div class="commentary-body" style="background: linear-gradient(to bottom, #fef3c7 0%, #fde68a 100%); padding: 25px; border-radius: 0 0 12px 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 3px solid #f59e0b;">
+        <div class="commentary-body" style="background: linear-gradient(to bottom, #fef3c7 0%, #fde68a 100%); padding: 14px; border-radius: 0 0 12px 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 3px solid #f59e0b;">
           <div style="text-align: center; margin-bottom: 15px;">
-            <p style="margin: 0 0 12px 0; font-size: 1.3rem; font-weight: bold; color: #92400e;">Skóre nemůže skončit 10:10!</p>
+            <p style="margin: 0 0 12px 0; font-size: 0.95rem; font-weight: bold; color: #92400e;">Skóre nemůže skončit 10:10!</p>
             <div style="padding: 15px; background: white; border-radius: 8px; border-left: 5px solid #ef4444;">
-              <p style="margin: 0; font-size: 1.1rem; color: #7c2d12; font-weight: 600;">Výměna pokračuje, dokud jeden tým nevyhraje 10:9.</p>
+              <p style="margin: 0; font-size: 0.85rem; color: #7c2d12; font-weight: 600;">Výměna pokračuje, dokud jeden tým nevyhraje 10:9.</p>
             </div>
           </div>
         </div>
@@ -8241,8 +8165,8 @@ async function updateScore(mode, team1PointsToAdd = 0, team2PointsToAdd = 0) {
       const quote = quotes[Math.floor(Math.random() * quotes.length)]
       const evalDiv = getEvaluationDiv()
       evalDiv.innerHTML += `
-        <div class="coach-encouragement" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 20px; margin: 15px 0; border-radius: 12px; text-align: center; border: 3px solid #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
-          <p style="font-size: 1.3rem; margin: 0; color: white; font-weight: bold;">💪 ${coach.name}: "${quote}"</p>
+        <div class="coach-encouragement" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 12px; margin: 15px 0; border-radius: 12px; text-align: center; border: 3px solid #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
+          <p style="font-size: 0.95rem; margin: 0; color: white; font-weight: bold;">💪 ${coach.name}: "${quote}"</p>
         </div>
       `
     }
@@ -8253,8 +8177,8 @@ async function updateScore(mode, team1PointsToAdd = 0, team2PointsToAdd = 0) {
       const quote = quotes[Math.floor(Math.random() * quotes.length)]
       const evalDiv = getEvaluationDiv()
       evalDiv.innerHTML += `
-        <div class="coach-encouragement" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 20px; margin: 15px 0; border-radius: 12px; text-align: center; border: 3px solid #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
-          <p style="font-size: 1.3rem; margin: 0; color: white; font-weight: bold;">💪 ${coach.name}: "${quote}"</p>
+        <div class="coach-encouragement" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 12px; margin: 15px 0; border-radius: 12px; text-align: center; border: 3px solid #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
+          <p style="font-size: 0.95rem; margin: 0; color: white; font-weight: bold;">💪 ${coach.name}: "${quote}"</p>
         </div>
       `
     }
@@ -8362,9 +8286,9 @@ async function endSet() {
         evalDiv.innerHTML = `
           <div class="set-end-announcement" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; margin: 20px 0; border-radius: 15px; text-align: center; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
             <h2 style="font-size: 2rem; margin: 0 0 15px 0;">🏆 KONEC ${currentSet + 1}. SETU 🏆</h2>
-            <p style="font-size: 1.5rem; margin: 10px 0;"><strong>${winnerName}</strong> vyhrává set <strong>${setScore}</strong></p>
+            <p style="font-size: 0.85rem; margin: 10px 0;"><strong>${winnerName}</strong> vyhrává set <strong>${setScore}</strong></p>
             <p style="font-size: 1.2rem; margin: 15px 0;">Aktuální stav zápasu: <strong>${t1CompletedSetWins}:${t2CompletedSetWins}</strong></p>
-            <p style="font-size: 1.1rem; margin-top: 20px; opacity: 0.9;">⏳ Za chvíli začíná ${currentSet + 2}. set...</p>
+            <p style="font-size: 0.85rem; margin-top: 20px; opacity: 0.9;">⏳ Za chvíli začíná ${currentSet + 2}. set...</p>
           </div>
         `
 
@@ -8436,8 +8360,8 @@ function updateMatchesScore() {
   const matchesScoreEl = document.getElementById('matches-score')
   const currentMatchInfo = document.getElementById('current-match-info')
 
-  // Aktualizovat skóre dílčích zápasů (pouze v ligovém režimu)
-  if (matchesScoreEl && gameState.gameMode === 'league') {
+  // Aktualizovat skóre dílčích zápasů (ligový a extraligový režim)
+  if (matchesScoreEl && (gameState.gameMode === 'league' || gameState.gameMode === 'extraliga')) {
     matchesScoreEl.textContent = `${gameState.matchesScore.team1} : ${gameState.matchesScore.team2}`
   }
 
@@ -8445,8 +8369,8 @@ function updateMatchesScore() {
   if (currentMatchInfo) {
     let matchLabel = ''
 
-    if (gameState.gameMode === 'league') {
-      // V ligovém režimu: použít pevně daný rozvrh podle oficiálních pravidel
+    if (gameState.gameMode === 'league' || gameState.gameMode === 'extraliga') {
+      // V ligovém/extraligovém režimu: použít pevně daný rozvrh podle oficiálních pravidel
       if (gameState.currentMatch < gameState.matchSchedule.length) {
         const match = gameState.matchSchedule[gameState.currentMatch]
 
@@ -8610,8 +8534,8 @@ function endGame() {
   const t1Wins = gameState.score.team1.filter((s, i) => s > gameState.score.team2[i]).length
   const t2Wins = gameState.score.team2.filter((s, i) => s > gameState.score.team1[i]).length
 
-  // Ligový režim - přidat bod do dílčích zápasů a pokračovat dalším zápasem
-  if (gameState.gameMode === 'league') {
+  // Ligový a extraligový režim - přidat bod do dílčích zápasů a pokračovat dalším zápasem
+  if (gameState.gameMode === 'league' || gameState.gameMode === 'extraliga') {
     // Přidat bod vítězi
     if (t1Wins > t2Wins) {
       gameState.matchesScore.team1++
