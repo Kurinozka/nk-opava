@@ -1055,10 +1055,10 @@ async function performSubstitution(teamName, playerOut, playerIn) {
   }
 
   const coachComments = [
-    `${getPlayerNickname(playerOut.name)}, ${reason}! ${playerIn.name} jde dovnitř!`,
-    `Střídáme! ${playerOut.name} ven, ${playerIn.name} dovnitř. Důvod: ${reason}.`,
-    `${getPlayerNickname(playerOut.name)}, sedni si! ${playerIn.name}, jdi na to! Proč? ${reason}!`,
-    `Potřebujeme změnu. ${playerOut.name} ven (${reason}), ${playerIn.name} dovnitř!`
+    `${getPlayerVocative(playerOut)}, ${reason}! ${getPlayerFirstNameOrNickname(playerIn)} jde dovnitř!`,
+    `Střídáme! ${getPlayerFirstNameOrNickname(playerOut)} ven, ${getPlayerFirstNameOrNickname(playerIn)} dovnitř. Důvod: ${reason}.`,
+    `${getPlayerVocative(playerOut)}, sedni si! ${getPlayerVocative(playerIn)}, jdi na to! Proč? ${reason}!`,
+    `Potřebujeme změnu. ${getPlayerFirstNameOrNickname(playerOut)} ven (${reason}), ${getPlayerFirstNameOrNickname(playerIn)} dovnitř!`
   ]
 
   const comment = coachComments[Math.floor(Math.random() * coachComments.length)]
@@ -3201,7 +3201,7 @@ async function checkRefereeDecision() {
 
       // Soupeř získává bod
       const opponentTeam = team === 'team1' ? 'team2' : 'team1'
-      addEventToHistory(`🟨 ${player.name} dostal žlutou kartu! ${opponentTeam === 'team1' ? gameState.team1Name : gameState.team2Name} získává bod.`)
+      addEventToHistory(`🟨 ${getPlayerFirstNameOrNickname(player)} dostal žlutou kartu! ${opponentTeam === 'team1' ? gameState.team1Name : gameState.team2Name} získává bod.`)
 
       // Kontrola druhé žluté = červená
       if (gameState.playerYellowCards[player.id] >= 2) {
@@ -3216,7 +3216,7 @@ async function checkRefereeDecision() {
         `
         await smartDelay(3000)
 
-        addEventToHistory(`🟥 ${player.name} dostal červenou kartu a je vyloučen!`)
+        addEventToHistory(`🟥 ${getPlayerFirstNameOrNickname(player)} dostal červenou kartu a je vyloučen!`)
 
         return {
           type: 'red_card',
@@ -3245,7 +3245,7 @@ async function checkRefereeDecision() {
     `
     await smartDelay(2500)
 
-    addEventToHistory(`⚠️ ${player.name} byl napomenut rozhodčím (${gameState.playerWarnings[player.id]}/2)`)
+    addEventToHistory(`⚠️ ${getPlayerFirstNameOrNickname(player)} byl napomenut rozhodčím (${gameState.playerWarnings[player.id]}/2)`)
 
     return {
       type: 'warning',
@@ -3278,7 +3278,7 @@ async function checkRefereeDecision() {
     await smartDelay(3000)
 
     const opponentTeam = team === 'team1' ? 'team2' : 'team1'
-    addEventToHistory(`🟨 ${player.name} dostal žlutou kartu! ${opponentTeam === 'team1' ? gameState.team1Name : gameState.team2Name} získává bod.`)
+    addEventToHistory(`🟨 ${getPlayerFirstNameOrNickname(player)} dostal žlutou kartu! ${opponentTeam === 'team1' ? gameState.team1Name : gameState.team2Name} získává bod.`)
 
     // Kontrola druhé žluté = červená
     if (gameState.playerYellowCards[player.id] >= 2) {
@@ -3293,7 +3293,7 @@ async function checkRefereeDecision() {
       `
       await smartDelay(3000)
 
-      addEventToHistory(`🟥 ${player.name} dostal červenou kartu a je vyloučen!`)
+      addEventToHistory(`🟥 ${getPlayerFirstNameOrNickname(player)} dostal červenou kartu a je vyloučen!`)
 
       return {
         type: 'red_card',
