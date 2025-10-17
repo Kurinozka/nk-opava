@@ -6052,13 +6052,13 @@ export const extraligaTeams = [
           }
         ],
         "availableSkills": [
-          11,
+          19,
           14,
           16,
           17
         ],
         "skillVideos": {
-          "11": "/videos/drazdil-vytluceny-blok.mp4",
+          "19": "/videos/drazdil-vytluceny-blok.mp4",
           "14": "/videos/drazdil-destrukce.mp4"
         },
         "typicalPositions": [
