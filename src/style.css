@@ -1395,7 +1395,9 @@ p, h1, h2, h3, h4, h5, h6, span, div {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   flex: 0 0 25%;
   min-height: 300px;
+  max-height: 450px;
   min-width: 400px;
+  overflow-y: auto;
 }
 
 /* Ovládání přehrávání */
