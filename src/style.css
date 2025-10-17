@@ -6350,14 +6350,21 @@ p, h1, h2, h3, h4, h5, h6, span, div {
 }
 
 /* Zobrazit warning pouze v portrait módu na mobilních zařízeních */
-@media (max-width: 768px) and (orientation: portrait) {
+@media (orientation: portrait) and (max-width: 768px) {
+  .game-container .portrait-warning-overlay {
+    display: flex !important;
+  }
+}
+
+/* Pro menší obrazovky v portrait módu */
+@media (orientation: portrait) and (max-height: 1024px) {
   .game-container .portrait-warning-overlay {
     display: flex !important;
   }
 }
 
 /* Fullscreen styling pro simulaci v landscape módu na mobilech */
-@media (max-width: 768px) and (orientation: landscape) {
+@media (max-height: 768px) and (orientation: landscape) {
   .game-container {
     position: fixed;
     top: 0;
@@ -6368,10 +6375,26 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     margin: 0;
     overflow: auto;
   }
-  
+
   /* Skrýt header při fullscreen */
   .game-container ~ .header,
   .game-container ~ header {
     display: none;
+  }
+
+  /* Zachovat malé ikony míčů v landscape módu */
+  .game-container .skill-ball {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .skill-icon-display {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .game-hexagon-card {
+    width: 90px !important;
+    height: 135px !important;
   }
 }
