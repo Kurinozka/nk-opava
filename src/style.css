@@ -6298,3 +6298,80 @@ p, h1, h2, h3, h4, h5, h6, span, div {
 }
 
 
+
+/* PORTRAIT MODE WARNING - VYNUCENÍ LANDSCAPE ORIENTACE NA MOBILECH */
+.portrait-warning-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.98);
+  z-index: 10000;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.portrait-warning-content {
+  color: white;
+  max-width: 400px;
+}
+
+.portrait-warning-icon {
+  font-size: 120px;
+  margin-bottom: 2rem;
+  animation: rotatePhone 2s ease-in-out infinite;
+}
+
+@keyframes rotatePhone {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(90deg);
+  }
+}
+
+.portrait-warning-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #DC2F3E;
+}
+
+.portrait-warning-message {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* Zobrazit warning pouze v portrait módu na mobilních zařízeních */
+@media (max-width: 768px) and (orientation: portrait) {
+  .game-container .portrait-warning-overlay {
+    display: flex !important;
+  }
+}
+
+/* Fullscreen styling pro simulaci v landscape módu na mobilech */
+@media (max-width: 768px) and (orientation: landscape) {
+  .game-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+  }
+  
+  /* Skrýt header při fullscreen */
+  .game-container ~ .header,
+  .game-container ~ header {
+    display: none;
+  }
+}

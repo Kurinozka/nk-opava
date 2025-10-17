@@ -570,6 +570,15 @@ export function setLeagueTeams(opavaLineup, opavaBench, opponentLineup, opponent
 export function renderGameScreen() {
   return `
     <div class="game-container">
+      <!-- Portrait mode warning overlay -->
+      <div class="portrait-warning-overlay">
+        <div class="portrait-warning-content">
+          <div class="portrait-warning-icon">📱</div>
+          <h2 class="portrait-warning-title">Otoč telefon na šířku</h2>
+          <p class="portrait-warning-message">Pro optimální zážitek ze simulace otočte telefon do landscape režimu (na šířku).</p>
+        </div>
+      </div>
+
       <div class="game-court" style="display: block;">
         <button class="back-to-home-btn" onclick="window.location.reload()">← Zpět na úvodní stránku</button>
         <div class="game-layout-new">
