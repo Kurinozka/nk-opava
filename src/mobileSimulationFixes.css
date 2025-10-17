@@ -967,6 +967,21 @@
     display: none !important;
   }
 
+  /* Ikony míčů na hřišti - zmenšit o 80% v landscape */
+  .game-container .court .skill-icon-display,
+  .game-container .skills-reveal-container .skill-icon-display,
+  .game-container .skills-reveal-container-with-coaches .skill-icon-display {
+    width: 2px !important;  /* 80% zmenšení z 10px */
+    height: 2px !important;
+    font-size: 0.2rem !important;
+  }
+
+  .game-container .court .skill-icon-overlay,
+  .game-container .skills-reveal-container .skill-icon-overlay,
+  .game-container .skills-reveal-container-with-coaches .skill-icon-overlay {
+    font-size: 0.2rem !important;
+  }
+
   /* Scroll-based UI State Changes */
   .game-container.scroll-up .scoreboard-panel {
     display: block !important;
