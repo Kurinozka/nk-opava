@@ -3764,10 +3764,9 @@ p, h1, h2, h3, h4, h5, h6, span, div {
 
 .animation-box {
   width: 100%;
-  max-width: 600px;
   margin: 0 auto;
   background: transparent;
-  border-radius: 12px;
+  border-radius: 0;
   padding: 0;
   border: none;
 }
@@ -5353,7 +5352,7 @@ p, h1, h2, h3, h4, h5, h6, span, div {
   }
 
   .animation-box {
-    height: 200px;
+    height: auto;
   }
 
   .event-history {
@@ -6278,13 +6277,11 @@ p, h1, h2, h3, h4, h5, h6, span, div {
 .animation-box-large {
   width: 100%;
   height: auto;
-  min-height: 300px;
-  max-height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #000;
-  border-radius: 6px;
+  background: transparent;
+  border-radius: 0;
   overflow: hidden;
 }
 
