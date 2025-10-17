@@ -530,9 +530,9 @@
   object-fit: cover;
 }
 
-/* Visačky a šňůrky odstraněny - už se nepoužívají */
-.skill-ball-string,
-.skill-ball-tag {
+/* Visačky a šňůrky odstraněny v profilech hráčů - v simulaci se zobrazují */
+.player-detail-container .skill-ball-string,
+.player-detail-container .skill-ball-tag {
   display: none;
 }
 
