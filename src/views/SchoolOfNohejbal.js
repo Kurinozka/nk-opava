@@ -45,7 +45,7 @@ export function createSchoolOfNohejbalView() {
         <!-- Video přehrávač -->
         <div class="school-video-section">
           <div class="video-player-container">
-            <video id="school-video" class="school-video" controls>
+            <video id="school-video" class="school-video" controls muted="false">
               <source src="${filteredVideos[0]?.video || ''}" type="video/mp4">
               Váš prohlížeč nepodporuje video.
             </video>
@@ -282,10 +282,12 @@ export function setupSchoolOfNohejbalHandlers() {
     // Aktualizovat video
     video.src = currentVideo.video
     video.playbackRate = currentPlaybackRate
+    video.muted = false  // Zajistit, že video má zvuk
     video.load()
 
     // Automaticky přehrát video po načtení
     video.addEventListener('loadeddata', () => {
+      video.muted = false  // Znovu zajistit unmute před přehráním
       video.play().catch(err => {
         console.log('Autoplay was prevented:', err)
       })
@@ -319,7 +321,9 @@ export function setupSchoolOfNohejbalHandlers() {
 
   // Automaticky přehrát první video při načtení stránky
   if (video && filteredVideos.length > 0) {
+    video.muted = false  // Zajistit zvuk
     video.addEventListener('loadeddata', () => {
+      video.muted = false  // Znovu zajistit unmute před přehráním
       video.play().catch(err => {
         console.log('Autoplay was prevented:', err)
       })
