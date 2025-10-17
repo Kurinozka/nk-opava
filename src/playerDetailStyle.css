@@ -375,7 +375,7 @@
 
 .skill-detail-card {
   position: relative;
-  background: var(--color-gray);
+  background: #000;
   border-radius: 12px;
   overflow: hidden;
   aspect-ratio: 16 / 9;
@@ -1104,10 +1104,11 @@
 
 /* Větší video/animace v modalu */
 .skill-animation-large {
-  border-left-color: #f0f6fc !important;
+  border: none !important;
   background: transparent !important;
   padding: 0 !important;
   overflow: hidden;
+  margin: 0 !important;
 }
 
 .animation-box-large {
@@ -1119,6 +1120,7 @@
   background: transparent;
   border-radius: 0;
   overflow: hidden;
+  border: none;
 }
 
 .animation-box-large video,

@@ -1602,11 +1602,6 @@ section {
     grid-template-columns: 1fr;
   }
 
-  .animation-box video,
-  .animation-box .skill-video {
-    max-height: 400px;
-  }
-
   /* Baráž card */
   .baraz-card {
     padding: 1.5rem;
