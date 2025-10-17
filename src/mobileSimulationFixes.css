@@ -74,7 +74,12 @@
     padding: 0.5rem !important;
   }
 
-  /* Karty trenérů - umístit do dolních rohů, zmenšit o 70% (30% původní velikosti) */
+  /* Oblast hřiště - musí mít relativní pozicování pro umístění trenérů v rozích */
+  .game-container .court-area {
+    position: relative !important;
+  }
+
+  /* Karty trenérů - umístit do dolních rohů HŘIŠTĚ (černý obdélník), zmenšit o 70% (30% původní velikosti) */
   .game-container .team1-coach-card {
     position: absolute !important;
     bottom: 0.5rem !important;
@@ -89,6 +94,19 @@
     right: 0.5rem !important;
     z-index: 10 !important;
     margin: 0 !important;
+  }
+
+  /* Nálada trenéra - přesunout POD kartu trenéra */
+  .game-container .coach-card-mood {
+    position: absolute !important;
+    top: 100% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin-top: 0.2rem !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+    padding: 0.15rem 0.3rem !important;
+    border-radius: 4px !important;
+    white-space: nowrap !important;
   }
 
   /* Hřiště roztáhnout na celou šířku */
@@ -338,7 +356,12 @@
     padding: 0.3rem !important;
   }
 
-  /* Trenéři - umístit do dolních rohů, zmenšit o 70% */
+  /* Oblast hřiště - musí mít relativní pozicování pro umístění trenérů v rozích */
+  .game-container .court-area {
+    position: relative !important;
+  }
+
+  /* Trenéři - umístit do dolních rohů HŘIŠTĚ (černý obdélník), zmenšit o 70% */
   .game-container .team1-coach-card {
     position: absolute !important;
     bottom: 0.3rem !important;
@@ -353,6 +376,19 @@
     right: 0.3rem !important;
     z-index: 10 !important;
     margin: 0 !important;
+  }
+
+  /* Nálada trenéra - přesunout POD kartu trenéra */
+  .game-container .coach-card-mood {
+    position: absolute !important;
+    top: 100% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin-top: 0.2rem !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+    padding: 0.15rem 0.3rem !important;
+    border-radius: 4px !important;
+    white-space: nowrap !important;
   }
 
   /* Hřiště na celou šířku */
@@ -543,7 +579,12 @@
     padding: 0.25rem !important;
   }
 
-  /* Trenéři - umístit do dolních rohů, zmenšit o 70% */
+  /* Oblast hřiště - musí mít relativní pozicování pro umístění trenérů v rozích */
+  .game-container .court-area {
+    position: relative !important;
+  }
+
+  /* Trenéři - umístit do dolních rohů HŘIŠTĚ (černý obdélník), zmenšit o 70% */
   .game-container .team1-coach-card {
     position: absolute !important;
     bottom: 0.25rem !important;
@@ -558,6 +599,19 @@
     right: 0.25rem !important;
     z-index: 10 !important;
     margin: 0 !important;
+  }
+
+  /* Nálada trenéra - přesunout POD kartu trenéra */
+  .game-container .coach-card-mood {
+    position: absolute !important;
+    top: 100% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin-top: 0.2rem !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+    padding: 0.15rem 0.3rem !important;
+    border-radius: 4px !important;
+    white-space: nowrap !important;
   }
 
   /* Hřiště na celou šířku */
@@ -722,25 +776,168 @@
   }
 }
 
-/* LANDSCAPE ORIENTACE NA MOBILECH */
-@media (max-width: 768px) and (orientation: landscape) {
-  /* V landscape režimu zmenšit výšky */
+/* PORTRAIT REŽIM - Vertikální uspořádání hráčů */
+@media (max-width: 768px) and (orientation: portrait) {
+  /* Snížit výšku karet hráčů o 50% */
   .game-container .hexagon-card {
-    height: 120px !important;
+    height: 95px !important;  /* 50% z 190px */
+  }
+
+  /* Vertikální uspořádání hráčů v každém týmu */
+  .game-container .team-horizontal-layout {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    align-items: center !important;
+  }
+
+  .game-container .team-players-skills-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+
+  /* Formace 3 hráčů - prostřední hráč mírně vpřed */
+  .game-container .team-players-skills-list .player-skill-pair:nth-child(2) {
+    transform: translateX(1rem) !important;
+  }
+
+  .game-container .team-right .team-players-skills-list .player-skill-pair:nth-child(2) {
+    transform: translateX(-1rem) !important;
+  }
+
+  /* Ikony dovedností vedle hráče, směrem ke středu */
+  .game-container .player-skill-pair {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.3rem !important;
+  }
+
+  .game-container .team-left .player-skill-pair {
+    flex-direction: row !important;
+  }
+
+  .game-container .team-right .player-skill-pair {
+    flex-direction: row-reverse !important;
+  }
+}
+
+/* LANDSCAPE ORIENTACE NA MOBILECH - Kompletní přepracování */
+@media (max-width: 768px) and (orientation: landscape) {
+  /* Celá obrazovka pro hřiště */
+  .game-container .game-layout-new {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100vh !important;
+  }
+
+  /* Top bar s komentářem - 15% horní části */
+  .game-container .top-bar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 15vh !important;
+    z-index: 100 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    background: rgba(0, 0, 0, 0.95) !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  /* Skrýt skóre panel v landscape, zobrazí se při scrollu nahoru */
+  .game-container .scoreboard-panel {
+    display: none !important;
+  }
+
+  /* Komentáře - full šířka, kompaktní */
+  .game-container .action-commentary-panel {
+    flex: 1 !important;
+    max-height: 15vh !important;
+    min-height: 15vh !important;
+    overflow-y: auto !important;
+    font-size: 0.6rem !important;
+    padding: 0.5rem !important;
+  }
+
+  .game-container .commentary-content {
+    font-size: 0.6rem !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Hlavní herní oblast - fullscreen pod komentáři */
+  .game-container .game-center-main {
+    position: fixed !important;
+    top: 15vh !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    height: 85vh !important;
+  }
+
+  /* Hřiště přes celou dostupnou plochu */
+  .game-container .skills-reveal-container-with-coaches {
+    width: 100vw !important;
+    height: 85vh !important;
+    padding: 0 !important;
+  }
+
+  .game-container .court-area {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: stretch !important;
+  }
+
+  /* Hráči a jejich dovednosti vedle sebe */
+  .game-container .team-section {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    padding: 0.5rem !important;
+  }
+
+  /* Snížit výšky v landscape */
+  .game-container .hexagon-card {
+    height: 80px !important;
+    width: 60px !important;
   }
 
   .game-container .coach-card {
-    height: 110px !important;
+    height: 60px !important;
+    width: 45px !important;
   }
 
-  .game-container .action-commentary-panel {
-    max-height: 150px !important;
-    min-height: 80px !important;
-  }
-
-  /* Skrýt některé méně důležité elementy v landscape */
+  /* Skrýt statistiky hráčů v landscape */
   .game-container .player-stats-mini {
     display: none !important;
+  }
+
+  /* Scroll-based UI State Changes */
+  .game-container.scroll-up .scoreboard-panel {
+    display: block !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 15vh !important;
+    z-index: 101 !important;
+  }
+
+  .game-container.scroll-up .action-commentary-panel {
+    display: none !important;
+  }
+
+  .game-container.scroll-down .top-bar {
+    transform: translateY(-100%) !important;
+  }
+
+  .game-container.scroll-down .coach-card {
+    opacity: 1 !important;
+    transform: scale(1.5) !important;
+    transition: all 0.3s ease !important;
   }
 }
 

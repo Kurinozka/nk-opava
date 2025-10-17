@@ -1978,6 +1978,34 @@ export function setupGameHandlers() {
       }
     })
   }
+
+  // Mobile landscape scroll-based UI state changes
+  let lastScrollTop = 0
+  const gameContainer = document.querySelector('.game-container')
+
+  if (gameContainer && window.matchMedia('(max-width: 768px) and (orientation: landscape)').matches) {
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+
+      if (scrollTop > lastScrollTop) {
+        // Scrolling down - show coaches, hide commentary
+        gameContainer.classList.remove('scroll-up')
+        gameContainer.classList.add('scroll-down')
+      } else if (scrollTop < lastScrollTop) {
+        // Scrolling up - show score, hide commentary
+        gameContainer.classList.remove('scroll-down')
+        gameContainer.classList.add('scroll-up')
+      }
+
+      // Reset to default state when at top
+      if (scrollTop === 0) {
+        gameContainer.classList.remove('scroll-up')
+        gameContainer.classList.remove('scroll-down')
+      }
+
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop
+    }, false)
+  }
 }
 
 // Funkce pro zobrazení informace o aktuální vyb��rané disciplíně
