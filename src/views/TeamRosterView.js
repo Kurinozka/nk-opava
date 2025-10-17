@@ -95,8 +95,8 @@ export function createTeamRosterView(teamId, isExtraliga = false) {
       </div>
 
       ${teamId === 'CAKO' ? `
-        <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-          <video autoplay loop muted playsinline preload="auto" style="width: 100%; display: block;">
+        <div class="team-video-section" style="margin: 30px 0; width: 100%; background: transparent;">
+          <video autoplay loop muted playsinline preload="auto" style="width: 100%; height: auto; display: block; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
             <source src="/videos/cakovice-team.mp4" type="video/mp4">
             Váš prohlížeč nepodporuje přehrávání videa.
           </video>
@@ -104,8 +104,8 @@ export function createTeamRosterView(teamId, isExtraliga = false) {
       ` : ''}
 
       ${teamId === 'MODR' ? `
-        <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-          <video autoplay loop muted playsinline preload="auto" style="width: 100%; display: block;">
+        <div class="team-video-section" style="margin: 30px 0; width: 100%; background: transparent;">
+          <video autoplay loop muted playsinline preload="auto" style="width: 100%; height: auto; display: block; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
             <source src="/videos/modrice-team.mp4" type="video/mp4">
             Váš prohlížeč nepodporuje přehrávání videa.
           </video>
@@ -113,8 +113,8 @@ export function createTeamRosterView(teamId, isExtraliga = false) {
       ` : ''}
 
       ${teamId === 'CELA' ? `
-        <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-          <video autoplay loop muted playsinline preload="auto" style="width: 100%; display: block;">
+        <div class="team-video-section" style="margin: 30px 0; width: 100%; background: transparent;">
+          <video autoplay loop muted playsinline preload="auto" style="width: 100%; height: auto; display: block; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
             <source src="/videos/celakovice-team.mp4" type="video/mp4">
             Váš prohlížeč nepodporuje přehrávání videa.
           </video>
@@ -122,8 +122,8 @@ export function createTeamRosterView(teamId, isExtraliga = false) {
       ` : ''}
 
       ${teamId === 'KVAR' ? `
-        <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-          <video autoplay loop muted playsinline preload="auto" style="width: 100%; display: block;">
+        <div class="team-video-section" style="margin: 30px 0; width: 100%; background: transparent;">
+          <video autoplay loop muted playsinline preload="auto" style="width: 100%; height: auto; display: block; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
             <source src="/videos/karlovy-vary-team.mp4" type="video/mp4">
             Váš prohlížeč nepodporuje přehrávání videa.
           </video>
@@ -131,8 +131,8 @@ export function createTeamRosterView(teamId, isExtraliga = false) {
       ` : ''}
 
       ${teamId === 'VSET' ? `
-        <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-          <video autoplay loop muted playsinline preload="auto" style="width: 100%; display: block;">
+        <div class="team-video-section" style="margin: 30px 0; width: 100%; background: transparent;">
+          <video autoplay loop muted playsinline preload="auto" style="width: 100%; height: auto; display: block; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
             <source src="/videos/vsetin-team.mp4" type="video/mp4">
             Váš prohlížeč nepodporuje přehrávání videa.
           </video>
@@ -140,8 +140,8 @@ export function createTeamRosterView(teamId, isExtraliga = false) {
       ` : ''}
 
       ${teamId === 'ZATEC' ? `
-        <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-          <video autoplay loop muted playsinline preload="auto" style="width: 100%; display: block;">
+        <div class="team-video-section" style="margin: 30px 0; width: 100%; background: transparent;">
+          <video autoplay loop muted playsinline preload="auto" style="width: 100%; height: auto; display: block; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
             <source src="/videos/zatec-team.mp4" type="video/mp4">
             Váš prohlížeč nepodporuje přehrávání videa.
           </video>
@@ -149,8 +149,8 @@ export function createTeamRosterView(teamId, isExtraliga = false) {
       ` : ''}
 
       ${teamId === 'RADO' ? `
-        <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-          <video autoplay loop muted playsinline preload="auto" style="width: 100%; display: block;">
+        <div class="team-video-section" style="margin: 30px 0; width: 100%; background: transparent;">
+          <video autoplay loop muted playsinline preload="auto" style="width: 100%; height: auto; display: block; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
             <source src="/videos/radomysl-team.mp4" type="video/mp4">
             Váš prohlížeč nepodporuje přehrávání videa.
           </video>
@@ -158,8 +158,8 @@ export function createTeamRosterView(teamId, isExtraliga = false) {
       ` : ''}
 
       ${teamId === 'SOLI' ? `
-        <div class="team-video-section" style="margin: 30px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-          <video autoplay loop muted playsinline preload="auto" style="width: 100%; display: block;">
+        <div class="team-video-section" style="margin: 30px 0; width: 100%; background: transparent;">
+          <video autoplay loop muted playsinline preload="auto" style="width: 100%; height: auto; display: block; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
             <source src="/videos/solidarita-team.mp4" type="video/mp4">
             Váš prohlížeč nepodporuje přehrávání videa.
           </video>
