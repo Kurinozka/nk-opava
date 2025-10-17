@@ -1572,7 +1572,10 @@ function showSkillDetailModal(skillId, playerId = null, isSuccessTab = true) {
   // Zajistit, že videa v modalu mají zvuk (ne muted)
   const modalVideos = modal.querySelectorAll('video')
   modalVideos.forEach(video => {
-    video.muted = false
+    video.removeAttribute('muted')  // Odstranit muted atribut
+    video.muted = false  // Nastavit muted property na false
+    video.setAttribute('controls', 'true')  // Přidat ovládací prvky
+    video.loop = true  // Ponechat loop
   })
 
   // Přidat event listener pro zavření
